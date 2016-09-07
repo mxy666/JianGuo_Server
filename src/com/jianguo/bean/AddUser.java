@@ -5,11 +5,12 @@ package com.jianguo.bean;
  */
 public class AddUser {
     private String name;//ÐÕÃû
-    private String tel;//µç»°
+    private String tel;
 
     public String getName() {
         return name;
     }
+
 
     public void setName(String name) {
         this.name = name;
