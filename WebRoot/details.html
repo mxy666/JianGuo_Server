@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0;  minimum-scale=1.0; maximum-scale=2.0"/>
+	<title>职位详情</title>
+	<link href="./css/style.css" rel="stylesheet" type="text/css" />
+	<link href="./css/public.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/css.css"> 
+</head>
+<body>
+    <div class="main">
+        <div class="title">
+            <div class="title-main">               
+                <span>兼职详情</span>
+            </div>
+        </div>
+        <div class="basic-info">
+            <div class="imgdiv">
+                  <img src="img/moren.png" width="37.5" height="37.5"id="img">
+            </div>
+          
+            <div class="basis-info-text">
+                <h1 id="test">${name}</h1>
+                <p>工资：<em id="">1522/月</em></p>
+                <p>招聘人数：<em>155/212</em></p>
+                <span>七天前发布</span>
+            </div>
+        </div> 
+         <div class="specific-info">
+            <div class="specific-info-text">
+              <p>工作地点：<span>海棠湾附近</span></p>
+              <p>工作日期：<span>4 月 1 日 - 5 月 1 日</span></p>
+              <p>集合地点：<span>琼州学院后门</span></p>
+              <p>集合时间：<span>6：30</span></p>
+              <p>性别：<span>男女不限</span></p>
+              <p>结算方式：<span>日结</span></p>
+              <p>其他事项：<span>包接送 包餐 包住宿</span></p>                       
+            </div>
+        </div> 
+         <div class="work-details">
+           <div class="work-details-title">
+               <em></em>
+               <span>工作详情</span>              
+           </div>
+           <div class="work-details-content">
+                <p>
+                    <span>工作内容：</span>
+                    <span id="text" class="text">宴会厅帮工，协助酒店正式员工完成1000人的宴会。宴会厅帮工，协助酒店正式员工完成1000人的宴会。宴会厅帮工，协助酒店正式员工完成1000人的宴会。</span>
+                </p>
+                 <p class="req">
+                    <span>工作要求：</span>
+                    <span id="text1" class="text">无明显纹身，不染发，。没有美甲无明显纹身，不染发，。没有美甲无明显纹身，不染发，。没有美甲无明显纹身，不染发，。没有美甲</span>
+                </p>
+                <p class="cd-popup-trigger">查看更多</p>
+                
+            </div>           
+        </div> 
+          <div class="work-details">
+           <div class="work-details-title">
+               <em></em>
+               <span>商家详情</span>                      
+           </div>
+           <div class="work-details-content ">
+                <img src="img/moren.png" width="37.5" height="37.5">
+                <div class="merchants-details-text">
+                    <span>翼蜗牛网络科技有限公司</span>
+                    <span>30个职位在招</span>
+                </div>
+            </div>           
+        </div> 
+        <div class="end ">
+            您已经拉倒最底部了哦
+        </div>
+       <button type="button" class="button">下载 app</button>
+     </div>
+   <div class="cd-popup" role="alert">
+	<div class="cd-popup-container">
+		<div class="cd-text">
+           <p>
+                    <span>工作内容：</span>
+                    <span id="text" class="text">宴会厅帮工，协助酒店正式员工完成1000人的宴会。宴会厅帮工，协助酒店正式员工完成1000人的宴会。宴会厅帮工，协助酒店正式员工完成1000人的宴会。</span>
+                </p>
+                 <p class="req">
+                    <span>工作要求：</span>
+                    <span id="text1" class="text">无明显纹身，不染发，。没有美甲无明显纹身，不染发，。没有美甲无明显纹身，不染发，。没有美甲无明显纹身，不染发，。没有美甲</span>
+                </p>
+        </div>
+	</div> <!-- cd-popup-container -->
+</div> <!-- cd-popup -->
+
+<script src="js/jquery.1.11.1.js"></script>
+<script src="js/main.js"></script> <!-- Resource jQuery -->
+</body>
+<script type="text/javascript">
+
+
+function ajson (){
+    
+     var test = document.getElementById("test");
+     var img = document.getElementById("img");
+     var pay = document.getElementById("pay");
+     
+         test.innerHTML = res.data.t_job.name;
+         img.src =res.data.t_job.name_image;   
+}
+ 
+$.ajax({
+  url:'http://192.168.1.132/JianGuo_Server/Html_Job_Id_Servlet',
+  type:'post',
+  data:{
+      only:'xse2iowiowdg3542d49z2016062116jfiejdw4gdeqefw33ff23fi999',
+      job_id:8
+  },
+  succes:function(res){    
+  
+       ajson();
+      
+  },
+  error:function(res){
+       console.log(1);
+       console.log(res);
+  }
+})
+
+</script>
+</body>
+</html>

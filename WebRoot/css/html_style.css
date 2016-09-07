@@ -1,0 +1,52 @@
+.main { overflow: hidden; width: 100%; }
+
+.title { background: #5ea0f8; height: 61px; color: #fff; }
+
+.title-main { padding: 18px 15px 0 24px; text-align: center;     font-size: 1.1em;}
+.title-main em { display: inline-block; }
+.title-main em:nth-child(1) { float: left; width: 12px; height: 20px; background: url(../img/top-back.png) no-repeat; background-size: 100% 100%; }
+.title-main em:nth-last-child(1) { float: right; width: 25.5px; height: 22.5px; background: url(../img/cycle.png) no-repeat; background-size: 100% 100%; }
+
+.basic-info, .specific-info { overflow: hidden; background: #fff; margin-top: 10px; padding: 15px 0 15px 15px; }
+.basic-info img, .specific-info img { float: left; }
+
+.basis-info-text { width: 81%; float: left;     margin-left: 10px; position: relative; color: #dcdcdc; }
+.basis-info-text h1 { font-size: 1em; color: #666; }
+.basis-info-text p { font-size: 0.9em; color: #9b9b9b; margin: 10px 0}
+.basis-info-text p em { color: #e88380; }
+.basis-info-text span { position: absolute; right: 0; top: 0; font-size: 0.9em; }
+.basis-info-text span.baom{top: 29px;border: 1px solid rgb(94, 160, 248);color: rgb(94, 160, 248);padding: 2px 8px;border-radius: 6px;}
+
+.specific-info { color: #9b9b9b; }
+.specific-info p { margin-bottom: 10px; font-size: 0.9em;overflow: hidden }
+.specific-info p:nth-last-child(1) { margin: 0; }
+.specific-info span { display: inline-block;float: left;color: #9b9b9b;}
+.specific-info span.p-span { color: #6d6d6d!important;}
+
+
+.work-details, .merchants-details { margin-top: 10px; }
+.work-details .work-details-title, .work-details .merchants-details-content, .merchants-details .work-details-title, .merchants-details .merchants-details-content { background: #fff; padding: 15px 24px 15px 15px; }
+.work-details .work-details-title em, .work-details .merchants-details-content em, .merchants-details .work-details-title em, .merchants-details .merchants-details-content em { display: inline-block; width: 15px; height: 15px; background: url(../img/zhuy.png) no-repeat; background-size: 100% 100%; float: left; margin: 4px 6px 0 0; }
+.work-details .work-details-title em:nth-last-child(1), .work-details .merchants-details-content em:nth-last-child(1), .merchants-details .work-details-title em:nth-last-child(1), .merchants-details .merchants-details-content em:nth-last-child(1) { float: right; width: 12px; height: 20px; background: url(../img/back.png) no-repeat; background-size: 100% 100%; }
+.work-details .work-details-title span, .work-details .merchants-details-content span, .merchants-details .work-details-title span, .merchants-details .merchants-details-content span { font-size: 1em; color: #e88380; }
+.work-details .work-details-content, .merchants-details .work-details-content { background: #fff; margin-top: 5px; padding: 15px 15px 0 15px; overflow: hidden; }
+.work-details .work-details-content img, .merchants-details .work-details-content img { float: left; }
+.work-details .work-details-content p, .merchants-details .work-details-content p { overflow: hidden; font-size: 0.9em;    margin-bottom: 10px; }
+.work-details .work-details-content p.req, .merchants-details .work-details-content p.req { border-bottom: 2px solid #f3f3f3; padding-bottom: 15px; }
+.work-details .work-details-content p:nth-last-child(1), .merchants-details .work-details-content p:nth-last-child(1) { margin: 0; width: 100%; }
+.work-details .work-details-content p span, .merchants-details .work-details-content p span { float: left; color: #9b9b9b;    line-height: 20px; }
+.work-details .work-details-content p span.text, .merchants-details .work-details-content p span.text { display: inline-block; width: 70%; color: #666666; }
+
+.merchants-details-text { float: left; margin-left: 17.5px; }
+.merchants-details-text span { display: block; margin-bottom: 10px; color: #676767; font-size: 0.9em; }
+.merchants-details-text span:nth-last-child(1) { color: #a3a3a3; }
+
+.end { height: 100px; font-size: 0.9em; color: #9b9b9b; text-align: center; line-height: 55px; }
+
+.button { width: 100%; background: #f5c952; border: 0; color: #fefefe; height: 48.5px; font-size: 1.1em; display: inline-block; text-align: center;line-height: 48.5px;position: fixed;bottom: 0;}
+
+.cd-text { width: 288px; height: 267px; overflow: auto; }
+
+.imgdiv{ width: 37px;height: 37px;float: left;border-radius: 50%;overflow: hidden;margin-top: 10px;}
+
+

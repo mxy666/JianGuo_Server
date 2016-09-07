@@ -1,0 +1,1600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<servlet>
+  <servlet-name>Log4jInit</servlet-name>
+  <servlet-class>com.jianguo.servlet.pay</servlet-class>
+  <init-param>
+   <param-name>log4j</param-name><!-- 这个是名字是下边路径配置的标识（好像KEY一样） -->
+   <param-value>/log4j.properties</param-value><!-- 这是容器初始化时候加载log4j配置文件的路径（这好像一个value）; -->
+  </init-param>
+ </servlet>
+ 	
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_login_Check_Tel_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.login.T_user_login_Check_Tel_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_QiNiu_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.qiniu.T_QiNiu_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_login_Insert_QQWX_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.login.T_user_login_Insert_QQWX_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_Text_Sms_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.sms.T_Text_Sms_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_login_Insert_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.login.T_user_login_Insert_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_login_Login_Tel_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.login.T_user_login_Login_Tel_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_login_FastLogin_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.login.T_user_login_FastLogin_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_login_Update_Psd_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.login.T_user_login_Update_Psd_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_login_Check_BackTel_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.login.T_user_login_Check_BackTel_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_realname_Insert_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.realname.T_user_realname_Insert_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_realname_SelectId_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.realname.T_user_realname_SelectId_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_realname_Update_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.realname.T_user_realname_Update_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_resume_Insert_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.resume.T_user_resume_Insert_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_resume_SelectId_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.resume.T_user_resume_SelectId_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_resume_Update_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.resume.T_user_resume_Update_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_login_BindingTel_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.login.T_user_login_BindingTel_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Ceshi_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.qiniu.Ceshi_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_school_LikeName_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.school.T_school_LikeName_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_merchant_Insert_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.merchant.T_merchant_Insert_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_Job_Insert_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job.T_Job_Insert_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_Job_info_Insert_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job_info.T_Job_info_Insert_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_job_List_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job.T_job_List_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_Job_info_Select_JobId_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job_info.T_Job_info_Select_JobId_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_city_Select_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.qiniu.T_city_Select_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_job_List_Day_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job.T_job_List_Day_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_job_Merchant_Id_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job.T_job_Merchant_Id_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_attent_Insert_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.attent.T_attent_Insert_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_attent_Select_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.attent.T_attent_Select_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_login_Login_Merchant_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.login.T_user_login_Login_Merchant_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_login_Check_Merchant_BackTel_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.login.T_user_login_Check_Merchant_BackTel_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_attent_Delete_Id_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.attent.T_attent_Delete_Id_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_Job_Area_City_List_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job.T_Job_Area_City_List_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_job_Model_List_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job.T_job_Model_List_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_job_Model_Delete_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job.T_job_Model_Delete_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_enroll_Insert_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.enroll.T_enroll_Insert_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_job_Merchant_Id_Zhong_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job.T_job_Merchant_Id_Zhong_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_job_Look_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job.T_job_Look_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_job_Update_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job.T_job_Update_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_enroll_Job_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.enroll.T_enroll_Job_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_enroll_Offer_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.enroll.T_enroll_Offer_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_enroll_Agree_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.enroll.T_enroll_Agree_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_enroll_User_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.enroll.T_enroll_User_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_enroll_User_Cancel_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.enroll.T_enroll_User_Cancel_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_job_Id_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job.T_job_Id_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_job_Thead_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.qiniu.T_job_Thead_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_enroll_User_Id_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.enroll.T</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_enroll_Job_User_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.enroll.T_enroll_Job_User_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_wages_Insert_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.wages.T_wages_Insert_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_mechant_pay_Update_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.merchant.T_mechant_pay_Update_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_wages_User_Get_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.wages.T_wages_User_Get_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_money_Check_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.usermoney.T_user_money_Check_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_money_LoginId_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.usermoney.T_user_money_LoginId_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_money_Password_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.usermoney.T_user_money_Password_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_SMS_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.qiniu.T_SMS_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_money_Pay_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.usermoney.T_user_money_Pay_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_money_Out_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.usermoney.T_user_money_Out_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_money_OutLook_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.usermoney.T_user_money_OutLook_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_job_List_Filter_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job.T_job_List_Filter_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_Job_Area_City_List_User_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job.T_Job_Area_City_List_User_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_moneyout_List_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_user_moneyout_List_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_Jdpush_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.qiniu.T_Jdpush_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_wages_List_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_wages_List_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_moneyout_Pay_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_moneyout_Pay_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_wages_Details_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_wages_Details_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_admin_Check_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_admin_Check_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_Jpush_Baoming_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.jpush.T_Jpush_Baoming_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_PC_job_City_List_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.job.T_PC_job_City_List_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_enroll_limit_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.enroll.T_enroll_limit_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_opinion_Insert_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.opinion.T_opinion_Insert_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T__job_record_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job_record.T__job_record_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_job_record_Insert_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job_record.T_job_record_Insert_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_PC_job_City_List_Enroll_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.job.T_PC_job_City_List_Enroll_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_PC_User_Insert_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.job.T_PC_User_Insert_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_PC_job_Id_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.job.T_PC_job_Id_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_job_wai_List_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.job.T_job_wai_List_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_job_wai_Delete_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.job.T_job_wai_Delete_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_realname_List_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_user_realname_List_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_realname_Pass_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_user_realname_Pass_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_realname_Pass_No_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_user_realname_Pass_No_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_moneyout_List_OK_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_user_moneyout_List_OK_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_moneyout_Pay_NoServlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_moneyout_Pay_NoServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_PC_job_City_List_OKServlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.job.T_PC_job_City_List_OKServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_push_List_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.qiniu.T_push_List_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_job_xia_List_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.job.T_job_xia_List_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_moneyout_Delete_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_user_moneyout_Delete_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_job_List_Max_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job.T_job_List_Max_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_PC_job_City_List_OK_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.job.T_PC_job_City_List_OK_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_job_wai_OKList_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.job.T_job_wai_OKList_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_wages_Insert_ChangServlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.wages.T_wages_Insert_ChangServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_enroll_Agree_Chang_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.enroll.T_enroll_Agree_Chang_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_moneyout_List_OK_Boss_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_user_moneyout_List_OK_Boss_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_login_Insert_City_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.login.T_user_login_Insert_City_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Html_Job_Id_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job.Html_Job_Id_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_hobby_Insert_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.hobby.T_hobby_Insert_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_hobby_Select_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.hobby.T_hobby_Select_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_money_use_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_money_use_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_use_money_update_servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.job.T_use_money_update_servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_money_use_action_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_money_use_action_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_use_money_delete_servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_use_money_delete_servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_use_money_add_servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_use_money_add_servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_money_use_AddAction_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_money_use_AddAction_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_login_ChangeTel_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.login.T_user_login_ChangeTel_Servlet</servlet-class>
+</servlet>
+ <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_to_push_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.jpush.T_to_push_Servlet</servlet-class>
+  </servlet>
+
+   
+  <servlet>
+   <description>This is the description of my J2EE component</description>
+   <display-name>This is the display name of my J2EE component</display-name>
+   <servlet-name>T_pushAction_servlet</servlet-name>
+   <servlet-class>com.jianguo.servlet.jpush.T_pushAction_servlet</servlet-class>
+ </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_use_money_export_servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_use_money_export_servlet</servlet-class>
+ </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_use_money_downLoad_servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_use_money_downLoad_servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_feedback_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.jpush.T_feedback_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_user_wx_Insert_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.wx.T_user_wx_Insert_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_Job_info_Select_Servlet</servlet-name>
+     <servlet-class>com.jianguo.servlet.job_info.T_Job_info_Select_Servlet</servlet-class>
+  </servlet>
+ <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_payForWeXin_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pay.T_payForWeXin_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_userManage_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.T_userManage_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_PayAction_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pay.T_PayAction_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_WebhooksVerify_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pay.T_WebhooksVerify_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_JobForPush_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.jpush.T_JobForPush_Servlet</servlet-class>
+  </servlet>
+<servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_QueryJob_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.jpush.T_QueryJob_Servlet</servlet-class>
+  </servlet>
+   <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_to_pushRecord_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.jpush.T_to_pushRecord_Servlet</servlet-class>
+  </servlet>
+<servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_opinion_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.opinion.T_opinion_Servlet</servlet-class>
+  </servlet>
+<servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_JobExport_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.user.T_JobExport_Servlet</servlet-class>
+  </servlet>
+ <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_JobForUser_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.user.T_JobForUser_Servlet</servlet-class>
+  </servlet>
+ <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_QueryUser_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.user.T_QueryUser_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_updateUser_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.user.T_updateUser_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_userDetail_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.user.T_userDetail_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_UserExport_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.user.T_UserExport_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_userManager_servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.user.T_userManager_servlet</servlet-class>
+  </servlet>
+ <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_PushForMer_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.jpush.T_PushForMer_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_updateMoney_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.user.T_updateMoney_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_modifyMoney_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.user.T_modifyMoney_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_UserChat_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.login.T_UserChat_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_UserGroup_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.login.T_UserGroup_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_FeedBack_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.jpush.T_FeedBack_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_psuhFeedBack_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.jpush.T_psuhFeedBack_Servlet</servlet-class>
+  </servlet> 
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_WebLogin_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.html.T_WebLogin_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_passWordLogin_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.html.T_passWordLogin_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_webSms_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.sms.T_webSms_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_register_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.html.T_register_Servlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_moneyout_Search_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.T_moneyout_Search_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_UserPigeon_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.merchant.T_UserPigeon_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_JobDetailForUser_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.job_info.T_JobDetailForUser_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_webRergister_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.pc.html.T_webRergister_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>T_newMoneyout_Servlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.usermoney.T_newMoneyout_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>IsmsCkeck</servlet-name>
+    <servlet-class>com.jianguo.servlet.login.IsmsCkeck</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>IudateUserInfo</servlet-name>
+    <servlet-class>com.jianguo.servlet.login.IudateUserInfo</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>MerPushServlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.merchant.MerPushServlet</servlet-class>
+  </servlet>
+  <servlet>
+        <description>This is the description of my J2EE component</description>
+        <display-name>This is the display name of my J2EE component</display-name>
+        <servlet-name>InsertUserServlet</servlet-name>
+        <servlet-class>com.jianguo.servlet.finance.InsertUserServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>FinanceInfoServlet</servlet-name>
+    <servlet-class>com.jianguo.servlet.finance.FinanceInfoServlet</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<servlet-mapping>
+    <servlet-name>T_user_login_Check_Tel_Servlet</servlet-name>
+    <url-pattern>/T_user_login_Check_Tel_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_QiNiu_Servlet</servlet-name>
+    <url-pattern>/T_QiNiu_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_login_Insert_QQWX_Servlet</servlet-name>
+    <url-pattern>/T_user_login_Insert_QQWX_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_Text_Sms_Servlet</servlet-name>
+    <url-pattern>/T_Text_Sms_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_login_Insert_Servlet</servlet-name>
+    <url-pattern>/T_user_login_Insert_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_login_Login_Tel_Servlet</servlet-name>
+    <url-pattern>/T_user_login_Login_Tel_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_login_FastLogin_Servlet</servlet-name>
+    <url-pattern>/T_user_login_FastLogin_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_login_Update_Psd_Servlet</servlet-name>
+    <url-pattern>/T_user_login_Update_Psd_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_login_Check_BackTel_Servlet</servlet-name>
+    <url-pattern>/T_user_login_Check_BackTel_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_realname_Insert_Servlet</servlet-name>
+    <url-pattern>/T_user_realname_Insert_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_realname_SelectId_Servlet</servlet-name>
+    <url-pattern>/T_user_realname_SelectId_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_realname_Update_Servlet</servlet-name>
+    <url-pattern>/T_user_realname_Update_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_resume_Insert_Servlet</servlet-name>
+    <url-pattern>/T_user_resume_Insert_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_resume_SelectId_Servlet</servlet-name>
+    <url-pattern>/T_user_resume_SelectId_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_resume_Update_Servlet</servlet-name>
+    <url-pattern>/T_user_resume_Update_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_login_BindingTel_Servlet</servlet-name>
+    <url-pattern>/T_user_login_BindingTel_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Ceshi_Servlet</servlet-name>
+    <url-pattern>/Ceshi_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_school_LikeName_Servlet</servlet-name>
+    <url-pattern>/T_school_LikeName_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_merchant_Insert_Servlet</servlet-name>
+    <url-pattern>/T_merchant_Insert_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_Job_Insert_Servlet</servlet-name>
+    <url-pattern>/T_Job_Insert_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_Job_info_Insert_Servlet</servlet-name>
+    <url-pattern>/T_Job_info_Insert_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_job_List_Servlet</servlet-name>
+    <url-pattern>/T_job_List_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_Job_info_Select_JobId_Servlet</servlet-name>
+    <url-pattern>/T_Job_info_Select_JobId_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_city_Select_Servlet</servlet-name>
+    <url-pattern>/T_city_Select_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_job_List_Day_Servlet</servlet-name>
+    <url-pattern>/T_job_List_Day_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_job_Merchant_Id_Servlet</servlet-name>
+    <url-pattern>/T_job_Merchant_Id_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_attent_Insert_Servlet</servlet-name>
+    <url-pattern>/T_attent_Insert_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_attent_Select_Servlet</servlet-name>
+    <url-pattern>/T_attent_Select_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_login_Login_Merchant_Servlet</servlet-name>
+    <url-pattern>/T_user_login_Login_Merchant_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_login_Check_Merchant_BackTel_Servlet</servlet-name>
+    <url-pattern>/T_user_login_Check_Merchant_BackTel_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_attent_Delete_Id_Servlet</servlet-name>
+    <url-pattern>/T_attent_Delete_Id_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_Job_Area_City_List_Servlet</servlet-name>
+    <url-pattern>/T_Job_Area_City_List_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_job_Model_List_Servlet</servlet-name>
+    <url-pattern>/T_job_Model_List_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_job_Model_Delete_Servlet</servlet-name>
+    <url-pattern>/T_job_Model_Delete_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_enroll_Insert_Servlet</servlet-name>
+    <url-pattern>/T_enroll_Insert_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_job_Merchant_Id_Zhong_Servlet</servlet-name>
+    <url-pattern>/T_job_Merchant_Id_Zhong_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_job_Look_Servlet</servlet-name>
+    <url-pattern>/T_job_Look_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_job_Update_Servlet</servlet-name>
+    <url-pattern>/T_job_Update_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_enroll_Job_Servlet</servlet-name>
+    <url-pattern>/T_enroll_Job_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_enroll_Offer_Servlet</servlet-name>
+    <url-pattern>/T_enroll_Offer_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_enroll_Agree_Servlet</servlet-name>
+    <url-pattern>/T_enroll_Agree_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_enroll_User_Servlet</servlet-name>
+    <url-pattern>/T_enroll_User_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_enroll_User_Cancel_Servlet</servlet-name>
+    <url-pattern>/T_enroll_User_Cancel_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_job_Id_Servlet</servlet-name>
+    <url-pattern>/T_job_Id_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_job_Thead_Servlet</servlet-name>
+    <url-pattern>/T_job_Thead_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_enroll_User_Id_Servlet</servlet-name>
+    <url-pattern>/servlet/T</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_enroll_Job_User_Servlet</servlet-name>
+    <url-pattern>/T_enroll_Job_User_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_wages_Insert_Servlet</servlet-name>
+    <url-pattern>/T_wages_Insert_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_mechant_pay_Update_Servlet</servlet-name>
+    <url-pattern>/T_mechant_pay_Update_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_wages_User_Get_Servlet</servlet-name>
+    <url-pattern>/T_wages_User_Get_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_money_Check_Servlet</servlet-name>
+    <url-pattern>/T_user_money_Check_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_money_LoginId_Servlet</servlet-name>
+    <url-pattern>/T_user_money_LoginId_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_money_Password_Servlet</servlet-name>
+    <url-pattern>/T_user_money_Password_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_SMS_Servlet</servlet-name>
+    <url-pattern>/T_SMS_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_money_Pay_Servlet</servlet-name>
+    <url-pattern>/T_user_money_Pay_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_money_Out_Servlet</servlet-name>
+    <url-pattern>/T_user_money_Out_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_money_OutLook_Servlet</servlet-name>
+    <url-pattern>/T_user_money_OutLook_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_job_List_Filter_Servlet</servlet-name>
+    <url-pattern>/T_job_List_Filter_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_Job_Area_City_List_User_Servlet</servlet-name>
+    <url-pattern>/T_Job_Area_City_List_User_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_moneyout_List_Servlet</servlet-name>
+    <url-pattern>/T_user_moneyout_List_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_Jdpush_Servlet</servlet-name>
+    <url-pattern>/T_Jdpush_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_wages_List_Servlet</servlet-name>
+    <url-pattern>/T_wages_List_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_moneyout_Pay_Servlet</servlet-name>
+    <url-pattern>/T_moneyout_Pay_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_wages_Details_Servlet</servlet-name>
+    <url-pattern>/T_wages_Details_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_admin_Check_Servlet</servlet-name>
+    <url-pattern>/T_admin_Check_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_Jpush_Baoming_Servlet</servlet-name>
+    <url-pattern>/T_Jpush_Baoming_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_PC_job_City_List_Servlet</servlet-name>
+    <url-pattern>/T_PC_job_City_List_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_enroll_limit_Servlet</servlet-name>
+    <url-pattern>/T_enroll_limit_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_opinion_Insert_Servlet</servlet-name>
+    <url-pattern>/T_opinion_Insert_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T__job_record_Servlet</servlet-name>
+    <url-pattern>/T__job_record_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_job_record_Insert_Servlet</servlet-name>
+    <url-pattern>/T_job_record_Insert_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_PC_job_City_List_Enroll_Servlet</servlet-name>
+    <url-pattern>/T_PC_job_City_List_Enroll_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_PC_User_Insert_Servlet</servlet-name>
+    <url-pattern>/T_PC_User_Insert_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_PC_job_Id_Servlet</servlet-name>
+    <url-pattern>/T_PC_job_Id_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_job_wai_List_Servlet</servlet-name>
+    <url-pattern>/T_job_wai_List_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_job_wai_Delete_Servlet</servlet-name>
+    <url-pattern>/T_job_wai_Delete_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_realname_List_Servlet</servlet-name>
+    <url-pattern>/T_user_realname_List_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_realname_Pass_Servlet</servlet-name>
+    <url-pattern>/T_user_realname_Pass_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_realname_Pass_No_Servlet</servlet-name>
+    <url-pattern>/T_user_realname_Pass_No_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_moneyout_List_OK_Servlet</servlet-name>
+    <url-pattern>/T_user_moneyout_List_OK_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_moneyout_Pay_NoServlet</servlet-name>
+    <url-pattern>/T_moneyout_Pay_NoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_PC_job_City_List_OKServlet</servlet-name>
+    <url-pattern>/T_PC_job_City_List_OKServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_push_List_Servlet</servlet-name>
+    <url-pattern>/T_push_List_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_job_xia_List_Servlet</servlet-name>
+    <url-pattern>/T_job_xia_List_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_moneyout_Delete_Servlet</servlet-name>
+    <url-pattern>/T_user_moneyout_Delete_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_job_List_Max_Servlet</servlet-name>
+    <url-pattern>/T_job_List_Max_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_PC_job_City_List_OK_Servlet</servlet-name>
+    <url-pattern>/T_PC_job_City_List_OK_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_job_wai_OKList_Servlet</servlet-name>
+    <url-pattern>/T_job_wai_OKList_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_wages_Insert_ChangServlet</servlet-name>
+    <url-pattern>/T_wages_Insert_ChangServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_enroll_Agree_Chang_Servlet</servlet-name>
+    <url-pattern>/T_enroll_Agree_Chang_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_moneyout_List_OK_Boss_Servlet</servlet-name>
+    <url-pattern>/T_user_moneyout_List_OK_Boss_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_login_Insert_City_Servlet</servlet-name>
+    <url-pattern>/T_user_login_Insert_City_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Html_Job_Id_Servlet</servlet-name>
+    <url-pattern>/Html_Job_Id_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_hobby_Insert_Servlet</servlet-name>
+    <url-pattern>/T_hobby_Insert_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_hobby_Select_Servlet</servlet-name>
+    <url-pattern>/T_hobby_Select_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_money_use_Servlet</servlet-name>
+    <url-pattern>/T_money_use_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_use_money_update_servlet</servlet-name>
+    <url-pattern>/T_use_money_update_servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_money_use_action_Servlet</servlet-name>
+    <url-pattern>/T_money_use_action_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_use_money_delete_servlet</servlet-name>
+    <url-pattern>/T_use_money_delete_servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_use_money_add_servlet</servlet-name>
+    <url-pattern>/T_use_money_add_servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_money_use_AddAction_Servlet</servlet-name>
+    <url-pattern>/T_money_use_AddAction_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_login_ChangeTel_Servlet</servlet-name>
+    <url-pattern>/T_user_login_ChangeTel_Servlet</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>T_to_push_Servlet</servlet-name>
+    <url-pattern>/T_to_push_Servlet</url-pattern>
+  </servlet-mapping>
+<servlet-mapping>
+    <servlet-name>T_use_money_export_servlet</servlet-name>
+    <url-pattern>/T_use_money_export_servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_feedback_Servlet</servlet-name>
+    <url-pattern>/T_feedback_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_pushAction_servlet</servlet-name>
+    <url-pattern>/T_pushAction_servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_user_wx_Insert_Servlet</servlet-name>
+    <url-pattern>/T_user_wx_Insert_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>T_Job_info_Select_Servlet</servlet-name>
+       <url-pattern>/T_Job_info_Select_Servlet</url-pattern>
+       </servlet-mapping>
+ <servlet-mapping>
+    <servlet-name>T_payForWeXin_Servlet</servlet-name>
+    <url-pattern>/T_payForWeXin_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_userManage_Servlet</servlet-name>
+    <url-pattern>/T_userManage_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_PayAction_Servlet</servlet-name>
+    <url-pattern>/T_PayAction_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_WebhooksVerify_Servlet</servlet-name>
+    <url-pattern>/T_WebhooksVerify_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_JobForPush_Servlet</servlet-name>
+    <url-pattern>/T_JobForPush_Servlet</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>T_QueryJob_Servlet</servlet-name>
+    <url-pattern>/T_QueryJob_Servlet</url-pattern>
+  </servlet-mapping>
+  
+    <servlet-mapping>
+    <servlet-name>T_to_pushRecord_Servlet</servlet-name>
+    <url-pattern>/T_to_pushRecord_Servlet</url-pattern>
+  </servlet-mapping> 
+  <servlet-mapping>
+    <servlet-name>T_opinion_Servlet</servlet-name>
+    <url-pattern>/T_opinion_Servlet</url-pattern>
+  </servlet-mapping>
+<servlet-mapping>
+    <servlet-name>T_JobExport_Servlet</servlet-name>
+    <url-pattern>/T_JobExport_Servlet</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>T_JobForUser_Servlet</servlet-name>
+    <url-pattern>/T_JobForUser_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_QueryUser_Servlet</servlet-name>
+    <url-pattern>/T_QueryUser_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+   	<servlet-name>T_updateUser_Servlet</servlet-name>
+    <url-pattern>/T_updateUser_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_userDetail_Servlet</servlet-name>
+    <url-pattern>/T_userDetail_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_UserExport_Servlet</servlet-name>
+    <url-pattern>/T_UserExport_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+   	<servlet-name>T_userManager_servlet</servlet-name>
+    <url-pattern>/T_userManager_servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_PushForMer_Servlet</servlet-name>
+    <url-pattern>/T_PushForMer_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+
+    <servlet-name>T_updateMoney_Servlet</servlet-name>
+    <url-pattern>/T_updateMoney_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_modifyMoney_Servlet</servlet-name>
+    <url-pattern>/T_modifyMoney_Servlet</url-pattern>
+  </servlet-mapping>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <servlet-mapping>
+    <servlet-name>T_UserChat_Servlet</servlet-name>
+    <url-pattern>/T_UserChat_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_UserGroup_Servlet</servlet-name>
+    <url-pattern>/T_UserGroup_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_FeedBack_Servlet</servlet-name>
+    <url-pattern>/T_FeedBack_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_psuhFeedBack_Servlet</servlet-name>
+    <url-pattern>/T_psuhFeedBack_Servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>T_WebLogin_Servlet</servlet-name>
+    <url-pattern>/T_WebLogin_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_passWordLogin_Servlet</servlet-name>
+    <url-pattern>/T_passWordLogin_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_webSms_Servlet</servlet-name>
+    <url-pattern>/T_webSms_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_register_Servlet</servlet-name>
+    <url-pattern>/T_register_Servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>T_moneyout_Search_Servlet</servlet-name>
+    <url-pattern>/T_moneyout_Search_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_UserPigeon_Servlet</servlet-name>
+    <url-pattern>/T_UserPigeon_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_JobDetailForUser_Servlet</servlet-name>
+    <url-pattern>/T_JobDetailForUser_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_webRergister_Servlet</servlet-name>
+    <url-pattern>/T_webRergister_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>T_newMoneyout_Servlet</servlet-name>
+    <url-pattern>/T_newMoneyout_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>IsmsCkeck</servlet-name>
+    <url-pattern>/IsmsCkeck</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>IudateUserInfo</servlet-name>
+    <url-pattern>/IudateUserInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MerPushServlet</servlet-name>
+    <url-pattern>/MerPushServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+     <servlet-name>InsertUserServlet</servlet-name>
+     <url-pattern>/InsertUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FinanceInfoServlet</servlet-name>
+    <url-pattern>/FinanceInfoServlet</url-pattern>
+  </servlet-mapping>
+
+
+<!--<welcome-file-list>
+    <welcome-file>login.html</welcome-file>
+  </welcome-file-list>
+-->
+  <welcome-file-list>
+    <welcome-file>login.html</welcome-file>
+  </welcome-file-list>
+  
+</web-app>

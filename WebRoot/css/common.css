@@ -1,0 +1,127 @@
+@CHARSET "UTF-8";
+
+
+body {
+	font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica,
+		sans-serif;
+	color: #4f6b72;
+	background: #E6EAE9;
+}
+
+
+
+#mytable {
+	width: 1200px;
+	padding: 0;
+	margin: 0;
+}
+
+caption {
+	padding: 0 0 5px 0;
+	width: 700px;
+	font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	text-align: right;
+}
+
+th {
+	font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #4f6b72;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	border-top: 1px solid #C1DAD7;
+	letter-spacing: 2px;
+	text-align: centrt;
+	padding: 6px 6px 6px 12px;
+	background: #CAE8EA no-repeat;
+}
+
+th.nobg {
+	border-top: 0;
+	border-left: 0;
+	border-right: 1px solid #C1DAD7;
+	background: none;
+}
+
+td {
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	background: #fff;
+	font-size: 11px;
+	padding: 6px 6px 6px 12px;
+	color: #4f6b72;
+}
+
+td.alt {
+	background: #F5FAFA;
+	color: #797268;
+}
+
+th.spec {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #fff no-repeat;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+
+th.specalt {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #f5fafa no-repeat;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #797268;
+}
+
+html>body td {
+	font-size: 16px;
+}
+
+body,td,th {
+	font-family: 宋体, Arial;
+	font-size: 12px;
+}
+/*
+mxy 2016/7/14
+*/
+a {
+	color: #c75f3e;	
+	text-decoration:none;
+}
+.add{
+ display:block; 
+ width:60px; 
+ height:25px; 
+ border:1px solid #CCC; 
+ background:#blue; 
+ font-size:12px;
+ border-radius:4px 4px 3px 3px;
+ text-align:center;
+     float: left;
+    margin: 29px 36px 0 0;
+ }
+ 
+ input{
+width:319px;
+height:37px;
+margin:0 0 auto;
+
+}
+
+
+.button{
+	width:90px; 
+	border-radius:5px 5px 4px 4px;
+}
+.lable{
+	display:inline-block;
+	width:90px;
+}
+
+.fenye{
+	overflow: hidden;
+	    margin: 17px 0;
+	}
+	.fy-l{
+	float: left;
+	}
+	.fy-r{
+	float: right;

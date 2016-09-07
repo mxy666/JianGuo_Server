@@ -1,0 +1,47 @@
+.main{overflow: hidden;}
+.title-login { background: #3a9bff; padding: 18px 20px; color: #fff; text-align: center; font-size: 1.1em; }
+.title-login a { font-size: 0.9em; color: #fff; float: right; }
+.title-login a.back { width: 12px; height: 22px; display: inline-block; background: url(../img/top-back.png) no-repeat; background-size: 100% 100%; position: absolute; left: 20px; top: 19px; }
+
+.login-con-title { overflow: hidden; }
+.login-con-title .log-t-l { width: 50%; float: left; text-align: center; padding: 5px 0; }
+.login-con-title .log-t-r { width: 50%; float: left; text-align: center; padding: 5px 0; }
+.login-con-title .backo { background: #fff; }
+
+.div-phone, .div-ranks, .div-pass, .div-qr { background: #fff; padding: 14px 0; overflow: hidden; position: relative; border-bottom: 1px solid #f1f1f1; margin-left: 20px; }
+.div-phone input, .div-ranks input, .div-pass input, .div-qr input { border: 0; float: left; }
+.div-phone em, .div-ranks em, .div-pass em, .div-qr em { display: inline-block; width: 15px; height: 18px; background: url(../img/login/number.png) no-repeat; background-size: 100% 100%; float: left; margin-right: 13px; }
+.div-phone a, .div-ranks a, .div-pass a, .div-qr a { width: 89px; height: 33px; background: #fdc82f; display: inline-block; text-align: center; line-height: 33px; color: #fff; border-radius: 20px; position: absolute; top: 6px; right: 20px; }
+
+.div-ranks em { background: url(../img/login/code.png) no-repeat; background-size: 100% 100%; }
+
+.error { position: absolute; top: 0; left: 0; bottom: 0; right: 0; background: rgba(0, 0, 0, 0.52); padding: 10px; border-radius: 20px; color: #fff; margin: auto; width: 150px; height: 25px; z-index: 100; }
+
+.div-conform { text-align: center; padding: 15px 0; }
+.div-conform .conform { width: 90%; height: 40px; border: 0; background: #fdc82f; border-radius: 20px; font-size: 1em; color: #fff; }
+
+.hide { display: none; }
+
+.form { padding-top: 10px; background: #fff; }
+
+.div-text { padding: 10px 20px; color: #d8d8d8; font-size: 0.9em; }
+
+.res-con { margin-top: 20px; }
+
+.div-pass em { width: 18px; height: 18px; background: url(../img/res/mima.png) no-repeat; background-size: 100% 100%; }
+
+.div-qr em { width: 18px; height: 18px; background: url(../img/res/qr.png) no-repeat; background-size: 100% 100%; }
+
+.label { margin: 8px 0 0 20px; display: inline-block; color: #666666; position: relative; }
+.label a { color: #569bf7; }
+.label div { width: 14px; height: 14px; background: url(../img/res/small.png); background-size: 100% 100%; float: left; margin: 4px 5px; }
+
+label { width: 100%; padding: 10px 0px 0 0; display: block; line-height: 20px; position: relative; font-weight: normal; }
+
+.radio .option { width: 18px; height: 18px; position: absolute; top: 7px; left: 0; background-size: cover; background: url(../img/res/small.png) no-repeat; background-size: cover; background-size: 100% 100%; }
+
+.radio input[type="checkbox"] { display: inline-block; margin-right: 15px; opacity: 0; }
+
+input[type="checkbox"]:checked + div { background: url(../img/res/qrs.png) no-repeat; background-size: cover; }
+
+/*# sourceMappingURL=login-res.css.map */
