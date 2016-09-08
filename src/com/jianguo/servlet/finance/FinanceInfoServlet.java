@@ -48,6 +48,7 @@ public class FinanceInfoServlet extends HttpServlet {
 		T_wages_Bean monthTotalmoney=FinanceMerSql.queryMonTotalMoney(merchantID);
 		T_wages_Bean dayTotalmoney=FinanceMerSql.queryDayTotalMoney(merchantID);
 		T_wages_Bean totalmoney=FinanceMerSql.queryTotalMoney(merchantID);
+		T_wages_Bean dayTotaluser=FinanceMerSql.queryDayTotaluser(merchantID);
 	
 	}
 

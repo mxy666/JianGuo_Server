@@ -43,7 +43,7 @@ public class T_PC_job_City_List_Servlet extends HttpServlet {
 		System.out.println("---T_PC_job_City_List_Servlet---");
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		Map params =  new HashMap();
+	//	Map params =  new HashMap();
 
 		String city_id =request.getParameter("city_id");
 		 Logger logger = Logger.getLogger("log");
@@ -58,22 +58,26 @@ public class T_PC_job_City_List_Servlet extends HttpServlet {
 			T_job_info_Bean t_job_info = T_job_info_Sql.select_job_id(t_job.getId()+"");
 			logger.info("-----"+t_job_info.getId()+"");
 			logger.info(t_job.getId()+"");
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			String sd = sdf.format(new Date(Long.parseLong(t_job_info.getStart_time()+"100")));
-			String sd2 = sdf.format(new Date(Long.parseLong(t_job_info.getStop_time()+"100")));
-			t_job_info.setStart_time(sd);
-			t_job_info.setStop_time(sd2);
+			if(t_job_info!=null){
 
-			t_job_info.setJob_name(t_job.getName());
-			t_job_info.setJob_image(t_job.getName_image());
-			t_job_info.setJob_money(t_job.getMoney()+"");
 
-			T_merchant_Bean t_merchant = T_merchant_Sql.select_id(t_job.getMerchant_id()+"");
-			T_user_login_Bean t_user_login = T_user_login_Sql.select_id(t_merchant.getLogin_id()+"");
-			t_job_info.setJob_merchant_name(t_merchant.getName());
-			t_job_info.setJob_merchant_tel(t_user_login.getTel());
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+				String sd = sdf.format(new Date(Long.parseLong(t_job_info.getStart_time()+"100")));
+				String sd2 = sdf.format(new Date(Long.parseLong(t_job_info.getStop_time()+"100")));
+				t_job_info.setStart_time(sd);
+				t_job_info.setStop_time(sd2);
 
-			list_t_job_info.add(t_job_info);
+				t_job_info.setJob_name(t_job.getName());
+				t_job_info.setJob_image(t_job.getName_image());
+				t_job_info.setJob_money(t_job.getMoney()+"");
+
+				T_merchant_Bean t_merchant = T_merchant_Sql.select_id(t_job.getMerchant_id()+"");
+				T_user_login_Bean t_user_login = T_user_login_Sql.select_id(t_merchant.getLogin_id()+"");
+				t_job_info.setJob_merchant_name(t_merchant.getName());
+				t_job_info.setJob_merchant_tel(t_user_login.getTel());
+
+				list_t_job_info.add(t_job_info);
+			}
 		}
 		
 		
