@@ -20,7 +20,7 @@ public class T_user_login_Sql {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "select * from t_user_login where tel=?";
+			String sql = "select * from t_merchant_login where tel=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, tel);
 			rs = pstmt.executeQuery();

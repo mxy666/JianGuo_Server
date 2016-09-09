@@ -21,13 +21,11 @@ public class Text_Sms {
 		String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+user_username+"&content="+job_test+"&ext=&stime=&rrid=&msgfmt=";
 		Server_Get.get(url);
 
-	if(!user_username.equals("13614093590")){
 		if(T_tel_code_Sql.check_tel(user_username)){
 			T_tel_code_Sql.update_tel(code, user_username);
 		}else{
 			T_tel_code_Sql.insert(user_username, code);
 		}
-	}
 		return code;
 	}
 
