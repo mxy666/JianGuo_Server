@@ -2,6 +2,8 @@ package com.jianguo.servlet.user;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,15 +37,15 @@ public class T_userManager_servlet extends HttpServlet {
 	   Logger logger = Logger.getLogger("log");
 	   logger.info("日志信息开始!");
 	   logger.info("日志信息结束!");
-	   
+		Date dt= new Date();
+		String time= dt.getTime()+"";
 	  try {
 		  //Integer.parseInt("a");
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
 			String cityId=request.getParameter("cityId");
-			String school="dd";
-				//request.getParameter("school");
-			logger.info(school);
+		System.out.print("+++++++++++++++++++++++++++++"+time.substring(0,time.length()-3));
+
 	  } catch (Exception  e) {
 		   logger.error("异常",e);
 		   e.printStackTrace();

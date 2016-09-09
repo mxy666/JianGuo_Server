@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.jianguo.bean.T_job_Bean;
 import com.jianguo.util.DButil;
+import org.apache.log4j.Logger;
 
 public class T_job_Sql {
 
@@ -32,6 +33,8 @@ public class T_job_Sql {
 			   girl_user="0";
 			   
 		   }
+		Logger logger = Logger.getLogger("log");
+		logger.info("日志信息开始!");
 		   Connection conn=DButil.getCon();
 		   String sql="insert into t_job(city_id,area_id,type_id,merchant_id,name,name_image,start_date," +
 		   "stop_date,address,mode,money,term,limit_sex,count,sum,regedit_time,status,hot," +
@@ -72,7 +75,7 @@ public class T_job_Sql {
 		    	
 				num=pst.executeUpdate();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				logger.error("发布兼职job_异常"+e.getMessage()==null?"空":e.getMessage());
 				e.printStackTrace();
 			}	
 			finally{
@@ -86,6 +89,7 @@ public class T_job_Sql {
 	public static T_job_Bean select_regedit_time(String regedit_time){
 		ResultSet rs=null;
 		T_job_Bean t_job = new T_job_Bean();
+
 		Connection conn=DButil.getCon();
 		String sql = "select * from t_job where regedit_time=?";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
@@ -129,7 +133,7 @@ public class T_job_Sql {
 			psmt.close();
 			conn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			//logger.error("发布兼职job_info异常"+e.getMessage()==null?"空":e.getMessage());
 			e.printStackTrace();
 		}finally{
 			DButil.close(conn);

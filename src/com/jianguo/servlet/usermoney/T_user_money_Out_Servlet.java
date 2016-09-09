@@ -112,9 +112,9 @@ public class T_user_money_Out_Servlet extends HttpServlet {
 						Jdpusher_shang.sendPush("有用户提现，快去处理","jianguo13");
 						Jdpushcc_shang.sendPush("有用户提现，快去处理","jianguo13");
 					}*/
-					Jdpush_shang.sendPush("有用户提现，快去处理","jianguo11345");
-					Jdpusher_shang.sendPush("有用户提现，快去处理","jianguo11345");
-					Jdpushcc_shang.sendPush("有用户提现，快去处理","jianguo11345");
+					Jdpush_shang.sendPush("有用户提现，快去处理","jianguo11446");
+					Jdpusher_shang.sendPush("有用户提现，快去处理","jianguo11446");
+					Jdpushcc_shang.sendPush("有用户提现，快去处理","jianguo11446");
 					
 					params.put("message", "正在提现中");
 					params.put("code", "200");

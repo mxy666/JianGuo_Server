@@ -1,7 +1,6 @@
 package com.jianguo.util;
 
 import java.io.IOException;
-import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;

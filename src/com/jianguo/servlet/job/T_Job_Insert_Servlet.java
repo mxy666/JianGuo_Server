@@ -27,6 +27,7 @@ import com.jianguo.util.Frequently;
 import com.jianguo.util.Jdpush_job;
 import com.jianguo.util.Jdpushcc_job;
 import com.jianguo.util.Jdpusher_job;
+import org.apache.log4j.Logger;
 
 public class T_Job_Insert_Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -134,7 +135,8 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String ly_time2 = sdf2.format(new java.util.Date());
-			
+			Logger logger = Logger.getLogger("log");
+			logger.info("日志信息开始!");
 			String ss = "";
 			if(start_date.length() == 13 ){
 				ss = start_date.substring(0,10);
@@ -179,7 +181,7 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 			}else{
 				ii = T_job_Sql.insert(city_id,aera_id,type_id, merchant_id, name, name_image, ss, sss, address, mode,money, term, limit_sex, "0", sum, ly_time, "1","1",alike,ly_time2,"1","1","0",ss2,max,"0",str_girl_sum,"0");
 			}
-			
+			logger.info(ii);
 			if(ii == 1){
 				T_job_Bean t_job = T_job_Sql.select_regedit_time(ly_time);
 				T_job_info_Sql.insert(t_job.getId()+"",tel, address, lon, lat, ss, sss, ss2,sss2, set_place, set_time, limit_sex, term, other, work_content, work_require);
@@ -228,9 +230,7 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 						}
 					}
 					T_job_label_Sql.insert(t_job.getId()+"", t_limit, t_welfare, t_label);
-					System.out.println("1111111111111111111111");
-					
-				
+
 					//查询标签返回
 					T_job_label_Bean t_job_label = T_job_label_Sql.select_job_id(t_job.getId()+"");
 					String [] st_limit=t_job_label.getLimits().split(",");//限制

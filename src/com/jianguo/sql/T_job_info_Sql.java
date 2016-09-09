@@ -10,6 +10,7 @@ import java.util.List;
 import com.jianguo.bean.T_job_Bean;
 import com.jianguo.bean.T_job_info_Bean;
 import com.jianguo.util.DButil;
+import org.apache.log4j.Logger;
 
 public class T_job_info_Sql {
 	
@@ -18,9 +19,11 @@ public class T_job_info_Sql {
 			String start_time,String stop_time,String set_place,String set_time,String limit_sex,String term,String other,String work_content,
 			String work_require){
 		   int num=0;
+			Logger logger = Logger.getLogger("log");
+			logger.info("日志信息开始!");
 		   Connection conn=DButil.getCon();
 		   String sql="insert into t_job_info(job_id,tel,address,lon,lat,start_date,stop_date,start_time,stop_time,set_place,set_time,limit_sex,term,other,work_content,work_require) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		    PreparedStatement pst=DButil.getPstm(conn, sql);
+			PreparedStatement pst=DButil.getPstm(conn, sql);
 		    try {
 		    	pst.setString(1, job_id);
 		    	pst.setString(2, tel);
@@ -40,7 +43,7 @@ public class T_job_info_Sql {
 		    	pst.setString(16, work_require);
 				num=pst.executeUpdate();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				logger.error("发布兼职job_info异常"+e.getMessage()==null?"空":e.getMessage());
 				e.printStackTrace();
 			}	
 			finally{

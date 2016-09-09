@@ -101,9 +101,9 @@ public class T_newMoneyout_Servlet extends HttpServlet {
 						T_user_money_Sql.update_money_out(dd+"", login_id);
 						new Thread(new Runnable() {			
 							public void run() {
-						Jdpush_shang.sendPush("有用户提现，快去处理","jianguo11345");
-						Jdpusher_shang.sendPush("有用户提现，快去处理","jianguo11345");
-						Jdpushcc_shang.sendPush("有用户提现，快去处理","jianguo11345");
+						Jdpush_shang.sendPush("有用户提现，快去处理","jianguo11446");
+						Jdpusher_shang.sendPush("有用户提现，快去处理","jianguo11446");
+						Jdpushcc_shang.sendPush("有用户提现，快去处理","jianguo11446");
 							}
 						}).start();
 						params.put("message", "提现申请成功");
