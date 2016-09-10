@@ -151,64 +151,39 @@ public class T_job_Update_Servlet extends HttpServlet {
 			}
 			String str_girl_sum = "";
 			if(girl_sum == "" || girl_sum == null){
-//				str_girl_count = "0";
 				str_girl_sum = "0";
 			}else{
-//				str_girl_count = girl_count;
 				str_girl_sum = girl_sum;
 			}
 			
 			int i = T_job_Sql.update_all(city_id,aera_id,type_id, merchant_id, name, name_image, ss, sss, address, mode,money, term, limit_sex, sum, ly_time, "0","1",alike,"1","0",ss2,str_girl_sum,job_id);
-
 			if(i == 1){
 				T_job_Bean t_job = T_job_Sql.select_regedit_time(ly_time);
-
 					T_job_info_Sql.update_all(t_job.getId()+"",tel, address, lon, lat, ss, sss, ss2, sss2, set_place, set_time, limit_sex, term, other, work_content, work_require,job_id);
-				
-					if(json_limit!=null||json_welfare!=null||json_label!=null){
-						
-						if(json_limit!=null||json_welfare!=null||json_label!=null){
-							
-							Gson g_limit = new Gson();
-							Gson g_welfare = new Gson();
-							Gson g_label = new Gson();
-							
+							Gson gson = new Gson();
 							String t_limit = "";
 							String t_welfare = "";
 							String t_label = "";
-							if(json_limit!=null){
-								limit list_limit = g_limit.fromJson(json_limit, limit.class);
+							if(json_limit!=null&&!json_limit.equals("")){
+								limit list_limit = gson.fromJson(json_limit, limit.class);
 								for (int j = 0; j < list_limit.getList_t_limit().size(); j++) {
 									t_limit += list_limit.getList_t_limit().get(j)+",";
 								}
 							}
-							
-							//T_job_label_Sql.insert(t_job.getId()+"", t_limit, "", "");
-							
-							
-							if(json_welfare!=null){
-								welfare list_welfare = g_welfare.fromJson(json_welfare, welfare.class);
+							if(json_welfare!=null&&!json_welfare.equals("")){
+								welfare list_welfare = gson.fromJson(json_welfare, welfare.class);
 								
 								for (int k = 0;k < list_welfare.getList_t_welfare().size(); k++) {
 									t_welfare += list_welfare.getList_t_welfare().get(k)+",";
-									//T_job_label_Sql.update_welfare(t_welfare, t_job.getId()+"");
 								}
 							}
-							
-								
-							if(json_label!=null){
-								label list_label = g_label.fromJson(json_label, label.class);
-								
+							if(json_label!=null&&!json_label.equals("")){
+								label list_label = gson.fromJson(json_label, label.class);
 								for (int n = 0; n < list_label.getList_t_label().size(); n++) {
 									t_label += list_label.getList_t_label().get(n)+",";
-									//T_job_label_Sql.update_label(t_label, t_job.getId()+"");
 								}
 							}
 							T_job_label_Sql.updateLable(t_limit, t_welfare, t_label,t_job.getId()+"");
-							System.out.println("1111111111111111111111");
-							
-						}
-					}
 
 				params.put("message", "兼职信息修改成功");
 				params.put("code", "200");

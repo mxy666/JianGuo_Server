@@ -90,10 +90,7 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 		String json_limit =request.getParameter("json_limit");
 		String json_welfare =request.getParameter("json_welfare");
 		String json_label =request.getParameter("json_label");
-		
-		System.out.println(json_limit+"---------------------1");
-		System.out.println(json_welfare+"---------------------2");
-		System.out.println(json_label+"---------------------3");
+
 		
 
 		//------------------访问限制--------开始----------------------
@@ -163,7 +160,6 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 				}else{
 					T_job_model_Sql.insert(job_model, merchant_id, t_job.getId()+"");
 				}
-				
 				//----------------兼职标签---------------
 				if((json_limit!=null&&!json_limit.equals(""))||(json_welfare!=null&&!json_welfare.equals(""))
 						||(json_label!=null&&!json_limit.equals(""))){
@@ -182,9 +178,7 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 						}
 					}
 					
-					//T_job_label_Sql.insert(t_job.getId()+"", t_limit, "", "");
-					
-					
+
 					if(json_welfare!=null&&!json_welfare.equals("")){
 						user_welfare list_welfare = g_welfare.fromJson(json_welfare, user_welfare.class);
 						
@@ -194,7 +188,6 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 						}
 					}
 					
-						
 					if(json_label!=null&&!json_limit.equals("")){
 						user_label list_label = g_label.fromJson(json_label, user_label.class);
 						
@@ -226,14 +219,10 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 					//t_job.setLimit_name(list_label2);
 					t_job.setWelfare_name(list_welfare2);
 					t_job.setLabel_name(list_label2);
-					
 				}
-
 				//----------------兼职标签---------------
 				
-
 				Map map = new HashMap();
-				//map.put("t_job", t_job);
 				params.put("data", map);
 				params.put("message", "兼职信息录入成功");
 				params.put("code", "200");
@@ -243,11 +232,8 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 				pw.write(str);
 				pw.flush();
 				pw.close();
-				
-
 				//---------------兼职偏好--------------------
-
-				Calendar  c =  Calendar.getInstance();  
+				Calendar  c =  Calendar.getInstance();
 //		        Date date = new Date(); // 取当前时间  
 				int iii = Integer.parseInt(ss2);
 				long oo = iii*1000L;
@@ -262,13 +248,11 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 		        }else{
 		        	i_xingqi = i-1;
 		        }
-		        
 		        String sd = sdf2.format(new Date(Long.parseLong(ss2+"100")));
 				String s = new String(sd);   
 				String a[] = s.split(" ");
 				String ssss = new String(a[1]);   
 				String aaaa[] = ssss.split(":");
-				
 				int i_aaaa = Integer.parseInt(aaaa[0]);
 				int i_shangxia = 0;
 				if(i_aaaa > 6 && i_aaaa <12){
@@ -278,9 +262,7 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 				}else if(i_aaaa > 19 && i_aaaa <5){
 					i_shangxia = 3;
 				}
-
 				//---------------兼职偏好--------------------
-			
 			}else{
 				params.put("message", "兼职信息录入失败");
 				params.put("code", "500");
