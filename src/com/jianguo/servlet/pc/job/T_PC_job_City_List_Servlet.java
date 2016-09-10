@@ -58,9 +58,9 @@ public class T_PC_job_City_List_Servlet extends HttpServlet {
 			T_job_info_Bean t_job_info = T_job_info_Sql.select_job_id(t_job.getId()+"");
 			logger.info("-----"+t_job_info.getId()+"");
 			logger.info(t_job.getId()+"");
-			if(t_job_info!=null){
+			if(t_job_info.getStart_time()!=null){
 
-
+				logger.info(t_job_info);
 				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 				String sd = sdf.format(new Date(Long.parseLong(t_job_info.getStart_time()+"100")));
 				String sd2 = sdf.format(new Date(Long.parseLong(t_job_info.getStop_time()+"100")));

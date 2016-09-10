@@ -123,7 +123,7 @@ public class T_JobDetailForUser_Servlet extends HttpServlet {
 					for(int i=0;i<lableList.size();i++){
 						lable.add(i, lableList.get(i).getLableName());
 					}
-					if(job_detail.getWelfare()!=null){
+					if(job_detail.getWelfare()!=null&&job_detail.getWelfare().size()>0){
 						job_detail.getWelfare().addAll(lable);
 					}
 					

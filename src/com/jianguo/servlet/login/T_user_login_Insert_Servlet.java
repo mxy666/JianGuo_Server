@@ -121,7 +121,7 @@ public class T_user_login_Insert_Servlet extends HttpServlet {
 					map.put("t_user_login", t_user_login);
 					map.put("t_user_info", t_user_info);
 					map.put("version", "21");
-					map.put("version_ios", "3.0.6");
+					map.put("version_ios", "3.0.7");
 					map.put("content", "修复了部分Bug，为方便使用，请更新！");
 					map.put("apk_url", "http://7xljc3.dl1.z0.glb.clouddn.com/jiang_v3.1.0.apk");
 					
