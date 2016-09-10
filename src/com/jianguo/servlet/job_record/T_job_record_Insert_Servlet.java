@@ -13,10 +13,10 @@
 //import com.jianguo.bean.T_enroll_limit_Bean;
 //import com.jianguo.bean.T_job_Bean;
 //import com.jianguo.bean.T_merchant_Bean;
-//import com.jianguo.sql.T_enroll_Sql;
-//import com.jianguo.sql.T_enroll_limit_Sql;
-//import com.jianguo.sql.T_job_Sql;
-//import com.jianguo.sql.T_merchant_Sql;
+//import com.jianguo.mersql.T_enroll_Sql;
+//import com.jianguo.mersql.T_enroll_limit_Sql;
+//import com.jianguo.mersql.T_job_Sql;
+//import com.jianguo.mersql.T_merchant_Sql;
 //import com.jianguo.util.Frequently;
 //import com.jianguo.util.Jdpush;
 //import com.jianguo.util.Jdpush_shang;

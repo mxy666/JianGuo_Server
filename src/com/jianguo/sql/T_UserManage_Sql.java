@@ -332,8 +332,8 @@ public static List<T_UserManage_Bean> selectAll(){
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
 		StringBuffer str = new StringBuffer();
-		
-		//String sql = "select m.money ,SUM(o.money) cash,SUM(w.real_money ) wage from t_user_money m,t_user_moneyout o,t_wages w where m.login_id=o.login_id and o.login_id=w.login_id and w.job_id <>0  ";			 
+
+		//String sql = "select m.money ,SUM(o.money) cash,SUM(w.real_money ) wage from t_user_money m,t_user_moneyout o,t_wages w where m.login_id=o.login_id and o.login_id=w.login_id and w.job_id <>0  ";
 		String sql = "select m.money from t_user_money m where 1=1 ";
 		if(loginId!=null&&!loginId.equals("")){
 			 str.append(" and m.login_id ="+loginId+" ");		 	
@@ -370,7 +370,7 @@ public static List<T_UserManage_Bean> selectAll(){
 		Connection conn=DButil.getCon();
 		StringBuffer str = new StringBuffer();
 		
-		//String sql = "select m.money ,SUM(o.money) cash,SUM(w.real_money ) wage from t_user_money m,t_user_moneyout o,t_wages w where m.login_id=o.login_id and o.login_id=w.login_id and w.job_id <>0  ";			 
+		//String mersql = "select m.money ,SUM(o.money) cash,SUM(w.real_money ) wage from t_user_money m,t_user_moneyout o,t_wages w where m.login_id=o.login_id and o.login_id=w.login_id and w.job_id <>0  ";
 		String sql = "select SUM(w.real_money ) wage from t_wages w where w.job_id <>0  ";
 		if(loginId!=null&&!loginId.equals("")){
 			 str.append(" and w.login_id ="+loginId+" ");		 	
@@ -407,7 +407,7 @@ public static List<T_UserManage_Bean> selectAll(){
 		Connection conn=DButil.getCon();
 		StringBuffer str = new StringBuffer();
 		
-		//String sql = "select m.money ,SUM(o.money) cash,SUM(w.real_money ) wage from t_user_money m,t_user_moneyout o,t_wages w where m.login_id=o.login_id and o.login_id=w.login_id and w.job_id <>0  ";			 
+		//String mersql = "select m.money ,SUM(o.money) cash,SUM(w.real_money ) wage from t_user_money m,t_user_moneyout o,t_wages w where m.login_id=o.login_id and o.login_id=w.login_id and w.job_id <>0  ";
 		String sql = "select SUM(o.money) cash from t_user_moneyout o  where 1=1  ";
 		if(loginId!=null&&!loginId.equals("")){
 			 str.append(" and o.login_id ="+loginId+" ");		 	
@@ -479,10 +479,10 @@ public static List<T_UserManage_Bean> queryNullUser(){
 	Connection conn=DButil.getCon();
 	StringBuffer str = new StringBuffer();
 	
-	/*String sql = "select a.id as login_id ,a.tel,a.city_id, b.sex,b.name,b.school,d.money from  t_user_login a,t_user_resume b,t_user_money d where a.id=b.login_id and b.login_id=d.login_id LIMIT 0,50";			 */
+	/*String mersql = "select a.id as login_id ,a.tel,a.city_id, b.sex,b.name,b.school,d.money from  t_user_login a,t_user_resume b,t_user_money d where a.id=b.login_id and b.login_id=d.login_id LIMIT 0,50";			 */
 	String sql = "select * from t_user_info i where i.nickname is  NULL";
 
-	//sql=sql+str.toString();
+	//mersql=mersql+str.toString();
 	 System.out.println(sql+"----------------------------------------");
 	 PreparedStatement psmt = DButil.getPstm(conn, sql);
 	try {			

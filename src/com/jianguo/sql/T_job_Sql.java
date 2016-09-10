@@ -420,7 +420,7 @@ public class T_job_Sql {
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-//		String sql = "select * from t_job where hot=? and city_id=? and is_model=0 and (status=0 or status=2) order by status asc,id desc limit "+count+",10";
+//		String mersql = "select * from t_job where hot=? and city_id=? and is_model=0 and (status=0 or status=2) order by status asc,id desc limit "+count+",10";
 		String sql = "select * from t_job where hot=? and city_id=? and is_model=0 order by status asc,id desc limit "+count+",10";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {

@@ -156,7 +156,7 @@ public class T_school_Sql {
 		ResultSet rs=null;
 		
 		Connection conn=DButil.getCon();
-//		String sql = "select a.id,a.type_name,b.type,b.login_id from t_type a left join t_hobby_type b on a.id = b.type where b.login_id=? or b.login_id is null";
+//		String mersql = "select a.id,a.type_name,b.type,b.login_id from t_type a left join t_hobby_type b on a.id = b.type where b.login_id=? or b.login_id is null";
 		String sql = "select * from t_type a left join t_hobby_type b on a.id=b.type and b.login_id=?";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
@@ -287,8 +287,8 @@ public class T_school_Sql {
 //		ResultSet rs=null;
 //		T_school_Bean t_school = new T_school_Bean();
 //		Connection conn=DButil.getCon();
-//		String sql = "select * from t_school where like '%"+name+"%";
-//		PreparedStatement psmt = DButil.getPstm(conn, sql);
+//		String mersql = "select * from t_school where like '%"+name+"%";
+//		PreparedStatement psmt = DButil.getPstm(conn, mersql);
 //		try {
 ////			psmt.setString(1,token);
 //			rs=psmt.executeQuery();

@@ -15,21 +15,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class MerchantQuickSms extends HttpServlet {
+public class QuickSmsServlet extends HttpServlet {
 /**
- * @api {post} /login/:tel Request login information
- * @apiName MerchantQuickSms
+ * @api {post} QuickSmsServlet/ å¿«é€Ÿç™»å½•éªŒè¯ç 
+ * @apiName QuickSmsServlet
  * @apiGroup login
  *
- * @apiParam {Number} id Users unique ID.
- *
- * @apiSuccess {String} firstname Firstname of the User.
- * @apiSuccess {String} lastname  Lastname of the User.
+ * @apiParam {String} tel Users phone
+ * @apiSuccess {String} code 200
+ * @apiSuccess {String} message  éªŒè¯ç å·²ç»å‘é€ï¼Œè¯·æ³¨æ„æŸ¥æ”¶ï¼
+ * @apiError {String} code 400
+ * @apiError{String} message
+
  */
 	/**
 	 * Constructor of the object.
 	 */
-	public MerchantQuickSms() {
+	public QuickSmsServlet() {
 		super();
 	}
 
@@ -41,32 +43,30 @@ public class MerchantQuickSms extends HttpServlet {
 		final Map<String, String> params =  new HashMap<String, String>();
 		final String tel =request.getParameter("tel");
 		Gson g = new Gson();
-		//------------------·ÃÎÊÏŞÖÆ--------¿ªÊ¼----------------------
-		//ÊÖ»úºÅ´æÔÚ²Å·¢ËÍÑéÖ¤Âë
-		boolean b = T_user_login_Sql.check_tel(tel);
-		if(b){
+		//------------------è®¿é—®é™åˆ¶--------å¼€å§‹----------------------
+		//å‘é€éªŒè¯ç 
 			new Thread(() -> {
                Text_Sms.textdemos(tel);
             }).start();
 			PrintWriter pw;
-			params.put("message", "ÑéÖ¤ÂëÒÑ¾­·¢ËÍ£¬Çë×¢Òâ²éÊÕ£¡");
+			params.put("message", "éªŒè¯ç å·²ç»å‘é€ï¼Œè¯·æ³¨æ„æŸ¥æ”¶ï¼");
 			params.put("code", "200");
 			pw = response.getWriter();
 			String str = g.toJson(params);
 			pw.write(str);
 			pw.flush();
 			pw.close();
-		}else{
-			params.put("message", "ÄúµÄÊÖ»úºÅÉĞÎ´×¢²á!");
-			params.put("code", "500");
-			PrintWriter pw = response.getWriter();
-			String str = g.toJson(params);
-			pw.write(str);
-			pw.flush();
-			pw.close();
-		}
-		//------------------·ÃÎÊÏŞÖÆ--------¿ªÊ¼----------------------
-		//------------------·ÃÎÊÏŞÖÆ--------½áÊø----------------------
+//		}else{
+//			params.put("message", "æ‚¨çš„æ‰‹æœºå·å°šæœªæ³¨å†Œ!");
+//			params.put("code", "500");
+//			PrintWriter pw = response.getWriter();
+//			String str = g.toJson(params);
+//			pw.write(str);
+//			pw.flush();
+//			pw.close();
+//		}
+		//------------------è®¿é—®é™åˆ¶--------å¼€å§‹----------------------
+		//------------------è®¿é—®é™åˆ¶--------ç»“æŸ----------------------
 	}
 
 }

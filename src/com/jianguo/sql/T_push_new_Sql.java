@@ -426,7 +426,7 @@ public class T_push_new_Sql {
 			 List <T_push_Bean>list=new ArrayList<T_push_Bean>();
 			 ResultSet rs=null;
 			 StringBuffer str = new StringBuffer(); 
-		     String sql="select a.*,b.tel,c.name from t_push a,t_user_login b  ,t_user_resume c  where a.login_id=b.id AND b.id=c.login_id";		 
+		     String mersql="select a.*,b.tel,c.name from t_push a,t_user_login b  ,t_user_resume c  where a.login_id=b.id AND b.id=c.login_id";
 
 		   
 			 
@@ -438,10 +438,10 @@ public class T_push_new_Sql {
 					 str.append(" and c.name like'%"+name+"%' ");
 					 
 				 }
-				sql=sql+str.toString();
+				mersql=mersql+str.toString();
 		
-			 System.out.println(sql+"-------------------");
-			 PreparedStatement psmt = DButil.getPstm(conn, sql);
+			 System.out.println(mersql+"-------------------");
+			 PreparedStatement psmt = DButil.getPstm(conn, mersql);
 				try {
 					rs=psmt.executeQuery();
 					while(rs.next()){
@@ -475,7 +475,7 @@ public class T_push_new_Sql {
 		     String sql="select * from t_platform_push  ";		 
 			sql=sql+str.toString()+" limit " +page.getFirstResult()+","+page.getPageSize();
 		    
-			// sql=sql+str.toString();
+			// mersql=mersql+str.toString();
 
 			 System.out.println(sql+"-------------------");
 			 PreparedStatement psmt = DButil.getPstm(conn, sql);
