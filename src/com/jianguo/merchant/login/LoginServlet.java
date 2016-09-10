@@ -58,8 +58,6 @@ public class LoginServlet extends HttpServlet {
 
             }
 
-
-            map.put("message", "登录成功");
             map.put("code", "200");
             String str = gson.toJson(map);
             pw.write(str);
