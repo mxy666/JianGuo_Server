@@ -287,7 +287,7 @@
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>T_enroll_User_Id_Servlet</servlet-name>
-    <servlet-class>com.jianguo.servlet.enroll.T_enroll_User_Id_Servlet</servlet-class>
+    <servlet-class>com.jianguo.servlet.enroll.T</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
@@ -896,6 +896,116 @@
     </servlet>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <servlet-mapping>
     <servlet-name>T_user_login_Check_Tel_Servlet</servlet-name>
     <url-pattern>/T_user_login_Check_Tel_Servlet</url-pattern>
@@ -1352,7 +1462,7 @@
     <servlet-name>T_QueryJob_Servlet</servlet-name>
     <url-pattern>/T_QueryJob_Servlet</url-pattern>
   </servlet-mapping>
-
+  
     <servlet-mapping>
     <servlet-name>T_to_pushRecord_Servlet</servlet-name>
     <url-pattern>/T_to_pushRecord_Servlet</url-pattern>
@@ -1481,18 +1591,15 @@
     <servlet-name>MerPushServlet</servlet-name>
     <url-pattern>/MerPushServlet</url-pattern>
   </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>FinanceInfoServlet</servlet-name>
-        <url-pattern>/FinanceInfoServlet</url-pattern>
-    </servlet-mapping>
   <servlet-mapping>
      <servlet-name>InsertUserServlet</servlet-name>
      <url-pattern>/InsertUserServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-        <servlet-name>DidiTicketsServlet</servlet-name>
-        <url-pattern>/DidiTicketsServlet</url-pattern>
-   </servlet-mapping>
+    <servlet-name>FinanceInfoServlet</servlet-name>
+    <url-pattern>/FinanceInfoServlet</url-pattern>
+  </servlet-mapping>
+
 
 <!--<welcome-file-list>
     <welcome-file>login.html</welcome-file>

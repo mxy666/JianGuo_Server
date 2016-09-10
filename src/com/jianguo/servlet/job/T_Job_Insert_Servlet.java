@@ -95,33 +95,7 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 		System.out.println(json_welfare+"---------------------2");
 		System.out.println(json_label+"---------------------3");
 		
-		System.out.println("city_id  "+city_id);
-		System.out.println("aera_id  "+aera_id);
-		System.out.println("type_id  "+type_id);
-		System.out.println("merchant_id  "+merchant_id);
-		System.out.println("name  "+name);
-		System.out.println("name_image  "+name_image);
-		System.out.println("start_date  "+start_date);
-		System.out.println("stop_date  "+stop_date);
-		System.out.println("address  "+address);
-		System.out.println("mode  "+mode);
-		System.out.println("money  "+money);
-		System.out.println("term  "+term);
-		System.out.println("limit_sex  "+limit_sex);
-		System.out.println("sum  "+sum);
-		System.out.println("hot  "+hot);
-		System.out.println("alike  "+alike);
-		System.out.println("lon  "+lon);
-		System.out.println("lat  "+lat);
-		System.out.println("tel  "+tel);
-		System.out.println("start_time  "+start_time);
-		System.out.println("stop_time  "+stop_time);
-		System.out.println("set_place  "+set_place);
-		System.out.println("set_time  "+set_time);
-		System.out.println("other  "+other);
-		System.out.println("work_content  "+work_content);
-		System.out.println("work_require  "+work_require);
-		
+
 		//------------------访问限制--------开始----------------------
 		String only =request.getParameter("only");
 		String ss_only = Frequently.daycount();
@@ -257,11 +231,9 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 
 				//----------------兼职标签---------------
 				
-				
-				
+
 				Map map = new HashMap();
 				//map.put("t_job", t_job);
-
 				params.put("data", map);
 				params.put("message", "兼职信息录入成功");
 				params.put("code", "200");
