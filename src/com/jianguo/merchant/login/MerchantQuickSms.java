@@ -45,8 +45,9 @@ public class MerchantQuickSms extends HttpServlet {
 		//手机号存在才发送验证码
 		boolean b = T_user_login_Sql.check_tel(tel);
 		if(b){
-			new Thread(() -> {
-               Text_Sms.textdemos(tel);
+			new Thread(new Runnable() {
+				public void run() {
+               Text_Sms.textdemos(tel);}
             }).start();
 			PrintWriter pw;
 			params.put("message", "验证码已经发送，请注意查收！");

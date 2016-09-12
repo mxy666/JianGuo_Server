@@ -73,8 +73,8 @@ public class T_register_Servlet extends HttpServlet {
 				
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					String ly_time = sdf.format(new java.util.Date());
-					T_user_info_Sql.insert_qq_wx(t_user_login.getId()+"", "兼果","", "http://v3.jianguojob.com/moren.png","","0","0","0", ly_time, ly_time);
-					T_user_resume_Sql.insert_qq_wx(t_user_login.getId()+"", "兼果", "","http://v3.jianguojob.com/moren.png","","","1","0","0","","","","","");
+					T_user_info_Sql.insert_qq_wx(t_user_login.getId()+"", "兼果"+t_user_login.getId(),"", "http://v3.jianguojob.com/moren.png","","0","0","0", ly_time, ly_time);
+					T_user_resume_Sql.insert_qq_wx(t_user_login.getId()+"", "兼果"+t_user_login.getId(), "","http://v3.jianguojob.com/moren.png","","","1","0","0","","","","","");
 					T_user_money_Sql.insert(t_user_login.getId()+"", "0", "8.88", "0", "0", "0", "0", "0");
 					
 					T_user_info_Bean t_user_info = T_user_info_Sql.select_login_id(t_user_login.getId()+"");
@@ -114,23 +114,7 @@ public class T_register_Servlet extends HttpServlet {
 					
 					request.getRequestDispatcher("login\\success.jsp").forward(request, response);
 			}else{
-				//简单的token(七牛)
-//				Auth auth = Auth.create("l8JTtsVLzAV4yEvMvLd7Jno_4pDBwg180-_sGPbP","lkYt1WH8OPHoDkOHD_raJugSeJhaRzf7OJStBkNO");	
-//				//		String token=auth.uploadToken("iqiaqia",null,3600*24*365*10,null);//一年
-//				String qiniu_token=auth.uploadToken("jianguo",null,3600*24*7,null);//7天
-//				
-//				T_user_login_Bean t_user_login = T_user_login_Sql.select_tel(tel);
-//				T_user_info_Bean t_user_info = T_user_info_Sql.select_login_id(t_user_login.getId()+"");
-//				t_user_login.setQiniu(qiniu_token);
-//				
-//				T_user_resume_Bean t_user_resume = T_user_resume_Sql.select_login_id(t_user_login.getId()+"");
-//				t_user_info.setUser_sex(t_user_resume.getSex()+"");
-//				t_user_info.setQiniu(qiniu_token);
-//				
-//				if(city_id == "" || city_id == null){
-//				}else{
-//					T_user_login_Sql.update_city_id(city_id, t_user_login.getId()+"");
-//				}
+
 				
 				request.getRequestDispatcher("login\\success.jsp").forward(request, response);
 			}

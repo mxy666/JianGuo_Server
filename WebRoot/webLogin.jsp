@@ -94,8 +94,8 @@ var sends = {
 					return false;
 				}
 			}
-			// var url = "T_webSms_Servlet?phone="+val+"&fastTel=fast";
-		    // window.location = url;
+			var url = "T_webSms_Servlet?phone="+val+"&fastTel=fast";
+		     window.location = url;
 			if(numbers.test(val)){
 				var time = 60;			
 				function timeCountDown(){

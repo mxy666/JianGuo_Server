@@ -51,8 +51,8 @@ public class T_passWordLogin_Servlet extends HttpServlet {
 			boolean flag=T_user_login_Sql.checkForAccount(account,mD5password);
 			
 			if(flag){
-			
-				request.getRequestDispatcher("login\\success.jsp").forward(request, response);
+
+				request.getRequestDispatcher("forWeb\\jobWeb.jsp").forward(request, response);
 			}else{
 				out.flush();
 				out.println("<script>");

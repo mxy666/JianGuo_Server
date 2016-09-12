@@ -27,7 +27,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         })()
     </script>
 </head>
-<body>
+<body onload="onLoadJob()">
+
 <div class="main">
     <div class="index-title">
         <div class="dw f-l">
@@ -265,7 +266,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
     });
+function onLoadJob(){
+    var url = "JobListForWebServlet";
+    window.location = url;
 
+}
 </script>
 </body>
 </html>

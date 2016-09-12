@@ -103,8 +103,7 @@ public class T_wages_Insert_Servlet extends HttpServlet {
 				
 				T_job_Bean t_job = T_job_Sql.select_id(t.getJob_id()+"");
 				T_user_login_Bean t_user_login = T_user_login_Sql.select_id(t.getLogin_id()+"");
-//				Text_Sms.textdemos4(t_user_login.getTel(),t_job.getName(),dd2+"");
-//				MD_SMS_Info.daqian4(t_user_login.getTel(),t_job.getName(),dd2+"");
+
 				
 				Jdpush.sendPush("工资到账，账户已收到"+dd2+"元,【"+t_job.getName()+"】兼职的工资","jianguo"+t.getLogin_id()+"");
 				Jdpusher.sendPush("工资到账，账户已收到"+dd2+"元,【"+t_job.getName()+"】兼职的工资","jianguo"+t.getLogin_id()+"");
