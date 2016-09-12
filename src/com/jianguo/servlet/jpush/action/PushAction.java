@@ -71,18 +71,18 @@ public class PushAction {
 					Jdpusher_realname.sendPush(message,"jianguo"+pushObj.get(i).getId());//安卓
 					Jdpushcc_realname.sendPush(message,"jianguo"+pushObj.get(i).getId());//iOS
 					//T_push_Sql.insert(pushObj.get(i).getId()+"", "实名认证", "推送", message, "2","0","0","0", ly_time);
-					T_push_Sql.insert(pushObj.get(i).getId()+"", "实名认证", "推送", message, "2","0","0","0", ly_time);
+					T_push_Sql.insert(pushObj.get(i).getId()+"", "实名认证", "", message, "2","0","0","0", ly_time);
 				}else if(type.equals("3")){
 					Jdpush_main.sendPush(message,"jianguo"+pushObj.get(i).getId());//iOS
 					Jdpusher_main.sendPush(message,"jianguo"+pushObj.get(i).getId());//安卓
 					Jdpushcc_main.sendPush(message,"jianguo"+pushObj.get(i).getId());//iOS
-					T_push_Sql.insert(pushObj.get(i).getId()+"", "新系统消息", "推送", message, "3","0","0","0", ly_time);
+					T_push_Sql.insert(pushObj.get(i).getId()+"", "新系统消息", "", message, "3","0","0","0", ly_time);
 			
 				}else if(type.equals("5")){
 					Jdpush_job.sendPush(job_name,"jianguo"+pushObj.get(i).getId(),job_name,job_id);//iOS
 					Jdpusher_job.sendPush(job_name,"jianguo"+pushObj.get(i).getId(),job_name,job_id);//安卓
 					Jdpushcc_job.sendPush(job_name,"jianguo"+pushObj.get(i).getId(),job_name,job_id);//iOS
-					T_push_Sql.insert(pushObj.get(i).getId()+"", "一条新兼职推荐", "推送", job_name, "5","0","0",job_id, ly_time);
+					T_push_Sql.insert(pushObj.get(i).getId()+"", "一条新兼职推荐", "", job_name, "5","0","0",job_id, ly_time);
 				
 				}
 				
@@ -98,7 +98,7 @@ public class PushAction {
 				String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+phone+"&content="+str_message+"&ext=&stime=&rrid=&msgfmt=";
 				Server_Get.get(url);
 				//			System.out.println("---"+tel+"---");
-				T_push_Sql.insert(pushObj.get(i).getId()+"", "推送", "推送", message, "0","1","0","0", ly_time);
+				T_push_Sql.insert(pushObj.get(i).getId()+"", "", "", message, "0","1","0","0", ly_time);
 				n++;
 			}
 			T_push_Sql.insertPushRecord(1,message,n,ly_time);
@@ -116,8 +116,11 @@ public class PushAction {
         	String str_message = "【兼果兼职】欢迎选择兼果兼职,"+message;
     		SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     		String ly_time = time.format(new java.util.Date());
-    		String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+tel+"&content="+str_message+"&ext=&stime=&rrid=&msgfmt=";
-    		Server_Get.get(url);
+    		//String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+tel+"&content="+str_message+"&ext=&stime=&rrid=&msgfmt=";
+			String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-25250&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+tel+"&content="+str_message+"&ext=&stime=&rrid=&msgfmt=";
+
+
+			Server_Get.get(url);
     		T_push_new_Sql.add(tel,message,ly_time);
         }
 	
@@ -134,7 +137,7 @@ public class PushAction {
 	}
 	
 	
-	//商家端推送
+	//商家端推送男女
 	
 	public static void merPush(List<T_enroll_Bean> loginId,String message){
 		SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
