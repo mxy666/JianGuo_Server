@@ -47,7 +47,7 @@ public class MerPushServlet extends HttpServlet {
 	/**
 	 * 商家端推送分男女或全推
 	 * 
-	 * @param request the request send by the client to the server
+	 * @param request the request Send by the client to the server
 	 * @type 推送范围0全推 1男 2女
 	 * @status录取状态（已报名=0；已录取=1；已取消=2）
 	 * @throws IOException if an error occurred

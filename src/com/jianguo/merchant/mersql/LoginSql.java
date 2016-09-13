@@ -2,6 +2,7 @@ package com.jianguo.merchant.mersql;
 
 import com.jianguo.bean.T_city_Bean;
 import com.jianguo.util.DButil;
+import com.sun.org.apache.bcel.internal.classfile.Code;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,7 +36,7 @@ public class LoginSql {
 		return b;
 	}
 
-	public static boolean InsertMerchant(String tel){
+	public static boolean insertMerchant(String tel){
 		try {
 			String sql = "insert into t_merchant_login (tel,password,token,permission,resume_status,review_status,pay_status) values" +
 					"('"+tel+"','111111','','','','','')";
@@ -49,58 +50,28 @@ public class LoginSql {
 		}
 		return b;
 	}
-	public  int update_status(String status,String id){
-		int num=0;
+	/**
+	*检查手机号对应验证码是否正确
+	*@param tel
+	*@param code
+	*@author invinjun
+	*created at 2016/9/12 9:31
+	*/
+	public static boolean checkVerificationCode(String tel, String code){
+		boolean b = true;
 		try {
-			Connection conn=DButil.getCon();
-			String sql = "update t_admin set status=? where id=?";
-			PreparedStatement psmt = DButil.getPstm(conn, sql);
-			psmt.setString(1, status);
-			psmt.setString(2, id);
-			num=psmt.executeUpdate();
-			psmt.close();
+			String sql = "select * from t_merchant_login where tel=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, tel);
+			rs = pstmt.executeQuery();
+			b = rs.next();
+			pstmt.close();
 			conn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return num;
-	}
-	public static int queryCityId(String city){
-		if(city.equals("sanya")){
-			city="三亚";
-		}else if(city.equals("beijing")){
-			city="北京";
-		}else if(city.equals("haikou")){
-			city="海口";
-		}else if(city.equals("hangzhou")){
-			city="杭州";
-		}else if(city.equals("xian")){
-			city="西安";
-		}
-		
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		
-		String sql = "select * from t_city where city=?";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		List IdList = new ArrayList();
-		 T_city_Bean cityID =new T_city_Bean();      
-		try {
-			
-			psmt.setString(1,city);
-			rs=psmt.executeQuery();
-			
-			  while(rs.next()){             
-				 
-				  cityID.setId(rs.getInt("id"));              				           
-				              }
-		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}				
-		return cityID.getId();
+		}
+		return b;
 	}
-	
+
 
 }
