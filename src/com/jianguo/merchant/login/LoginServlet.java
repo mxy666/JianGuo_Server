@@ -38,13 +38,12 @@ public class LoginServlet extends HttpServlet {
         Logger logger = Logger.getLogger("log");
         logger.info("登录日志信息开始!");
         logger.info("LoginServlet!");
-        String password =request.getParameter("password");
+        String verificationCode =request.getParameter("verification_code");
         String tel =request.getParameter("tel");
         Map map = new HashMap();
         Gson gson=new Gson();
         PrintWriter pw = response.getWriter();
-        if (password==null||password.equals("")||tel==null||tel.equals("")) {
-
+        if (verificationCode==null||verificationCode.equals("")||tel==null||tel.equals("")) {
             map.put("message", "参数错误请检查");
             map.put("code", "400");
             String str = gson.toJson(map);
@@ -52,18 +51,25 @@ public class LoginServlet extends HttpServlet {
             pw.flush();
             pw.close();
             return;
-        }else {
+        }
+        if (LoginSql.checkRegister(tel)) {
+            map.put("message", "参数错误请检查");
+            map.put("code", "400");
+            String str = gson.toJson(map);
+            pw.write(str);
+            pw.flush();
+            pw.close();
+            return;
+        }
             if (!LoginSql.checkRegister(tel)) {
-                  LoginSql.InsertMerchant(tel);
-
+                LoginSql.insertMerchant(tel);
             }
-
             map.put("code", "200");
             String str = gson.toJson(map);
             pw.write(str);
             pw.flush();
             pw.close();
-        }
+
 
     }
 

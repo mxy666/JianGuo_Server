@@ -26,30 +26,27 @@ public class DiDiSignUtil {
         // 遍历排序后的字典，将所有参数按"key=value"格式拼接在一起
         StringBuilder basestring = new StringBuilder();
 
-        if(params.getClass().isArray()&&params.size()>0){
+        if(params.size()>0){
 
             for (Map.Entry<String, String> param : entrys) {
 
                 if (param.getValue()!=null){
 
-                basestring.append(param.getKey()).append("=").append(param.getValue());
 
+                    basestring.append(param.getKey()).append("=").append(param.getValue()).append("&");
                 }
             }
         }
-        basestring.append(secret);
-
         // 使用MD5对待签名串求签
         String sign="";
         try {
+            String md5secret=MD5Util.EncoderByMd5(secret);
            /* MessageDigest md5 = MessageDigest.getInstance("MD5");
             bytes = md5.digest(basestring.toString().getBytes("UTF-8"));*/
-           sign= MD5Util.MD5(basestring.toString());
+            sign=MD5Util.EncoderByMd5( basestring+"key="+md5secret);
         } catch (Exception ex) {
             throw new IOException(ex);
         }
-
-
         return sign.toUpperCase();
     }
 }

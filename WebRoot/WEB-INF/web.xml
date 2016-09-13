@@ -899,116 +899,13 @@
         <servlet-name>MerchantQuickSms</servlet-name>
         <servlet-class>com.jianguo.merchant.login.QuickSmsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PayWageServlet</servlet-name>
+        <servlet-class>com.jianguo.merchant.wages.PayWageServlet</servlet-class>
+    </servlet>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<servlet-mapping>
+    <servlet-mapping>
     <servlet-name>T_user_login_Check_Tel_Servlet</servlet-name>
     <url-pattern>/T_user_login_Check_Tel_Servlet</url-pattern>
   </servlet-mapping>
@@ -1605,12 +1502,31 @@
         <servlet-name>MerchantQuickSms</servlet-name>
         <url-pattern>/MerchantQuickSms</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>PayWageServlet</servlet-name>
+        <url-pattern>/PayWageServlet</url-pattern>
+    </servlet-mapping>
 <!--<welcome-file-list>
     <welcome-file>login.html</welcome-file>
   </welcome-file-list>
 -->
-  <welcome-file-list>
+    <servlet>
+        <servlet-name>DidiTicketsServlet</servlet-name>
+        <servlet-class>com.jianguo.app.didi.DidiTicketsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DidiResultServlet</servlet-name>
+        <servlet-class>com.jianguo.app.didi.DidiResultServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DidiResultServlet</servlet-name>
+        <url-pattern>/DidiResultServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DidiTicketsServlet</servlet-name>
+        <url-pattern>/DidiTicketsServlet</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
     <welcome-file>login.html</welcome-file>
   </welcome-file-list>
   
