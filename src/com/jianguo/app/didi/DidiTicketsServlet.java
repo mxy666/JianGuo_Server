@@ -146,11 +146,8 @@ public class DidiTicketsServlet extends HttpServlet {
                 .add("sign", map.get("sign"))//
                 .build();
         Request request = new Request.Builder()
-
                 .url(url)
-
                 .post(formBody)
-
                 .build();
 
 
