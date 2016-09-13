@@ -134,11 +134,6 @@ public class DidiTicketsServlet extends HttpServlet {
         map.put("func", "http://101.200.195.147:8080/DidiResultServlet");
         map.put("tradeno", MD5Util.EncoderByMd5("6155997522e890d390c36fd14713e8d7"+phone) );
         map.put("sign",DiDiSignUtil.getSignature(map,sSeretkey));
-
-
- /* key:a660088621337ea4e9e8eb98f8585819
-    ??:11f5b19715f6b6506e184fb5669e783b
-    ???????6155997522e890d390c36fd14713e8d7*/
         RequestBody formBody = new FormEncodingBuilder()
                 .add("channel","6155997522e890d390c36fd14713e8d7")
                 .add("phone", phone)
