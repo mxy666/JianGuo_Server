@@ -11,13 +11,13 @@ import com.jianguo.sql.T_tel_code_Sql;
 public class Text_Sms {
 
 	private final static String APP_KEY = "6eb1ac1683e252354051958c3eae100d";
-	private final static String APP_NAME = "¼æ¹û¼æÖ°";
+	private final static String APP_NAME = "å…¼æœå…¼èŒ";
 
 	public static String textdemos(String user_username) {
 		// TODO Auto-generated method stub
 		long random =(long)((Math.random()*9+1)*100000);
 		String code = random+"";
-		String job_test = "¡¾¼æ¹û¼æÖ°¡¿»¶Ó­Ê¹ÓÃ¼æ¹û¼æÖ°£¬ÄúµÄÊÖ»úÑéÖ¤ÂëÊÇ"+code+"£¬ÓĞĞ§ÆÚÎª20·ÖÖÓ£¬Çë¾¡¿ìÑéÖ¤¡£±¾ÌõĞÅÏ¢ÎŞĞè»Ø¸´";
+		String job_test = "ã€å…¼æœå…¼èŒã€‘æ¬¢è¿ä½¿ç”¨å…¼æœå…¼èŒï¼Œæ‚¨çš„æ‰‹æœºéªŒè¯ç æ˜¯"+code+"ï¼Œæœ‰æ•ˆæœŸä¸º20åˆ†é’Ÿï¼Œè¯·å°½å¿«éªŒè¯ã€‚æœ¬æ¡ä¿¡æ¯æ— éœ€å›å¤";
 		String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+user_username+"&content="+job_test+"&ext=&stime=&rrid=&msgfmt=";
 		Server_Get.get(url);
 
@@ -54,9 +54,9 @@ public class Text_Sms {
 //					tpl_values = URLEncoder.encode(tpl_values, charset);
 //					String url = "http://v.juhe.cn/sms/send?key=";
 //					String urlAll = new StringBuffer(url).append(APP_KEY).append("&dtype=json&mobile=").append(mobile).append("&tpl_id=").append(tpl_id).append("&tpl_value=").append(tpl_values).toString();
-//					// µÃµ½JSON×Ö·û´®
+//					// å¾—åˆ°JSONå­—ç¬¦ä¸²
 //					gets(urlAll, charset);
-//					// ×ª»¯ÎªJSONÀà
+//					// è½¬åŒ–ä¸ºJSONç±»
 //	//				object = JSONObject.fromObject(jsonResult);
 //	
 //			} catch (UnsupportedEncodingException e) {
@@ -68,7 +68,7 @@ public class Text_Sms {
 
 	public static void textdemos1212(String user_username,String tel) {
 		// TODO Auto-generated method stub
-		String job_test = "¡¾¼æ¹û¼æÖ°¡¿Í¯Ğ¬£¬Ğ¡¹û×ÓÒÑ½«ÄúµÄ±¨ÃûÇëÇó·¢ËÍ¸øÉÌ¼ÒÁË£¬ÇëÂíÉÏ²¦´òµç»°×ÉÑ¯ÉÌ¼Ò"+tel+"¡£¸ü¶à¾«²ÊÇë¹Ø×¢ÎÒÃÇ¹Ù·½Î¢ĞÅ¹«ÖÚºÅ£º¼æ¹ûjob.²é¿´ÏêÇé,Çë´ò¿ª¼æ¹û¿Í»§¶Ëhttp://955.cc/d5feZ";
+		String job_test = "ã€å…¼æœå…¼èŒã€‘ç«¥é‹ï¼Œå°æœå­å·²å°†æ‚¨çš„æŠ¥åè¯·æ±‚å‘é€ç»™å•†å®¶äº†ï¼Œè¯·é©¬ä¸Šæ‹¨æ‰“ç”µè¯å’¨è¯¢å•†å®¶"+tel+"ã€‚æ›´å¤šç²¾å½©è¯·å…³æ³¨æˆ‘ä»¬å®˜æ–¹å¾®ä¿¡å…¬ä¼—å·ï¼šå…¼æœjob.æŸ¥çœ‹è¯¦æƒ…,è¯·æ‰“å¼€å…¼æœå®¢æˆ·ç«¯http://955.cc/d5feZ";
 		String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+user_username+"&content="+job_test+"&ext=&stime=&rrid=&msgfmt=";
 		Server_Get.get(url);
 	}
@@ -76,7 +76,7 @@ public class Text_Sms {
 	
 	public static void textdemos1(String user_username) {
 		// TODO Auto-generated method stub
-		String job_test = "¡¾¼æ¹û¼æÖ°¡¿Í¯Ğ¬£¬Ğ¡¹û×ÓÒÑ½«ÄúµÄ±¨ÃûÇëÇó·¢ËÍ¸øÉÌ¼ÒÁË£¬ÇëÄÍĞÄµÈ´ı°É£¡¸ü¶à¾«²ÊÇë¹Ø×¢ÎÒÃÇ¹Ù·½Î¢ĞÅ¹«ÖÚºÅ£º¼æ¹ûjob.²é¿´ÏêÇé,Çë´ò¿ª¼æ¹û¿Í»§¶Ëhttp://955.cc/d5feZ";
+		String job_test = "ã€å…¼æœå…¼èŒã€‘ç«¥é‹ï¼Œå°æœå­å·²å°†æ‚¨çš„æŠ¥åè¯·æ±‚å‘é€ç»™å•†å®¶äº†ï¼Œè¯·è€å¿ƒç­‰å¾…å§ï¼æ›´å¤šç²¾å½©è¯·å…³æ³¨æˆ‘ä»¬å®˜æ–¹å¾®ä¿¡å…¬ä¼—å·ï¼šå…¼æœjob.æŸ¥çœ‹è¯¦æƒ…,è¯·æ‰“å¼€å…¼æœå®¢æˆ·ç«¯http://955.cc/d5feZ";
 		String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+user_username+"&content="+job_test+"&ext=&stime=&rrid=&msgfmt=";
 		Server_Get.get(url);
 	}
@@ -98,9 +98,9 @@ public class Text_Sms {
 //				tpl_values = URLEncoder.encode(tpl_values, charset);
 //				String url = "http://v.juhe.cn/sms/send?key=";
 //				String urlAll = new StringBuffer(url).append(APP_KEY).append("&dtype=json&mobile=").append(mobile).append("&tpl_id=").append(tpl_id).append("&tpl_value=").append(tpl_values).toString();
-//				// µÃµ½JSON×Ö·û´®
+//				// å¾—åˆ°JSONå­—ç¬¦ä¸²
 //				gets(urlAll, charset);
-//				// ×ª»¯ÎªJSONÀà
+//				// è½¬åŒ–ä¸ºJSONç±»
 //	//				object = JSONObject.fromObject(jsonResult);
 //				
 //			} catch (UnsupportedEncodingException e) {
@@ -113,8 +113,8 @@ public class Text_Sms {
 
 	public static void textdemos2(String user_username,String job_name,String tel) {
 		// TODO Auto-generated method stub
-//		String job_test = "¡¾¼æ¹û¼æÖ°¡¿¼¯ÃÀÃ²ÓÚ²Å»ªÓÚÒ»ÉíµÄÄã±¨ÃûµÄ("+job_name+")ÒÑ±»ÉÌ¼ÒÂ¼ÓÃ£¬ÇëÇ°ÍùÎÒµÄ¼æÖ°ÖĞÈ·ÈÏ²Î¼Ó¸Ã¼æÖ°£¬Èô²»¼°Ê±È·ÈÏ»á±»ÉÌ¼Ò¾Ü¾øÅ¶£¡¸ü¶à¾«²ÊÇë¹Ø×¢¹Ù·½Î¢ĞÅ¹«ÖÚºÅ£º¼æ¹ûjob¡£";
-		String job_test = "¡¾¼æ¹û¼æÖ°¡¿¼¯ÃÀÃ²ÓÚ²Å»ªÓÚÒ»ÉíµÄÄã±¨ÃûµÄ("+job_name+")ÒÑ±»ÉÌ¼ÒÂ¼ÓÃ£¬Çë°´ÉÌ¼ÒÒªÇó×¼±¸³ö·¢¡£Ç§Íò²»Òª·Å¸ë×ÓÅ¶¡£ÈçÓĞÌØÊâÇé¿öÇëÁªÏµÉÌ¼Ò£º"+tel+"¡£²é¿´ÏêÇé,Çë´ò¿ª¼æ¹û¿Í»§¶Ëhttp://955.cc/d5feZ";
+//		String job_test = "ã€å…¼æœå…¼èŒã€‘é›†ç¾è²Œäºæ‰åäºä¸€èº«çš„ä½ æŠ¥åçš„("+job_name+")å·²è¢«å•†å®¶å½•ç”¨ï¼Œè¯·å‰å¾€æˆ‘çš„å…¼èŒä¸­ç¡®è®¤å‚åŠ è¯¥å…¼èŒï¼Œè‹¥ä¸åŠæ—¶ç¡®è®¤ä¼šè¢«å•†å®¶æ‹’ç»å“¦ï¼æ›´å¤šç²¾å½©è¯·å…³æ³¨å®˜æ–¹å¾®ä¿¡å…¬ä¼—å·ï¼šå…¼æœjobã€‚";
+		String job_test = "ã€å…¼æœå…¼èŒã€‘é›†ç¾è²Œäºæ‰åäºä¸€èº«çš„ä½ æŠ¥åçš„("+job_name+")å·²è¢«å•†å®¶å½•ç”¨ï¼Œè¯·æŒ‰å•†å®¶è¦æ±‚å‡†å¤‡å‡ºå‘ã€‚åƒä¸‡ä¸è¦æ”¾é¸½å­å“¦ã€‚å¦‚æœ‰ç‰¹æ®Šæƒ…å†µè¯·è”ç³»å•†å®¶ï¼š"+tel+"ã€‚æŸ¥çœ‹è¯¦æƒ…,è¯·æ‰“å¼€å…¼æœå®¢æˆ·ç«¯http://955.cc/d5feZ";
 		String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+user_username+"&content="+job_test+"&ext=&stime=&rrid=&msgfmt=";
 		Server_Get.get(url);
 	}
@@ -133,9 +133,9 @@ public class Text_Sms {
 //				tpl_values = URLEncoder.encode(tpl_values, charset);
 //				String url = "http://v.juhe.cn/sms/send?key=";
 //				String urlAll = new StringBuffer(url).append(APP_KEY).append("&dtype=json&mobile=").append(mobile).append("&tpl_id=").append(tpl_id).append("&tpl_value=").append(tpl_values).toString();
-//				// µÃµ½JSON×Ö·û´®
+//				// å¾—åˆ°JSONå­—ç¬¦ä¸²
 //				gets(urlAll, charset);
-//				// ×ª»¯ÎªJSONÀà
+//				// è½¬åŒ–ä¸ºJSONç±»
 ////					object = JSONObject.fromObject(jsonResult);
 //			} catch (UnsupportedEncodingException e) {
 ////				e.printStackTrace();
@@ -147,7 +147,7 @@ public class Text_Sms {
 
 	public static void textdemos32(String user_username,String job_name) {
 		// TODO Auto-generated method stub
-		String job_test = "¡¾¼æ¹û¼æÖ°¡¿±§Ç¸£¬ÉÌ¼Ò¿ÉÄÜ¸ß¶È½üÊÓÃ»ÓĞ·¢ÏÖÄãµÄ²Å»ª£¬ ÄãµÄ±¨Ãû("+job_name+")ÇëÇó±»ÎŞÇé¾Ü¾øÁË¡£¸ü¶à¾«²ÊÇë¹Ø×¢¹Ù·½Î¢ĞÅ¹«ÖÚºÅ£º¼æ¹ûjob.²é¿´ÏêÇé,Çë´ò¿ª¼æ¹û¿Í»§¶Ëhttp://955.cc/d5feZ";
+		String job_test = "ã€å…¼æœå…¼èŒã€‘æŠ±æ­‰ï¼Œå•†å®¶å¯èƒ½é«˜åº¦è¿‘è§†æ²¡æœ‰å‘ç°ä½ çš„æ‰åï¼Œ ä½ çš„æŠ¥å("+job_name+")è¯·æ±‚è¢«æ— æƒ…æ‹’ç»äº†ã€‚æ›´å¤šç²¾å½©è¯·å…³æ³¨å®˜æ–¹å¾®ä¿¡å…¬ä¼—å·ï¼šå…¼æœjob.æŸ¥çœ‹è¯¦æƒ…,è¯·æ‰“å¼€å…¼æœå®¢æˆ·ç«¯http://955.cc/d5feZ";
 		String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+user_username+"&content="+job_test+"&ext=&stime=&rrid=&msgfmt=";
 		Server_Get.get(url);
 	}
@@ -169,9 +169,9 @@ public class Text_Sms {
 //				tpl_values = URLEncoder.encode(tpl_values, charset);
 //				String url = "http://v.juhe.cn/sms/send?key=";
 //				String urlAll = new StringBuffer(url).append(APP_KEY).append("&dtype=json&mobile=").append(mobile).append("&tpl_id=").append(tpl_id).append("&tpl_value=").append(tpl_values).toString();
-//				// µÃµ½JSON×Ö·û´®
+//				// å¾—åˆ°JSONå­—ç¬¦ä¸²
 //				gets(urlAll, charset);
-//				// ×ª»¯ÎªJSONÀà
+//				// è½¬åŒ–ä¸ºJSONç±»
 //	//				object = JSONObject.fromObject(jsonResult);
 //				
 //			} catch (UnsupportedEncodingException e) {
@@ -184,7 +184,7 @@ public class Text_Sms {
 
 	public static void textdemos4(String user_username,String job_name,String money) {
 		// TODO Auto-generated method stub
-		String job_test = "¡¾¼æ¹û¼æÖ°¡¿Ğ¡¹û×ÓÂí²»Í£ÌãµÄ°Ñ("+job_name+")¼æÖ°"+money+"Ôª¹¤×Ê·¢µ½ÁËÄãµÄÇ®°üÀï£¬Çë×¢Òâ²éÊÕ¡£¸ü¶à¾«²ÊÇë¹Ø×¢¹Ù·½Î¢ĞÅ¹«ÖÚºÅ£º¼æ¹ûjob.²é¿´ÏêÇé,Çë´ò¿ª¼æ¹û¿Í»§¶Ëhttp://955.cc/d5feZ";
+		String job_test = "ã€å…¼æœå…¼èŒã€‘å°æœå­é©¬ä¸åœè¹„çš„æŠŠ("+job_name+")å…¼èŒ"+money+"å…ƒå·¥èµ„å‘åˆ°äº†ä½ çš„é’±åŒ…é‡Œï¼Œè¯·æ³¨æ„æŸ¥æ”¶ã€‚æ›´å¤šç²¾å½©è¯·å…³æ³¨å®˜æ–¹å¾®ä¿¡å…¬ä¼—å·ï¼šå…¼æœjob.æŸ¥çœ‹è¯¦æƒ…,è¯·æ‰“å¼€å…¼æœå®¢æˆ·ç«¯http://955.cc/d5feZ";
 		String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+user_username+"&content="+job_test+"&ext=&stime=&rrid=&msgfmt=";
 		Server_Get.get(url);
 	}
@@ -206,9 +206,9 @@ public class Text_Sms {
 //				tpl_values = URLEncoder.encode(tpl_values, charset);
 //				String url = "http://v.juhe.cn/sms/send?key=";
 //				String urlAll = new StringBuffer(url).append(APP_KEY).append("&dtype=json&mobile=").append(mobile).append("&tpl_id=").append(tpl_id).append("&tpl_value=").append(tpl_values).toString();
-//				// µÃµ½JSON×Ö·û´®
+//				// å¾—åˆ°JSONå­—ç¬¦ä¸²
 //				gets(urlAll, charset);
-//				// ×ª»¯ÎªJSONÀà
+//				// è½¬åŒ–ä¸ºJSONç±»
 //	//				object = JSONObject.fromObject(jsonResult);
 //				
 //			} catch (UnsupportedEncodingException e) {
@@ -221,15 +221,15 @@ public class Text_Sms {
 
 	public static void textdemos6(String user_username,String job_name,String tel) {
 		// TODO Auto-generated method stub
-		String job_test = "¡¾¼æ¹û¼æÖ°¡¿ÄúÒÑÈ·ÈÏ²Î¼Ó("+job_name+")¼æÖ°£¬Çë°´ÉÌ¼ÒÒªÇó×¼±¸³ö·¢¡£Ç§Íò²»Òª·Å¸ë×ÓÅ¶£¬ÒòÎª»¹ÓĞºÜ¶àÇÚ¹¤¼óÑ§µÄÍ¬Ñ§ĞèÒªÕâ·İ¹¤×÷¡£ÈçÓĞÌØÊâÇé¿öÇëÁªÏµÉÌ¼Ò£º"+tel+"¡£¸ü¶à¾«²ÊÇë¹Ø×¢¹Ù·½Î¢ĞÅ¹«ÖÚºÅ£º¼æ¹ûjob";
+		String job_test = "ã€å…¼æœå…¼èŒã€‘æ‚¨å·²ç¡®è®¤å‚åŠ ("+job_name+")å…¼èŒï¼Œè¯·æŒ‰å•†å®¶è¦æ±‚å‡†å¤‡å‡ºå‘ã€‚åƒä¸‡ä¸è¦æ”¾é¸½å­å“¦ï¼Œå› ä¸ºè¿˜æœ‰å¾ˆå¤šå‹¤å·¥ä¿­å­¦çš„åŒå­¦éœ€è¦è¿™ä»½å·¥ä½œã€‚å¦‚æœ‰ç‰¹æ®Šæƒ…å†µè¯·è”ç³»å•†å®¶ï¼š"+tel+"ã€‚æ›´å¤šç²¾å½©è¯·å…³æ³¨å®˜æ–¹å¾®ä¿¡å…¬ä¼—å·ï¼šå…¼æœjob";
 		String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+user_username+"&content="+job_test+"&ext=&stime=&rrid=&msgfmt=";
 		Server_Get.get(url);
 	}
 
 	public static void textdemos7(String user_username,String job_name) {
 		// TODO Auto-generated method stub
-//		String job_test = "¡¾¼æ¹û¼æÖ°¡¿ÄúÒÑÈ·ÈÏ²Î¼Ó("+job_name+")¼æÖ°£¬Çë°´ÉÌ¼ÒÒªÇó×¼±¸³ö·¢¡£Ç§Íò²»Òª·Å¸ë×ÓÅ¶£¬ÒòÎª»¹ÓĞºÜ¶àÇÚ¹¤¼óÑ§µÄÍ¬Ñ§ĞèÒªÕâ·İ¹¤×÷¡£ÈçÓĞÌØÊâÇé¿öÇëÁªÏµÉÌ¼Ò£º"+tel+"¡£¸ü¶à¾«²ÊÇë¹Ø×¢¹Ù·½Î¢ĞÅ¹«ÖÚºÅ£º¼æ¹ûjob";
-		String job_test = "¡¾¼æ¹û¼æÖ°¡¿±§Ç¸£¬ÄúµÄ("+job_name+")¹¤×÷ÒÑ±»ÉÌ¼ÒÈ¡ÏûÂ¼È¡¡£Äú¿ÉÔÚ(ÎÒµÄ¼æÖ°)ÖĞ²é¿´²¢×ÉÑ¯ÏêÇé£¬¹Ø×¢¹Ù·½Î¢ĞÅ¹«ÖÚºÅ£º¼æ¹ûjob¡£¸ü¶à¾«²Ê¹¤×÷µÈÄã²é¿´¡£";
+//		String job_test = "ã€å…¼æœå…¼èŒã€‘æ‚¨å·²ç¡®è®¤å‚åŠ ("+job_name+")å…¼èŒï¼Œè¯·æŒ‰å•†å®¶è¦æ±‚å‡†å¤‡å‡ºå‘ã€‚åƒä¸‡ä¸è¦æ”¾é¸½å­å“¦ï¼Œå› ä¸ºè¿˜æœ‰å¾ˆå¤šå‹¤å·¥ä¿­å­¦çš„åŒå­¦éœ€è¦è¿™ä»½å·¥ä½œã€‚å¦‚æœ‰ç‰¹æ®Šæƒ…å†µè¯·è”ç³»å•†å®¶ï¼š"+tel+"ã€‚æ›´å¤šç²¾å½©è¯·å…³æ³¨å®˜æ–¹å¾®ä¿¡å…¬ä¼—å·ï¼šå…¼æœjob";
+		String job_test = "ã€å…¼æœå…¼èŒã€‘æŠ±æ­‰ï¼Œæ‚¨çš„("+job_name+")å·¥ä½œå·²è¢«å•†å®¶å–æ¶ˆå½•å–ã€‚æ‚¨å¯åœ¨(æˆ‘çš„å…¼èŒ)ä¸­æŸ¥çœ‹å¹¶å’¨è¯¢è¯¦æƒ…ï¼Œå…³æ³¨å®˜æ–¹å¾®ä¿¡å…¬ä¼—å·ï¼šå…¼æœjobã€‚æ›´å¤šç²¾å½©å·¥ä½œç­‰ä½ æŸ¥çœ‹ã€‚";
 		
 		String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+user_username+"&content="+job_test+"&ext=&stime=&rrid=&msgfmt=";
 		Server_Get.get(url);
@@ -251,9 +251,9 @@ public class Text_Sms {
 //				tpl_values = URLEncoder.encode(tpl_values, charset);
 //				String url = "http://v.juhe.cn/sms/send?key=";
 //				String urlAll = new StringBuffer(url).append(APP_KEY).append("&dtype=json&mobile=").append(mobile).append("&tpl_id=").append(tpl_id).append("&tpl_value=").append(tpl_values).toString();
-//				// µÃµ½JSON×Ö·û´®
+//				// å¾—åˆ°JSONå­—ç¬¦ä¸²
 //				gets(urlAll, charset);
-//				// ×ª»¯ÎªJSONÀà
+//				// è½¬åŒ–ä¸ºJSONç±»
 //	//				object = JSONObject.fromObject(jsonResult);
 //				
 //			} catch (UnsupportedEncodingException e) {
@@ -266,7 +266,7 @@ public class Text_Sms {
 
 	public static void textdemos5(String user_username,String job_name,String truename,String sex,String phone,String school) {
 		// TODO Auto-generated method stub
-		String job_test = "¡¾¼æ¹û¼æÖ°¡¿Äú·¢²¼µÄ¼æÖ°ĞÅÏ¢("+job_name+")ÒÑÓĞÈË²Î¼Ó¡£"+truename+"£¬"+sex+"£¬"+phone+"£¬"+school+"¡£";
+		String job_test = "ã€å…¼æœå…¼èŒã€‘æ‚¨å‘å¸ƒçš„å…¼èŒä¿¡æ¯("+job_name+")å·²æœ‰äººå‚åŠ ã€‚"+truename+"ï¼Œ"+sex+"ï¼Œ"+phone+"ï¼Œ"+school+"ã€‚";
 		String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+user_username+"&content="+job_test+"&ext=&stime=&rrid=&msgfmt=";
 		Server_Get.get(url);
 	}
@@ -288,9 +288,9 @@ public class Text_Sms {
 //				tpl_values = URLEncoder.encode(tpl_values, charset);
 //				String url = "http://v.juhe.cn/sms/send?key=";
 //				String urlAll = new StringBuffer(url).append(APP_KEY).append("&dtype=json&mobile=").append(mobile).append("&tpl_id=").append(tpl_id).append("&tpl_value=").append(tpl_values).toString();
-//				// µÃµ½JSON×Ö·û´®
+//				// å¾—åˆ°JSONå­—ç¬¦ä¸²
 //				gets(urlAll, charset);
-//				// ×ª»¯ÎªJSONÀà
+//				// è½¬åŒ–ä¸ºJSONç±»
 //	//				object = JSONObject.fromObject(jsonResult);
 //				
 //			} catch (UnsupportedEncodingException e) {
@@ -303,10 +303,10 @@ public class Text_Sms {
 	/**
 	 * 
 	 * @param urlAll
-	 *            :ÇëÇó½Ó¿Ú
+	 *            :è¯·æ±‚æ¥å£
 	 * @param charset
-	 *            :×Ö·û±àÂë
-	 * @return ·µ»Øjson½á¹û
+	 *            :å­—ç¬¦ç¼–ç 
+	 * @return è¿”å›jsonç»“æœ
 	 */
 	public static String gets(String urlAll, String charset) {
 		BufferedReader reader = null;
@@ -340,26 +340,26 @@ public class Text_Sms {
 
 	public static void Enroll(String user_username,String job_name,String truename,String sex,String phone,String school) {
 		// TODO Auto-generated method stub
-		String job_test = "¡¾¼æ¹û¼æÖ°¡¿Äú·¢²¼µÄ¼æÖ°ĞÅÏ¢("+job_name+")ÒÑÓĞÈË²Î¼Ó¡£"+truename+"£¬"+sex+"£¬"+phone+"£¬"+school+"¡£";
+		String job_test = "ã€å…¼æœå…¼èŒã€‘æ‚¨å‘å¸ƒçš„å…¼èŒä¿¡æ¯("+job_name+")å·²æœ‰äººå‚åŠ ã€‚"+truename+"ï¼Œ"+sex+"ï¼Œ"+phone+"ï¼Œ"+school+"ã€‚";
 		String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+user_username+"&content="+job_test+"&ext=&stime=&rrid=&msgfmt=";
 		Server_Get.get(url);
 	}
 	
 	public static void textdemosForPay(String tel) {
 		// TODO Auto-generated method stub
-		String job_test = "¡¾¼æ¹û¼æÖ°¡¿¹¤×Ê·¢µ½ÁËÄãµÄÇ®°üÀï£¬Çë×¢Òâ²éÊÕ¡£¸ü¶à¾«²ÊÇë¹Ø×¢¹Ù·½Î¢ĞÅ¹«ÖÚºÅ£º¼æ¹ûjob.²é¿´ÏêÇé,Çë´ò¿ª¼æ¹û¿Í»§¶Ëhttp://955.cc/d5feZ";
+		String job_test = "ã€å…¼æœå…¼èŒã€‘å·¥èµ„å‘åˆ°äº†ä½ çš„é’±åŒ…é‡Œï¼Œè¯·æ³¨æ„æŸ¥æ”¶ã€‚æ›´å¤šç²¾å½©è¯·å…³æ³¨å®˜æ–¹å¾®ä¿¡å…¬ä¼—å·ï¼šå…¼æœjob.æŸ¥çœ‹è¯¦æƒ…,è¯·æ‰“å¼€å…¼æœå®¢æˆ·ç«¯http://955.cc/d5feZ";
 		String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+tel+"&content="+job_test+"&ext=&stime=&rrid=&msgfmt=";
 		Server_Get.get(url);
 	}
 	public static void textdemosForNoPay(String tel) {
 		// TODO Auto-generated method stub
-		String job_test = "¡¾¼æ¹û¼æÖ°¡¿¾Ü¾øÖ§¸¶¡£¸ü¶à¾«²ÊÇë¹Ø×¢¹Ù·½Î¢ĞÅ¹«ÖÚºÅ£º¼æ¹ûjob.²é¿´ÏêÇé,Çë´ò¿ª¼æ¹û¿Í»§¶Ëhttp://955.cc/d5feZ";
+		String job_test = "ã€å…¼æœå…¼èŒã€‘æ‹’ç»æ”¯ä»˜ã€‚æ›´å¤šç²¾å½©è¯·å…³æ³¨å®˜æ–¹å¾®ä¿¡å…¬ä¼—å·ï¼šå…¼æœjob.æŸ¥çœ‹è¯¦æƒ…,è¯·æ‰“å¼€å…¼æœå®¢æˆ·ç«¯http://955.cc/d5feZ";
 		String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+tel+"&content="+job_test+"&ext=&stime=&rrid=&msgfmt=";
 		Server_Get.get(url);
 	}
 	public static void textdemosCancle(String tel,String job) {
 		// TODO Auto-generated method stub
-		String job_test = "¡¾¼æ¹û¼æÖ°¡¿ÄúËù±¨µÄ¼æÖ°¡¾"+job+"¡¿±»ÉÌ¼Ò¾Ü¾øÁË£¬Çëä¯ÀÀÆäËû¼æÖ°£¡";
+		String job_test = "ã€å…¼æœå…¼èŒã€‘æ‚¨æ‰€æŠ¥çš„å…¼èŒã€"+job+"ã€‘è¢«å•†å®¶æ‹’ç»äº†ï¼Œè¯·æµè§ˆå…¶ä»–å…¼èŒï¼";
 		String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+tel+"&content="+job_test+"&ext=&stime=&rrid=&msgfmt=";
 		Server_Get.get(url);
 	}

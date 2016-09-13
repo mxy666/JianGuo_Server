@@ -69,14 +69,14 @@ public void setName(String name) {
 		 List <T_job_Bean>list=new ArrayList<T_job_Bean>();
 		 ResultSet rs=null;
 		 StringBuffer str = new StringBuffer(); 
-	     String sql="select * from t_job where 1=1";		 
+	     String mersql="select * from t_job where 1=1";
 	     SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		 if(name!=null&&!name.equals("")){
 			 str.append(" and name like'%"+name+"%' ");			 
 		 }		
-		 sql=sql+str.toString();
-		 System.out.println(sql+"----------------------------------------");
-		 PreparedStatement psmt = DButil.getPstm(conn, sql);
+		 mersql=mersql+str.toString();
+		 System.out.println(mersql+"----------------------------------------");
+		 PreparedStatement psmt = DButil.getPstm(conn, mersql);
 		 
 		try {			
 			rs=psmt.executeQuery();
@@ -122,8 +122,8 @@ public void setName(String name) {
 				condition+= " and id="+id;
 			if(structure!=null)
 				condition+=" and structure='"+structure+"'";
-			String sql="select * from base_structure where 1=1"+condition;
-			ResultSet rs = stmt.executeQuery(sql);
+			String mersql="select * from base_structure where 1=1"+condition;
+			ResultSet rs = stmt.executeQuery(mersql);
 			while(rs.next()){
 				BaseStructureBean stru = new BaseStructureBean();
 				stru.setId(rs.getInt(1));

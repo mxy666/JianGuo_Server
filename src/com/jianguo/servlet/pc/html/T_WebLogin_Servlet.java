@@ -41,7 +41,8 @@ public class T_WebLogin_Servlet extends HttpServlet {
 		this.doPost(request, response);
 	}
 
-	//便捷登录，手机号登录
+	//http://192.168.1.135/JianGuo_Server/T_WebLogin_Servlet?only=51EDF82FC91AD97CBBB608BCDF5AAA26&tel=111118101s050625&password=E10ADC3949BA59ABBE56E057F20F883E
+	//http://101.200.205.243:8080/T_WebLogin_Servlet?only=E3DAEDE0B67A7731C83B1D01F30A2420&tel=13614093590
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException {
@@ -70,6 +71,7 @@ public class T_WebLogin_Servlet extends HttpServlet {
 				}else{
 					String password1 = MD5Util.MD5(password);
 					T_user_login_Sql.insert_tel(tel, password1,"1","1","0","0","0");
+					//T_user_login_Sql.insert_tel(tel, password,"1","1","0","0");
 				}
 
 					T_user_login_Bean t_user_login = T_user_login_Sql.select_tel(tel);
@@ -114,6 +116,7 @@ public class T_WebLogin_Servlet extends HttpServlet {
 						}
 					}
 				}
+
 					request.getRequestDispatcher("forWeb\\jobWeb.jsp").forward(request, response);
 			}else{
 				//简单的token(七牛)
@@ -137,37 +140,8 @@ public class T_WebLogin_Servlet extends HttpServlet {
 				String hot =request.getParameter("hot");
 				String count =request.getParameter("count");//分页
 				String cityId =request.getParameter("city_id");
-					String ss = "";
-				/*	if(city_id.equals("010")){
-						ss = "3";
-					}
-					if(city_id.equals("0899")){
-						ss = "1";
-					}
-					if(city_id.equals("0898")){
-						ss = "2";
-					}
-					if(city_id.equals("0571")){
-						ss = "4";
-					}
-					if(city_id.equals("029")){
-						ss = "5";
-					}
-					if(city_id.equals("3")){
-						ss = "3";
-					}
-					if(city_id.equals("1")){
-						ss = "1";
-					}
-					if(city_id.equals("2")){
-						ss = "2";
-					}
-					if(city_id.equals("4")){
-						ss = "4";
-					}
-					if(city_id.equals("5")){
-						ss = "5";
-					}		*/
+
+
 					SimpleDateFormat dft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					Date beginDate = new Date();
 					Calendar date = Calendar.getInstance();
@@ -189,14 +163,10 @@ public class T_WebLogin_Servlet extends HttpServlet {
 //					long ll = System.currentTimeMillis()/1000;
 					long ll = timeStemp/1000;
 					List<T_job_Bean> list_t_job = null;
-				/*	if(hot.equals("3")){
-						list_t_job = T_job_Sql.select_lvxing(hot,ll+"",count);//旅行
-					}else if(hot.equals("2")){
-						list_t_job = T_job_Sql.select_hot("1","5",ll+"",count);//精品里面没有数据，所以把热门的数据放进去
-					}else{*/
+
 						list_t_job = T_job_Sql.select_hot("1","5",ll+"","5");
 						
-					//}
+
 				
 				
 				request.setAttribute("list_t_job", list_t_job);

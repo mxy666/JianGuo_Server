@@ -71,7 +71,7 @@ public class T_opinion_Sql {
 		//StringBuffer str = new StringBuffer();
 		
 		String sql = "select * from t_opinion where 1=1 ORDER BY id DESC";		 
-		// sql=sql+str.toString();
+		// mersql=mersql+str.toString();
 		 PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			rs=psmt.executeQuery();
@@ -102,7 +102,7 @@ public class T_opinion_Sql {
 		//StringBuffer str = new StringBuffer();
 		
 		String sql = "select * from t_opinion where 1=1 ORDER BY id DESC limit "+page.getFirstResult()+","+page.getPageSize();		 
-		// sql=sql+str.toString();
+		// mersql=mersql+str.toString();
 		 System.out.println(sql+"----------------------------------------");
 		 PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {

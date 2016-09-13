@@ -887,6 +887,12 @@
     <servlet-class>com.jianguo.servlet.finance.FinanceInfoServlet</servlet-class>
   </servlet>
     <servlet>
+        <description>This is the description of my J2EE component</description>
+        <display-name>This is the display name of my J2EE component</display-name>
+        <servlet-name>MerchantLoginServlet</servlet-name>
+        <servlet-class>com.jianguo.merchant.login.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>DidiTicketsServlet</servlet-name>
         <servlet-class>com.jianguo.app.didi.DidiTicketsServlet</servlet-class>
     </servlet>
@@ -895,6 +901,12 @@
         <servlet-class>com.jianguo.app.didi.DidiResultServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <description>This is the description of my J2EE component</description>
+        <display-name>This is the display name of my J2EE component</display-name>
+        <servlet-name>MerchantQuickSms</servlet-name>
+        <servlet-class>com.jianguo.merchant.login.QuickSmsServlet</servlet-class>
+    </servlet>
 
 
 
@@ -1004,9 +1016,7 @@
 
 
 
-
-
-    <servlet-mapping>
+<servlet-mapping>
     <servlet-name>T_user_login_Check_Tel_Servlet</servlet-name>
     <url-pattern>/T_user_login_Check_Tel_Servlet</url-pattern>
   </servlet-mapping>
@@ -1513,11 +1523,7 @@
     <url-pattern>/T_modifyMoney_Servlet</url-pattern>
   </servlet-mapping>
 
-  <servlet-mapping>
-      <servlet-name>DidiResultServlet</servlet-name>
-      <url-pattern>/DidiResultServlet</url-pattern>
-  </servlet-mapping>
-
+  
   
   
   

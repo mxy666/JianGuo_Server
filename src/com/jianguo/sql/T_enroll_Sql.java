@@ -139,8 +139,8 @@ public class T_enroll_Sql {
 //		ResultSet rs=null;
 //
 //		Connection conn=DButil.getCon();
-//		String sql = "select * from t_enroll where job_id=?";
-//		PreparedStatement psmt = DButil.getPstm(conn, sql);
+//		String mersql = "select * from t_enroll where job_id=?";
+//		PreparedStatement psmt = DButil.getPstm(conn, mersql);
 //		try {
 //			psmt.setString(1,job_id);
 //			rs=psmt.executeQuery();

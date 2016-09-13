@@ -104,7 +104,7 @@ public class T_hobby_Sql {
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
 		String sql = "select * from t_hobby_type where type=0 or type=?";
-//		String sql = "select b.login_id FROM t_hobby_type b where b.login_id in(SELECT  a.login_id from t_hobby_time a where a.time='"+time+"') AND b.type in("+type+",0)";
+//		String mersql = "select b.login_id FROM t_hobby_type b where b.login_id in(SELECT  a.login_id from t_hobby_time a where a.time='"+time+"') AND b.type in("+type+",0)";
 		
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {

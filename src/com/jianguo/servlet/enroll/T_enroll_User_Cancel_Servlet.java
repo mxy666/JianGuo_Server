@@ -10,8 +10,8 @@
 //import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletResponse;
 //import com.google.gson.Gson;
-//import com.jianguo.sql.T_enroll_Sql;
-//import com.jianguo.sql.T_job_Sql;
+//import com.jianguo.mersql.T_enroll_Sql;
+//import com.jianguo.mersql.T_job_Sql;
 //import com.jianguo.util.Frequently;
 //
 //public class T_enroll_User_Cancel_Servlet extends HttpServlet {

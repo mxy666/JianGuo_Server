@@ -1,6 +1,7 @@
 package com.jianguo.merchant.login;
 
 import com.google.gson.Gson;
+import com.jianguo.merchant.mersql.LoginSql;
 
 import org.apache.log4j.Logger;
 
@@ -17,28 +18,53 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by Administrator on 2016/9/9.
  */
-public class MerchantLoginServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
+    /**
+     * @api {post} LoginServlet/ å¿«é€Ÿç™»å½•
+     * @apiName LoginServlet
+     * @apiGroup login
+     *
+     * @apiParam {String} tel Users phone
+     * @apiParam {String} tel Users password
+     * @apiSuccess {String} code 200
+     * @apiSuccess {String} message  éªŒè¯ç å·²ç»å‘é€ï¼Œè¯·æ³¨æ„æŸ¥æ”¶ï¼
+     * @apiError {String} code 400
+     * @apiError{String} message
+
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         Logger logger = Logger.getLogger("log");
-        logger.info("µÇÂ¼ÈÕÖ¾ĞÅÏ¢¿ªÊ¼!");
-        logger.info("InsertUserServlet!");
+        logger.info("ç™»å½•æ—¥å¿—ä¿¡æ¯å¼€å§‹!");
+        logger.info("LoginServlet!");
         String password =request.getParameter("password");
         String tel =request.getParameter("tel");
         Map map = new HashMap();
         Gson gson=new Gson();
-        if (password==null||password.equals("")) {
-
-        }
         PrintWriter pw = response.getWriter();
-            map.put("message", "²ÎÊı´íÎóÇë¼ì²é");
-            map.put("code", "200");
+        if (password==null||password.equals("")||tel==null||tel.equals("")) {
+
+            map.put("message", "å‚æ•°é”™è¯¯è¯·æ£€æŸ¥");
+            map.put("code", "400");
             String str = gson.toJson(map);
             pw.write(str);
             pw.flush();
             pw.close();
             return;
+        }else {
+            if (!LoginSql.checkRegister(tel)) {
+                  LoginSql.InsertMerchant(tel);
+
+            }
+
+            map.put("code", "200");
+            String str = gson.toJson(map);
+            pw.write(str);
+            pw.flush();
+            pw.close();
+        }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
