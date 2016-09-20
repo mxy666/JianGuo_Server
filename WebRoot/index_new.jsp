@@ -141,19 +141,19 @@ $(function(){
                             <li><a href="T_PC_job_City_List_OKServlet?city_id=city_id=${city_id}" target="navTab" rel="externa3" external="true">已结算兼职</a></li>
                         </ul>
                     </div>
-					<div class="accordionHeader">
+					<div class="accordionHeader gzjs">
 						<h2><span>Folder</span>工资结算</h2>
 					</div>
-					<div class="accordionContent">
+					<div class="accordionContent gzjs">
 						<ul class="tree treeFolder">
 							<li><a href="T_user_moneyout_List_Servlet?city_id=${city_id}" target="navTab" rel="externa4" external="true">提现申请</a></li>
 							<li><a href="T_user_moneyout_List_OK_Boss_Servlet?city_id=${city_id}" target="navTab" rel="externa5" external="true">提现完成记录</a></li>
 						</ul>
 					</div>
-                 <div class="accordionHeader">
+                 <div class="accordionHeader ts">
 					<h2><span>Folder</span>推送</h2>
 				</div>
-					<div class="accordionContent">
+					<div class="accordionContent ts">
 						<ul class="tree treeFolder">
 							<li><a href="T_to_push_Servlet?pageNo=1&city=<%=city%>" target="navTab" rel="externa6" external="true">用户推送</a></li>
 						</ul>
@@ -165,19 +165,19 @@ $(function(){
 						</ul>
 
 					</div>
-					<div class="accordionHeader">
+					<div class="accordionHeader yhgl">
 						<h2><span>Folder</span>用户管理</h2>
 					</div>
-					<div class="accordionContent">
+					<div class="accordionContent yhgl">
 						<ul class="tree treeFolder">
 							<li><a href="T_userManager_servlet" target="navTab" rel="externa9" external="true">用户管理</a></li>
 						</ul>
 					</div>
 
-					<div class="accordionHeader">
+					<div class="accordionHeader zy">
 						<h2><span>Folder</span>自用</h2>
 					</div>
-					<div class="accordionContent">
+					<div class="accordionContent zy">
 						<ul class="tree treeFolder">
 							<li><a href="T_money_use_Servlet?pageNo=1" target="navTab" rel="externa10" external="true">用户结算</a></li>
 						</ul>
@@ -209,7 +209,7 @@ $(function(){
                                     <div class="accountInfo">
 
                                     </div>
-                                    <img src="themes/default/images/login_banner.jpg" />
+                                    <div style="background:url(themes/default/images/bg-jianggdnizoux.png);background-size:100% 100%;width:100%;    min-height: 550px;"></div>
                                 </div>
 
                             </div>
@@ -236,6 +236,13 @@ $(function(){
             $(".jsjz").show();
             $(".sjts").remove();
         }
+        if(a == "wuhan"){
+            $(".shiming").remove();
+            $(".jsjz").show();
+            $(".gzjs").remove();
+            $(".ts,.zy,.yhgl").remove();
+
+        }
         if(a != "boss"&&a!='sanya'){
            $(".shiming").remove();
            $(".jsjz").show();
@@ -244,6 +251,7 @@ $(function(){
         if(a != "boss"){
             $(".opinion").remove();
         }
+
     }
     show();
 </script>
