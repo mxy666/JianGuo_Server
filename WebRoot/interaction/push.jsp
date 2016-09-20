@@ -132,6 +132,11 @@ function mySearch(value,name){
 		 	<c:if test="${cityId=='XA'}">selected="true"</c:if> >
 			西安
 		</option>
+		</option>
+		<option value="WH"
+				<c:if test="${cityId=='WH'}">selected="true"</c:if> >
+			武汉
+		</option>
 
 </select>
 			
