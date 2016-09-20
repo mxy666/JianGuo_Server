@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class MerchantQuickSms extends HttpServlet {
+public class QuickSmsServlet extends HttpServlet {
 /**
  * @api {post} /login/:tel Request login information
  * @apiName MerchantQuickSms
@@ -29,7 +29,7 @@ public class MerchantQuickSms extends HttpServlet {
 	/**
 	 * Constructor of the object.
 	 */
-	public MerchantQuickSms() {
+	public QuickSmsServlet() {
 		super();
 	}
 

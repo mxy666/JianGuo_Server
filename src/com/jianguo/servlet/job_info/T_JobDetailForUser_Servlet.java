@@ -45,7 +45,7 @@ public class T_JobDetailForUser_Servlet extends HttpServlet {
 	/**
 	 * 用户端详细信息显示
 	 * 	http://192.168.1.135/JianGuo_Server/T_JobDetailForUser_Servlet?only=FEE526E885B457B9E342E0E2D9DFAA2E&job_id=206
-	 * http://101.200.195.147/JianGuo_Server/T_JobDetailForUser_Servlet?only=012F5970C74FE7878833C258D30441E5&job_id=193
+	 * http://http://101.200.205.243/JianGuo_Server/T_JobDetailForUser_Servlet?only=012F5970C74FE7878833C258D30441E5&job_id=193
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

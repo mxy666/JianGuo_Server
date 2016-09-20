@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.jianguo.bean.T_admin_Bean;
 import com.jianguo.sql.T_admin_Sql;
 import com.jianguo.util.MD5Util;
@@ -37,7 +39,7 @@ public class T_admin_Check_Servlet extends HttpServlet {
 		String city =request.getParameter("city");
 		String username =request.getParameter("username");
 		String password =request.getParameter("password");
-		
+		//HttpSession session = request.getSession();
 		String str_psd = MD5Util.MD5(password);
 		boolean b = T_admin_Sql.check(city,username, str_psd);
 		if(b == true){
@@ -45,21 +47,40 @@ public class T_admin_Check_Servlet extends HttpServlet {
 			int cityId=(int) T_admin_Sql.queryCityId(city);
 			if(t_adin.getStatus() == 0){
 				if(city.equals("boss")){
-					response.sendRedirect("index_boss.html");
+                    request.setAttribute("city", "boss");
+                   // request.setAttribute("city_id", "boss");
+
 				}else if(city.equals("sanya")){
-					response.sendRedirect("index_sanya.html");
+                    request.setAttribute("city", "sanya");
+                    request.setAttribute("city_id", "1");
+
 				}else if(city.equals("haikou")){
-					response.sendRedirect("index_haikou.html");
+
+                    request.setAttribute("city", "haikou");
+                    request.setAttribute("city_id", "2");
+
 				}else if(city.equals("beijing")){
-					response.sendRedirect("index_beijing.html");
+                    request.setAttribute("city", "beijing");
+                    request.setAttribute("city_id", "3");
 				}else if(city.equals("hangzhou")){
-					response.sendRedirect("index_hangzhou.html");
+                    request.setAttribute("city", "hangzhou");
+                    request.setAttribute("city_id", "4");
+
 				}else if(city.equals("xian")){
-					response.sendRedirect("index_xian.html");
-				}else if(city.equals("chuna")){
-					response.sendRedirect("index_chuna.html");
+                    request.setAttribute("city", "xian");
+                    request.setAttribute("city_id", "5");
+
+				}else if(city.equals("wuhan")){
+                    request.setAttribute("city", "wuhan");
+                    request.setAttribute("city_id", "6");
+
+                }else if(city.equals("chuna")){
+                    request.setAttribute("city", "chuna");
+
 				}
-					
+                request.getRequestDispatcher("index_new.jsp").forward(request, response);
+
+
 				
 			}else if(t_adin.getStatus() == 0){
 				try {

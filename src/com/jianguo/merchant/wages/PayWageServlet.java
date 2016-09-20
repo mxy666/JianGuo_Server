@@ -40,13 +40,13 @@ import javax.servlet.annotation.WebServlet;
 @WebServlet("/LongRunningServlet")
 public class PayWageServlet  extends HttpServlet {
     /**
-     * @api {post} PayWageServlet/ å•†å®¶ç»“ç®—
+     * @api {post} PayWageServlet/ ÉÌ¼Ò½áËã
      * @apiName LoginServlet
      * @apiGroup wages
-     * @apiParam {String} job_id å…¼èŒjobid
+     * @apiParam {String} job_id ¼æÖ°jobid
      * @apiParam {String} json Users info
      * @apiSuccess {String} code 200
-     * @apiSuccess {String} message  éªŒè¯ç å·²ç»å‘é€ï¼Œè¯·æ³¨æ„æŸ¥æ”¶ï¼
+     * @apiSuccess {String} message  ÑéÖ¤ÂëÒÑ¾­·¢ËÍ£¬Çë×¢Òâ²éÊÕ£¡
      * @apiError {String} code 400
      * @apiError{String} message
 
@@ -88,7 +88,7 @@ public class PayWageServlet  extends HttpServlet {
 //		String login_id =request.getParameter("login_id");
         String job_id =request.getParameter("job_id");
         String json =request.getParameter("json");
-        //------------------è®¿é—®é™åˆ¶--------å¼€å§‹----------------------
+        //------------------·ÃÎÊÏŞÖÆ--------¿ªÊ¼----------------------
 //        String only =request.getParameter("only");
         String ss_only = Frequently.daycount();
         String ss_only2 = Frequently.daycount2();
@@ -101,7 +101,7 @@ public class PayWageServlet  extends HttpServlet {
                 payRunnable.setWagesBean(userList.getList_t_wages_Bean().get(i));
                 ThreadPoolManager.newInstance().addExecuteTask(payRunnable);
                 if (userList.getList_t_wages_Bean().size()-1==i) {
-                    params.put("message", message.append("æˆåŠŸ"));
+                    params.put("message", message.append("³É¹¦"));
                     params.put("sum", wageBeanFails.size());
                     params.put("code", "200");
                     PrintWriter pw = response.getWriter();
@@ -124,7 +124,7 @@ public class PayWageServlet  extends HttpServlet {
             }
 
 //        }else{
-//            params.put("message", "æ— æ•ˆè®¿é—®");
+//            params.put("message", "ÎŞĞ§·ÃÎÊ");
 //            params.put("code", "404");
 //            PrintWriter pw = response.getWriter();
 //            Gson g = new Gson();
@@ -133,7 +133,7 @@ public class PayWageServlet  extends HttpServlet {
 //            pw.flush();
 //            pw.close();
 //        }
-        //------------------è®¿é—®é™åˆ¶--------ç»“æŸ----------------------
+        //------------------·ÃÎÊÏŞÖÆ--------½áÊø----------------------
     }
     public class PayRunnable implements Runnable{
         private T_wages_Bean wagesBean;
@@ -155,27 +155,27 @@ public class PayWageServlet  extends HttpServlet {
             float scale2 = (float) wagesBean.getReal_money();
             DecimalFormat fnum2 = new DecimalFormat("##0.00");
             String dd2=fnum2.format(scale2);
-            //åˆ¤æ–­æ˜¯å¦ç»“ç®—è¿‡
+            //ÅĞ¶ÏÊÇ·ñ½áËã¹ı
             try {
                 if(!WagesSql.check(wagesBean.getLogin_id()+"", wagesBean.getJob_id()+"")){
-                    //æ’å…¥å·¥èµ„è¡¨
+                    //²åÈë¹¤×Ê±í
                     WagesSql.insert(wagesBean.getLogin_id()+"", wagesBean.getJob_id()+"", wagesBean.getHould_money()+"", dd2+"", wagesBean.getRemarks(), ly_time);
-                    //æ›´æ–°å·¥ä½œçŠ¶æ€,ç¬¬ä¸€ä¸ªå‚æ•°æ˜¯ç»“ç®—è¿‡çš„çŠ¶æ€ï¼Œç¬¬äºŒä¸ªå‚æ•°æ˜¯å·¥ä½œçŠ¶æ€å·²å®Œæˆ
+                    //¸üĞÂ¹¤×÷×´Ì¬,µÚÒ»¸ö²ÎÊıÊÇ½áËã¹ıµÄ×´Ì¬£¬µÚ¶ş¸ö²ÎÊıÊÇ¹¤×÷×´Ì¬ÒÑÍê³É
                     EnrollSql.update_state("1","12",wagesBean.getLogin_id()+"", wagesBean.getJob_id()+"");
-                    //æ›´æ–°é’±åŒ…æ•°æ®
+                    //¸üĞÂÇ®°üÊı¾İ
                     T_user_money_Sql.update_moneyss(dd, wagesBean.getLogin_id()+"");
-                    //æ›´æ–°å®Œæˆå·¥ä½œè®°å½•
+                    //¸üĞÂÍê³É¹¤×÷¼ÇÂ¼
                     T_job_record_Sql.update_complete(wagesBean.getLogin_id()+"");
-                    //æŸ¥è¯¢å·¥èµ„ä¿¡æ¯ç”¨äºå‘é€æ¶ˆæ¯
+                    //²éÑ¯¹¤×ÊĞÅÏ¢ÓÃÓÚ·¢ËÍÏûÏ¢
                     T_job_Bean t_job = T_job_Sql.select_id(wagesBean.getJob_id()+"");
-                    Jdpush.sendPush("å·¥èµ„åˆ°è´¦ï¼Œè´¦æˆ·å·²æ”¶åˆ°"+dd2+"å…ƒ,ã€"+t_job.getName()+"ã€‘å…¼èŒçš„å·¥èµ„","jianguo"+wagesBean.getLogin_id()+"");
-                    Jdpusher.sendPush("å·¥èµ„åˆ°è´¦ï¼Œè´¦æˆ·å·²æ”¶åˆ°"+dd2+"å…ƒ,ã€"+t_job.getName()+"ã€‘å…¼èŒçš„å·¥èµ„","jianguo"+wagesBean.getLogin_id()+"");
-                    Jdpushcc.sendPush("å·¥èµ„åˆ°è´¦ï¼Œè´¦æˆ·å·²æ”¶åˆ°"+dd2+"å…ƒ,ã€"+t_job.getName()+"ã€‘å…¼èŒçš„å·¥èµ„","jianguo"+wagesBean.getLogin_id()+"");
-                    T_push_Sql.insert(wagesBean.getLogin_id()+"", t_job.getName(), "å·¥èµ„åˆ°è´¦", "å·¥èµ„åˆ°è´¦ï¼Œè´¦æˆ·å·²æ”¶åˆ°"+dd2+"å…ƒ,ã€"+t_job.getName()+"ã€‘å…¼èŒçš„å·¥èµ„", "1","0","0","0", ly_time);
+                    Jdpush.sendPush("¹¤×Êµ½ÕË£¬ÕË»§ÒÑÊÕµ½"+dd2+"Ôª,¡¾"+t_job.getName()+"¡¿¼æÖ°µÄ¹¤×Ê","jianguo"+wagesBean.getLogin_id()+"");
+                    Jdpusher.sendPush("¹¤×Êµ½ÕË£¬ÕË»§ÒÑÊÕµ½"+dd2+"Ôª,¡¾"+t_job.getName()+"¡¿¼æÖ°µÄ¹¤×Ê","jianguo"+wagesBean.getLogin_id()+"");
+                    Jdpushcc.sendPush("¹¤×Êµ½ÕË£¬ÕË»§ÒÑÊÕµ½"+dd2+"Ôª,¡¾"+t_job.getName()+"¡¿¼æÖ°µÄ¹¤×Ê","jianguo"+wagesBean.getLogin_id()+"");
+                    T_push_Sql.insert(wagesBean.getLogin_id()+"", t_job.getName(), "¹¤×Êµ½ÕË", "¹¤×Êµ½ÕË£¬ÕË»§ÒÑÊÕµ½"+dd2+"Ôª,¡¾"+t_job.getName()+"¡¿¼æÖ°µÄ¹¤×Ê", "1","0","0","0", ly_time);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-                message.append("ç»“ç®—å¤±è´¥ç”¨æˆ·loginid="+wagesBean.getLogin_id()+"åŸå› ï¼š"+e.getMessage()+":");
+                message.append("½áËãÊ§°ÜÓÃ»§loginid="+wagesBean.getLogin_id()+"Ô­Òò£º"+e.getMessage()+":");
                 wageBeanFails.add(wagesBean);
             }
 

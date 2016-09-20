@@ -111,7 +111,7 @@ function update(){
      </tbody>  
  </table>
 <a href="T_use_money_export_servlet?pageNo=1" class="add">导出</a>
-<a href="http://101.200.195.147:8080/JianGuo_Server/downLoadFile/UseMoney.xls" style="display:block"class="add">下载</a>
+<a href="http://http://101.200.205.243:8080/JianGuo_Server/downLoadFile/UseMoney.xls" style="display:block"class="add">下载</a>
 
 	</body>
 </html>

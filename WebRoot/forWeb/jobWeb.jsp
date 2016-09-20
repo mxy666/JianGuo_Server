@@ -268,8 +268,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     });
 function onLoadJob(){
     var url = "JobListForWebServlet";
-    window.location = url;
-
+   // window.location = url;
+    window.open(url);
 }
 </script>
 </body>

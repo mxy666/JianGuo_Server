@@ -70,7 +70,7 @@ function pagerFilter(data){
 $(function(){
 	$('#dg').datagrid({ 
 		
-		url:'T_QueryUser_Servlet', 	
+		url:'T_QueryUser_Servlet?city',
 		columns:[[ 
 	
 		{field:'login_id',title:'Id',width:100,hidden:true}, 
@@ -117,7 +117,7 @@ $(function(){
 	});
 	});
 
-function mySearch(value,name){
+function mySearch(){
 
 	$('#dg').datagrid('load',{
 		name: $('#name').val(),
@@ -240,6 +240,10 @@ function mySearch(value,name){
 			}
 		
 	}
+
+$(document).ready(function(){
+	$(".pagination td").eq(7).hide();
+});
 </script>
 
   </body>

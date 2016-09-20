@@ -20,14 +20,14 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoginServlet extends HttpServlet {
     /**
-     * @api {post} LoginServlet/ å¿«é€Ÿç™»å½•
+     * @api {post} LoginServlet/ ¿ìËÙµÇÂ¼
      * @apiName LoginServlet
      * @apiGroup login
      *
      * @apiParam {String} tel Users phone
      * @apiParam {String} tel Users password
      * @apiSuccess {String} code 200
-     * @apiSuccess {String} message  éªŒè¯ç å·²ç»å‘é€ï¼Œè¯·æ³¨æ„æŸ¥æ”¶ï¼
+     * @apiSuccess {String} message  ÑéÖ¤ÂëÒÑ¾­·¢ËÍ£¬Çë×¢Òâ²éÊÕ£¡
      * @apiError {String} code 400
      * @apiError{String} message
 
@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         Logger logger = Logger.getLogger("log");
-        logger.info("ç™»å½•æ—¥å¿—ä¿¡æ¯å¼€å§‹!");
+        logger.info("µÇÂ¼ÈÕÖ¾ĞÅÏ¢¿ªÊ¼!");
         logger.info("LoginServlet!");
         String verificationCode =request.getParameter("verification_code");
         String tel =request.getParameter("tel");
@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
         Gson gson=new Gson();
         PrintWriter pw = response.getWriter();
         if (verificationCode==null||verificationCode.equals("")||tel==null||tel.equals("")) {
-            map.put("message", "å‚æ•°é”™è¯¯è¯·æ£€æŸ¥");
+            map.put("message", "²ÎÊı´íÎóÇë¼ì²é");
             map.put("code", "400");
             String str = gson.toJson(map);
             pw.write(str);
@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
             return;
         }
         if (LoginSql.checkRegister(tel)) {
-            map.put("message", "å‚æ•°é”™è¯¯è¯·æ£€æŸ¥");
+            map.put("message", "²ÎÊı´íÎóÇë¼ì²é");
             map.put("code", "400");
             String str = gson.toJson(map);
             pw.write(str);

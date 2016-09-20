@@ -1,0 +1,98 @@
+html,body{
+    width: 100%;
+    height: 100%;
+}
+.mian{
+    width: 100%;
+    background: #279ef6;
+}
+.main-title{
+    height: 18rem;
+    background: url("../img/title-xidao.png");
+    background-size: 100% 100%;
+    position: relative;
+}
+.title-text{
+    width: 8.675rem;
+    height: 3.125rem;
+    background: url("../img/3-xidao.png");
+    background-size: 100% 100%;
+    position: absolute;
+    top: 1rem;
+
+    left: 0.5rem;
+}
+.main-mian-title{
+    overflow: hidden;
+    width: 90%;
+    margin: auto;
+}
+.main-mian-title span{
+    color: #f9d743;
+    font-size: 1rem;
+    float: left;
+    padding: 0 0.4rem;
+}
+.main-mian-title em{
+    display: inline-block;
+    width: 34%;
+    float: left;
+    height: 1px;
+    background: #f9d743;
+    margin-top: 0.6rem;
+}
+.main-mian-title{
+    text-align: center;
+    width: 95%;
+    margin: auto;
+
+}
+.chuan{
+    width: 15.1rem;
+    height: 13.525rem;
+    background: url("../img/1-xidao.png");
+    background-size: 100% 100%;
+    position: absolute;
+    top: 2rem;
+    left: 0.3rem;
+}
+.main-mian-text{
+    font-size: 0.75rem;
+    color: #fff;
+    width: 90%;
+    margin: 0.65rem auto 0 auto;
+    line-height: 1.2rem;
+    position: relative;
+    padding-bottom: 3rem
+}
+.text1 p{
+    width: 85%;
+    margin: auto;
+}
+
+.main-mian a{
+    font-size: 1rem;
+    color: #ffd562;
+    width: 7.625rem;
+    height: 2.375rem;
+    display: inline-block;
+    background: #8bcaf9;
+    text-align: center;
+    margin: auto;
+    line-height: 2.375rem;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.footer{
+    height: 18.957rem;
+    width: 100%;
+    background: url("../img/4-xidao.png");
+    background-size: 100% 100%;
+}
+.bg{
+    background: url("../img/5-xidao.png");
+    background-size: 100% 100%;
+}

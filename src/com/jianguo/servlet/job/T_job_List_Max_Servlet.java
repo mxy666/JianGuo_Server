@@ -28,7 +28,7 @@ public class T_job_List_Max_Servlet extends HttpServlet {
 	}
 
 	//http://192.168.1.233/JianGuo_Server/T_job_List_Max_Servlet?only=AEEB31108665D33C9ED84D8DF1185E3E&city_id=3&count=0
-	//http://101.200.205.243:8080/T_job_List_Max_Servlet?only=492496461AE7016D1D7371F051132214&hot=1&count=0&city_id=3
+	//http://v3.jianguojob.com:8080/T_job_List_Max_Servlet?only=492496461AE7016D1D7371F051132214&hot=1&count=0&city_id=3
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException {
 		System.out.println("---T_job_List_Max_Servlet---");

@@ -32,7 +32,7 @@ public class T_job_List_Servlet extends HttpServlet {
 		this.doPost(request, response);
 	}
 
-	//http://101.200.195.147:8080/T_job_List_Servlet?only=4204448F5DDB9997585B33AE22479590&hot=0&city_id=010&count=3
+	//http://http://101.200.205.243:8080/T_job_List_Servlet?only=4204448F5DDB9997585B33AE22479590&hot=0&city_id=010&count=3
 	//http://192.168.1.135/JianGuo_Server/T_job_List_Servlet?only=4204448F5DDB9997585B33AE22479590&hot=0&city_id=3&count=3
 	//http://101.200.205.243:8080/T_job_List_Servlet?only=4204448F5DDB9997585B33AE22479590&hot=1&count=0&city_id=3
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

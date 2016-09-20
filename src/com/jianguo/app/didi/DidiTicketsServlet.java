@@ -18,10 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 import static java.lang.Integer.MAX_VALUE;
 
@@ -36,16 +33,18 @@ public class DidiTicketsServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         String phone=request.getParameter("phone");
+
         long random =(long)((Math.random()*9+1)*100000);
         String codes = random+"";
         String str_psd = MD5Util.MD5(codes);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String ly_time = sdf.format(new java.util.Date());
         if (!T_user_login_Sql.check_tel(phone)) {
+
             T_user_login_Sql.insert_tel(phone, str_psd,"1","1","0","0","0");
             T_user_login_Bean t_user_login = T_user_login_Sql.select_tel(phone);
-            T_user_info_Sql.insert_qq_wx(t_user_login.getId()+"", "鍏兼灉"+t_user_login.getId(),"", "http://v3.jianguojob.com/moren.png","","0","0","0", ly_time, ly_time);
-            T_user_resume_Sql.insert_qq_wx(t_user_login.getId()+"", "鍏兼灉"+t_user_login.getId(), "","http://v3.jianguojob.com/moren.png","","","1","0","0","","","","","");
+            T_user_info_Sql.insert_qq_wx(t_user_login.getId()+"", "兼果"+t_user_login.getId(),"", "http://v3.jianguojob.com/moren.png","","0","0","0", ly_time, ly_time);
+            T_user_resume_Sql.insert_qq_wx(t_user_login.getId()+"", "兼果"+t_user_login.getId(), "","http://v3.jianguojob.com/moren.png","","","1","0","0","","","","","");
             T_user_money_Sql.insert(t_user_login.getId()+"", "0", "8.88", "0", "0", "0", "0", "0");
 
             T_user_info_Bean t_user_info = T_user_info_Sql.select_login_id(t_user_login.getId()+"");
@@ -59,18 +58,53 @@ public class DidiTicketsServlet extends HttpServlet {
             T_enroll_limit_Sql.insert(t_user_login.getId()+"", "0", ly_time2);//????????
         }
         Logger logger = Logger.getLogger("log");
-        logger.info("鍏兼灉");
+        logger.info("兼果");
         String url="http://gsactivity.diditaxi.com.cn/gulfstream/activity/v2/bindpackage/bindPackage";
         String result= post(url,phone);
+/*
         Map params=new HashMap();
-        params.put("result",result);
+        params.put("result",result);*/
         logger.info(result);
-        PrintWriter pw = response.getWriter();
-        Gson g = new Gson();
-        String str = g.toJson(params);
-        pw.write(str);
-        pw.flush();
-        pw.close();
+       // Gson results = new Gson();
+        Gson info = new Gson();
+        DidiBean resInfo=info.fromJson(result,DidiBean.class);
+        PrintWriter out = response.getWriter();
+        //request.setAttribute("phone",phone);
+        System.out.println("-----------------"+resInfo.getErrno());
+        logger.info(resInfo.getErrno()+"-------------");
+        if(resInfo.getErrno()==7||resInfo.getErrno()==0){
+                String flag=resInfo.getErrno()+"";
+                String finalResult=postResult("http://gsactivity.diditaxi.com.cn/gulfstream/activity/v2/bindpackage/getReceiveInfo",phone);
+                Gson gson = new Gson();
+                DidiBean finalInfo=gson.fromJson(finalResult,DidiBean.class);
+                logger.info(finalResult);
+            if(finalInfo.getErrno()==83000){
+
+                String finalResultnew=postResult("http://gsactivity.diditaxi.com.cn/gulfstream/activity/v2/bindpackage/getReceiveInfo",phone);
+                finalInfo=gson.fromJson(finalResultnew,DidiBean.class);
+
+                logger.info(finalResult);
+            }else if(finalInfo.getErrno()!=0){
+                out.flush();out.println("<script>");
+                out.println("alert('服务器忙,请稍后重试！');");
+                out.println("history.back();");
+                out.println("</script>");
+            }
+                List<DidiBean.DataBean.PackageBean> infos = finalInfo.getData().getPackageX();
+
+                request.setAttribute("flag",flag);
+                request.setAttribute("phone",phone);
+                request.setAttribute("amount",finalInfo.getData().getAmount());
+                request.setAttribute("infos",infos);
+                request.getRequestDispatcher("didi\\didiInfo.jsp").forward(request, response);
+
+        }else{
+            out.flush();out.println("<script>");
+            out.println("alert('服务器忙,请稍后重试');");
+            out.println("history.back();");
+            out.println("</script>");
+        }
+
 
 
     }
@@ -90,12 +124,11 @@ public class DidiTicketsServlet extends HttpServlet {
       Map<String,String> createMap = new HashMap<String,String>();
       HashMap <String,String> map=new HashMap<String,String>();
       map.put("channel", "6155997522e890d390c36fd14713e8d7");//
-      // map.put("code", "3774091addd4b55b72908f9a10303518");
       map.put("phone", phone);
       map.put("tsp", time);
       map.put("key", "a660088621337ea4e9e8eb98f8585819");
       map.put("akaosz", String.valueOf(randInt));
-       map.put("func", "http://101.200.195.147:8080/DidiResultServlet");
+      map.put("func", "http://v3.jianguojob.com:8080/DidiResultServlet");
       map.put("tradeno", MD5Util.EncoderByMd5("6155997522e890d390c36fd14713e8d7"+phone) );
       map.put("sign",DiDiSignUtil.getSignature(map,sSeretkey));
 
@@ -104,9 +137,8 @@ public class DidiTicketsServlet extends HttpServlet {
       createMap .put("key", "a660088621337ea4e9e8eb98f8585819");
       createMap .put("akaosz", String.valueOf(randInt));//
       createMap.put("tsp",time);//
-              //.add("code","3774091addd4b55b72908f9a10303518")//
       createMap.put("tradeno", MD5Util.EncoderByMd5("6155997522e890d390c36fd14713e8d7"+phone));
-      createMap .put("func","http://101.200.195.147:8080/DidiResultServlet");//
+      createMap .put("func","http://v3.jianguojob.com:8080/DidiResultServlet");//
       createMap.put("sign", map.get("sign"));//
 
       String httpOrgCreateTestRtn = httpClientUtil.doPost(httpOrgCreate,createMap,"utf-8");
@@ -131,7 +163,7 @@ public class DidiTicketsServlet extends HttpServlet {
         map.put("tsp", time);
         map.put("key", "a660088621337ea4e9e8eb98f8585819");
         map.put("akaosz", String.valueOf(randInt));
-        map.put("func", "http://101.200.195.147:8080/DidiResultServlet");
+        map.put("func", "http://v3.jianguojob.com:8080/DidiResultServlet");
         map.put("tradeno", MD5Util.EncoderByMd5("6155997522e890d390c36fd14713e8d7"+phone) );
         map.put("sign",DiDiSignUtil.getSignature(map,sSeretkey));
         RequestBody formBody = new FormEncodingBuilder()
@@ -142,7 +174,7 @@ public class DidiTicketsServlet extends HttpServlet {
                 .add("tsp",time)//
                 .add("tradeno", MD5Util.EncoderByMd5("6155997522e890d390c36fd14713e8d7"+phone))
                 //.add("code","3774091addd4b55b72908f9a10303518")//
-                .add("func","http://101.200.195.147:8080/DidiResultServlet")//
+                .add("func","http://v3.jianguojob.com:8080/DidiResultServlet")//
                 .add("sign", map.get("sign"))//
                 .build();
         Request request = new Request.Builder()
@@ -164,5 +196,45 @@ public class DidiTicketsServlet extends HttpServlet {
         }
 
     }
+    //拉取结果
+    String postResult(String url,String phone) throws IOException {
+        Logger logger = Logger.getLogger("log");
+        OkHttpClient client = new OkHttpClient();
+        Date dt= new Date();
+        String time= (dt.getTime()+"").substring(0,(dt.getTime()+"").length()-3);
+        Random rand = new Random();
+        int randInt = rand.nextInt(MAX_VALUE)%(MAX_VALUE-0+1) + 0;
+        HashMap<String,String> map=new HashMap<String,String>();
+        map.put("channel", "6155997522e890d390c36fd14713e8d7");//
+        // map.put("code", "3774091addd4b55b72908f9a10303518");
+        map.put("phone", phone);
+        map.put("timestamp", time);
+        map.put("key", "a660088621337ea4e9e8eb98f8585819");
+        map.put("sign", DiDiSignUtil.getSignature(map,"11f5b19715f6b6506e184fb5669e783b"));
+        RequestBody formBody = new FormEncodingBuilder()
+                .add("channel","6155997522e890d390c36fd14713e8d7")
+                .add("phone", phone)
+                .add("key", "a660088621337ea4e9e8eb98f8585819")
+                .add("timestamp",time)//
+                .add("sign", map.get("sign"))//
+                .build();
+        Request request = new Request.Builder()
+                .url(url)
+                .post(formBody)
+                .build();
 
+
+        Response response = client.newCall(request).execute();
+
+        if (response.isSuccessful()) {
+
+            return response.body().string();
+
+        } else {
+
+            throw new IOException("Unexpected code " + response);
+
+        }
+
+    }
 }

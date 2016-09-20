@@ -20,77 +20,31 @@ public class DidiResultServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         Logger logger = Logger.getLogger("log");
+        logger.info("DidiResultServlet--------------------------");
 
-
-        int errno=Integer.parseInt(request.getParameter("errno")) ;
-        String tradeno=request.getParameter("tradeno");
+        int errno=Integer.parseInt(request.getParameter("errno")) ;//错误码，标识错误状态
+        String tradeno=request.getParameter("tradeno");//唯一键，第三方请求绑礼包接口时传来的参数，原封不动的回调给第三方
         String phone=request.getParameter("phone");
-        int amount=Integer.parseInt(request.getParameter("amount")) ;
+        int amount=Integer.parseInt(request.getParameter("amount")) ;//绑券的总金额
         String packages = request.getParameter("package");
         String bind_time=request.getParameter("bind_time");
         logger.info(phone+"---------"+tradeno+"------------------");
+        logger.info("----------"+packages+"---------------------");
         Gson info = new Gson();
-        ResultInfo resInfo=info.fromJson(packages,ResultInfo.class);
+        DidiBean resInfo=info.fromJson(packages,DidiBean.class);
+        List<DidiBean.DataBean.PackageBean> infos = resInfo.getData().getPackageX();
 
-
-        request.setAttribute("name",resInfo.getName());
-        request.setAttribute("deadline",resInfo.getDeadline());
+          // request.setAttribute("name",resInfo.getData().getPackageX().get(0).getName());//券名称
         request.setAttribute("phone",phone);
-        request.setAttribute("amount",resInfo.getAmount());
-        request.setAttribute("discount",resInfo.getDiscount());
+        request.setAttribute("amount",amount);
+        request.setAttribute("info",infos);
 
+       // request.getRequestDispatcher("didi\\didiInfo.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
-    private class ResultInfo{
-        private String productid;
-        private String name;
-        private String amount;
-        private String deadline;
-        private String discount;
 
-        public String getProductid() {
-            return productid;
-        }
-
-        public void setProductid(String productid) {
-            this.productid = productid;
-        }
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getAmount() {
-            return amount;
-        }
-
-        public void setAmount(String amount) {
-            this.amount = amount;
-        }
-
-        public String getDeadline() {
-            return deadline;
-        }
-
-        public void setDeadline(String deadline) {
-            this.deadline = deadline;
-        }
-
-
-        public String getDiscount() {
-            return discount;
-        }
-
-        public void setDiscount(String discount) {
-            this.discount = discount;
-        }
-
-    }
 }

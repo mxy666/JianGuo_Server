@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0;  minimum-scale=1.0; maximum-scale=2.0"/>
+    <meta charset="utf-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/didi.css">
+
+
+    <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+    <script>
+        (function(){
+            function change(){
+                var font=document.documentElement.clientWidth/(320/20);
+                document.documentElement.style.fontSize=font+'px';
+            }
+            window.addEventListener('resize',change,false);
+            change();
+        })()
+
+        function loadInfo() {
+            var url="/DidiResultServlet";
+            window.open(url);
+        }
+    </script>
+</head>
+<body>
+<div class="main">
+    <div class="bg-title">
+        <div class="didi-title">
+            <div class="jianguo">
+                <em></em>
+                <b>兼果</b>
+            </div>
+            <div class="didi">
+                <em></em>
+                <b>滴滴出行</b>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="didi-ban">
+        <p class="bg-didi"></p>
+        <span>兼果给你200元滴滴出行专属大礼包</span>
+    </div>
+    <div class="bg-img">
+
+    </div>
+
+    <div class="yell">
+        <div class="yell-title">
+            <div class="qian">
+                <p>恭喜获得</p>
+                <p>
+                    <span>${amount}</span>
+                    <em>元</em>
+                </p>
+            </div>
+        </div>
+        <div class="yell-main">
+            <h1>打车劵已放入账号:&nbsp;<span>${phone}</span></h1>
+            <div class="yell-text">
+                <div class="text-main">
+                    <div class="f-l">
+                        <p class="zhe">9.5折</p>
+                        <p class="gao">最高可抵10元</p>
+                        <p class="youx">有效期至2016-08-09</p>
+                    </div>
+                    <div class="f-r zl">
+                       折扣劵
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="yell-text">
+                <div class="text-main">
+                    <div class="f-l">
+                        <p class="zhe">9.5折</p>
+                        <p class="gao">最高可抵10元</p>
+                        <p class="youx">有效期至2016-08-09</p>
+                    </div>
+                    <div class="f-r zl">
+                        普通劵
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="yell-text">
+                <div class="text-main">
+                    <div class="f-l">
+                        <p class="zhe">9.5折</p>
+                        <p class="gao">最高可抵10元</p>
+                        <p class="youx">有效期至2016-08-09</p>
+                    </div>
+                    <div class="f-r zl">
+                        普通劵
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+</body>
+</html>
