@@ -44,11 +44,11 @@ public class T_admin_Check_Servlet extends HttpServlet {
 		boolean b = T_admin_Sql.check(city,username, str_psd);
 		if(b == true){
 			T_admin_Bean t_adin = T_admin_Sql.select_status(username);
-			int cityId=(int) T_admin_Sql.queryCityId(city);
+			//int cityId=(int) T_admin_Sql.queryCityId(city);
 			if(t_adin.getStatus() == 0){
 				if(city.equals("boss")){
                     request.setAttribute("city", "boss");
-                   // request.setAttribute("city_id", "boss");
+                    request.setAttribute("city_id", "0");
 
 				}else if(city.equals("sanya")){
                     request.setAttribute("city", "sanya");

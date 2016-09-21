@@ -138,7 +138,7 @@ $(function(){
                     <div class="accordionContent jsjz">
                         <ul class="tree treeFolder">
                             <li><a href="T_PC_job_City_List_Servlet?city_id=${city_id}" target="navTab" rel="externa2" external="true">待结算兼职</a></li>
-                            <li><a href="T_PC_job_City_List_OKServlet?city_id=city_id=${city_id}" target="navTab" rel="externa3" external="true">已结算兼职</a></li>
+                            <li><a href="T_PC_job_City_List_OKServlet?city_id=${city_id}" target="navTab" rel="externa3" external="true">已结算兼职</a></li>
                         </ul>
                     </div>
 					<div class="accordionHeader gzjs">

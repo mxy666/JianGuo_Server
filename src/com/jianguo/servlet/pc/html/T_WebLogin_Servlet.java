@@ -164,7 +164,7 @@ public class T_WebLogin_Servlet extends HttpServlet {
 					long ll = timeStemp/1000;
 					List<T_job_Bean> list_t_job = null;
 
-						list_t_job = T_job_Sql.select_hot("1","5",ll+"","5");
+						list_t_job = T_job_Sql.select_hot("1","5","",ll+"","5");
 						
 
 				

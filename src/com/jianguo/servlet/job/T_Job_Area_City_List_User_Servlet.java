@@ -104,8 +104,8 @@ public class T_Job_Area_City_List_User_Servlet extends HttpServlet {
 				list_t_area = T_school_Sql.select_All_area(t_city.getId()+"");
 				
 				T_area_Bean t_area = new T_area_Bean();;
-				t_area.setId(0);
-				t_area.setCity_id(0);
+				t_area.setId("0");
+				t_area.setCity_id("0");
 				t_area.setArea_name("地区不限");
 				list_t_area2.add(t_area);
 				

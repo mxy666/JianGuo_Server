@@ -4,15 +4,15 @@ import java.util.List;
 
 public class T_city_Bean {
 
-	private int id;
+	private String id;
 	private String city;
 	private String code;
 	private List<T_area_Bean> list_t_area;
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public void setCity(String city) {

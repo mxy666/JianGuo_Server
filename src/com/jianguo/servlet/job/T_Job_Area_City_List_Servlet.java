@@ -57,7 +57,7 @@ public class T_Job_Area_City_List_Servlet extends HttpServlet {
 			List<T_city_Bean> list_t_city2 = new ArrayList<T_city_Bean>();
 			for (int i = 0; i < list_t_city.size(); i++) {
 				T_city_Bean t_city = list_t_city.get(i);
-				List<T_area_Bean> list_t_area = T_school_Sql.select_All_area(t_city.getId()+"");
+				List<T_area_Bean> list_t_area = T_school_Sql.select_All_area(t_city.getCode()+"");
 				t_city.setList_t_area(list_t_area);
 				list_t_city2.add(t_city);
 			}

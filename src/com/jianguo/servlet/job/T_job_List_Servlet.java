@@ -70,6 +70,9 @@ public class T_job_List_Servlet extends HttpServlet {
 			if(city_id.equals("029")){
 				ss = "5";
 			}
+			if(city_id.equals("027")){
+				ss = "6";
+			}
 			if(city_id.equals("3")){
 				ss = "3";
 			}
@@ -85,7 +88,9 @@ public class T_job_List_Servlet extends HttpServlet {
 			if(city_id.equals("5")){
 				ss = "5";
 			}
-			
+			if(city_id.equals("6")){
+				ss = "6";
+			}
 			SimpleDateFormat dft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Date beginDate = new Date();
 			Calendar date = Calendar.getInstance();
@@ -110,9 +115,9 @@ public class T_job_List_Servlet extends HttpServlet {
 			if(hot.equals("3")){
 				list_t_job = T_job_Sql.select_lvxing(hot,ll+"",count);//旅行
 			}else if(hot.equals("2")){
-				list_t_job = T_job_Sql.select_hot("1",ss,ll+"",count);//精品里面没有数据，所以把热门的数据放进去
+				list_t_job = T_job_Sql.select_hot("1",city_id,ss,ll+"",count);//精品里面没有数据，所以把热门的数据放进去
 			}else{
-				list_t_job = T_job_Sql.select_hot(hot,ss,ll+"",count);
+				list_t_job = T_job_Sql.select_hot(hot,city_id,ss,ll+"",count);
 				
 			}
 

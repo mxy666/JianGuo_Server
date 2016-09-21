@@ -105,14 +105,14 @@ public class T_admin_Sql {
 			
 			  while(rs.next()){             
 				 
-				  cityID.setId(rs.getInt("id"));              				           
+				  cityID.setId(rs.getInt("id")+"");
 				              }
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}				
-		return cityID.getId();
+		return Integer.parseInt(cityID.getId());
 	}
 	
 

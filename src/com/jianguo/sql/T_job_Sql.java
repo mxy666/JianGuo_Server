@@ -301,18 +301,19 @@ public class T_job_Sql {
 		return t_job;
 	}
 	//(city_id,"0","1","2","3","0");
-	public static List<T_job_Bean> select_all(String city_id,String status0,String status1,String status2,String status3,String count){
+	public static List<T_job_Bean> select_all(String city_id,String cityId,String status0,String status1,String status2,String status3,String count){
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and (status=? or status=? or status=? or status=?) and is_model=0 order by id desc limit "+count+",80";
+		String sql = "select * from t_job where city_id=? or city_id=? and (status=? or status=? or status=? or status=?) and is_model=0 order by id desc limit "+count+",80";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,city_id);
-			psmt.setString(2,status0);
-			psmt.setString(3,status1);
-			psmt.setString(4,status2);
-			psmt.setString(5,status3);
+			psmt.setString(2,cityId);
+			psmt.setString(3,status0);
+			psmt.setString(4,status1);
+			psmt.setString(5,status2);
+			psmt.setString(6,status3);
 			rs=psmt.executeQuery();
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
@@ -360,14 +361,15 @@ public class T_job_Sql {
 		return list;
 	}
 	
-	public static List<T_job_Bean> select_all_ok(String city_id){
+	public static List<T_job_Bean> select_all_ok(String city_id,String city_id1){
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and is_model=0 order by id desc";
+		String sql = "select * from t_job where city_id=? or city_id=?  and is_model=0 order by id desc";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,city_id);
+			psmt.setString(2,city_id1);
 //			psmt.setString(2,status);
 			rs=psmt.executeQuery();
 			while(rs.next()){
@@ -416,16 +418,17 @@ public class T_job_Sql {
 		return list;
 	}
 	
-	public static List<T_job_Bean> select_hot(String hot,String city_id,String date,String count){
+	public static List<T_job_Bean> select_hot(String hot,String city_id,String cityID2,String date,String count){
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
 //		String mersql = "select * from t_job where hot=? and city_id=? and is_model=0 and (status=0 or status=2) order by status asc,id desc limit "+count+",10";
-		String sql = "select * from t_job where hot=? and city_id=? and is_model=0 order by status asc,id desc limit "+count+",10";
+		String sql = "select * from t_job where hot=? and (city_id=? or city_id=? ) and is_model=0 order by status asc,id desc limit "+count+",10";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,hot);
 			psmt.setString(2,city_id);
+			psmt.setString(3,cityID2);
 //			psmt.setString(3,date);
 //			psmt.setString(4,date2);
 			rs=psmt.executeQuery();

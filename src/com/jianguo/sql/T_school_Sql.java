@@ -53,7 +53,8 @@ public class T_school_Sql {
 			rs=psmt.executeQuery();
 			while(rs.next()){
 				T_city_Bean t_city = new T_city_Bean();
-				t_city.setId(rs.getInt("id"));
+				//t_city.setId(rs.getInt("id"));
+				t_city.setId(rs.getString("code")+"");
 				t_city.setCity(rs.getString("city")+"");
 				t_city.setCode(rs.getString("code")+"");
 				list.add(t_city);
@@ -81,7 +82,8 @@ public class T_school_Sql {
 			rs=psmt.executeQuery();
 			while(rs.next()){
 				T_city_Bean t_city = new T_city_Bean();
-				t_city.setId(rs.getInt("id"));
+				//t_city.setId(rs.getInt("id"));
+				t_city.setId(rs.getString("code")+"");
 				t_city.setCity(rs.getString("city")+"");
 				t_city.setCode(rs.getString("code")+"");
 				list.add(t_city);
@@ -109,8 +111,8 @@ public class T_school_Sql {
 			rs=psmt.executeQuery();
 			while(rs.next()){
 				T_area_Bean area = new T_area_Bean();
-				area.setId(rs.getInt("id"));
-				area.setCity_id(rs.getInt("city_id"));
+				area.setId(rs.getString("id"));
+				area.setCity_id(rs.getString("city_id"));
 				area.setArea_name(rs.getString("area_name")+"");
 				list.add(area);
 			}
@@ -218,7 +220,8 @@ public class T_school_Sql {
 			psmt.setString(1,id);
 			rs=psmt.executeQuery();
 			while(rs.next()){
-				t_city.setId(rs.getInt("id"));
+				//t_city.setId(rs.getInt("id"));
+				t_city.setId(rs.getString("code")+"");
 				t_city.setCity(rs.getString("city")+"");
 				t_city.setCode(rs.getString("code")+"");
 			}
@@ -243,8 +246,8 @@ public class T_school_Sql {
 			psmt.setString(1,id);
 			rs=psmt.executeQuery();
 			while(rs.next()){
-				area.setId(rs.getInt("id"));
-				area.setCity_id(rs.getInt("city_id"));
+				area.setId(rs.getString("city_id"));
+				area.setCity_id(rs.getString("city_id"));
 				area.setArea_name(rs.getString("area_name")+"");
 			}
 			psmt.close();

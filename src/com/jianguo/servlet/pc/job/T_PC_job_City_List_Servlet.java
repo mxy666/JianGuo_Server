@@ -49,7 +49,22 @@ public class T_PC_job_City_List_Servlet extends HttpServlet {
 		 Logger logger = Logger.getLogger("log");
 		 logger.info("日志信息开始!");
 		 logger.info("T_PC_job_City_List_Servlet!");
-		List<T_job_Bean> list_t_job = T_job_Sql.select_all(city_id,"0","1","2","3","0");
+		String city_id1="";
+		if (city_id.equals("1")){
+			city_id1="0899";
+		}else if(city_id.equals("2")){
+			city_id1="0898";
+		}else if(city_id.equals("3")){
+			city_id1="010";
+		}else if(city_id.equals("4")){
+			city_id1="0571";
+		}else if(city_id.equals("5")){
+			city_id1="029";
+		}else if(city_id.equals("6")){
+			city_id1="027";
+		}
+
+		List<T_job_Bean> list_t_job = T_job_Sql.select_all(city_id,city_id1,"0","1","2","3","0");
 
 		List<T_job_info_Bean> list_t_job_info = new ArrayList<T_job_info_Bean>();
 		for (int i = 0; i < list_t_job.size(); i++) {
