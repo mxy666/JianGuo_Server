@@ -889,7 +889,7 @@
     <servlet>
         <description>This is the description of my J2EE component</description>
         <display-name>This is the display name of my J2EE component</display-name>
-        <servlet-name>MerchantLoginServlet</servlet-name>
+        <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.jianguo.merchant.login.LoginServlet</servlet-class>
     </servlet>
     <servlet>
@@ -904,7 +904,7 @@
     <servlet>
         <description>This is the description of my J2EE component</description>
         <display-name>This is the display name of my J2EE component</display-name>
-        <servlet-name>MerchantQuickSms</servlet-name>
+        <servlet-name>QuickSmsServlet</servlet-name>
         <servlet-class>com.jianguo.merchant.login.QuickSmsServlet</servlet-class>
     </servlet>
     <servlet>
@@ -913,6 +913,10 @@
     </servlet>
 
 
+    <servlet-mapping>
+        <servlet-name>QuickSmsServlet</servlet-name>
+        <url-pattern>/QuickSmsServlet</url-pattern>
+    </servlet-mapping>
 <servlet-mapping>
     <servlet-name>T_user_login_Check_Tel_Servlet</servlet-name>
     <url-pattern>/T_user_login_Check_Tel_Servlet</url-pattern>
@@ -1503,13 +1507,13 @@
     <url-pattern>/FinanceInfoServlet</url-pattern>
   </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>MerchantLoginServlet</servlet-name>
-        <url-pattern>/MerchantLoginServlet</url-pattern>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>MerchantQuickSms</servlet-name>
-        <url-pattern>/MerchantQuickSms</url-pattern>
-    </servlet-mapping>
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>QuickSms</servlet-name>-->
+        <!--<url-pattern>/QuickSms</url-pattern>-->
+    <!--</servlet-mapping>-->
     <servlet-mapping>
         <servlet-name>PayWageServlet</servlet-name>
         <url-pattern>/PayWageServlet</url-pattern>
