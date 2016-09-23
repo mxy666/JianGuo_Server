@@ -305,7 +305,7 @@ public class T_job_Sql {
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? or city_id=? and (status=? or status=? or status=? or status=?) and is_model=0 order by id desc limit "+count+",80";
+		String sql = "select * from t_job where (city_id=? or city_id=?) and (status=? or status=? or status=? or status=?) and is_model=0 and limit_sex!=30 order by id desc limit "+count+",80";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,city_id);
@@ -365,7 +365,7 @@ public class T_job_Sql {
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? or city_id=?  and is_model=0 order by id desc";
+		String sql = "select * from t_job where (city_id=? or city_id=?)  and is_model=0 order by id desc";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,city_id);
@@ -592,16 +592,17 @@ public class T_job_Sql {
 		return list;
 	}
 	
-	public static List<T_job_Bean> select_filter0(String city_id,String type_id,String area_id,String date,String date2,String count){
+	public static List<T_job_Bean> select_filter0(String city_id,String city_id1,String type_id,String area_id,String date,String date2,String count){
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and (type_id=? or area_id=?) and is_model=0 and status=0 and hot!=3 order by status asc,id desc limit "+count+",10";
+		String sql = "select * from t_job where (city_id=? or city_id=?) and (type_id=? or area_id=?) and is_model=0 and status=0 and hot!=3 order by status asc,id desc limit "+count+",10";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,city_id);
-			psmt.setString(2,type_id);
-			psmt.setString(3,area_id);
+			psmt.setString(2,city_id1);
+			psmt.setString(3,type_id);
+			psmt.setString(4,area_id);
 //			psmt.setString(4,date);
 //			psmt.setString(5,date2);
 			rs=psmt.executeQuery();
@@ -651,16 +652,17 @@ public class T_job_Sql {
 		return list;
 	}
 	
-	public static List<T_job_Bean> select_filter000(String city_id,String type_id,String area_id,String date,String date2,String count){
+	public static List<T_job_Bean> select_filter000(String city_id,String city_id1,String type_id,String area_id,String date,String date2,String count){
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and (type_id=? and area_id=?) and is_model=0 and status=0 and hot!=3 order by status asc,id desc limit "+count+",10";
+		String sql = "select * from t_job where (city_id=? or city_id=?) and (type_id=? and area_id=?) and is_model=0 and status=0 and hot!=3 order by status asc,id desc limit "+count+",10";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,city_id);
-			psmt.setString(2,type_id);
-			psmt.setString(3,area_id);
+			psmt.setString(2,city_id1);
+			psmt.setString(3,type_id);
+			psmt.setString(4,area_id);
 //			psmt.setString(4,date);
 //			psmt.setString(5,date2);
 			rs=psmt.executeQuery();
@@ -710,14 +712,15 @@ public class T_job_Sql {
 		return list;
 	}
 	
-	public static List<T_job_Bean> select_filter00(String city_id,String date,String date2,String count){
+	public static List<T_job_Bean> select_filter00(String city_id,String city_id1,String date,String date2,String count){
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and is_model=0 and status=0 and hot!=3 order by status asc,id desc limit "+count+",10";
+		String sql = "select * from t_job where (city_id=? or city_id=?) and is_model=0 and status=0 and hot!=3 order by status asc,id desc limit "+count+",10";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,city_id);
+			psmt.setString(2,city_id1);
 //			psmt.setString(2,date);
 //			psmt.setString(3,date2);
 			rs=psmt.executeQuery();
@@ -767,16 +770,17 @@ public class T_job_Sql {
 		return list;
 	}
 	
-	public static List<T_job_Bean> select_filter1(String city_id,String type_id,String area_id,String date,String date2,String count){
+	public static List<T_job_Bean> select_filter1(String city_id,String city_id1,String type_id,String area_id,String date,String date2,String count){
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and (type_id=? or area_id=?) and is_model=0 and status=0 and hot!=3 order by money desc limit "+count+",10";
+		String sql = "select * from t_job where (city_id=? or city_id=?) and (type_id=? or area_id=?) and is_model=0 and status=0 and hot!=3 order by money desc limit "+count+",10";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,city_id);
-			psmt.setString(2,type_id);
-			psmt.setString(3,area_id);
+			psmt.setString(2,city_id1);
+			psmt.setString(3,type_id);
+			psmt.setString(4,area_id);
 //			psmt.setString(4,date);
 //			psmt.setString(5,date2);
 			rs=psmt.executeQuery();
@@ -826,16 +830,17 @@ public class T_job_Sql {
 		return list;
 	}
 	
-	public static List<T_job_Bean> select_filter111(String city_id,String type_id,String area_id,String date,String date2,String count){
+	public static List<T_job_Bean> select_filter111(String city_id,String city_id1,String type_id,String area_id,String date,String date2,String count){
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and (type_id=? and area_id=?) and is_model=0 and status=0 and hot!=3 order by money desc limit "+count+",10";
+		String sql = "select * from t_job where (city_id=? or city_id=?) and (type_id=? and area_id=?) and is_model=0 and status=0 and hot!=3 order by money desc limit "+count+",10";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,city_id);
-			psmt.setString(2,type_id);
-			psmt.setString(3,area_id);
+			psmt.setString(2,city_id1);
+			psmt.setString(3,type_id);
+			psmt.setString(4,area_id);
 //			psmt.setString(4,date);
 //			psmt.setString(5,date2);
 			rs=psmt.executeQuery();
@@ -885,14 +890,15 @@ public class T_job_Sql {
 		return list;
 	}
 	
-	public static List<T_job_Bean> select_filter11(String city_id,String date,String date2,String count){
+	public static List<T_job_Bean> select_filter11(String city_id,String city_id1,String date,String date2,String count){
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and is_model=0 and status=0 and hot!=3 order by money desc limit "+count+",10";
+		String sql = "select * from t_job where (city_id=? or city_id=?) and is_model=0 and status=0 and hot!=3 order by money desc limit "+count+",10";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,city_id);
+			psmt.setString(2,city_id1);
 //			psmt.setString(2,date);
 //			psmt.setString(3,date2);
 			rs=psmt.executeQuery();
@@ -942,16 +948,17 @@ public class T_job_Sql {
 		return list;
 	}
 	
-	public static List<T_job_Bean> select_filter2(String city_id,String type_id,String area_id,String date,String date2,String count){
+	public static List<T_job_Bean> select_filter2(String city_id,String city_id1,String type_id,String area_id,String date,String date2,String count){
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and (type_id=? or area_id=?) and is_model=0 and status=0 and hot!=3 order by hot desc limit "+count+",10";
+		String sql = "select * from t_job where (city_id=? or city_id=?)  and (type_id=? or area_id=?) and is_model=0 and status=0 and hot!=3 order by hot desc limit "+count+",10";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,city_id);
-			psmt.setString(2,type_id);
-			psmt.setString(3,area_id);
+			psmt.setString(2,city_id1);
+			psmt.setString(3,type_id);
+			psmt.setString(4,area_id);
 //			psmt.setString(4,date);
 //			psmt.setString(5,date2);
 			rs=psmt.executeQuery();
@@ -1001,16 +1008,17 @@ public class T_job_Sql {
 		return list;
 	}
 	
-	public static List<T_job_Bean> select_filter222(String city_id,String type_id,String area_id,String date,String date2,String count){
+	public static List<T_job_Bean> select_filter222(String city_id,String city_id1,String type_id,String area_id,String date,String date2,String count){
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and (type_id=? and area_id=?) and is_model=0 and status=0 and hot!=3 order by hot desc limit "+count+",10";
+		String sql = "select * from t_job where (city_id=? or city_id=?) and (type_id=? and area_id=?) and is_model=0 and status=0 and hot!=3 order by hot desc limit "+count+",10";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,city_id);
-			psmt.setString(2,type_id);
-			psmt.setString(3,area_id);
+			psmt.setString(2,city_id1);
+			psmt.setString(3,type_id);
+			psmt.setString(4,area_id);
 //			psmt.setString(4,date);
 //			psmt.setString(5,date2);
 			rs=psmt.executeQuery();
@@ -1060,14 +1068,15 @@ public class T_job_Sql {
 		return list;
 	}
 	
-	public static List<T_job_Bean> select_filter22(String city_id,String date,String date2,String count){
+	public static List<T_job_Bean> select_filter22(String city_id,String city_id1,String date,String date2,String count){
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and is_model=0 and status=0 and hot!=3 order by hot desc limit "+count+",10";
+		String sql = "select * from t_job where (city_id=? or city_id=?) and is_model=0 and status=0 and hot!=3 order by hot desc limit "+count+",10";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,city_id);
+			psmt.setString(2,city_id1);
 //			psmt.setString(2,date);
 //			psmt.setString(3,date2);
 			rs=psmt.executeQuery();

@@ -44,15 +44,26 @@ public class T_webSms_Servlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		Map params =  new HashMap();
 
-		String phone =request.getParameter("phone"); 
+		final String phone =request.getParameter("phone");
 		
 		String regFlag =request.getParameter("regFlag"); 
-		String fastTel=request.getParameter("fastTel"); 
+		String fastTel=request.getParameter("fastTel");
+		new Thread(new Runnable() {
+			public void run() {
+
+				String code = Text_Sms.textdemos(phone);
+			}
+		}).start();
+
+
 		if(fastTel!=null&&fastTel.equals("fast")){
-			String code = Text_Sms.textdemos(phone);
-			
+
 			request.setAttribute("phone", phone);
 			request.getRequestDispatcher("webLogin.jsp").forward(request, response);
+		}else if(fastTel!=null&&fastTel.equals("fastBaoming")){
+			request.setAttribute("phone", phone);
+			request.getRequestDispatcher("forWeb\\fastbaoming.jsp").forward(request, response);
+
 		}else{
 			boolean b = T_user_login_Sql.check_tel(phone);	
 			
@@ -64,7 +75,7 @@ public class T_webSms_Servlet extends HttpServlet {
 				out.println("history.back();");
 				out.println("</script>");	
 			}else{
-				String code = Text_Sms.textdemos(phone);
+				//String code = Text_Sms.textdemos(phone);
 								
 				if(regFlag.equals("reg")){
 					request.setAttribute("phone", phone);

@@ -46,6 +46,9 @@ public class T_push_new_Sql {
 			 }else if( cityId.equals("XA")){
 				 cityId="西安";
 				// str.append(" and a.city_id like'%"+cityId+"%' "); 
+			 }else if( cityId.equals("WH")){
+				 cityId="武汉";
+				 // str.append(" and a.city_id like'%"+cityId+"%' ");
 			 }
 				 
 			 str.append(" and a.city_id like'%"+cityId+"%' ");
@@ -148,6 +151,9 @@ public class T_push_new_Sql {
 				 }else if( cityId.equals("XA")){
 					 cityId="西安";
 					// str.append(" and a.city_id like'%"+cityId+"%' "); 
+				 }else if( cityId.equals("WH")){
+					 cityId="武汉";
+					 // str.append(" and a.city_id like'%"+cityId+"%' ");
 				 }else if( cityId.equals("WH")){
 					 cityId="武汉";
 					 // str.append(" and a.city_id like'%"+cityId+"%' ");
@@ -375,21 +381,27 @@ public class T_push_new_Sql {
 			 }
 			
 			if(city!=null&&!city.equals("")&&!city.equals("all")){
-				
+				String cityCode="";
 				 if(city.equals("BJ")){
-					 cityId=3;					
+					 cityId=3;
+					 cityCode="010";
 				 }else if( city.equals("HK")){
-					 cityId=2;					
+					 cityId=2;
+					 cityCode="0898";
 				 }else if( city.equals("SY")){
-					 cityId=1;					
+					 cityId=1;
+					 cityCode="0899";
 				 }else if( city.equals("HZ")){
-					 cityId=4;					
+					 cityId=4;
+					 cityCode="0571";
 				 }else if( city.equals("XA")){
 					 cityId=5;
+					 cityCode="029";
 				 }else if( city.equals("WH")){
 					 cityId=6;
+					 cityCode="027";
 				 }
-				 str.append(" and city_id ="+cityId+" ");					
+				 str.append(" and (city_id ="+cityId+" or city_id ='"+cityCode+"')");
 				 
 			 }
 			 sql=sql+str.toString()+" order by id DESC";
@@ -406,17 +418,17 @@ public class T_push_new_Sql {
 					t_job.setStop_date(sdf.format(new Date(Long.parseLong(rs.getString("stop_date")+"100"))));
 					t_job.setAddress(rs.getString("address")+"");
 					t_job.setMoney(rs.getDouble("money"));
-					if(rs.getInt("city_id")==1){
+					if(rs.getString("city_id").equals("1")||rs.getString("city_id").equals("0899")){
 						t_job.setCity_id_name("三亚");
-					}else if(rs.getInt("city_id")==2){
+					}else if(rs.getString("city_id").equals("2")||rs.getString("city_id").equals("0898")){
 						t_job.setCity_id_name("海口");
-					}else if(rs.getInt("city_id")==3){
+					}else if(rs.getString("city_id").equals("3")||rs.getString("city_id").equals("010")){
 						t_job.setCity_id_name("北京");
-					}else if(rs.getInt("city_id")==4){
+					}else if(rs.getString("city_id").equals("4")||rs.getString("city_id").equals("0571")){
 						t_job.setCity_id_name("杭州");
-					}else if(rs.getInt("city_id")==5){
+					}else if(rs.getString("city_id").equals("5")||rs.getString("city_id").equals("029")){
 						t_job.setCity_id_name("西安");
-					}else if(rs.getInt("city_id")==6){
+					}else if(rs.getString("city_id").equals("6")||rs.getString("city_id").equals("027")){
 						t_job.setCity_id_name("武汉");
 					}
 					list.add(t_job);

@@ -50,49 +50,22 @@ public class T_to_push_Servlet extends HttpServlet {
 		request.setAttribute("page", page);
 		
 		List<T_user_resume_Bean>pushObj =T_push_new_Sql.queryAll(cityId,school,tel,sex);
-/*		T_user_resume_Bean obj=new T_user_resume_Bean();
-		if(cityId.equals("全部")){
-			obj.setCityId("全部");			
-		}else if(cityId.equals("北京")){
-			obj.setCityId("北京");		
-		}else if(cityId.equals("三亚")){
-			obj.setCityId("三亚");		
-		}else if(cityId.equals("海南")){
-			obj.setCityId("海南");		
-		}else if(cityId.equals("西安")){
-			obj.setCityId("西安");		
-		}else{
-			obj.setCityId("全部");		
-		}
-		pushObj.set(0, obj);*/
-//		for(int i=0;i<pushObj.size(); i++){
-//			if(pushObj.get(i).getSex()==0){
-//				pushObj.get(i).setSexnew("女");
-//				System.out.println(pushObj.get(i).getSex()+"---"+pushObj.get(i).getSexnew());
-//			}else if(pushObj.get(i).getSex()==1){
-//				System.out.println(pushObj.get(i).getSex()+"==="+pushObj.get(i).getSexnew());
-//				pushObj.get(i).setSexnew("男");
-//			}
-//			pushObj.add(e);
-//		}
-		
-		//List<T_job_Bean> list_t_job = T_job_Sql.queryAll(name);
 
 		
-//		if(cityId != "" || cityId != null){
+
 			request.setAttribute("cityId", cityId);
-//		}else if(school != "" || school != null){
+
 			request.setAttribute("school", school);
 			System.out.println(school+"--------");
-//		}else if(tel != "" || tel != null){
+
 			request.setAttribute("tel", tel);
-//		}else if(sex != "" || sex != null){
+
 			request.setAttribute("sex", sex);
-//		}
+
 			request.setAttribute("job_namesss", job_namesss);
 		
 		request.setAttribute("pushObj", pushObj);
-		//request.setAttribute("list_t_job", list_t_job);
+
 		if(city.equals("boss")){
 			request.getRequestDispatcher("interaction\\push.jsp").forward(request, response);
 		}else{

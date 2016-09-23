@@ -54,7 +54,7 @@ public class T_WebLogin_Servlet extends HttpServlet {
 		String tel =request.getParameter("phone");
 		String password =request.getParameter("password");
 		String sms_code =request.getParameter("sms_code");
-		String city_id =request.getParameter("city_id");
+		String city_id =request.getParameter("city");
 		String city_name =request.getParameter("city_name");
 
 		//验证手机号和验证码
@@ -99,19 +99,18 @@ public class T_WebLogin_Servlet extends HttpServlet {
 					}else{
 						if(city_id.equals("010")){
 							T_user_login_Sql.update_city_id("北京", t_user_login.getId()+"");
-						}else
-						if(city_id.equals("0899")){
+						}else if(city_id.equals("0899")){
 							T_user_login_Sql.update_city_id("三亚", t_user_login.getId()+"");
-						}else
-						if(city_id.equals("0898")){
+						}else if(city_id.equals("0898")){
 							T_user_login_Sql.update_city_id("海口", t_user_login.getId()+"");
-						}else
-						if(city_id.equals("0571")){
+						}else if(city_id.equals("0571")){
 							T_user_login_Sql.update_city_id("杭州", t_user_login.getId()+"");
-						}else
-						if(city_id.equals("029")){
+						}else if(city_id.equals("029")){
 							T_user_login_Sql.update_city_id("西安", t_user_login.getId()+"");
-						}else{
+						}else if(city_id.equals("027")){
+							T_user_login_Sql.update_city_id("武汉", t_user_login.getId()+"");
+						}
+						else{
 							T_user_login_Sql.update_city_id(city_name, t_user_login.getId()+"");
 						}
 					}
@@ -119,23 +118,7 @@ public class T_WebLogin_Servlet extends HttpServlet {
 
 					request.getRequestDispatcher("forWeb\\jobWeb.jsp").forward(request, response);
 			}else{
-				//简单的token(七牛)
-//				Auth auth = Auth.create("l8JTtsVLzAV4yEvMvLd7Jno_4pDBwg180-_sGPbP","lkYt1WH8OPHoDkOHD_raJugSeJhaRzf7OJStBkNO");	
-//				//		String token=auth.uploadToken("iqiaqia",null,3600*24*365*10,null);//一年
-//				String qiniu_token=auth.uploadToken("jianguo",null,3600*24*7,null);//7天
-//				
-//				T_user_login_Bean t_user_login = T_user_login_Sql.select_tel(tel);
-//				T_user_info_Bean t_user_info = T_user_info_Sql.select_login_id(t_user_login.getId()+"");
-//				t_user_login.setQiniu(qiniu_token);
-//				
-//				T_user_resume_Bean t_user_resume = T_user_resume_Sql.select_login_id(t_user_login.getId()+"");
-//				t_user_info.setUser_sex(t_user_resume.getSex()+"");
-//				t_user_info.setQiniu(qiniu_token);
-//				
-//				if(city_id == "" || city_id == null){
-//				}else{
-//					T_user_login_Sql.update_city_id(city_id, t_user_login.getId()+"");
-//				}
+
 				//兼职信息查询
 				String hot =request.getParameter("hot");
 				String count =request.getParameter("count");//分页

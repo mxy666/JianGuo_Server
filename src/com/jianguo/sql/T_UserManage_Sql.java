@@ -23,7 +23,7 @@ public class T_UserManage_Sql {
 	
 	
 //用户管理分页	
-public static List<T_UserManage_Bean> queryByPage(int currentPage,int pageSize){
+public static List<T_UserManage_Bean> queryByPage(int currentPage,int pageSize,String city){
 		
 		List<T_UserManage_Bean> list=new ArrayList<T_UserManage_Bean>();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -32,10 +32,11 @@ public static List<T_UserManage_Bean> queryByPage(int currentPage,int pageSize){
 		StringBuffer str = new StringBuffer();
 		
 		/*String sql = "select a.id as login_id ,a.tel,a.city_id, b.sex,b.name,b.school,d.money from  t_user_login a,t_user_resume b,t_user_money d where a.id=b.login_id and b.login_id=d.login_id LIMIT 0,50";			 */
-		String sql = "select a.id as login_id ,a.tel,a.city_id, b.sex,b.name,b.school,d.money from  t_user_login a,t_user_resume b,t_user_money d where a.id=b.login_id and b.login_id=d.login_id  "
-						+" order by login_id desc LIMIT "+(currentPage-1)*pageSize+" , "+pageSize;
-
-		//sql=sql+str.toString();
+		String sql = "select a.id as login_id ,a.tel,a.city_id, b.sex,b.name,b.school,d.money from  t_user_login a,t_user_resume b,t_user_money d where a.id=b.login_id and b.login_id=d.login_id  ";
+	if(!city.equals("boss")){
+		str.append(" and a.city_id ='"+city+"' ");
+	}
+		sql=sql+str.toString()+" order by login_id desc LIMIT "+(currentPage-1)*pageSize+" , "+pageSize;
 		 System.out.println(sql+"----------------------------------------");
 		 PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {			
@@ -65,12 +66,13 @@ public static List<T_UserManage_Bean> queryByPage(int currentPage,int pageSize){
 		return list;
 	}
 	//总记录数
-public static int queryCount(String name,String tel){
+public static int queryCount(String name,String tel,String city){
 	 List <T_user_resume_Bean>list=new ArrayList<T_user_resume_Bean>();
     ResultSet rs=null;
    Connection conn=DButil.getCon();
    StringBuffer str = new StringBuffer();
    String sql="select count(a.id)  from  t_user_login a,t_user_resume b,t_user_money d where a.id=b.login_id and b.login_id=d.login_id ";
+
    if(name!=null&&!name.equals("")){
 		 str.append(" and b.name like'%"+name+"%' ");
 		 

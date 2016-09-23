@@ -95,7 +95,7 @@ function mySearch(value,name){
 </script>
 </head>
 
-	<body>	
+	<body>
 	
 		<form action="T_to_push_Servlet?pageNo=1&city=other" method="post">
 	<div id="panel">
@@ -104,13 +104,9 @@ function mySearch(value,name){
 
 	<CENTER>
 			<span class="lable">地区：</span>			
-			<%--<input id="cityId" name="cityId" type="text" class="input"  value="${cityId }"/>
-			--%>
+
 	<select  name="cityId" style="width:319px;height:34px;">
-		<option value="all"
-		 	<c:if test="${cityId=='all'}">selected="true"</c:if> >
-			全部
-		</option>
+
 		<option value="BJ"
 			<c:if test="${cityId=='BJ'}">selected="true"</c:if> >
 			北京
@@ -119,7 +115,7 @@ function mySearch(value,name){
 		 	<c:if test="${cityId=='SY'}">selected="true"</c:if> >
 			三亚
 		</option>
-		<option value="HN"
+		<option value="HK"
 		 <c:if test="${cityId=='HK'}">selected="true"</c:if> >
 			海口
 		</option>
@@ -131,7 +127,10 @@ function mySearch(value,name){
 		 	<c:if test="${cityId=='XA'}">selected="true"</c:if> >
 			西安
 		</option>
-
+		<option value="WH"
+				<c:if test="${cityId=='WH'}">selected="true"</c:if> >
+			武汉
+		</option>
 </select>
 			
 			
@@ -204,7 +203,7 @@ function mySearch(value,name){
  
  </div>
  <div class="fenye">
- <div  class="fy-l" align="center" colspan="4">共 ${page.totalPages}页 | 第 ${page.pageNo}页</div>
+ <div  class="fy-l" align="center" colspan="4"> 第 ${page.pageNo}页</div>
 <div class=" fy-r" >
     [<a href="T_to_push_Servlet?pageNo=1&cityId=${cityId }&school=${school }&sex=${sex }&tel=${tel }&city=other" >首页</a> 
                 | <a href="T_to_push_Servlet?pageNo=${page.prePage }&cityId=${cityId }&school=${school }&sex=${sex }&tel=${tel }&city=other" >上一页</a> | 
@@ -239,6 +238,7 @@ function mySearch(value,name){
 				<option value="HZ">杭州</option>
 				<option value="HK">海口</option>
 				<option value="XA">西安</option>
+				<option value="WH">武汉</option>
 		</select>
 		<%--<input id="name" name="name" style="line-height:16px;border:1px solid #ccc">	
 		--%><a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="mySearch()">Search</a>	

@@ -6,6 +6,7 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 
+	String cityName=request.getAttribute("cityName").toString();
 	String city=request.getAttribute("city").toString();
 
 %>
@@ -147,6 +148,8 @@ $(function(){
 					<div class="accordionContent gzjs">
 						<ul class="tree treeFolder">
 							<li><a href="T_user_moneyout_List_Servlet?city_id=${city_id}" target="navTab" rel="externa4" external="true">提现申请</a></li>
+						</ul>
+						<ul class="tree treeFolder txwcjl">
 							<li><a href="T_user_moneyout_List_OK_Boss_Servlet?city_id=${city_id}" target="navTab" rel="externa5" external="true">提现完成记录</a></li>
 						</ul>
 					</div>
@@ -160,7 +163,7 @@ $(function(){
 						<ul class="tree treeFolder sjts">
 							<li><a href="interaction/merchantPush.jsp" target="navTab" rel="externa7" external="true">商家推送</a></li>
 						</ul>
-						<ul class="tree treeFolder">
+						<ul class="tree treeFolder tsjl">
 							<li><a href="T_to_pushRecord_Servlet?pageNo=1" target="navTab" rel="externa8" external="true">推送记录</a></li>
 						</ul>
 
@@ -170,7 +173,7 @@ $(function(){
 					</div>
 					<div class="accordionContent yhgl">
 						<ul class="tree treeFolder">
-							<li><a href="T_userManager_servlet" target="navTab" rel="externa9" external="true">用户管理</a></li>
+							<li><a href="T_userManager_servlet?city_id=${city_id}&cityName=<%=cityName%>" target="navTab" rel="externa9" external="true">用户管理</a></li>
 						</ul>
 					</div>
 
@@ -237,10 +240,9 @@ $(function(){
             $(".sjts").remove();
         }
         if(a == "wuhan"){
-            $(".shiming").remove();
-            $(".jsjz").show();
-            $(".gzjs").remove();
-            $(".ts,.zy,.yhgl").remove();
+        	//alert(1);
+            $(".shiming,.zy,.txwcjl,.tsjl").remove();
+
 
         }
         if(a != "boss"&&a!='sanya'){

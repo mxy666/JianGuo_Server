@@ -13,11 +13,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="css/public.css" rel="stylesheet" type="text/css" />
 <link href="css/login-res.css" rel="stylesheet" type="text/css" />
 <!--link href="css/style.css" type="text/css" rel="stylesheet" /-->
-
+	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=7acf5cba21c41b3480d4bfc3e8204874&plugin=AMap.CitySearch"></script>
+	<script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+	<script type="text/javascript" src="<%=basePath %>js/jquery-1.7.2.min.js"></script>
 </head>
-<body>
-	
-	
+<body onload="showCityInfo()">
+
+<div class="dw f-l" style="display: none">
+	<span id="click-bn"><input id="tip" name="city" type="hidden"  value=""/></span></span>
+
+	<em></em>
+</div>
 <div class="main"> 
 	<div class="title-login">
 		<a href="#" class="back"></a>
@@ -128,6 +134,26 @@ $(document).ready(function(){
 
 	});
 });
+
+//获取用户所在城市信息
+function showCityInfo() {
+	//实例化城市查询类
+	var citysearch = new AMap.CitySearch();
+	//自动获取用户IP，返回当前城市
+	citysearch.getLocalCity(function(status, result) {
+		if (status === 'complete' && result.info === 'OK') {
+			if (result && result.city && result.bounds) {
+				var cityinfo = result.city;
+				var citybounds = result.bounds;
+				document.getElementById('tip').innerHTML = cityinfo;
+				//地图显示当前城市
+				map.setBounds(citybounds);
+			}
+		} else {
+			document.getElementById('tip').innerHTML = result.info;
+		}
+	});
+}
 </script>
 
 </body>

@@ -14,7 +14,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="<%=basePath %>css/public.css">
     <link rel="stylesheet" href="<%=basePath %>css/web.css">
     <link rel="stylesheet" href="<%=basePath %>css/swiper.min.css">
+
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=7acf5cba21c41b3480d4bfc3e8204874&plugin=AMap.CitySearch"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+
     <script type="text/javascript" src="<%=basePath %>js/jquery-1.7.2.min.js"></script>
+
+
+
     <script src="<%=basePath %>js/swiper.min.js"></script>
     <script>
         (function(){
@@ -27,12 +34,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         })()
     </script>
 </head>
-<body onload="onLoadJob()">
+<body  onload="showCityInfo()">
 
 <div class="main">
     <div class="index-title">
+
         <div class="dw f-l">
-            <span id="click-bn">北京</span>
+            <span id="click-bn"><span id="tip"></span></span>
             <em></em>
         </div>
         <span class="title">首页</span>
@@ -172,9 +180,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <span class="title js-tiele">选择城市</span>
     </div>
     <ul class="long-term-ul"id="long-term-ul">
-        <li>三亚</li>
-        <li>海口</li>
-        <li>北京</li>
+        <li>三亚市</li>
+        <li>海口市</li>
+        <li>北京市</li>
     </ul>
 </div>
 
@@ -266,11 +274,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
     });
-function onLoadJob(){
+/*function onLoadJob(){
     var url = "JobListForWebServlet";
-   // window.location = url;
-    window.open(url);
-}
+    window.location = url;
+    //window.open(url);
+}*/
+
+/*定位*/
+    var map = new AMap.Map("container", {
+        resizeEnable: true,
+        center: [116.397428, 39.90923],
+        zoom: 13
+    });
+    //获取用户所在城市信息
+    function showCityInfo() {
+        //实例化城市查询类
+        var citysearch = new AMap.CitySearch();
+        //自动获取用户IP，返回当前城市
+        citysearch.getLocalCity(function(status, result) {
+            if (status === 'complete' && result.info === 'OK') {
+                if (result && result.city && result.bounds) {
+                    var cityinfo = result.city;
+                    var citybounds = result.bounds;
+                    document.getElementById('tip').innerHTML = cityinfo;
+                    //地图显示当前城市
+                    map.setBounds(citybounds);
+                }
+            } else {
+                document.getElementById('tip').innerHTML = result.info;
+            }
+        });
+    }
+
+
 </script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 
 
 body {
-	font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica,
+	font: normal 11px auto, "Trebuchet MS", Verdana, Arial, Helvetica,
 		sans-serif;
 	color: #4f6b72;
 	background: #E6EAE9;
@@ -30,7 +30,7 @@ th {
 	border-bottom: 1px solid #C1DAD7;
 	border-top: 1px solid #C1DAD7;
 	letter-spacing: 2px;
-	text-align: centrt;
+	text-align: center;
 	padding: 6px 6px 6px 12px;
 	background: #CAE8EA no-repeat;
 }
@@ -91,7 +91,7 @@ a {
  width:60px; 
  height:25px; 
  border:1px solid #CCC; 
- background:#blue; 
+ background:blue;
  font-size:12px;
  border-radius:4px 4px 3px 3px;
  text-align:center;
@@ -124,4 +124,4 @@ margin:0 0 auto;
 	float: left;
 	}
 	.fy-r{
-	float: right;
+	float: right;}

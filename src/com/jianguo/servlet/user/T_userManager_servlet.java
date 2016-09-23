@@ -37,13 +37,15 @@ public class T_userManager_servlet extends HttpServlet {
 	   Logger logger = Logger.getLogger("log");
 	   logger.info("日志信息开始!");
 	   logger.info("日志信息结束!");
+		String cityId = request.getParameter("city_id");
+		String cityName = request.getParameter("cityName");
 		Date dt= new Date();
 		String time= dt.getTime()+"";
 	  try {
-		  //Integer.parseInt("a");
+
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html;charset=utf-8");
-			String cityId=request.getParameter("cityId");
+
 		System.out.print("+++++++++++++++++++++++++++++"+time.substring(0,time.length()-3));
 
 	  } catch (Exception  e) {
@@ -52,8 +54,8 @@ public class T_userManager_servlet extends HttpServlet {
 	  }
 	  
 	
-		//request.setAttribute("pushObj", pushObj);
-		//request.setAttribute("list_t_job", list_t_job);
+		request.setAttribute("cityId", cityId);
+		request.setAttribute("cityName", cityName);
 		request.getRequestDispatcher("userManage\\user_manage.jsp").forward(request, response);
 	}
 

@@ -48,7 +48,7 @@ public class JobListForWebServlet extends HttpServlet {
 
 
         request.setAttribute("list_t_job", list_t_job);
-        request.getRequestDispatcher("forWeb\\jobWeb.jsp").forward(request, response);
+         request.getRequestDispatcher("forWeb\\jobWeb.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

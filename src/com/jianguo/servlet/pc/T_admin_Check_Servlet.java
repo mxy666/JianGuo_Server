@@ -49,30 +49,36 @@ public class T_admin_Check_Servlet extends HttpServlet {
 				if(city.equals("boss")){
                     request.setAttribute("city", "boss");
                     request.setAttribute("city_id", "0");
-
+					request.setAttribute("cityName", "boss");
 				}else if(city.equals("sanya")){
                     request.setAttribute("city", "sanya");
                     request.setAttribute("city_id", "1");
-
+					request.setAttribute("cityName", "三亚");
 				}else if(city.equals("haikou")){
 
                     request.setAttribute("city", "haikou");
                     request.setAttribute("city_id", "2");
+					request.setAttribute("cityName", "海口");
 
 				}else if(city.equals("beijing")){
+					request.setAttribute("cityName", "北京");
                     request.setAttribute("city", "beijing");
                     request.setAttribute("city_id", "3");
+
 				}else if(city.equals("hangzhou")){
-                    request.setAttribute("city", "hangzhou");
+                    request.setAttribute("city", "杭州");
                     request.setAttribute("city_id", "4");
+					request.setAttribute("cityName", "海口");
 
 				}else if(city.equals("xian")){
                     request.setAttribute("city", "xian");
                     request.setAttribute("city_id", "5");
+					request.setAttribute("cityName", "西安");
 
 				}else if(city.equals("wuhan")){
                     request.setAttribute("city", "wuhan");
                     request.setAttribute("city_id", "6");
+					request.setAttribute("cityName", "武汉");
 
                 }else if(city.equals("chuna")){
                     request.setAttribute("city", "chuna");

@@ -49,4 +49,18 @@
 
 .imgdiv{ width: 37px;height: 37px;float: left;border-radius: 50%;overflow: hidden;margin-top: 10px;}
 
+.login-a{
+    position: absolute;
+    display: none;
+    top: 23px;
+    right: 0;
+
+}
+.login-a a{
+    border: 1px solid rgb(94, 160, 248);
+    color: rgb(94, 160, 248);
+    padding: 2px 8px;
+    border-radius: 6px;
+
+}
 

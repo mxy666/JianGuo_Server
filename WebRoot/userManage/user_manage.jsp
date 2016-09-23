@@ -7,7 +7,8 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
-	String name =  (String)request.getAttribute("name");
+	String cityId =  (String)request.getAttribute("cityId");
+	String cityName =  (String)request.getAttribute("cityName");
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -70,7 +71,7 @@ function pagerFilter(data){
 $(function(){
 	$('#dg').datagrid({ 
 		
-		url:'T_QueryUser_Servlet?city',
+		url:'T_QueryUser_Servlet?cityName=<%=cityName%>&cityId=<%=cityId%>',
 		columns:[[ 
 	
 		{field:'login_id',title:'Id',width:100,hidden:true}, 
@@ -243,6 +244,8 @@ function mySearch(){
 
 $(document).ready(function(){
 	$(".pagination td").eq(7).hide();
+	$(".pagination td").eq(2).hide();
+	$(".pagination td").eq(10).hide();
 });
 </script>
 

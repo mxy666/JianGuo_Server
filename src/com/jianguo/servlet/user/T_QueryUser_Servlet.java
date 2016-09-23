@@ -45,7 +45,8 @@ public class T_QueryUser_Servlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		String name = request.getParameter("name");
 		String tel = request.getParameter("tel");
-		
+		String cityId = request.getParameter("cityId");
+		String cityName = request.getParameter("cityName");
 
         // 获取前台页数  
         int page = Integer.parseInt(request.getParameter("page"));  
@@ -57,11 +58,11 @@ public class T_QueryUser_Servlet extends HttpServlet {
 		int total=0;
 		if(name!=null&&!name.equals("")||tel!=null&&!tel.equals("")){
 			user=T_UserManage_Sql.queryAll(name,tel);
-			total=T_UserManage_Sql.queryCount(name, tel);
+			total=T_UserManage_Sql.queryCount(name, tel,cityName);
 		}else{
 			//user = T_UserManage_Sql.selectAll();
-			user = T_UserManage_Sql.queryByPage(page,row);
-			total=T_UserManage_Sql.queryCount(name, tel);
+			user = T_UserManage_Sql.queryByPage(page,row,cityName);
+			total=T_UserManage_Sql.queryCount(name, tel,cityName);
 		}
 		 JSONObject jobj = new JSONObject();//  
 	        jobj.put("total", total);  

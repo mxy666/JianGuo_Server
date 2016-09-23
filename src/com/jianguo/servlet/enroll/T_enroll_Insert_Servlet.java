@@ -99,15 +99,16 @@ public class T_enroll_Insert_Servlet extends HttpServlet {
 						pw.close();
 						
 					}else{
-						if(t_job11.getMerchant_id()==28 || t_job11.getMerchant_id()==29 || t_job11.getMerchant_id()==30 || t_job11.getMerchant_id()==31 || t_job11.getMerchant_id()==32){
+						if(t_job11.getMerchant_id()==28 || t_job11.getMerchant_id()==29 || t_job11.getMerchant_id()==30
+								|| t_job11.getMerchant_id()==31 || t_job11.getMerchant_id()==32||t_job11.getMerchant_id()==57){
 							final T_user_login_Bean t_user_login = T_user_login_Sql.select_id(login_id);
 							final T_user_resume_Bean t_user_resume = T_user_resume_Sql.select_login_id(login_id);
-							String ss_sex = "";
+							/*String ss_sex = "";
 							if(t_user_resume.getSex() == 1){
 								ss_sex = "男";
 							}else{
 								ss_sex = "女";
-							}
+							}*/
 							//外录商家发短信
 							new Thread(new Runnable() {			
 								public void run() {

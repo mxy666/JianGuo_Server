@@ -240,11 +240,12 @@ function mySearch(value,name){
 		<span>城市:</span>
 		<select id="job_city" name="job_city" class="easyui-combobox" panelHeight="auto" style="width:160px">
 				<option value="all">全部</option>
-				<option value="SY">三亚</option>
-				<option value="BJ">北京</option>
-				<option value="HZ">杭州</option>
-				<option value="HK">海口</option>
-				<option value="XA">西安</option>
+			<option value="SY">三亚</option>
+			<option value="BJ">北京</option>
+			<option value="HZ">杭州</option>
+			<option value="HK">海口</option>
+			<option value="XA">西安</option>
+			<option value="WH">武汉</option>
 		</select>
 		<%--<input id="name" name="name" style="line-height:16px;border:1px solid #ccc">	
 		--%><a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="mySearch()">Search</a>	

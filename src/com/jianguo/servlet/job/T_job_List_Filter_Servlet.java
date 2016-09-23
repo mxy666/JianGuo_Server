@@ -52,8 +52,7 @@ public class T_job_List_Filter_Servlet extends HttpServlet {
 		if(only.equals(ss_only) || only.equals(ss_only2) || only.equals(ss_only3)){
 			//------------------访问限制--------结束----------------------
 			List<T_job_Bean> list_t_job = new ArrayList<T_job_Bean>();
-			
-			
+
 			String ss = "";
 			if(city_id.equals("010")){
 				ss = "3";
@@ -70,6 +69,9 @@ public class T_job_List_Filter_Servlet extends HttpServlet {
 			if(city_id.equals("029")){
 				ss = "5";
 			}
+			if(city_id.equals("027")){
+				ss = "6";
+			}
 			if(city_id.equals("3")){
 				ss = "3";
 			}
@@ -85,40 +87,43 @@ public class T_job_List_Filter_Servlet extends HttpServlet {
 			if(city_id.equals("5")){
 				ss = "5";
 			}
+			if(city_id.equals("6")){
+				ss = "6";
+			}
 			
 			long ll = System.currentTimeMillis()/1000;
 			if(type_id.equals("0") && area_id.equals("0") && filter_id.equals("0")){
-				list_t_job = T_job_Sql.select_filter00(ss,ll+"",ll+"", count);
-				System.out.println("111111111111111111111111111");
+				list_t_job = T_job_Sql.select_filter00(ss, city_id,ll+"",ll+"", count);
+
 			}else if(type_id.equals("0") && area_id.equals("0") && filter_id.equals("1")){
-				list_t_job = T_job_Sql.select_filter11(ss, ll+"",ll+"",count);
-				System.out.println("2222222222222222222222222222");
+				list_t_job = T_job_Sql.select_filter11(ss,city_id, ll+"",ll+"",count);
+
 			}else if(type_id.equals("0") && area_id.equals("0") && filter_id.equals("2")){
-				list_t_job = T_job_Sql.select_filter22(ss, ll+"",ll+"",count);
-				System.out.println("3333333333333333333333333333");
+				list_t_job = T_job_Sql.select_filter22(ss, city_id,ll+"",ll+"",count);
+
 			}else if(filter_id.equals("0") && (!type_id.equals("0") && !area_id.equals("0"))){
-				list_t_job = T_job_Sql.select_filter000(ss,type_id,area_id,ll+"",ll+"",count);
-				System.out.println("4444444444444444444444444444444");
+				list_t_job = T_job_Sql.select_filter000(ss,city_id,type_id,area_id,ll+"",ll+"",count);
+
 				
 			}else if(filter_id.equals("0") && (!type_id.equals("0") || !area_id.equals("0"))){
-				list_t_job = T_job_Sql.select_filter0(ss,type_id,area_id,ll+"",ll+"",count);
-				System.out.println("5555555555555555555555555555");
+				list_t_job = T_job_Sql.select_filter0(ss,city_id,type_id,area_id,ll+"",ll+"",count);
+
 				
 			}else if(filter_id.equals("1") && !type_id.equals("0") && !area_id.equals("0")){
-				list_t_job = T_job_Sql.select_filter111(ss,type_id,area_id,ll+"",ll+"",count);
-				System.out.println("66666666666666666666666666666");
+				list_t_job = T_job_Sql.select_filter111(ss,city_id,type_id,area_id,ll+"",ll+"",count);
+
 				
 			}else if(filter_id.equals("1") && (!type_id.equals("0") || !area_id.equals("0"))){
-				list_t_job = T_job_Sql.select_filter1(ss,type_id,area_id,ll+"",ll+"",count);
-				System.out.println("777777777777777777777777777777");
+				list_t_job = T_job_Sql.select_filter1(ss,city_id,type_id,area_id,ll+"",ll+"",count);
+
 				
 			}else if(filter_id.equals("2") && (!type_id.equals("0") && !area_id.equals("0"))){
-				list_t_job = T_job_Sql.select_filter222(ss,type_id,area_id,ll+"",ll+"",count);
-				System.out.println("88888888888888888888888888");
+				list_t_job = T_job_Sql.select_filter222(ss,city_id,type_id,area_id,ll+"",ll+"",count);
+
 				
 			}else if(filter_id.equals("2") && (!type_id.equals("0") || !area_id.equals("0"))){
-				list_t_job = T_job_Sql.select_filter2(ss,type_id,area_id,ll+"",ll+"",count);
-				System.out.println("999999999999999999999999999999");
+				list_t_job = T_job_Sql.select_filter2(ss,city_id,type_id,area_id,ll+"",ll+"",count);
+
 //			}if(filter_id.equals("0")){
 //				list_t_job = T_job_Sql.select_filter0(city_id,type_id,area_id,count);
 //				System.out.println("5555555555555555555");
