@@ -29,29 +29,29 @@ public class LoginServlet extends HttpServlet {
     private MerchantInfo merchantInfo;
 
     /**
-     * @api {post} LoginServlet/ å¿«é€Ÿç™»å½•
+     * @api {post} LoginServlet/ ¿ìËÙµÇÂ¼
      * @apiName LoginServlet
      * @apiGroup login
      *
      * @apiParam {String} tel Users phone
      * @apiParam {String} tel Users smsCode
      * @apiSuccess {String} code 200
-     * @apiSuccess {String} message  ç™»å½•æˆåŠŸï¼
+     * @apiSuccess {String} message  µÇÂ¼³É¹¦£¡
      * @apiError (Error 400) {String} code 400
-     * @apiError (Error 400) {String} message æœåŠ¡å™¨å¿™ï¼Œè¯·ç¨åé‡è¯•
-     * @apiError (Error 400) {String} codeError ä»£ç é”™è¯¯è¯¦æƒ…ï¼ˆä¾›å†…éƒ¨æµ‹è¯•ï¼ŒæŸ¥æ‰¾é—®é¢˜ä½¿ç”¨ï¼‰
+     * @apiError (Error 400) {String} message ·şÎñÆ÷Ã¦£¬ÇëÉÔºóÖØÊÔ
+     * @apiError (Error 400) {String} codeError ´úÂë´íÎóÏêÇé£¨¹©ÄÚ²¿²âÊÔ£¬²éÕÒÎÊÌâÊ¹ÓÃ£©
      * @apiError (Error 401) {String} code 401
-     * @apiError (Error 401) {String} message å‚æ•°é”™è¯¯è¯·æ£€æŸ¥
+     * @apiError (Error 401) {String} message ²ÎÊı´íÎóÇë¼ì²é
      * @apiError (Error 402) {String} code 402
-     * @apiError (Error 402) {String} message éªŒè¯ç é”™è¯¯
+     * @apiError (Error 402) {String} message ÑéÖ¤Âë´íÎó
      * @apiError (Error 403) {String} code 403
-     * @apiError (Error 403) {String} message éªŒè¯ç å·²è¿‡æœŸ
+     * @apiError (Error 403) {String} message ÑéÖ¤ÂëÒÑ¹ıÆÚ
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         Logger logger = Logger.getLogger("log");
-        logger.info("å•†å®¶ç«¯ç™»å½•æ—¥å¿—ä¿¡æ¯å¼€å§‹!");
+        logger.info("ÉÌ¼Ò¶ËµÇÂ¼ÈÕÖ¾ĞÅÏ¢¿ªÊ¼!");
         logger.info("LoginServlet!");
         String smsCode =request.getParameter("smsCode");
         String tel =request.getParameter("tel");
@@ -59,42 +59,42 @@ public class LoginServlet extends HttpServlet {
         Gson gson=new Gson();
         PrintWriter pw = response.getWriter();
         try {
-            //åˆ¤æ–­æ‰‹æœºå·å’ŒéªŒè¯ç æ˜¯å¦ä¸ºç©º
+            //ÅĞ¶ÏÊÖ»úºÅºÍÑéÖ¤ÂëÊÇ·ñÎª¿Õ
             if (smsCode==null||smsCode.equals("")||tel==null||tel.equals("")) {
-                HttpClientUtil.pushResponse(response,"401","å‚æ•°é”™è¯¯è¯·æ£€æŸ¥ï¼");
+                HttpClientUtil.pushResponse(response,"401","²ÎÊı´íÎóÇë¼ì²é£¡");
                 return;
             }
-            //åˆ¤æ–­éªŒè¯ç æ˜¯å¦åŒ¹é…
+            //ÅĞ¶ÏÑéÖ¤ÂëÊÇ·ñÆ¥Åä
             if (!LoginSql.checkVerificationCode(tel,smsCode)) {
-                HttpClientUtil.pushResponse(response,"402","éªŒè¯ç é”™è¯¯ï¼");
+                HttpClientUtil.pushResponse(response,"402","ÑéÖ¤Âë´íÎó£¡");
                 return;
             }
-            //åˆ¤æ–­éªŒè¯ç æ˜¯å¦è¶…è¿‡æœ‰æ•ˆæœŸ
+            //ÅĞ¶ÏÑéÖ¤ÂëÊÇ·ñ³¬¹ıÓĞĞ§ÆÚ
             if (TelCodeSql.checkExpiryDate(tel,System.currentTimeMillis())) {
-                HttpClientUtil.pushResponse(response,"403","éªŒè¯ç å·²è¿‡æœŸï¼Œè¯·é‡æ–°è·å–ï¼");
+                HttpClientUtil.pushResponse(response,"403","ÑéÖ¤ÂëÒÑ¹ıÆÚ£¬ÇëÖØĞÂ»ñÈ¡£¡");
                 return;
             }
 
 
             String token = CommonUtils.makeToken(tel);
-                //ä¸å­˜åœ¨è¯¥ç”¨æˆ·ï¼Œæ³¨å†Œæ’å…¥æ•°æ®
+                //²»´æÔÚ¸ÃÓÃ»§£¬×¢²á²åÈëÊı¾İ
                 if (!LoginSql.checkRegister(tel)) {
                      LoginSql.insertMerchant(tel,token);
                 }else {
-                    //å­˜åœ¨æ›´æ–°ç”¨æˆ·token
+                    //´æÔÚ¸üĞÂÓÃ»§token
                     LoginSql.updateToken(tel,token);
                 }
-            //è·å–ç”¨æˆ·ä¿¡æ¯
+            //»ñÈ¡ÓÃ»§ĞÅÏ¢
             merchantInfo = LoginSql.getMerchantInfo(tel);
         } catch (SQLException e) {
-            HttpClientUtil.pushResponse(response,logger,"400","æœåŠ¡å™¨å¿™ï¼Œè¯·ç¨åå†è¯•ï¼",e.getMessage());
+            HttpClientUtil.pushResponse(response,logger,"400","·şÎñÆ÷Ã¦£¬ÇëÉÔºóÔÙÊÔ£¡",e.getMessage());
             return;
         }
 
         map.put("merchantInfo",merchantInfo);
-        //ç”Ÿæˆtokenè¿”å›ç»™å®¢æˆ·ç«¯
+        //Éú³Étoken·µ»Ø¸ø¿Í»§¶Ë
         map.put("code", "200");
-        map.put("message", "ç™»å½•æˆåŠŸï¼");
+        map.put("message", "µÇÂ¼³É¹¦£¡");
         String str = gson.toJson(map);
         pw.write(str);
         pw.flush();

@@ -109,7 +109,7 @@ public class T_wages_Insert_ChangServlet extends HttpServlet {
 					T_wages_Sql.insert(t.getLogin_id()+"", t.getJob_id()+"", t.getHould_money()+"", dd2+"", t.getRemarks(), ly_time);
 					T_enroll_Sql.update_state("1",t.getLogin_id()+"", t.getJob_id()+"");
 				if(!T_user_money_Sql.check_login_id(t.getLogin_id()+"")){
-					T_user_money_Sql.insert(t.getLogin_id()+"", "0", "8.88", "0", "0", "0", "0", "0");
+					T_user_money_Sql.insert(t.getLogin_id()+"", "0", "0", "0", "0", "0", "0", "0");
 				}
 					T_user_money_Sql.update_moneyss(dd, t.getLogin_id()+"");
 					T_enroll_Sql.update_status2("12", t.getLogin_id()+"",t.getJob_id()+"");

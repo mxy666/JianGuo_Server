@@ -19,18 +19,18 @@ import java.net.URLConnection;
 public class Sms {
 
     public static void sendSmsQuickLogin(String tel,String code) throws IOException {
-        String job_test = "ã€å…¼æœå…¼èŒã€‘æ¬¢è¿ä½¿ç”¨å…¼æœå…¼èŒï¼Œæ‚¨çš„éªŒè¯ç æ˜¯"+code+"ï¼Œæœ‰æ•ˆæœŸä¸º10åˆ†é’Ÿï¼Œè¯·å°½å¿«éªŒè¯ã€‚";
+        String job_test = "¡¾¼æ¹û¼æÖ°¡¿»¶Ó­Ê¹ÓÃ¼æ¹û¼æÖ°£¬ÄúµÄÑéÖ¤ÂëÊÇ"+code+"£¬ÓĞĞ§ÆÚÎª10·ÖÖÓ£¬Çë¾¡¿ìÑéÖ¤¡£";
         String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+tel+"&content="+job_test+"&ext=&stime=&rrid=&msgfmt=";
         get(url);
     }
     /**
-     * ä»¥å­—ç¬¦ä¸²å½¢å¼è¿”å›urlå“åº”ä¿¡æ¯
+     * ÒÔ×Ö·û´®ĞÎÊ½·µ»ØurlÏìÓ¦ĞÅÏ¢
      * @param url
      * @return
      */
     @SuppressWarnings("deprecation")
     public static String get(String url) throws IOException {
-            // getæ–¹å¼è¯·æ±‚url
+            // get·½Ê½ÇëÇóurl
             HttpGet httpGet = new HttpGet(url);
             DefaultHttpClient httpclient = new DefaultHttpClient();
             HttpResponse res = httpclient.execute(httpGet);
@@ -41,13 +41,13 @@ public class Sms {
     }
 
     /**
-     * å‘æŒ‡å®š URL å‘é€POSTæ–¹æ³•çš„è¯·æ±‚
+     * ÏòÖ¸¶¨ URL ·¢ËÍPOST·½·¨µÄÇëÇó
      *
      * @param url
-     *            å‘é€è¯·æ±‚çš„ URL
+     *            ·¢ËÍÇëÇóµÄ URL
      * @param param
-     *            è¯·æ±‚å‚æ•°ï¼Œè¯·æ±‚å‚æ•°åº”è¯¥æ˜¯ name1=value1&name2=value2 çš„å½¢å¼ã€‚
-     * @return æ‰€ä»£è¡¨è¿œç¨‹èµ„æºçš„å“åº”ç»“æœ
+     *            ÇëÇó²ÎÊı£¬ÇëÇó²ÎÊıÓ¦¸ÃÊÇ name1=value1&name2=value2 µÄĞÎÊ½¡£
+     * @return Ëù´ú±íÔ¶³Ì×ÊÔ´µÄÏìÓ¦½á¹û
      */
     public static String sendPost(String url, String param) {
         PrintWriter out = null;
@@ -55,23 +55,23 @@ public class Sms {
         String result = "";
         try {
             URL realUrl = new URL(url);
-            // æ‰“å¼€å’ŒURLä¹‹é—´çš„è¿æ¥
+            // ´ò¿ªºÍURLÖ®¼äµÄÁ¬½Ó
             URLConnection conn = realUrl.openConnection();
-            // è®¾ç½®é€šç”¨çš„è¯·æ±‚å±æ€§
+            // ÉèÖÃÍ¨ÓÃµÄÇëÇóÊôĞÔ
             conn.setRequestProperty("accept", "*/*");
             conn.setRequestProperty("connection", "Keep-Alive");
             conn.setRequestProperty("user-agent",
                     "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
-            // å‘é€POSTè¯·æ±‚å¿…é¡»è®¾ç½®å¦‚ä¸‹ä¸¤è¡Œ
+            // ·¢ËÍPOSTÇëÇó±ØĞëÉèÖÃÈçÏÂÁ½ĞĞ
             conn.setDoOutput(true);
             conn.setDoInput(true);
-            // è·å–URLConnectionå¯¹è±¡å¯¹åº”çš„è¾“å‡ºæµ
+            // »ñÈ¡URLConnection¶ÔÏó¶ÔÓ¦µÄÊä³öÁ÷
             out = new PrintWriter(conn.getOutputStream());
-            // å‘é€è¯·æ±‚å‚æ•°
+            // ·¢ËÍÇëÇó²ÎÊı
             out.print(param);
-            // flushè¾“å‡ºæµçš„ç¼“å†²
+            // flushÊä³öÁ÷µÄ»º³å
             out.flush();
-            // å®šä¹‰BufferedReaderè¾“å…¥æµæ¥è¯»å–URLçš„å“åº”
+            // ¶¨ÒåBufferedReaderÊäÈëÁ÷À´¶ÁÈ¡URLµÄÏìÓ¦
             in = new BufferedReader(
                     new InputStreamReader(conn.getInputStream()));
             String line;
@@ -79,10 +79,10 @@ public class Sms {
                 result += line;
             }
         } catch (Exception e) {
-            System.out.println("å‘é€ POST è¯·æ±‚å‡ºç°å¼‚å¸¸ï¼"+e);
+            System.out.println("·¢ËÍ POST ÇëÇó³öÏÖÒì³££¡"+e);
             e.printStackTrace();
         }
-        //ä½¿ç”¨finallyå—æ¥å…³é—­è¾“å‡ºæµã€è¾“å…¥æµ
+        //Ê¹ÓÃfinally¿éÀ´¹Ø±ÕÊä³öÁ÷¡¢ÊäÈëÁ÷
         finally{
             try{
                 if(out!=null){

@@ -5,6 +5,16 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+/*    String sex="";
+    String identify="";
+    if(request.getAttribute("sex").toString()!=null){
+    sex=request.getAttribute("sex").toString();
+    }
+    if(request.getAttribute("identify").toString()!=null){
+        identify=request.getAttribute("identify").toString();
+    }*/
+
+
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
 <head>
@@ -36,7 +46,7 @@
 
     <div class="index-title">
         <div class="dw f-l dw-sigh">
-            <em></em>
+            <%--<em></em>--%>
         </div>
         <span class="title title-login">极速报名</span>
         <a href="../webLogin.jsp" class="login-sign f-r">去登录</a>
@@ -45,10 +55,10 @@
         填写资料验证手机，可更快上岗并确保工资到帐
     </div>
     <form id="baoming" action="JobWebBaoMServlet" method="post">
-        <div class="dw f-l" >
-            <span id="click-bn">
-                <input id="tip" name="city" /><%--<span id="tip"></span>--%>
-            </span>
+        <div class="dw f-l" style="display: none">
+
+                <input id="tip" type="text" name="city" /><%--<span id="tip"></span>--%>
+
 
         </div>
         <div class="form-main">
@@ -56,37 +66,37 @@
             <ul class="form-ul">
                 <li>
                     <span>姓　　名</span>
-                    <input type="text" name="name"placeholder="请输入真实姓名"/>
+                    <input type="text" id="name" name="name" placeholder="请输入真实姓名" value="${name}" class="name"/>
                 </li>
                 <li>
                     <span>性　　别</span>
                     <label>
-                        <input type="radio" name="sex" value="1" class="ra"/>
+                        <input  type="radio"  name="sex" <c:if test="${sex==0}">checked="true"</c:if> value="0" class="ra sex0"/>
                         <span class="f65">男</span>
                     </label>
                     <label>
-                        <input type="radio" name="sex" value="0" class="ra"/>
+                        <input  type="radio"  name="sex" <c:if test="${sex==1}">checked="true"</c:if> value="1" class="ra sex1"/>
                         <span  class="f65">女</span>
                     </label>
                 </li>
                 <li>
                     <span>出生年份</span>
-                    <input type="text" name="birthdate"placeholder="请输入出生年份"/>
+                    <input type="text" id="birthdate" name="birthdate" placeholder="请输入出生年份" value="${birthdate}" class="birthdate"/>
                 </li>
                 <li>
                     <span>身　　份</span>
                     <label>
-                        <input type="radio" name="identify" value="1" class="ra"/>
+                        <input type="radio"  name="identify" <c:if test="${identify==0}">checked="true"</c:if> value="0" class="ra identify0"/>
                         <span  class="f65">学生</span>
                     </label>
                     <label>
-                        <input type="radio" name="identify" value="0" class="ra"/>
+                        <input type="radio"   name="identify"  <c:if test="${identify==1}">checked="true"</c:if> value="1" class="ra identify1"/>
                         <span  class="f65">非学生</span>
                     </label>
                 </li>
                 <li class="mt8">
                     <span>手 机 号</span>
-                    <input type="text" name="tel"placeholder="请输入手机号" maxlength="11" onkeyup='this.value=this.value.replace(/\D/gi,"")'class="Telephone"/>
+                    <input type="text" name="phone"placeholder="请输入手机号" value="${phone}" maxlength="11" onkeyup='this.value=this.value.replace(/\D/gi,"")'class="Telephone"/>
                     <p class="err"></p>
                 </li>
                 <li>
@@ -129,19 +139,48 @@
     });
     //验证码倒计时
     $(".yz").click(function(){
+
         var tel = $(".Telephone").val();
+        var name=$(".name").val();
+       // var sex=document.getElementById('sex').checked;
+        var birthdate=$(".birthdate").val();
+        var identify =document.getElementsByName('identify');
+       // var phone=document.getElementsByName("phone");
+        var sex= document.getElementsByName("sex");
+        for(var i = 0; i < sex.length; i ++) {
+
+            if(sex[i].checked)
+
+            {
+
+                sex = sex[i].value;
+            }
+        }
+        for(var i = 0; i < identify.length; i ++) {
+
+            if(identify[i].checked)
+
+            {
+
+                identify = identify[i].value;
+            }
+        }
         var reg = /^0?1[3|4|5|8][0-9]\d{8}$/;
+
+
         if (reg.test(tel)) {
             var wait=60;
             timeOut();
-            var url = "T_webSms_Servlet?phone="+val+"&fastTel=fast";
-            //window.location = url;
-            alert(2);
+
+
             function timeOut(){
 
                 if(wait==0){
                     $('.yz').text("重新发送");
                 }else{
+                    var urls = "T_webSms_Servlet?phone="+tel+"&fastTel=fastBaoming&name="+name+"&sex="+sex+"&birthdate="+birthdate+"&identify="+identify+"";
+                    window.location = urls;
+
                     setTimeout(function(){
                         wait--;
                         $('.yz').text(wait + "s");
@@ -172,12 +211,14 @@
                 if (result && result.city && result.bounds) {
                     var cityinfo = result.city;
                     var citybounds = result.bounds;
-                    document.getElementById('tip').innerHTML = cityinfo;
+                    document.getElementById('tip').value = cityinfo;
                     //地图显示当前城市
                     map.setBounds(citybounds);
                 }
             } else {
-                document.getElementById('tip').value = result.info;
+
+                document.getElementById('tip').value=result.info
+
             }
         });
     }

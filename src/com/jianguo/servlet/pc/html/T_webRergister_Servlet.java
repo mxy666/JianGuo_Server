@@ -76,7 +76,7 @@ public class T_webRergister_Servlet extends HttpServlet {
 				String ly_time = sdf.format(new java.util.Date());
 				T_user_info_Sql.insert_qq_wx(t_user_login.getId()+"", "兼果"+t_user_login.getId(),"", "http://v3.jianguojob.com/moren.png","","0","0","0", ly_time, ly_time);
 				T_user_resume_Sql.insert_qq_wx(t_user_login.getId()+"", "兼果"+t_user_login.getId(), "","http://v3.jianguojob.com/moren.png","","","1","0","0","","","","","");
-				T_user_money_Sql.insert(t_user_login.getId()+"", "0", "8.88", "0", "0", "0", "0", "0");
+				T_user_money_Sql.insert(t_user_login.getId()+"", "0", "0", "0", "0", "0", "0", "0");
 				
 				T_user_info_Bean t_user_info = T_user_info_Sql.select_login_id(t_user_login.getId()+"");
 				//简单的token(七牛)
@@ -112,12 +112,7 @@ public class T_webRergister_Servlet extends HttpServlet {
 					}
 				}
 			}
-				PrintWriter out = response.getWriter();
-				out.flush();out.println("<script>");
-				out.println("alert('注册成功');");
-				out.println("history.back();");
-				out.println("</script>");	
-				//request.getRequestDispatcher("login\\success.jsp").forward(request, response);
+				request.getRequestDispatcher("webLogin.jsp").forward(request, response);
 		}else{
 			PrintWriter out = response.getWriter();
 			out.flush();out.println("<script>");

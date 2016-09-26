@@ -80,7 +80,7 @@ public class T_user_login_Insert_Servlet extends HttpServlet {
 					String ly_time = sdf.format(new java.util.Date());
 					T_user_info_Sql.insert_qq_wx(t_user_login.getId()+"", "兼果"+t_user_login.getId(),"", "http://v3.jianguojob.com/moren.png","","0","0","0", ly_time, ly_time);
 					T_user_resume_Sql.insert_qq_wx(t_user_login.getId()+"", "兼果"+t_user_login.getId(), "","http://v3.jianguojob.com/moren.png","","","1","0","0","","","","","");
-					T_user_money_Sql.insert(t_user_login.getId()+"", "0", "8.88", "0", "0", "0", "0", "0");
+					T_user_money_Sql.insert(t_user_login.getId()+"", "0", "0", "0", "0", "0", "0", "0");
 					
 					T_user_info_Bean t_user_info = T_user_info_Sql.select_login_id(t_user_login.getId()+"");
 					//简单的token(七牛)
@@ -111,7 +111,10 @@ public class T_user_login_Insert_Servlet extends HttpServlet {
 						}else
 						if(city_id.equals("029")){
 							T_user_login_Sql.update_city_id("西安", t_user_login.getId()+"");
-						}else{
+						}if(city_id.equals("027")){
+							T_user_login_Sql.update_city_id("武汉", t_user_login.getId()+"");
+						}
+						else{
 							T_user_login_Sql.update_city_id(city_name, t_user_login.getId()+"");
 						}
 					}

@@ -45,7 +45,7 @@ public class DidiTicketsServlet extends HttpServlet {
             T_user_login_Bean t_user_login = T_user_login_Sql.select_tel(phone);
             T_user_info_Sql.insert_qq_wx(t_user_login.getId()+"", "¼æ¹û"+t_user_login.getId(),"", "http://v3.jianguojob.com/moren.png","","0","0","0", ly_time, ly_time);
             T_user_resume_Sql.insert_qq_wx(t_user_login.getId()+"", "¼æ¹û"+t_user_login.getId(), "","http://v3.jianguojob.com/moren.png","","","1","0","0","","","","","");
-            T_user_money_Sql.insert(t_user_login.getId()+"", "0", "8.88", "0", "0", "0", "0", "0");
+            T_user_money_Sql.insert(t_user_login.getId()+"", "0", "0", "0", "0", "0", "0", "0");
 
             T_user_info_Bean t_user_info = T_user_info_Sql.select_login_id(t_user_login.getId()+"");
             Auth auth = Auth.create("l8JTtsVLzAV4yEvMvLd7Jno_4pDBwg180-_sGPbP","lkYt1WH8OPHoDkOHD_raJugSeJhaRzf7OJStBkNO");

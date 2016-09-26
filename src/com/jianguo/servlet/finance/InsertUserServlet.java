@@ -122,7 +122,7 @@ public class InsertUserServlet extends HttpServlet {
 				T_user_login_Bean t_user_login = T_user_login_Sql.select_tel(user.getTel());
 				T_user_info_Sql.insert_qq_wx(t_user_login.getId()+"", "兼果"+t_user_login.getId(),user.getName(), "http://v3.jianguojob.com/moren.png","无","0","0","0", registerTime, registerTime);
 				T_user_resume_Sql.insert_qq_wx(t_user_login.getId()+"", "兼果"+t_user_login.getId(),user.getName(), "http://v3.jianguojob.com/moren.png","无","","0","0","0","","","","","");
-				T_user_money_Sql.insert(t_user_login.getId()+"", "0", "8.88", "0", "0", "0", "0", "0");
+				T_user_money_Sql.insert(t_user_login.getId()+"", "0", "0", "0", "0", "0", "0", "0");
 				T_enroll_limit_Sql.insert(t_user_login.getId()+"", "0", limitDate);
 				//报名表加入并将状态设置为9 已完成状态,最后一个参数区分是否为长期
 				T_enroll_Sql.insert(t_user_login.getId()+"",job_id , "9",registerTime,"0",jobInfo.getMax() == 0?"0":"1");

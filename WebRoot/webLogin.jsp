@@ -20,13 +20,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body onload="showCityInfo()">
 
 <div class="dw f-l" style="display: none">
-	<span id="click-bn"><input id="tip" name="city" type="hidden"  value=""/></span></span>
 
-	<em></em>
+	<input id="tip" type="text" name="city" /><%--<span id="tip"></span>--%>
+
+
 </div>
 <div class="main"> 
 	<div class="title-login">
-		<a href="#" class="back"></a>
+		<%--<a href="#" class="back"></a>--%>
 		<span>登录</span>
 		<a href="register.jsp">注册</a>
 	</div>
@@ -36,7 +37,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div class="form">
 		<!-- 便捷登录，手机号登录 -->
-			<form id="sms" action="T_WebLogin_Servlet" method="post">
+			<form id="sms" action="T_WebLogin_Servlet" method="post"><%--
+				<div class="dw f-l" >
+
+					<input id="tip" type="text" name="city" type="hidden" ;/>&lt;%&ndash;<span id="tip"></span>&ndash;%&gt;
+				</div>--%>
+
 				<div class="div-phone">
 					<em></em>
 					<input type="text" id="phone" name="phone" class="infos" value="${phone}" placeholder="请输入手机号" />
@@ -145,12 +151,14 @@ function showCityInfo() {
 			if (result && result.city && result.bounds) {
 				var cityinfo = result.city;
 				var citybounds = result.bounds;
-				document.getElementById('tip').innerHTML = cityinfo;
+				document.getElementById('tip').value = cityinfo;
 				//地图显示当前城市
 				map.setBounds(citybounds);
 			}
 		} else {
-			document.getElementById('tip').innerHTML = result.info;
+
+			document.getElementById('tip').value=result.info
+
 		}
 	});
 }

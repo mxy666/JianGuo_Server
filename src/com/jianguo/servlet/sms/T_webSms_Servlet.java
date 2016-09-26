@@ -48,6 +48,13 @@ public class T_webSms_Servlet extends HttpServlet {
 		
 		String regFlag =request.getParameter("regFlag"); 
 		String fastTel=request.getParameter("fastTel");
+
+		String name=request.getParameter("name");
+		String sex=request.getParameter("sex");
+		String birthdate=request.getParameter("birthdate");
+		String identify=request.getParameter("identify");
+
+
 		new Thread(new Runnable() {
 			public void run() {
 
@@ -59,8 +66,15 @@ public class T_webSms_Servlet extends HttpServlet {
 		if(fastTel!=null&&fastTel.equals("fast")){
 
 			request.setAttribute("phone", phone);
+
+
 			request.getRequestDispatcher("webLogin.jsp").forward(request, response);
 		}else if(fastTel!=null&&fastTel.equals("fastBaoming")){
+
+			request.setAttribute("name", name);
+			request.setAttribute("sex", sex);
+			request.setAttribute("birthdate", birthdate);
+			request.setAttribute("identify", identify);
 			request.setAttribute("phone", phone);
 			request.getRequestDispatcher("forWeb\\fastbaoming.jsp").forward(request, response);
 

@@ -35,10 +35,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </script>
 </head>
 <body  onload="showCityInfo()">
-
 <div class="main">
     <div class="index-title">
-
         <div class="dw f-l">
             <span id="click-bn"><span id="tip"></span></span>
             <em></em>
@@ -51,83 +49,83 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <a href="#">
-                    <img src="<%=basePath %>img/banner-1.png"width="100%" height="100%">
+                    <img src="../img/banner-1.png"width="100%" height="100%">
                 </a>
             </div>
             <div class="swiper-slide">
                 <a href="#">
-                    <img src="<%=basePath %>/img/banner-1.png"width="100%" height="100%">
+                    <img src="../img/banner-1.png"width="100%" height="100%">
                 </a>
             </div>
             <div class="swiper-slide">
                 <a href="#">
-                    <img src="<%=basePath %>img/banner-1.png"width="100%" height="100%">
+                    <img src="../img/banner-1.png"width="100%" height="100%">
                 </a>
             </div>
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
     </div>
-    </div>
-    <div class="list">
-        <ul>
-            <a href="#">
-                <li>
-                    <div class="bg-auto">
-                        <div class="f-l">
-                            <h1>精品兼职</h1>
-                            <span>优质商家提供</span>
-                        </div>
-                        <em class="jp"></em>
+</div>
+<div class="list">
+    <ul>
+        <a href="#">
+            <li>
+                <div class="bg-auto">
+                    <div class="f-l">
+                        <h1>精品兼职</h1>
+                        <span>优质商家提供</span>
                     </div>
-                </li>
-            </a>
-            <a href="#">
-                <li class="br0">
-                    <div class="bg-auto">
-                        <div class="f-l">
-                            <h1 class="lx">兼职旅行</h1>
-                            <span>穷游世界马上走</span>
-                        </div>
-                        <em class="lxing"></em>
+                    <em class="jp"></em>
+                </div>
+            </li>
+        </a>
+        <a href="#">
+            <li class="br0">
+                <div class="bg-auto">
+                    <div class="f-l">
+                        <h1 class="lx">兼职旅行</h1>
+                        <span>穷游世界马上走</span>
                     </div>
-                </li>
-            </a>
-            <a href="#">
-                <li>
-                    <div class="bg-auto">
-                        <div class="f-l">
-                            <h1 class="rj">日结兼职</h1>
-                            <span>百元工资当日领</span>
-                        </div>
-                        <em class="rjimg"></em>
+                    <em class="lxing"></em>
+                </div>
+            </li>
+        </a>
+        <a href="#">
+            <li>
+                <div class="bg-auto">
+                    <div class="f-l">
+                        <h1 class="rj">日结兼职</h1>
+                        <span>百元工资当日领</span>
                     </div>
-                </li>
-            </a>
-            <a href="#">
-                <li class="br0">
-                    <div class="bg-auto">
-                        <div class="f-l">
-                            <h1 class="cq">长期兼职</h1>
-                            <span>长期兼职来这里</span>
-                        </div>
-                        <em class="cqimg"></em>
+                    <em class="rjimg"></em>
+                </div>
+            </li>
+        </a>
+        <a href="#">
+            <li class="br0">
+                <div class="bg-auto">
+                    <div class="f-l">
+                        <h1 class="cq">长期兼职</h1>
+                        <span>长期兼职来这里</span>
                     </div>
-                </li>
-            </a>
+                    <em class="cqimg"></em>
+                </div>
+            </li>
+        </a>
 
-        </ul>
+    </ul>
+</div>
+<div class="jzh-list">
+    <div class="jzh-list-title">
+        <em></em>
+        <span>热门兼职</span>
+        <!--em class="f-r"></em-->
     </div>
-    <div class="jzh-list">
-        <div class="jzh-list-title">
-            <em></em>
-            <span>热门兼职</span>
-            <!--em class="f-r"></em-->
-        </div>
-        <ul class="jzh-list-ul">
-           <c:forEach items="${list_t_job}" var="job" varStatus="aa">
-            <a href="#">
-         
+    <ul class="jzh-list-ul">
+        <c:forEach items="${list_t_job}" var="job" varStatus="aa">
+            <a href="Html_Job_Id_Servlet?job_id=${job.id}" >
+                <input id="jobId" name="job_id" type="hidden"  value="${job.id}"/>
                 <li>
                     <div class="imgDiv f-l">
                         <img src="<%=basePath %>img/ico/ico.png">
@@ -159,21 +157,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="ovh">
                         <div class="canvas f-r">
                             <span  class="zhanmao hide">已招满</span>
-                              <p class="nozhanmao">
-                                <span class="span1">1</span>
-                                  <span>/</span>
-                                  <span class="span2">3</span>
-                              </p>
+                            <p class="nozhanmao">
+                                <span class="span1">${job.count}</span>
+                                <span>/</span>
+                                <span class="span2">${job.sum}</span>
+                            </p>
                         </div>
-                        <div class="money">160元/天</div>
+                        <div class="money">${job.money}/天</div>
                     </div>
 
                 </li>
-              
+
             </a>
-              </c:forEach>
-  </ul>
-    </div>
+        </c:forEach>
+    </ul>
+    <div class="xianshi"> <a href="JobListForWebServlet?count=0" >显示更多</a></div>
+</div>
 <div id="Location" class="hide">
     <div class="index-title">
         <em class="Close"></em>
@@ -186,17 +185,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </ul>
 </div>
 
-    <div class="footer">
-        <img src="<%=basePath %>img/ico/ico.png" class="f-l">
-        <div class="f-l footer-text">
-            <p>下载兼果APP</p>
-            <p>兼果在手，兼职我有</p>
-        </div>
-        <em class="rem"></em>
+<div class="footer">
+    <img src="../img/ico/ico.png" class="f-l">
+    <div class="f-l footer-text">
+        <p>下载兼果APP</p>
+        <p>兼果在手，兼职我有</p>
     </div>
+    <em class="rem"></em>
+</div>
+
 
 
 <script>
+
+
+
+    function detail(){
+        alert(1);
+        $('#detail').form('submit');
+    }
+
     /*轮播图*/
     var swiper = new Swiper('.swiper-container', {
          pagination: '.swiper-pagination',

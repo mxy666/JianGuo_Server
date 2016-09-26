@@ -16,6 +16,8 @@ public class ForwardBMpage extends HttpServlet {
         System.out.println("-------------ForwardBMpage-------");
         String jobId=request.getParameter("jobid");
         request.setAttribute("jobId",jobId);
+
+
         request.getRequestDispatcher("forWeb\\fastbaoming.jsp").forward(request, response);
 
 

@@ -17,13 +17,7 @@ import com.jianguo.bean.T_job_Bean;
 import com.jianguo.bean.T_user_info_Bean;
 import com.jianguo.bean.T_user_login_Bean;
 import com.jianguo.bean.T_user_resume_Bean;
-import com.jianguo.sql.T_enroll_limit_Sql;
-import com.jianguo.sql.T_job_Sql;
-import com.jianguo.sql.T_tel_code_Sql;
-import com.jianguo.sql.T_user_info_Sql;
-import com.jianguo.sql.T_user_login_Sql;
-import com.jianguo.sql.T_user_money_Sql;
-import com.jianguo.sql.T_user_resume_Sql;
+import com.jianguo.sql.*;
 import com.jianguo.util.Frequently;
 import com.jianguo.util.MD5Util;
 import com.qiniu.util.Auth;
@@ -80,7 +74,7 @@ public class T_WebLogin_Servlet extends HttpServlet {
 					String ly_time = sdf.format(new java.util.Date());
 					T_user_info_Sql.insert_qq_wx(t_user_login.getId()+"", "兼果"+t_user_login.getId(),"", "http://v3.jianguojob.com/moren.png","","0","0","0", ly_time, ly_time);
 					T_user_resume_Sql.insert_qq_wx(t_user_login.getId()+"", "兼果"+t_user_login.getId(), "","http://v3.jianguojob.com/moren.png","","","1","0","0","","","","","");
-					T_user_money_Sql.insert(t_user_login.getId()+"", "0", "8.88", "0", "0", "0", "0", "0");
+					T_user_money_Sql.insert(t_user_login.getId()+"", "0", "0", "0", "0", "0", "0", "0");
 					
 					T_user_info_Bean t_user_info = T_user_info_Sql.select_login_id(t_user_login.getId()+"");
 					//简单的token(七牛)
@@ -111,18 +105,47 @@ public class T_WebLogin_Servlet extends HttpServlet {
 							T_user_login_Sql.update_city_id("武汉", t_user_login.getId()+"");
 						}
 						else{
-							T_user_login_Sql.update_city_id(city_name, t_user_login.getId()+"");
+							T_user_login_Sql.update_city_id(city_id, t_user_login.getId()+"");
 						}
 					}
 				}
+//兼职信息查询
+				String hot =request.getParameter("hot");
+				String count =request.getParameter("count");//分页
+				//String cityId =request.getParameter("city_id");
 
-					request.getRequestDispatcher("forWeb\\jobWeb.jsp").forward(request, response);
+
+				SimpleDateFormat dft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date beginDate = new Date();
+				Calendar date = Calendar.getInstance();
+				date.setTime(beginDate);
+				date.set(Calendar.DATE, date.get(Calendar.DATE) - 3);
+				long timeStemp = 0;
+				try {
+					Date endDate = dft.parse(dft.format(date.getTime()));
+					SimpleDateFormat date1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					String sd = date1.format(endDate);
+					Date dates=date1.parse(sd);
+					timeStemp = dates.getTime();
+					System.out.println("----"+sd+"----"+timeStemp);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+//					long ll = System.currentTimeMillis()/1000;
+				long ll = timeStemp/1000;
+				List<T_job_Bean> list_t_job = null;
+
+				list_t_job = JobForWeb.queryAlljob("1",ll+"","5");
+				request.setAttribute("list_t_job", list_t_job);
+				request.getRequestDispatcher("forWeb\\jobWeb.jsp").forward(request, response);
 			}else{
 
 				//兼职信息查询
 				String hot =request.getParameter("hot");
 				String count =request.getParameter("count");//分页
-				String cityId =request.getParameter("city_id");
+				//String cityId =request.getParameter("city_id");
 
 
 					SimpleDateFormat dft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -147,7 +170,7 @@ public class T_WebLogin_Servlet extends HttpServlet {
 					long ll = timeStemp/1000;
 					List<T_job_Bean> list_t_job = null;
 
-						list_t_job = T_job_Sql.select_hot("1","5","",ll+"","5");
+						list_t_job = JobForWeb.queryAlljob("1",ll+"","5");
 						
 
 				
@@ -164,4 +187,7 @@ public class T_WebLogin_Servlet extends HttpServlet {
 				out.println("</script>");	
 			}
 	}
+
+
+
 }

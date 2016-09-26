@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jianguo.bean.T_job_Bean;
+import com.jianguo.sql.JobForWeb;
 import com.jianguo.sql.T_job_Sql;
 import com.jianguo.sql.T_user_login_Sql;
 import com.jianguo.util.MD5Util;
@@ -79,7 +80,7 @@ public class T_passWordLogin_Servlet extends HttpServlet {
 //
 				long ll = timeStemp/1000;
 				List<T_job_Bean> list_t_job = null;
-				list_t_job = T_job_Sql.select_hot("1","5","",ll+"","5");
+				list_t_job = JobForWeb.queryAlljob("1",ll+"","5");
 
 
 				request.setAttribute("list_t_job", list_t_job);
