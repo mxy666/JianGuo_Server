@@ -123,6 +123,8 @@ public class T_JobDetail_Sql {
 					merInfo.setLogin_id(8353);
 				}else if(rs.getInt("login_id")==8224){
 					merInfo.setLogin_id(7);
+				}else if(rs.getInt("login_id")==10632){
+					merInfo.setLogin_id(10632);
 				}else{
 					merInfo.setLogin_id(rs.getInt("login_id"));
 				}
