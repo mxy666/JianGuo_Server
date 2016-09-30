@@ -2,6 +2,7 @@ package com.jianguo.servlet.job;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,6 +18,7 @@ import com.google.gson.Gson;
 import com.jianguo.bean.T_hobby_type_Bean;
 import com.jianguo.bean.T_job_Bean;
 import com.jianguo.bean.T_job_label_Bean;
+import com.jianguo.sql.Job_Sql;
 import com.jianguo.sql.T_hobby_Sql;
 import com.jianguo.sql.T_job_Sql;
 import com.jianguo.sql.T_job_info_Sql;
@@ -49,7 +51,7 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		Map params =  new HashMap();
-
+		Gson gson = new Gson();
 		String city_id =request.getParameter("city_id");
 		String aera_id =request.getParameter("aera_id");
 		String type_id =request.getParameter("type_id");
@@ -147,32 +149,40 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 			}
 			
 			int ii = 0;
-			if(job_model.equals("0")){
-				ii = T_job_Sql.insert(city_id,aera_id,type_id, merchant_id, name, name_image, ss, sss, address, mode,money, term, limit_sex, "0", sum, ly_time, "0","1",alike,ly_time2,"1","0","0",ss2,max,"0",str_girl_sum,"0");
-			}else{
-				ii = T_job_Sql.insert(city_id,aera_id,type_id, merchant_id, name, name_image, ss, sss, address, mode,money, term, limit_sex, "0", sum, ly_time, "1","1",alike,ly_time2,"1","1","0",ss2,max,"0",str_girl_sum,"0");
+			try {
+				if(job_model.equals("0")){
+
+					ii = Job_Sql.insert(city_id,aera_id,type_id, merchant_id, name, name_image, ss, sss, address, mode,money, term, limit_sex, "0", sum, ly_time, "0","1",alike,ly_time2,"1","0","0",ss2,max,"0",str_girl_sum,"0");
+
+				}else{
+					ii = Job_Sql.insert(city_id,aera_id,type_id, merchant_id, name, name_image, ss, sss, address, mode,money, term, limit_sex, "0", sum, ly_time, "1","1",alike,ly_time2,"1","1","0",ss2,max,"0",str_girl_sum,"0");
+				}
+			} catch (SQLException e) {
+				logger.error("插入job表出错+"+e.getMessage()==null?"空":e.getMessage());
+				params.put("message", "兼职信息录入失败");
+				params.put("code", "500");
+				PrintWriter pw = response.getWriter();
+				String str = gson.toJson(params);
+				pw.write(str);
+				pw.flush();
+				pw.close();
+				return;
 			}
 			logger.info(ii);
-			if(ii == 1){
-				T_job_Bean t_job = T_job_Sql.select_regedit_time(ly_time);
+			if(ii != 0){
+				T_job_Bean t_job = Job_Sql.select_regedit_time(String.valueOf(ii));
 				T_job_info_Sql.insert(t_job.getId()+"",tel, address, lon, lat, ss, sss, ss2,sss2, set_place, set_time, limit_sex, term, other, work_content, work_require);
-				if(job_model.equals("0")){
-				}else{
+				if(!job_model.equals("0")){
 					T_job_model_Sql.insert(job_model, merchant_id, t_job.getId()+"");
 				}
 				//----------------兼职标签---------------
 				if((json_limit!=null&&!json_limit.equals(""))||(json_welfare!=null&&!json_welfare.equals(""))
 						||(json_label!=null&&!json_limit.equals(""))){
-					
-					Gson g_limit = new Gson();
-					Gson g_welfare = new Gson();
-					Gson g_label = new Gson();
-					
 					String t_limit = "";
 					String t_welfare = "";
 					String t_label = "";
 					if(json_limit!=null&&!json_limit.equals("")){
-						user_limit list_limit = g_limit.fromJson(json_limit, user_limit.class);
+						user_limit list_limit = gson.fromJson(json_limit, user_limit.class);
 						for (int i = 0; i < list_limit.getList_t_limit().size(); i++) {
 							t_limit += list_limit.getList_t_limit().get(i)+",";
 						}
@@ -180,7 +190,7 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 					
 
 					if(json_welfare!=null&&!json_welfare.equals("")){
-						user_welfare list_welfare = g_welfare.fromJson(json_welfare, user_welfare.class);
+						user_welfare list_welfare = gson.fromJson(json_welfare, user_welfare.class);
 						
 						for (int i = 0; i < list_welfare.getList_t_welfare().size(); i++) {
 							t_welfare += list_welfare.getList_t_welfare().get(i)+",";
@@ -189,7 +199,7 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 					}
 					
 					if(json_label!=null&&!json_limit.equals("")){
-						user_label list_label = g_label.fromJson(json_label, user_label.class);
+						user_label list_label = gson.fromJson(json_label, user_label.class);
 						
 						for (int i = 0; i < list_label.getList_t_label().size(); i++) {
 							t_label += list_label.getList_t_label().get(i)+",";
@@ -199,26 +209,25 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 					T_job_label_Sql.insert(t_job.getId()+"", t_limit, t_welfare, t_label);
 
 					//查询标签返回
-					T_job_label_Bean t_job_label = T_job_label_Sql.select_job_id(t_job.getId()+"");
-					String [] st_limit=t_job_label.getLimits().split(",");//限制
-					List<String> list_limit2 = new ArrayList<String>();
-					for (int i = 0; i < st_limit.length; i++) {
-						list_limit2.add(st_limit[i]);
-					}
-					String[] st_welfare=t_job_label.getWelfare().split(",");//福利
-					List<String> list_welfare2 = new ArrayList<String>();
-					for (int i = 0; i < st_welfare.length; i++) {
-						list_welfare2.add(st_welfare[i]);
-					}
-					String[] st_label=t_job_label.getWelfare().split(",");//标签
-					List<String> list_label2 = new ArrayList<String>();
-					for (int i = 0; i < st_label.length; i++) {
-						list_label2.add(st_label[i]);
-					}
-					t_job.setLimit_name(list_limit2);
-					//t_job.setLimit_name(list_label2);
-					t_job.setWelfare_name(list_welfare2);
-					t_job.setLabel_name(list_label2);
+//					T_job_label_Bean t_job_label = T_job_label_Sql.select_job_id(t_job.getId()+"");
+//					String [] st_limit=t_job_label.getLimits().split(",");//限制
+//					List<String> list_limit2 = new ArrayList<String>();
+//					for (int i = 0; i < st_limit.length; i++) {
+//						list_limit2.add(st_limit[i]);
+//					}
+//					String[] st_welfare=t_job_label.getWelfare().split(",");//福利
+//					List<String> list_welfare2 = new ArrayList<String>();
+//					for (int i = 0; i < st_welfare.length; i++) {
+//						list_welfare2.add(st_welfare[i]);
+//					}
+//					String[] st_label=t_job_label.getWelfare().split(",");//标签
+//					List<String> list_label2 = new ArrayList<String>();
+//					for (int i = 0; i < st_label.length; i++) {
+//						list_label2.add(st_label[i]);
+//					}
+//					t_job.setLimit_name(list_limit2);
+//					t_job.setWelfare_name(list_welfare2);
+//					t_job.setLabel_name(list_label2);
 				}
 				//----------------兼职标签---------------
 				
@@ -233,42 +242,12 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 				pw.flush();
 				pw.close();
 				//---------------兼职偏好--------------------
-				Calendar  c =  Calendar.getInstance();
-//		        Date date = new Date(); // 取当前时间  
-				int iii = Integer.parseInt(ss2);
-				long oo = iii*1000L;
-		        Date date = new Date(oo);  // 取固定时间  
-		        System.out.println("当前时间："+date);  
-		        c.setTime(date);  //当时间set 进calendar 里面  
-		        int i = c.get(Calendar.DAY_OF_WEEK);  //取星期  
-		        System.out.println("星期几："+i);
-		        int i_xingqi = 0;
-		        if(i == 1){
-		        	i_xingqi = 7;
-		        }else{
-		        	i_xingqi = i-1;
-		        }
-		        String sd = sdf2.format(new Date(Long.parseLong(ss2+"100")));
-				String s = new String(sd);   
-				String a[] = s.split(" ");
-				String ssss = new String(a[1]);   
-				String aaaa[] = ssss.split(":");
-				int i_aaaa = Integer.parseInt(aaaa[0]);
-				int i_shangxia = 0;
-				if(i_aaaa > 6 && i_aaaa <12){
-					i_shangxia = 1;
-				}else if(i_aaaa > 13 && i_aaaa <18){
-					i_shangxia = 2;
-				}else if(i_aaaa > 19 && i_aaaa <5){
-					i_shangxia = 3;
-				}
 				//---------------兼职偏好--------------------
 			}else{
 				params.put("message", "兼职信息录入失败");
 				params.put("code", "500");
 				PrintWriter pw = response.getWriter();
-				Gson g = new Gson();
-				String str = g.toJson(params); 
+				String str = gson.toJson(params);
 				pw.write(str);
 				pw.flush();
 				pw.close();
@@ -279,8 +258,7 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 			params.put("message", "无效访问");
 			params.put("code", "404");
 			PrintWriter pw = response.getWriter();
-			Gson g = new Gson();
-			String str = g.toJson(params); 
+			String str = gson.toJson(params);
 			pw.write(str);
 			pw.flush();
 			pw.close();
@@ -317,5 +295,4 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 			return list_t_label;
 		}
 	}
-	
 }

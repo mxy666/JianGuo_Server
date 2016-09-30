@@ -2,6 +2,7 @@ package com.jianguo.servlet.job;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,12 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
+import com.jianguo.bean.Area_Bean;
 import com.jianguo.bean.T_area_Bean;
 import com.jianguo.bean.T_city_Bean;
 import com.jianguo.bean.T_label_Bean;
 import com.jianguo.bean.T_limit_Bean;
 import com.jianguo.bean.T_type_Bean;
 import com.jianguo.bean.T_welfare_Bean;
+import com.jianguo.sql.Job_Sql;
 import com.jianguo.sql.T_limit_Sql;
 import com.jianguo.sql.T_school_Sql;
 import com.jianguo.util.Frequently;
@@ -57,12 +60,16 @@ public class T_Job_Area_City_List_Servlet extends HttpServlet {
 			List<T_city_Bean> list_t_city2 = new ArrayList<T_city_Bean>();
 			for (int i = 0; i < list_t_city.size(); i++) {
 				T_city_Bean t_city = list_t_city.get(i);
-				List<T_area_Bean> list_t_area = T_school_Sql.select_All_area(t_city.getCode()+"");
+				List<Area_Bean> list_t_area = null;
+				try {
+					list_t_area = Job_Sql.selectAllArea(t_city.getCode()+"");
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 				t_city.setList_t_area(list_t_area);
 				list_t_city2.add(t_city);
 			}
 			List<T_type_Bean> list_t_type = T_school_Sql.select_All_type();
-			
 			List<T_limit_Bean> list_t_limit = T_limit_Sql.select_All_limit();
 			List<T_welfare_Bean> list_t_welfare = T_limit_Sql.select_All_welfare();
 			List<T_label_Bean> list_t_label = T_limit_Sql.select_All_label();

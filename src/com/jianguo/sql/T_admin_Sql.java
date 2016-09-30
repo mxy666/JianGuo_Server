@@ -90,28 +90,28 @@ public class T_admin_Sql {
 		}else if(city.equals("xian")){
 			city="Î÷°²";
 		}
-		
+
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		
+
 		String sql = "select * from t_city where city=?";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		List IdList = new ArrayList();
-		 T_city_Bean cityID =new T_city_Bean();      
+		 T_city_Bean cityID =new T_city_Bean();
 		try {
-			
+
 			psmt.setString(1,city);
 			rs=psmt.executeQuery();
-			
-			  while(rs.next()){             
-				 
+
+			  while(rs.next()){
+
 				  cityID.setId(rs.getInt("id")+"");
 				              }
-		
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}				
+		}
 		return Integer.parseInt(cityID.getId());
 	}
 	
