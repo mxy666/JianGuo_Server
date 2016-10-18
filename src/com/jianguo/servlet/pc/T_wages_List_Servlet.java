@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.jianguo.bean.T_city_Bean;
 import com.jianguo.bean.T_job_Bean;
 import com.jianguo.bean.T_wages_Bean;
+import com.jianguo.sql.Job_Sql;
 import com.jianguo.sql.T_job_Sql;
 import com.jianguo.sql.T_school_Sql;
 import com.jianguo.sql.T_wages_Sql;
@@ -31,9 +32,6 @@ public class T_wages_List_Servlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		this.doPost(request, response);
 	}
-
-	//http://192.168.1.233/JianGuo_Server/T_wages_List_Servlet?count=0
-	//http://101.200.205.243:8080/T_wages_List_Servlet?count=0
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException {
 		System.out.println("---T_user_moneyout_List_Servlet---");
@@ -59,7 +57,7 @@ public class T_wages_List_Servlet extends HttpServlet {
 			
 			t_wages.setJob_image(t_job.getName_image());
 			t_wages.setJob_name(t_job.getName());
-			T_city_Bean t_city = T_school_Sql.select_t_city_id(t_job.getCity_id()+"");
+			T_city_Bean t_city = Job_Sql.selectTcity_id(t_job.getCity_id()+"");
 			t_wages.setJob_city(t_city.getCity());
 
 			list_t_wages2.add(t_wages);

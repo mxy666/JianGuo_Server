@@ -5,7 +5,7 @@ import java.util.List;
 public class T_job_Bean {
 
 	private int id;//ID
-	private int city_id;//城市ID
+	private String city_id;//城市ID
 	private int area_id;//地区ID
 	private int type_id;//种类ID
 	private int merchant_id;//商家ID
@@ -149,10 +149,10 @@ public class T_job_Bean {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getCity_id() {
+	public String getCity_id() {
 		return city_id;
 	}
-	public void setCity_id(int cityId) {
+	public void setCity_id(String cityId) {
 		city_id = cityId;
 	}
 	public int getMerchant_id() {

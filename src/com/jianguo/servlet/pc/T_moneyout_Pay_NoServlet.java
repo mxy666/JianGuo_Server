@@ -17,6 +17,7 @@ import com.jianguo.bean.T_user_info_Bean;
 import com.jianguo.bean.T_user_login_Bean;
 import com.jianguo.bean.T_user_money_Bean;
 import com.jianguo.bean.T_user_moneyout_Bean;
+import com.jianguo.sql.Job_Sql;
 import com.jianguo.sql.T_job_Sql;
 import com.jianguo.sql.T_push_Sql;
 import com.jianguo.sql.T_school_Sql;
@@ -86,7 +87,7 @@ public class T_moneyout_Pay_NoServlet extends HttpServlet {
 			
 			T_enroll_Bean t_enroll = T_wages_Sql.select_login_id(t_user_moneyout.getLogin_id()+"");
 			T_job_Bean t_job = T_job_Sql.select_id(t_enroll.getJob_id()+"");
-			T_city_Bean t_city = T_school_Sql.select_t_city_id(t_job.getCity_id()+"");
+			T_city_Bean t_city = Job_Sql.selectTcity_id(t_job.getCity_id()+"");
 			t_user_moneyout.setLogin_id_city(t_city.getCity());
 			
 			T_user_info_Bean t_user_info = T_user_info_Sql.select_login_id(t_user_moneyout.getLogin_id()+"");

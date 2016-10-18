@@ -98,7 +98,7 @@ public class T_job_Sql {
 			rs=psmt.executeQuery();
 			while(rs.next()){
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -152,7 +152,7 @@ public class T_job_Sql {
 			rs=psmt.executeQuery();
 			while(rs.next()){
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -205,7 +205,7 @@ public class T_job_Sql {
 			rs=psmt.executeQuery();
 			while(rs.next()){
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -259,7 +259,7 @@ public class T_job_Sql {
 			rs=psmt.executeQuery();
 			while(rs.next()){
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -318,7 +318,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -375,7 +375,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -435,7 +435,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -492,7 +492,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -549,7 +549,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -609,7 +609,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -669,7 +669,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -727,7 +727,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -787,7 +787,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -847,7 +847,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -905,7 +905,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -965,7 +965,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -1012,7 +1012,7 @@ public class T_job_Sql {
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where (city_id=? or city_id=?) and (type_id=? and area_id=?) and is_model=0 and status=0 and hot!=3 order by hot desc limit "+count+",10";
+		String sql = "select * from t_job where (city_id=? or city_id=?)  and is_model=0 and status=0 and hot!=3 order by hot desc limit "+count+",10";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,city_id);
@@ -1025,7 +1025,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -1083,7 +1083,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -1141,7 +1141,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -1196,7 +1196,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -1251,7 +1251,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -1306,7 +1306,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -1360,7 +1360,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -1414,7 +1414,7 @@ public class T_job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));

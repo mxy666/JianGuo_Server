@@ -137,7 +137,6 @@ public class T_job_List_Filter_Servlet extends HttpServlet {
 			
 			Map map = new HashMap();
 			map.put("list_t_job", list_t_job);
-
 			params.put("data", map);
 			params.put("message", "兼职信息查询成功");
 			params.put("code", "200");

@@ -28,7 +28,7 @@ public class JobForWeb {
             while(rs.next()){
                 T_job_Bean t_job = new T_job_Bean();
                 t_job.setId(rs.getInt("id"));
-                t_job.setCity_id(rs.getInt("city_id"));
+                t_job.setCity_id(rs.getString("city_id"));
                 t_job.setArea_id(rs.getInt("area_id"));
                 t_job.setType_id(rs.getInt("type_id"));
                 t_job.setMerchant_id(rs.getInt("merchant_id"));

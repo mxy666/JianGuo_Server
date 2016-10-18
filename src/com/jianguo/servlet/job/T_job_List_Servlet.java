@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.jianguo.bean.T_job_Bean;
+import com.jianguo.sql.Job_Sql;
 import com.jianguo.sql.T_job_Sql;
 import com.jianguo.util.Frequently;
 
@@ -105,7 +106,6 @@ public class T_job_List_Servlet extends HttpServlet {
 				 timeStemp = dates.getTime();
 				System.out.println("----"+sd+"----"+timeStemp);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -115,9 +115,9 @@ public class T_job_List_Servlet extends HttpServlet {
 			if(hot.equals("3")){
 				list_t_job = T_job_Sql.select_lvxing(hot,ll+"",count);//旅行
 			}else if(hot.equals("2")){
-				list_t_job = T_job_Sql.select_hot("1",city_id,ss,ll+"",count);//精品里面没有数据，所以把热门的数据放进去
+				list_t_job = Job_Sql.selectHot("1",city_id,ss,ll+"",count);//精品里面没有数据，所以把热门的数据放进去
 			}else{
-				list_t_job = T_job_Sql.select_hot(hot,city_id,ss,ll+"",count);
+				list_t_job = Job_Sql.selectHot(hot,city_id,ss,ll+"",count);
 				
 			}
 

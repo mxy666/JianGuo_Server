@@ -19,6 +19,7 @@ import com.jianguo.bean.T_user_login_Bean;
 import com.jianguo.bean.T_user_money_Bean;
 import com.jianguo.bean.T_user_moneyout_Bean;
 import com.jianguo.bean.T_wages_Bean;
+import com.jianguo.sql.Job_Sql;
 import com.jianguo.sql.T_job_Sql;
 import com.jianguo.sql.T_school_Sql;
 import com.jianguo.sql.T_user_info_Sql;
@@ -48,7 +49,6 @@ public class T_user_moneyout_List_Servlet extends HttpServlet {
 		System.out.println("---T_user_moneyout_List_Servlet---");
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		Map params =  new HashMap();
 
 		String city_id =request.getParameter("city_id");
 		String str_city = "";
@@ -74,7 +74,7 @@ public class T_user_moneyout_List_Servlet extends HttpServlet {
 
 			T_wages_Bean t_wages = T_wages_Sql.select_login_idss(t_user_moneyout.getLogin_id()+"");
 						T_job_Bean t_job = T_job_Sql.select_id(t_wages.getJob_id()+"");
-						T_city_Bean t_city = T_school_Sql.select_t_city_id(t_job.getCity_id()+"");
+						T_city_Bean t_city = Job_Sql.selectTcity_id(t_job.getCity_id()+"");
 //			T_user_login_Bean t_user_login = T_user_login_Sql.select_id(t_user_moneyout.getLogin_id()+"");
 			t_user_moneyout.setLogin_id_city(t_city.getCity());
 
@@ -104,8 +104,8 @@ public class T_user_moneyout_List_Servlet extends HttpServlet {
 			if(str_city == "boss"){
 				list_t_user_moneyout2.add(t_user_moneyout);
 			}else if(t_user_moneyout.getLogin_id_city() == "" || t_user_moneyout.getLogin_id_city() == null){
-			}else
-				if(t_user_moneyout.getLogin_id_city().equals(str_city)){
+
+			}else if(t_user_moneyout.getLogin_id_city().equals(str_city)){
 				list_t_user_moneyout2.add(t_user_moneyout);
 			}
 		}

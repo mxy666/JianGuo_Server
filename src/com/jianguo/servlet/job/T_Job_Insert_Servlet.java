@@ -109,7 +109,7 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String ly_time2 = sdf2.format(new java.util.Date());
 			Logger logger = Logger.getLogger("log");
-			logger.info("日志信息开始!");
+			logger.info("日志信息开始!T_Job_Insert_Servlet");
 			String ss = "";
 			if(start_date.length() == 13 ){
 				ss = start_date.substring(0,10);
@@ -151,9 +151,7 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 			int ii = 0;
 			try {
 				if(job_model.equals("0")){
-
 					ii = Job_Sql.insert(city_id,aera_id,type_id, merchant_id, name, name_image, ss, sss, address, mode,money, term, limit_sex, "0", sum, ly_time, "0","1",alike,ly_time2,"1","0","0",ss2,max,"0",str_girl_sum,"0");
-
 				}else{
 					ii = Job_Sql.insert(city_id,aera_id,type_id, merchant_id, name, name_image, ss, sss, address, mode,money, term, limit_sex, "0", sum, ly_time, "1","1",alike,ly_time2,"1","1","0",ss2,max,"0",str_girl_sum,"0");
 				}
@@ -168,10 +166,11 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 				pw.close();
 				return;
 			}
-			logger.info(ii);
 			if(ii != 0){
-				T_job_Bean t_job = Job_Sql.select_regedit_time(String.valueOf(ii));
-				T_job_info_Sql.insert(t_job.getId()+"",tel, address, lon, lat, ss, sss, ss2,sss2, set_place, set_time, limit_sex, term, other, work_content, work_require);
+				T_job_Bean t_job = null;
+				try {
+					t_job = Job_Sql.getJob(String.valueOf(ii));
+				Job_Sql.insertJobInfo(t_job.getId()+"",tel, address, lon, lat, ss, sss, ss2,sss2, set_place, set_time, limit_sex, term, other, work_content, work_require);
 				if(!job_model.equals("0")){
 					T_job_model_Sql.insert(job_model, merchant_id, t_job.getId()+"");
 				}
@@ -187,50 +186,34 @@ public class T_Job_Insert_Servlet extends HttpServlet {
 							t_limit += list_limit.getList_t_limit().get(i)+",";
 						}
 					}
-					
-
 					if(json_welfare!=null&&!json_welfare.equals("")){
 						user_welfare list_welfare = gson.fromJson(json_welfare, user_welfare.class);
 						
 						for (int i = 0; i < list_welfare.getList_t_welfare().size(); i++) {
 							t_welfare += list_welfare.getList_t_welfare().get(i)+",";
-							//T_job_label_Sql.update_welfare(t_welfare, t_job.getId()+"");
 						}
 					}
-					
 					if(json_label!=null&&!json_limit.equals("")){
 						user_label list_label = gson.fromJson(json_label, user_label.class);
 						
 						for (int i = 0; i < list_label.getList_t_label().size(); i++) {
 							t_label += list_label.getList_t_label().get(i)+",";
-							//T_job_label_Sql.update_label(t_label, t_job.getId()+"");
 						}
 					}
 					T_job_label_Sql.insert(t_job.getId()+"", t_limit, t_welfare, t_label);
-
-					//查询标签返回
-//					T_job_label_Bean t_job_label = T_job_label_Sql.select_job_id(t_job.getId()+"");
-//					String [] st_limit=t_job_label.getLimits().split(",");//限制
-//					List<String> list_limit2 = new ArrayList<String>();
-//					for (int i = 0; i < st_limit.length; i++) {
-//						list_limit2.add(st_limit[i]);
-//					}
-//					String[] st_welfare=t_job_label.getWelfare().split(",");//福利
-//					List<String> list_welfare2 = new ArrayList<String>();
-//					for (int i = 0; i < st_welfare.length; i++) {
-//						list_welfare2.add(st_welfare[i]);
-//					}
-//					String[] st_label=t_job_label.getWelfare().split(",");//标签
-//					List<String> list_label2 = new ArrayList<String>();
-//					for (int i = 0; i < st_label.length; i++) {
-//						list_label2.add(st_label[i]);
-//					}
-//					t_job.setLimit_name(list_limit2);
-//					t_job.setWelfare_name(list_welfare2);
-//					t_job.setLabel_name(list_label2);
+				}
+				} catch (SQLException e) {
+					logger.error("插入jobinfo表出错+"+e.getMessage()==null?"空":e.getMessage());
+					params.put("message", "兼职信息录入失败");
+					params.put("code", "500");
+					PrintWriter pw = response.getWriter();
+					String str = gson.toJson(params);
+					pw.write(str);
+					pw.flush();
+					pw.close();
+					return;
 				}
 				//----------------兼职标签---------------
-				
 				Map map = new HashMap();
 				params.put("data", map);
 				params.put("message", "兼职信息录入成功");

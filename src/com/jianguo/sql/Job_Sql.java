@@ -2,8 +2,11 @@ package com.jianguo.sql;
 
 import com.jianguo.bean.Area_Bean;
 import com.jianguo.bean.T_area_Bean;
+import com.jianguo.bean.T_city_Bean;
 import com.jianguo.bean.T_job_Bean;
 import com.jianguo.util.DButil;
+
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -100,20 +103,49 @@ public class Job_Sql {
 				DButil.psClose(pst);
 			return num;
 	}
-
-	//根据时间戳查出兼职信息
-	public static T_job_Bean select_regedit_time(String jobid){
+	//商家信息录入
+	public static int insertJobInfo(String job_id,String tel,String address,String lon,String lat,String start_date,String stop_date,
+							 String start_time,String stop_time,String set_place,String set_time,String limit_sex,String term,String other,String work_content,
+							 String work_require) throws SQLException {
+		int num=0;
+		Logger logger = Logger.getLogger("log");
+		logger.info("日志信息开始!");
+		Connection conn=DButil.getCon();
+		String sql="insert into t_job_info(job_id,tel,address,lon,lat,start_date,stop_date,start_time,stop_time,set_place,set_time,limit_sex,term,other,work_content,work_require) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		PreparedStatement pst=DButil.getPstm(conn, sql);
+			pst.setString(1, job_id);
+			pst.setString(2, tel);
+			pst.setString(3, address);
+			pst.setString(4, lon);
+			pst.setString(5, lat);
+			pst.setString(6, start_date);
+			pst.setString(7, stop_date);
+			pst.setString(8, start_time);
+			pst.setString(9, stop_time);
+			pst.setString(10, set_place);
+			pst.setString(11, set_time);
+			pst.setString(12, limit_sex);
+			pst.setString(13, term);
+			pst.setString(14, other);
+			pst.setString(15, work_content);
+			pst.setString(16, work_require);
+			num=pst.executeUpdate();
+			DButil.close(conn);
+			DButil.psClose(pst);
+		return num;
+	}
+	//根据jobid查找job对象
+	public static T_job_Bean getJob(String jobid) throws SQLException {
 		ResultSet rs=null;
 		T_job_Bean t_job = new T_job_Bean();
 		Connection conn=DButil.getCon();
 		String sql = "select * from t_job where id=?";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
 			psmt.setString(1,jobid);
 			rs=psmt.executeQuery();
 			while(rs.next()){
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -126,8 +158,6 @@ public class Job_Sql {
 				t_job.setMoney(rs.getDouble("money"));
 				t_job.setTerm(rs.getInt("term"));
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
-				/*t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
 				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
 				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
@@ -143,16 +173,10 @@ public class Job_Sql {
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
 				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-			
 			}
 			psmt.close();
 			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
 			DButil.close(conn);
-		}
 		return t_job;
 	}
 	
@@ -167,7 +191,7 @@ public class Job_Sql {
 			rs=psmt.executeQuery();
 			while(rs.next()){
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -220,7 +244,7 @@ public class Job_Sql {
 			rs=psmt.executeQuery();
 			while(rs.next()){
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -263,58 +287,7 @@ public class Job_Sql {
 		return t_job;
 	}
 	
-	public static T_job_Bean select_alike(String alike){
-		ResultSet rs=null;
-		T_job_Bean t_job = new T_job_Bean();
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where alike=? and limit_sex=30";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			psmt.setString(1,alike);
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-				/*t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return t_job;
-	}
+
 	//(city_id,"0","1","2","3","0");
 	public static List<T_job_Bean> select_all(String city_id,String status0,String status1,String status2,String status3,String count){
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
@@ -332,7 +305,7 @@ public class Job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -388,7 +361,7 @@ public class Job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -447,7 +420,7 @@ public class Job_Sql {
 			while(rs.next()){
 				T_job_Bean t_job = new T_job_Bean();
 				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
+				t_job.setCity_id(rs.getString("city_id"));
 				t_job.setArea_id(rs.getInt("area_id"));
 				t_job.setType_id(rs.getInt("type_id"));
 				t_job.setMerchant_id(rs.getInt("merchant_id"));
@@ -490,991 +463,14 @@ public class Job_Sql {
 		return list;
 	}
 	
-	public static List<T_job_Bean> select_lvxing(String hot,String date,String count){
-		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where hot=? and is_model=0 order by status asc,id desc limit "+count+",10";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			psmt.setString(1,hot);
-//			psmt.setString(3,date);
-//			psmt.setString(4,date2);
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				T_job_Bean t_job = new T_job_Bean();
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-				/*t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-				list.add(t_job);
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return list;
-	}
+
+
 	
-	public static List<T_job_Bean> select_max(String city_id,String date,String count){
-		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where max=1 and city_id=? and is_model=0 order by id desc limit "+count+",10";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			psmt.setString(1,city_id);
-//			psmt.setString(3,date);
-//			psmt.setString(4,date2);
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				T_job_Bean t_job = new T_job_Bean();
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-			/*	t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-				list.add(t_job);
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return list;
-	}
+
+
 	
-	public static List<T_job_Bean> select_filter0(String city_id,String type_id,String area_id,String date,String date2,String count){
-		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and (type_id=? or area_id=?) and is_model=0 and status=0 and hot!=3 order by status asc,id desc limit "+count+",10";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			psmt.setString(1,city_id);
-			psmt.setString(2,type_id);
-			psmt.setString(3,area_id);
-//			psmt.setString(4,date);
-//			psmt.setString(5,date2);
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				T_job_Bean t_job = new T_job_Bean();
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-				/*t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-				list.add(t_job);
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return list;
-	}
-	
-	public static List<T_job_Bean> select_filter000(String city_id,String type_id,String area_id,String date,String date2,String count){
-		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and (type_id=? and area_id=?) and is_model=0 and status=0 and hot!=3 order by status asc,id desc limit "+count+",10";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			psmt.setString(1,city_id);
-			psmt.setString(2,type_id);
-			psmt.setString(3,area_id);
-//			psmt.setString(4,date);
-//			psmt.setString(5,date2);
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				T_job_Bean t_job = new T_job_Bean();
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-				/*t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-				list.add(t_job);
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return list;
-	}
-	
-	public static List<T_job_Bean> select_filter00(String city_id,String date,String date2,String count){
-		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and is_model=0 and status=0 and hot!=3 order by status asc,id desc limit "+count+",10";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			psmt.setString(1,city_id);
-//			psmt.setString(2,date);
-//			psmt.setString(3,date2);
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				T_job_Bean t_job = new T_job_Bean();
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-				/*t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-				list.add(t_job);
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return list;
-	}
-	
-	public static List<T_job_Bean> select_filter1(String city_id,String type_id,String area_id,String date,String date2,String count){
-		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and (type_id=? or area_id=?) and is_model=0 and status=0 and hot!=3 order by money desc limit "+count+",10";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			psmt.setString(1,city_id);
-			psmt.setString(2,type_id);
-			psmt.setString(3,area_id);
-//			psmt.setString(4,date);
-//			psmt.setString(5,date2);
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				T_job_Bean t_job = new T_job_Bean();
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-				/*t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-				list.add(t_job);
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return list;
-	}
-	
-	public static List<T_job_Bean> select_filter111(String city_id,String type_id,String area_id,String date,String date2,String count){
-		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and (type_id=? and area_id=?) and is_model=0 and status=0 and hot!=3 order by money desc limit "+count+",10";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			psmt.setString(1,city_id);
-			psmt.setString(2,type_id);
-			psmt.setString(3,area_id);
-//			psmt.setString(4,date);
-//			psmt.setString(5,date2);
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				T_job_Bean t_job = new T_job_Bean();
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-			/*	t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-				list.add(t_job);
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return list;
-	}
-	
-	public static List<T_job_Bean> select_filter11(String city_id,String date,String date2,String count){
-		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and is_model=0 and status=0 and hot!=3 order by money desc limit "+count+",10";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			psmt.setString(1,city_id);
-//			psmt.setString(2,date);
-//			psmt.setString(3,date2);
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				T_job_Bean t_job = new T_job_Bean();
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-				/*t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-				list.add(t_job);
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return list;
-	}
-	
-	public static List<T_job_Bean> select_filter2(String city_id,String type_id,String area_id,String date,String date2,String count){
-		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and (type_id=? or area_id=?) and is_model=0 and status=0 and hot!=3 order by hot desc limit "+count+",10";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			psmt.setString(1,city_id);
-			psmt.setString(2,type_id);
-			psmt.setString(3,area_id);
-//			psmt.setString(4,date);
-//			psmt.setString(5,date2);
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				T_job_Bean t_job = new T_job_Bean();
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-				/*t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-				list.add(t_job);
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return list;
-	}
-	
-	public static List<T_job_Bean> select_filter222(String city_id,String type_id,String area_id,String date,String date2,String count){
-		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and (type_id=? and area_id=?) and is_model=0 and status=0 and hot!=3 order by hot desc limit "+count+",10";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			psmt.setString(1,city_id);
-			psmt.setString(2,type_id);
-			psmt.setString(3,area_id);
-//			psmt.setString(4,date);
-//			psmt.setString(5,date2);
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				T_job_Bean t_job = new T_job_Bean();
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-				/*t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-				list.add(t_job);
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return list;
-	}
-	
-	public static List<T_job_Bean> select_filter22(String city_id,String date,String date2,String count){
-		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where city_id=? and is_model=0 and status=0 and hot!=3 order by hot desc limit "+count+",10";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			psmt.setString(1,city_id);
-//			psmt.setString(2,date);
-//			psmt.setString(3,date2);
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				T_job_Bean t_job = new T_job_Bean();
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-				/*t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-				list.add(t_job);
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return list;
-	}
-	
-	public static List<T_job_Bean> select_term(String mode,String city_id,String date,String count){
-		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where mode=? and city_id=? and is_model=0 and status=0 and hot!=3 order by id desc limit "+count+",10";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			psmt.setString(1,mode);
-			psmt.setString(2,city_id);
-//			psmt.setString(3,date);
-//			psmt.setString(4,date2);
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				T_job_Bean t_job = new T_job_Bean();
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-				/*t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-				list.add(t_job);
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return list;
-	}
-	
-	public static List<T_job_Bean> select_merchant_id(String merchant_id,String count){
-		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where merchant_id=? and limit_sex!=31 and is_model=0 order by id desc limit "+count+",10";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			psmt.setString(1,merchant_id);
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				T_job_Bean t_job = new T_job_Bean();
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-				/*t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-				list.add(t_job);
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return list;
-	}
-	
-	public static List<T_job_Bean> select_merchant_id_zhong(String merchant_id,String count){
-		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where merchant_id=? and status =0 and limit_sex!=30 and is_model=0 order by id desc limit "+count+",10";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			psmt.setString(1,merchant_id);
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				T_job_Bean t_job = new T_job_Bean();
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-				/*t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-				list.add(t_job);
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return list;
-	}
-	
-	public static List<T_job_Bean> select_merchant_id_no_zhong(String merchant_id,String count){
-		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where merchant_id=? and status !=0 and limit_sex!=30 and is_model=0 order by id desc limit "+count+",10";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			psmt.setString(1,merchant_id);
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				T_job_Bean t_job = new T_job_Bean();
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-				/*t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-				list.add(t_job);
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return list;
-	}
-	
-	public static List<T_job_Bean> select_all_status(){
-		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where is_model=0 and (status =0 or status =1)";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				T_job_Bean t_job = new T_job_Bean();
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-				/*t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-				list.add(t_job);
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return list;
-	}
-	
-	public static List<T_job_Bean> select_all_status_wai(){
-		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
-		ResultSet rs=null;
-		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where is_model=0 and max=0 and (status =0 or status =1)";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		try {
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				T_job_Bean t_job = new T_job_Bean();
-				t_job.setId(rs.getInt("id"));
-				t_job.setCity_id(rs.getInt("city_id"));
-				t_job.setArea_id(rs.getInt("area_id"));
-				t_job.setType_id(rs.getInt("type_id"));
-				t_job.setMerchant_id(rs.getInt("merchant_id"));
-				t_job.setName(rs.getString("name")+"");
-				t_job.setName_image(rs.getString("name_image")+"");
-				t_job.setStart_date(rs.getString("start_date")+"");
-				t_job.setStop_date(rs.getString("stop_date")+"");
-				t_job.setAddress(rs.getString("address")+"");
-				t_job.setMode(rs.getInt("mode"));
-				t_job.setMoney(rs.getDouble("money"));
-				t_job.setTerm(rs.getInt("term"));
-				t_job.setLimit_sex(rs.getInt("limit_sex"));
-				/*t_job.setCount(rs.getInt("count"));
-				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
-				t_job.setRegedit_time(rs.getString("regedit_time")+"");
-				t_job.setStatus(rs.getInt("status"));
-				t_job.setHot(rs.getInt("hot"));
-				t_job.setAlike(rs.getString("alike")+"");
-				t_job.setReg_date(rs.getString("reg_date")+"");
-				t_job.setLook(rs.getInt("look"));
-				t_job.setIs_model(rs.getInt("is_model"));
-				t_job.setUser_count(rs.getInt("user_count"));
-				t_job.setMax(rs.getInt("max"));
-				t_job.setGirl_count(rs.getInt("girl_count"));
-				t_job.setGirl_sum(rs.getInt("girl_sum"));
-				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
-				list.add(t_job);
-			}
-			psmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			DButil.close(conn);
-		}
-		return list;
-	}
-	
-	public static int update_look(String id){
-		int num=0;
-		try {
-			Connection conn=DButil.getCon();
-			String sql = "update t_job set look=look+1 where id=?";
-			PreparedStatement psmt = DButil.getPstm(conn, sql);
-			psmt.setString(1, id);
-			num=psmt.executeUpdate();
-			psmt.close();
-			conn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return num;
-	}
+
+
 	
 	public static int update_count(String id){
 		int num=0;
@@ -1641,47 +637,105 @@ public class Job_Sql {
 		}
 		return num;
 	}
-	
-	public static int update_all(String city_id,String area_id,String type_id,String merchant_id,String name,String name_image,String start_date,String stop_date,
-			String address,String mode,String money,String term,String limit_sex,String sum,String regedit_time,
-			String status,String hot,String alike,String look,String is_model,String start_time,String girl_sum,String id){
-		int num=0;
+	public static T_city_Bean selectTcity_id(String id){
+		ResultSet rs=null;
+		T_city_Bean t_city = new T_city_Bean();
+		Connection conn=DButil.getCon();
+		String sql = "select * from t_city where id=? or code=?";
+		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
-			Connection conn=DButil.getCon();
-			String sql = "update t_job set city_id=?,area_id=?,type_id=?,merchant_id=?,name=?,name_image=?,start_date=?,stop_date=?,address=?,mode=?,money=?,term=?,limit_sex=?,sum=?,regedit_time=?,status=?,hot=?,alike=?,look=?,is_model=?,start_time=?,girl_sum=? where id=?";
-			PreparedStatement pst = DButil.getPstm(conn, sql);
-			pst.setString(1, city_id);
-	    	pst.setString(2, area_id);
-	    	pst.setString(3, type_id);
-	    	pst.setString(4, merchant_id);
-	    	pst.setString(5, name);
-	    	pst.setString(6, name_image);
-	    	pst.setString(7, start_date);
-	    	pst.setString(8, stop_date);
-	    	pst.setString(9, address);
-	    	pst.setString(10, mode);
-	    	pst.setString(11, money);
-	    	pst.setString(12, term);
-	    	pst.setString(13, limit_sex);
-	    	pst.setString(14, sum);
-	    	pst.setString(15, regedit_time);
-	    	pst.setString(16, status);
-	    	pst.setString(17, hot);
-	    	pst.setString(18, alike);
-	    	pst.setString(19, look);
-	    	pst.setString(20, is_model);
-	    	pst.setString(21, start_time);
-	    	pst.setString(22, girl_sum);
-	    	pst.setString(23, id);
-			num=pst.executeUpdate();
-			pst.close();
+			if (id.equals("898")){
+				id="0898";
+			}else if(id.equals("899")){
+				id="0899";
+			}else if(id.equals("571")){
+				id="0571";
+			}else if(id.equals("10")){
+				id="010";
+			}else if(id.equals("27")){
+				id="027";
+			}else if(id.equals("29")){
+				id="029";
+			}
+			psmt.setString(1,id);
+			psmt.setString(2,id);
+			rs=psmt.executeQuery();
+			while(rs.next()){
+				//t_city.setId(rs.getInt("id"));
+				t_city.setId(rs.getString("code")+"");
+				t_city.setCity(rs.getString("city")+"");
+				t_city.setCode(rs.getString("code")+"");
+			}
+			psmt.close();
 			conn.close();
-		} catch (Exception e) {
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			DButil.close(conn);
 		}
-		return num;
+		return t_city;
 	}
-	
+
+	public static List<T_job_Bean> selectHot(String hot,String city_id,String cityID2,String date,String count){
+		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
+		ResultSet rs=null;
+		Connection conn=DButil.getCon();
+//		String mersql = "select * from t_job where hot=? and city_id=? and is_model=0 and (status=0 or status=2) order by status asc,id desc limit "+count+",10";
+		String sql = "select * from t_job where hot=? and (city_id=? or city_id=? ) and is_model=0 order by status asc,id desc limit "+count+",10";
+		PreparedStatement psmt = DButil.getPstm(conn, sql);
+		try {
+			psmt.setString(1,hot);
+			psmt.setString(2,city_id);
+			psmt.setString(3,cityID2);
+//			psmt.setString(3,date);
+//			psmt.setString(4,date2);
+			rs=psmt.executeQuery();
+			while(rs.next()){
+				T_job_Bean t_job = new T_job_Bean();
+				t_job.setId(rs.getInt("id"));
+				t_job.setCity_id(rs.getString("city_id"));
+				t_job.setArea_id(rs.getInt("area_id"));
+				t_job.setType_id(rs.getInt("type_id"));
+				t_job.setMerchant_id(rs.getInt("merchant_id"));
+				t_job.setName(rs.getString("name")+"");
+				t_job.setName_image(rs.getString("name_image")+"");
+				t_job.setStart_date(rs.getString("start_date")+"");
+				t_job.setStop_date(rs.getString("stop_date")+"");
+				t_job.setAddress(rs.getString("address")+"");
+				t_job.setMode(rs.getInt("mode"));
+				t_job.setMoney(rs.getDouble("money"));
+				t_job.setTerm(rs.getInt("term"));
+				t_job.setLimit_sex(rs.getInt("limit_sex"));
+			/*	t_job.setCount(rs.getInt("count"));
+				t_job.setSum(rs.getInt("sum"));*/
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setRegedit_time(rs.getString("regedit_time")+"");
+				t_job.setStatus(rs.getInt("status"));
+				t_job.setHot(rs.getInt("hot"));
+				t_job.setAlike(rs.getString("alike")+"");
+				t_job.setReg_date(rs.getString("reg_date")+"");
+				t_job.setLook(rs.getInt("look"));
+				t_job.setIs_model(rs.getInt("is_model"));
+				t_job.setUser_count(rs.getInt("user_count"));
+				t_job.setMax(rs.getInt("max"));
+				t_job.setGirl_count(rs.getInt("girl_count"));
+				t_job.setGirl_sum(rs.getInt("girl_sum"));
+				t_job.setGirl_user(rs.getInt("girl_user"));
+				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				list.add(t_job);
+			}
+			psmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			DButil.close(conn);
+		}
+		return list;
+	}
 	public static List<T_job_Bean> 	queryAll(String name){
 		 Connection conn=DButil.getCon();
 		 List <T_job_Bean>list=new ArrayList<T_job_Bean>();

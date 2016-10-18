@@ -21,6 +21,7 @@ import com.jianguo.bean.T_user_login_Bean;
 import com.jianguo.bean.T_user_money_Bean;
 import com.jianguo.bean.T_user_moneyout_Bean;
 import com.jianguo.bean.T_wages_Bean;
+import com.jianguo.sql.Job_Sql;
 import com.jianguo.sql.T_job_Sql;
 import com.jianguo.sql.T_push_Sql;
 import com.jianguo.sql.T_school_Sql;
@@ -70,41 +71,7 @@ public class T_moneyout_Pay_Servlet extends HttpServlet {
 		Jdpushcc.sendPush("童鞋，你所提现的工资已经发放到你所绑定的账号中了，请注意查收。","jianguo"+login_id);
 		//T_push_Sql.insert(login_id, "工资已发放", "工资已发放", "童鞋，你所提现的工资已经发放到你所绑定的账号中了，请注意查收。", "1","0","0","0", ly_time);
 		T_push_Sql.insert(login_id, "提现成功", "提现成功", "童鞋，你所提现的工资已经发放到你所绑定的账号中了，2小时内到账，请注意查收。", "1","0","0","0", ly_time);
-		
-		
-/*		List<T_user_moneyout_Bean> list_t_user_moneyout = T_user_moneyout_Sql.select_All();
 
-		List<T_user_moneyout_Bean> list_t_user_moneyout2 = new ArrayList<T_user_moneyout_Bean>();
-		for (int i = 0; i < list_t_user_moneyout.size(); i++) {
-			T_user_moneyout_Bean t_user_moneyout = list_t_user_moneyout.get(i);
-			
-			T_enroll_Bean t_enroll = T_wages_Sql.select_login_id(t_user_moneyout.getLogin_id()+"");
-			T_job_Bean t_job = T_job_Sql.select_id(t_enroll.getJob_id()+"");
-			T_city_Bean t_city = T_school_Sql.select_t_city_id(t_job.getCity_id()+"");
-			t_user_moneyout.setLogin_id_city(t_city.getCity());
-			
-			T_user_info_Bean t_user_info = T_user_info_Sql.select_login_id(t_user_moneyout.getLogin_id()+"");
-			t_user_moneyout.setLogin_name(t_user_info.getName());
-			t_user_moneyout.setLogin_nameimage(t_user_info.getName_image());
-			
-			T_user_money_Bean t_user_money = T_user_money_Sql.select_login_id(t_user_moneyout.getLogin_id()+"");
-			
-			if(t_user_moneyout.getType() == 0){
-				t_user_moneyout.setLogin_type("支付宝");
-				t_user_moneyout.setLogin_hao(t_user_money.getZhifubao());
-			}else if(t_user_moneyout.getType() == 1){
-				t_user_moneyout.setLogin_type("银行卡");
-				t_user_moneyout.setLogin_hao(t_user_money.getKahao());
-			}
-			//list_t_user_moneyout2.add(t_user_moneyout);
-			if(str_city == "boss"){
-				list_t_user_moneyout2.add(t_user_moneyout);
-			}else if(t_user_moneyout.getLogin_id_city() == "" || t_user_moneyout.getLogin_id_city() == null){
-			}else
-				if(t_user_moneyout.getLogin_id_city().equals(str_city)){
-				list_t_user_moneyout2.add(t_user_moneyout);
-			}
-		}*/
 		List<T_user_moneyout_Bean> list_t_user_moneyout = T_user_moneyout_Sql.select_All();
 
 		List<T_user_moneyout_Bean> list_t_user_moneyout2 = new ArrayList<T_user_moneyout_Bean>();
@@ -113,7 +80,7 @@ public class T_moneyout_Pay_Servlet extends HttpServlet {
 
 			T_wages_Bean t_wages = T_wages_Sql.select_login_idss(t_user_moneyout.getLogin_id()+"");
 						T_job_Bean t_job = T_job_Sql.select_id(t_wages.getJob_id()+"");
-						T_city_Bean t_city = T_school_Sql.select_t_city_id(t_job.getCity_id()+"");
+						T_city_Bean t_city = Job_Sql.selectTcity_id(t_job.getCity_id()+"");
 //			T_user_login_Bean t_user_login = T_user_login_Sql.select_id(t_user_moneyout.getLogin_id()+"");
 			t_user_moneyout.setLogin_id_city(t_city.getCity());
 

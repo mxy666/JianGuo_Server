@@ -1,6 +1,7 @@
 package com.jianguo.servlet.pc.html;
 
 import com.jianguo.bean.T_job_Bean;
+import com.jianguo.sql.Job_Sql;
 import com.jianguo.sql.T_job_Sql;
 
 import javax.servlet.ServletException;
@@ -51,7 +52,7 @@ public class JobDetailWebServlet extends HttpServlet {
 						}else if(hot.equals("2")){
 							list_t_job = T_job_Sql.select_hot("1","5",ll+"",count);//精品里面没有数据，所以把热门的数据放进去
 						}else{*/
-        list_t_job = T_job_Sql.select_hot("1","5","",ll+"","5");
+        list_t_job = Job_Sql.selectHot("1","5","",ll+"","5");
 
         //}
 

@@ -214,10 +214,24 @@ public class T_school_Sql {
 		ResultSet rs=null;
 		T_city_Bean t_city = new T_city_Bean();
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_city where id=?";
+		String sql = "select * from t_city where id=? or code=?";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
+			if (id.equals("898")){
+				id="0898";
+			}else if(id.equals("899")){
+				id="0899";
+			}else if(id.equals("571")){
+				id="0571";
+			}else if(id.equals("10")){
+				id="010";
+			}else if(id.equals("27")){
+				id="027";
+			}else if(id.equals("29")){
+				id="029";
+			}
 			psmt.setString(1,id);
+			psmt.setString(2,id);
 			rs=psmt.executeQuery();
 			while(rs.next()){
 				//t_city.setId(rs.getInt("id"));
@@ -285,30 +299,6 @@ public class T_school_Sql {
 		return t_type;
 	}
 
-	//根据token查询数据
-//	public static T_school_Bean select_name(String name){
-//		ResultSet rs=null;
-//		T_school_Bean t_school = new T_school_Bean();
-//		Connection conn=DButil.getCon();
-//		String mersql = "select * from t_school where like '%"+name+"%";
-//		PreparedStatement psmt = DButil.getPstm(conn, mersql);
-//		try {
-////			psmt.setString(1,token);
-//			rs=psmt.executeQuery();
-//			while(rs.next()){
-//				t_school.setId(rs.getInt("id"));
-//				t_school.setCity_id(rs.getInt("city_id"));
-//				t_school.setName(rs.getString("name")+"");
-//			}
-//			psmt.close();
-//			conn.close();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}finally{
-//			DButil.close(conn);
-//		}
-//		return t_school;
-//	}
+
 	
 }

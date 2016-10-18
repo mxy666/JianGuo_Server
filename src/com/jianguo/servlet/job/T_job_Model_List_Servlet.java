@@ -19,6 +19,7 @@ import com.jianguo.bean.T_job_label_Bean;
 import com.jianguo.bean.T_job_model_Bean;
 import com.jianguo.bean.T_merchant_Bean;
 import com.jianguo.bean.T_type_Bean;
+import com.jianguo.sql.Job_Sql;
 import com.jianguo.sql.T_job_Sql;
 import com.jianguo.sql.T_job_info_Sql;
 import com.jianguo.sql.T_job_label_Sql;
@@ -72,7 +73,7 @@ public class T_job_Model_List_Servlet extends HttpServlet {
 					T_job_Bean t_job = T_job_Sql.select_id(t.getId()+"");
 					t_job.setModel_name("0");
 					
-					T_city_Bean t_city = T_school_Sql.select_t_city_id(t_job.getCity_id()+"");
+					T_city_Bean t_city = Job_Sql.selectTcity_id(t_job.getCity_id()+"");
 					t_job.setCity_id_name(t_city.getCity());
 					
 					T_area_Bean t_area = T_school_Sql.select_t_area_id(t_job.getArea_id()+"");
@@ -149,7 +150,7 @@ public class T_job_Model_List_Servlet extends HttpServlet {
 					T_job_Bean t_job = T_job_Sql.select_id(t_job_model.getJob_id()+"");
 					t_job.setModel_name(t_job_model.getModel_name());
 					
-					T_city_Bean t_city = T_school_Sql.select_t_city_id(t_job.getCity_id()+"");
+					T_city_Bean t_city = Job_Sql.selectTcity_id(t_job.getCity_id()+"");
 					t_job.setCity_id_name(t_city.getCity());
 					
 					T_area_Bean t_area = T_school_Sql.select_t_area_id(t_job.getArea_id()+"");

@@ -15,6 +15,7 @@ import com.jianguo.bean.T_enroll_Bean;
 import com.jianguo.bean.T_job_Bean;
 import com.jianguo.bean.T_job_info_Bean;
 import com.jianguo.bean.T_merchant_Bean;
+import com.jianguo.sql.Job_Sql;
 import com.jianguo.sql.T_attent_Sql;
 import com.jianguo.sql.T_enroll_Sql;
 import com.jianguo.sql.T_job_Sql;
@@ -90,7 +91,7 @@ public class T_Job_info_Select_JobId_Servlet extends HttpServlet {
 			}
 			t_merchant.setTel(t_job_info.getTel());
 			
-			T_city_Bean t_city = T_school_Sql.select_t_city_id(t_jobs.getCity_id()+"");
+			T_city_Bean t_city = Job_Sql.selectTcity_id(t_jobs.getCity_id()+"");
 			t_job_info.setAddress(t_city.getCity()+"-"+t_job_info.getAddress());
 			
 			if(!alike.equals("0")){
