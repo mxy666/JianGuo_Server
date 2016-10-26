@@ -69,26 +69,12 @@ public class T_enroll_Agree_Servlet extends HttpServlet {
 //			}else{
 			
 			if(offer.equals("9")){
-//				T_enroll_Sql.update_status("8", job_id);
-//				T_job_Sql.update_status("2", job_id);
-				
-//				List<T_enroll_Bean> list_t_enroll = T_enroll_Sql.select_job_id_status2(job_id, "5","5","8","9","10","11","12","13","0");
-//				if(list_t_enroll.size() == 0){
-//					T_job_Sql.update_status("5", job_id);
-//				}else{
-					T_job_Sql.update_status("3", job_id);
-//				}
+				T_job_Sql.update_status("3", job_id);
 				T_enroll_Sql.update_status("9", job_id);
 				T_enroll_Sql.update_statusss("9", job_id);
-				
 				if(!alike.equals("0")){
 					T_job_Bean t_job11 = T_job_Sql.select_alike(alike);
-//					List<T_enroll_Bean> list_t_enroll2 = T_enroll_Sql.select_job_id_status2(t_job11.getId()+"", "5","5","8","9","10","11","12","13","0");
-//					if(list_t_enroll2.size() == 0){
-//						T_job_Sql.update_status("5", t_job11.getId()+"");
-//					}else{
 						T_job_Sql.update_status("3", t_job11.getId()+"");
-//					}
 					T_enroll_Sql.update_status("9", t_job11.getId()+"");
 					T_enroll_Sql.update_statusss("9", t_job11.getId()+"");
 				}

@@ -114,7 +114,7 @@ public class T_enroll_Insert_Servlet extends HttpServlet {
 								public void run() {
 									Text_Sms.Enroll(t_job_onfo11.getTel(), t_job11.getName(), t_user_resume.getName(), (t_user_resume.getSex() == 1)?"ÄÐ":"Å®", t_user_login.getTel(), t_user_resume.getSchool());
 								}}).start();
-							
+
 							T_job_Sql.update_count(job_id);
 							
 							new Thread(new Runnable() {			

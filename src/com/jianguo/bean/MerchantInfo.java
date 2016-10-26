@@ -7,12 +7,12 @@ package com.jianguo.bean;
 public class MerchantInfo {
     private String tel;
     private int loginId;
+    private int merchantId;
     private String password;
     private String token;
-    private int permissions;//商家权限 0是外部商家，1是内部
-    private int resumeStatus;//是否填写商家资料信息 0未填写 1已经填写
+    private int permissions;//商家权限（1是外部商家，2是个人商户，0是内部）
+    private int merchantInfoStatus;//是否填写商家资料信息 0未填写 1 正在审核 2审核拒绝 3审核通过
     private int payStatus;//是否设置了支付密码
-
     private String name;
     private String nickName;
     private String userImage;
@@ -22,6 +22,83 @@ public class MerchantInfo {
     private String province;
     private String city;
     private String companyAddress;
+    private String qiniuToken;
+    private String cardNum;
+    private String cardImg;
+    private String realName;
+    private String handImg;
+    private String bussinessImg;
+    private String about;
+
+    public String getHandImg() {
+        return handImg;
+    }
+
+    public void setHandImg(String handImg) {
+        this.handImg = handImg;
+    }
+
+    public String getBussinessImg() {
+        return bussinessImg;
+    }
+
+    public void setBussinessImg(String bussinessImg) {
+        this.bussinessImg = bussinessImg;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public String getCardNum() {
+        return cardNum;
+    }
+
+    public void setCardNum(String cardNum) {
+        this.cardNum = cardNum;
+    }
+
+    public String getCardImg() {
+        return cardImg;
+    }
+
+    public void setCardImg(String cardImg) {
+        this.cardImg = cardImg;
+    }
+
+    public int getMerchantId() {
+        return merchantId;
+    }
+
+    public void setMerchantId(int merchantId) {
+        this.merchantId = merchantId;
+    }
+    public int getMerchantInfoStatus() {
+        return merchantInfoStatus;
+    }
+
+    public void setMerchantInfoStatus(int merchantInfoStatus) {
+        this.merchantInfoStatus = merchantInfoStatus;
+    }
+    public String getQiniuToken() {
+        return qiniuToken;
+    }
+
+    public void setQiniuToken(String qiniuToken) {
+        this.qiniuToken = qiniuToken;
+    }
 
     public String getTel() {
         return tel;
@@ -63,13 +140,6 @@ public class MerchantInfo {
         this.permissions = permissions;
     }
 
-    public int getResumeStatus() {
-        return resumeStatus;
-    }
-
-    public void setResumeStatus(int resumeStatus) {
-        this.resumeStatus = resumeStatus;
-    }
 
     public int getPayStatus() {
         return payStatus;

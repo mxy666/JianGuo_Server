@@ -70,15 +70,17 @@ public class T_opinion_Sql {
 		Connection conn=DButil.getCon();
 		//StringBuffer str = new StringBuffer();
 		
-		String sql = "select * from t_opinion where 1=1 ORDER BY id DESC";		 
-		// mersql=mersql+str.toString();
+		String sql = " select o.*,l.`tel` as tel_no  from t_opinion o "
+		+ " LEFT JOIN `t_user_login` l on o.`tel` = l.`id` "
+		+ " where 1=1 ORDER BY id DESC ";
+		// sql=sql+str.toString();
 		 PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			rs=psmt.executeQuery();
 			while(rs.next()){
 				T_opinion_Bean opinion = new T_opinion_Bean();
 				opinion.setId(rs.getInt("id"));
-				opinion.setTel(rs.getString("tel"));
+				opinion.setTel(rs.getString("tel_no"));
 				opinion.setText(rs.getString("text"));
 				opinion.setTime(rs.getString("time"));
 			
@@ -100,9 +102,14 @@ public class T_opinion_Sql {
 		List<T_opinion_Bean> list=new ArrayList<T_opinion_Bean>();
 		ResultSet rs=null;
 		//StringBuffer str = new StringBuffer();
+
+		String sql = " select o.*,l.`tel` as tel_no  from t_opinion o "
+				+ " LEFT JOIN `t_user_login` l on o.`tel` = l.`id` "
+				+ " where 1=1 ORDER BY id DESC "
+				+ "limit "+page.getFirstResult()+","+page.getPageSize();
 		
-		String sql = "select * from t_opinion where 1=1 ORDER BY id DESC limit "+page.getFirstResult()+","+page.getPageSize();		 
-		// mersql=mersql+str.toString();
+//		String sql = "select * from t_opinion where 1=1 ORDER BY id DESC limit "+page.getFirstResult()+","+page.getPageSize();
+		// sql=sql+str.toString();
 		 System.out.println(sql+"----------------------------------------");
 		 PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {

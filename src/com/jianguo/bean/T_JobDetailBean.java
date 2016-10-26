@@ -20,6 +20,16 @@ public class T_JobDetailBean {
 	private String  limit_sex;	//性别限制（0=只招女，1=只招男，2=不限男女，3=男女各限）	
 	private int finallySum;//扎聘人数  sum	+girl_sum
 	private int nowCount;//现已录取几人girl_count+count
+
+	public int getUser_count() {
+		return user_count;
+	}
+
+	public void setUser_count(int user_count) {
+		this.user_count = user_count;
+	}
+
+	private int user_count;
 	private String merchant_name;//是否报名
 	private String merchant_tel;//是否报名	
 	private String  merchant_image;//商家头像

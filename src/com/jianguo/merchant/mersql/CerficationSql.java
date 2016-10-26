@@ -1,9 +1,7 @@
 package com.jianguo.merchant.mersql;
 
 import com.jianguo.bean.MerchantInfo;
-import com.jianguo.bean.T_city_Bean;
 import com.jianguo.util.DButil;
-import com.sun.org.apache.bcel.internal.classfile.Code;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,11 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-public class LoginSql {
+public class CerficationSql {
 
 	private static String pass;
 
@@ -35,22 +31,35 @@ public class LoginSql {
 		return b;
 	}
 /**
-*插入merchant_login表
-*@param tel
-*@param token
+*更新商家信息
+*@param merchantInfo
 *@author invinjun
 *created at 2016/10/22 13:03
 */
-	public static int insertMerchant(String tel,String token) throws SQLException {
+	public static int updateMerStatus(String loginId,MerchantInfo merchantInfo) throws SQLException {
 		Connection conn=DButil.getCon();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String sql = "insert into t_user_login (tel,password,qqwx_token,power,payStatus,status,resume,city_id,hobby,pigeon_count) values" +
-				"('"+tel+"','','"+token+"',0,0,1,0,'',0,0)";
+//		StringBuffer sql = "insert into t_user_login (tel,password,qqwx_token,power,payStatus,status,resume,city_id,hobby,pigeon_count) values" +
+//				"('"+tel+"','','"+token+"',0,0,1,0,'',0,0)";
+		String sql="UPDATE t_merchant SET `name`=?,name_image=?,contactName=?,contactPhone=?,email=?,province=?,city=?,companyAddress=?,cardNum=?,cardImage=?,realName=?,"+
+				"handImage=?,bussinessImage=?,reviewMerStatus=1,about=? WHERE login_id=?";
 		PreparedStatement pst=conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-		 pst.executeUpdate();
-		ResultSet rs= pst.getGeneratedKeys();
-		rs.next();
-		int num=rs.getInt(1);
+		pst.setString(1,merchantInfo.getName());
+		pst.setString(2,merchantInfo.getUserImage());
+		pst.setString(3,merchantInfo.getContactName());
+		pst.setString(4,merchantInfo.getContactPhone());
+		pst.setString(5,merchantInfo.getEmail());
+		pst.setString(6,merchantInfo.getProvince());
+		pst.setString(7,merchantInfo.getCity());
+		pst.setString(8,merchantInfo.getCompanyAddress());
+		pst.setString(9,merchantInfo.getCardNum());
+		pst.setString(10,merchantInfo.getCardImg());
+		pst.setString(11,merchantInfo.getRealName());
+		pst.setString(12,merchantInfo.getHandImg());
+		pst.setString(13,merchantInfo.getBussinessImg());
+		pst.setString(14,merchantInfo.getAbout());
+		pst.setString(15,loginId);
+		int num = pst.executeUpdate();
 		pst.close();
 		conn.close();
 		return num;
@@ -157,7 +166,7 @@ public class LoginSql {
 		boolean b = true;
 		PreparedStatement pstmt;
 		ResultSet rs ;
-		String sql = "select * from t_user_login where id=? and qqwx_token=?";
+		String sql = "select * from t_user_login where login_id=? and qqwx_token=?";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, login_id);
 		pstmt.setString(2, token);
@@ -234,79 +243,5 @@ public class LoginSql {
 		return num;
 	}
 
-	/**
-	 * updatePassword
-	 *@param password
-	 * @param tel
-	 *@author invinjun
-	 *created at 2016/9/18 17:11
-	 */
-	public static int updatePassword(String tel,String password) throws SQLException {
-		int num=0;
-		Connection conn=DButil.getCon();
-		String sql = "update t_user_login set password=? where tel=?";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		psmt.setString(1, password);
-		psmt.setString(2,tel);
-		num=psmt.executeUpdate();
-		psmt.close();
-		conn.close();
-		return num;
-	}
-	/**
-	* updateToken
-	*@param tel
-	*@param token
-	*@author invinjun
-	*created at 2016/9/18 17:11
-	*/
-	public static int updateToken(String tel,String token) throws SQLException {
-		int num=0;
-		Connection conn=DButil.getCon();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date now = new Date();
-		String sql = "update t_user_login set qqwx_token=? where tel=?";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-		psmt.setString(1, token);
-		psmt.setString(2, tel);
-		num=psmt.executeUpdate();
-		psmt.close();
-		conn.close();
-		return num;
-	}
-	public static MerchantInfo getMerchantInfo(String login_id) throws SQLException {
-		ResultSet rs=null;
-		MerchantInfo merchantInfo = new MerchantInfo();
-		Connection conn=DButil.getCon();
-//		String sql = "select * from t_user_info where login_id=?";
-		String sql = "select mer.id,mer.login_id,mer.reviewMerStatus,mer.`name`,mer.name_image,mer.email,mer.contactName,mer.contactPhone,mer.province,mer.city,mer.companyAddress, login.`password`,login.power,login.qqwx_token,login.tel from t_user_login login LEFT JOIN t_merchant mer on login.id=mer.login_id where login.tel=?";
-//	"select * from t_user_login login LEFT JOIN t_merchant mer on login.id=mer.login_id where login.tel=?";
-		PreparedStatement psmt = DButil.getPstm(conn, sql);
-			psmt.setString(1,login_id);
-			rs=psmt.executeQuery();
-			while(rs.next()){
-				merchantInfo.setLoginId(rs.getInt("login_id"));
-				merchantInfo.setMerchantId(rs.getInt("id"));
-				merchantInfo.setTel(rs.getString("tel"));
-				merchantInfo.setPassword(rs.getString("password"));
-				merchantInfo.setToken(rs.getString("qqwx_token"));
-				merchantInfo.setPermissions(rs.getInt("power"));
-				merchantInfo.setMerchantInfoStatus(rs.getInt("reviewMerStatus"));
-//				merchantInfo.setPayStatus(rs.getInt("payStatus"));
-
-				merchantInfo.setName(rs.getString("name"));
-				merchantInfo.setUserImage(rs.getString("name_image"));
-				merchantInfo.setContactName(rs.getString("contactName"));
-				merchantInfo.setContactPhone(rs.getString("contactPhone"));
-				merchantInfo.setEmail(rs.getString("email"));
-				merchantInfo.setProvince(rs.getString("province"));
-				merchantInfo.setCity(rs.getString("city"));
-				merchantInfo.setCompanyAddress(rs.getString("companyAddress"));
-			}
-			psmt.close();
-			conn.close();
-			DButil.close(conn);
-		return merchantInfo;
-	}
 
 }

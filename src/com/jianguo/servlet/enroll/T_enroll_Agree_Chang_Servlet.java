@@ -54,39 +54,14 @@ public class T_enroll_Agree_Chang_Servlet extends HttpServlet {
 			long ll = System.currentTimeMillis()/1000;
 			T_job_info_Bean t_job_info = T_job_info_Sql.select_job_id(t_job.getId()+"");
 			int ii = Integer.parseInt(t_job_info.getStart_time());
-//			if(ll > ii){
-//				T_enroll_Sql.update_status("8", job_id);
-//				T_job_Sql.update_status("2", job_id);
-//				
-//				params.put("message", "工作已开始，不能操作该兼职状态");
-//				params.put("code", "500");
-//				PrintWriter pw = response.getWriter();
-//				Gson g = new Gson();
-//				String str = g.toJson(params); 
-//				pw.write(str);
-//				pw.flush();
-//				pw.close();
-//			}else{
-			
+
 			if(offer.equals("9")){
-//				T_enroll_Sql.update_status("8", job_id);
-//				T_job_Sql.update_status("2", job_id);
-				
-//				List<T_enroll_Bean> list_t_enroll = T_enroll_Sql.select_job_id_status2(job_id, "5","5","8","9","10","11","12","13","0");
-//				if(list_t_enroll.size() == 0){
-//					T_job_Sql.update_status("5", job_id);
-//				}else{
 					T_job_Sql.update_status("3", job_id);
-//				}
 				T_enroll_Sql.update_status("9", job_id);
 				T_enroll_Sql.update_statusss("9", job_id);
 				
 				if(!alike.equals("0")){
 					T_job_Bean t_job11 = T_job_Sql.select_alike(alike);
-//					List<T_enroll_Bean> list_t_enroll2 = T_enroll_Sql.select_job_id_status2(t_job11.getId()+"", "5","5","8","9","10","11","12","13","0");
-//					if(list_t_enroll2.size() == 0){
-//						T_job_Sql.update_status("5", t_job11.getId()+"");
-//					}else{
 						T_job_Sql.update_status("3", t_job11.getId()+"");
 //					}
 					T_enroll_Sql.update_status("9", t_job11.getId()+"");
@@ -103,24 +78,28 @@ public class T_enroll_Agree_Chang_Servlet extends HttpServlet {
 				pw.close();
 				
 			}else if(offer.equals("13")){
-//				T_enroll_Sql.update_status("8", job_id);
-//				T_job_Sql.update_status("2", job_id);
-//				T_enroll_Sql.update_status("13", job_id);
-//				T_job_Sql.update_status("6", job_id);
 				T_job_Sql.update_status("2", job_id);
-				
 				if(!alike.equals("0")){
 					T_job_Bean t_job11 = T_job_Sql.select_alike(alike);
 					T_job_Sql.update_status("2", t_job11.getId()+"");
-//					T_job_Sql.update_status("6", t_job11.getId()+"");
-//					T_enroll_Sql.update_status("13", job_id);
 				}
 				
-				params.put("message", "兼职下架成功");
+				params.put("message", "暂停招聘成功");
 				params.put("code", "200");
 				PrintWriter pw = response.getWriter();
 				Gson g = new Gson();
 				String str = g.toJson(params); 
+				pw.write(str);
+				pw.flush();
+				pw.close();
+			}else if(offer.equals("0")){
+				T_job_Sql.update_status("0", job_id);
+
+				params.put("message", "恢复招聘成功！");
+				params.put("code", "200");
+				PrintWriter pw = response.getWriter();
+				Gson g = new Gson();
+				String str = g.toJson(params);
 				pw.write(str);
 				pw.flush();
 				pw.close();

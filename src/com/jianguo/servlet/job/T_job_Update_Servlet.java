@@ -2,6 +2,7 @@ package com.jianguo.servlet.job;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -14,10 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.jianguo.bean.T_job_Bean;
+import com.jianguo.sql.Job_Sql;
 import com.jianguo.sql.T_job_Sql;
 import com.jianguo.sql.T_job_info_Sql;
 import com.jianguo.sql.T_job_label_Sql;
 import com.jianguo.util.Frequently;
+
+import org.apache.log4j.Logger;
 
 public class T_job_Update_Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -107,7 +111,9 @@ public class T_job_Update_Servlet extends HttpServlet {
 		System.out.println("other  "+other);
 		System.out.println("work_content  "+work_content);
 		System.out.println("work_require  "+work_require);
-		
+		Logger logger = Logger.getLogger("log");
+		logger.info("修改兼职");
+		logger.info("T_job_Update_Servlet!");
 		//------------------访问限制--------开始----------------------
 		String only =request.getParameter("only");
 		String ss_only = Frequently.daycount();
@@ -158,9 +164,16 @@ public class T_job_Update_Servlet extends HttpServlet {
 			
 			int i = T_job_Sql.update_all(city_id,aera_id,type_id, merchant_id, name, name_image, ss, sss, address, mode,money, term, limit_sex, sum, ly_time, "0","1",alike,"1","0",ss2,str_girl_sum,job_id);
 			if(i == 1){
-				T_job_Bean t_job = T_job_Sql.select_regedit_time(ly_time);
-					T_job_info_Sql.update_all(t_job.getId()+"",tel, address, lon, lat, ss, sss, ss2, sss2, set_place, set_time, limit_sex, term, other, work_content, work_require,job_id);
-							Gson gson = new Gson();
+				T_job_Bean t_job = null;
+				try {
+				 t_job = Job_Sql.selectJobInfoById(job_id);
+					T_job_info_Sql.update_all(tel, address, lon, lat, ss, sss, ss2, sss2, set_place, set_time, limit_sex, term, other, work_content, work_require,job_id);
+					logger.info("t_job.getId()="+t_job.getId()+"___job_id="+job_id);
+				} catch (SQLException e) {
+					logger.error("error:"+e.getMessage());
+					e.printStackTrace();
+				}
+				Gson gson = new Gson();
 							String t_limit = "";
 							String t_welfare = "";
 							String t_label = "";

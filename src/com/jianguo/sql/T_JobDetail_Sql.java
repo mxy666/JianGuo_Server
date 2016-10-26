@@ -21,7 +21,7 @@ public class T_JobDetail_Sql {
 		ResultSet rs=null;
 		T_JobDetailBean jobDetail = new T_JobDetailBean();
 		Connection conn=DButil.getCon();
-		String sql = "select i.*,j.`status`,j.`mode`,j.merchant_id,j.reg_date, j.`name`,j.name_image,j.money,j.term,j.limit_sex,SUM(j.sum + j.girl_sum) AS finallySum,SUM(j.count + j.girl_count) AS nowCount "
+		String sql = "select i.*,j.`status`,j.`mode`,j.merchant_id,j.reg_date, j.user_count,j.`name`,j.name_image,j.money,j.term,j.limit_sex,SUM(j.sum + j.girl_sum) AS finallySum,SUM(j.count + j.girl_count) AS nowCount "
 					+"FROM t_job j,t_job_info i where j.id=i.job_id and i.job_id="+job_id;
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
@@ -44,6 +44,7 @@ public class T_JobDetail_Sql {
 				jobDetail.setReg_date(rs.getString("reg_date")+"");
 				jobDetail.setFinallySum(rs.getInt("finallySum"));
 				jobDetail.setNowCount(rs.getInt("nowCount"));
+				jobDetail.setUser_count(rs.getInt("user_count"));
 				jobDetail.setMerchant_id(rs.getInt("merchant_id"));
 				jobDetail.setMerchantTel(rs.getString("tel"));
 				jobDetail.setStatus(rs.getInt("status"));			

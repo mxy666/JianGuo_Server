@@ -1,11 +1,13 @@
 package com.jianguo.merchant.login;
 
 import com.google.gson.Gson;
+import com.jianguo.merchant.mersql.LoginSql;
 import com.jianguo.merchant.mersql.TelCodeSql;
 import com.jianguo.merchant.utils.HttpClientUtil;
 import com.jianguo.merchant.utils.Sms;
 
 import org.apache.log4j.Logger;
+import org.apache.poi.hssf.record.PageBreakRecord;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,17 +21,22 @@ import javax.servlet.http.HttpServletResponse;
 
 public class QuickSmsServlet extends HttpServlet {
 /**
- * @apiVersion 1.0.0
- * @api {post} QuickSmsServlet/ å¿«é€Ÿç™»å½•éªŒè¯ç 
+ * @apidoc 1.0.0
+ * @api {post} QuickSmsServlet/ ¿ìËÙµÇÂ¼ÑéÖ¤Âë
  * @apiName QuickSmsServlet
  * @apiGroup login
  * @apiParam {String} tel Users phone
+ *  @apiParam {String} type ÇëÇóÀàĞÍ£¬¿ÉÑ¡×Ö¶Î£¨Íü¼ÇÃÜÂëÖĞµÄÑéÖ¤ÂëÇëÇó£¬×¢²á´«0£¬Íü¼ÇÃÜÂë´«1£¬ÆäÓà²»´«¸Ã×Ö¶Î£©
  *  @apiSuccess {String} code 200
- * @apiSuccess {String} message  éªŒè¯ç å·²ç»å‘é€ï¼Œè¯·æ³¨æ„æŸ¥æ”¶ï¼
+ * @apiSuccess {String} message  ÑéÖ¤ÂëÒÑ¾­·¢ËÍ£¬Çë×¢Òâ²éÊÕ£¡
  * @apiError (Error 400) {String} code 400
- * @apiError (Error 400) {String} message æœåŠ¡å™¨å¿™ï¼Œè¯·ç¨åé‡è¯•ï¼ï¼ˆsqlæˆ–è€…IOé”™è¯¯,ç»™ç”¨æˆ·æç¤ºæœåŠ¡å™¨å¿™ï¼‰
+ * @apiError (Error 400) {String} message ·şÎñÆ÷Ã¦£¬ÇëÉÔºóÖØÊÔ£¡£¨sql»òÕßIO´íÎó,¸øÓÃ»§ÌáÊ¾·şÎñÆ÷Ã¦£©
  * @apiError (Error 401) {String} code 401
- * @apiError (Error 401) {String} message æ‚¨çš„éªŒè¯ç è¯·æ±‚è¿‡äºé¢‘ç¹ï¼Œè¯·ç¨åå†è¯•ï¼
+ * @apiError (Error 401) {String} message ÄúµÄÑéÖ¤ÂëÇëÇó¹ıÓÚÆµ·±£¬ÇëÉÔºóÔÙÊÔ£¡
+ * @apiError (Error 402) {String} code 402
+ * @apiError (Error 402) {String} message Íü¼ÇÃÜÂëÇé¿öÏÂ£¬ÊÖ»úÕËºÅ²»´æÔÚ£¡
+ * @apiError (Error 403) {String} code 403
+ * @apiError (Error 403) {String} message ×¢²áÇé¿öÏÂ£¬ÊÖ»úÕËºÅÒÑ¾­´æÔÚ£¡
  */
 	public QuickSmsServlet() {
 		super();
@@ -38,34 +45,56 @@ public class QuickSmsServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		Logger logger = Logger.getLogger("log");
-		logger.info("éªŒè¯ç æ—¥å¿—ä¿¡æ¯å¼€å§‹!");
+		logger.info("ÑéÖ¤ÂëÈÕÖ¾ĞÅÏ¢¿ªÊ¼!");
 		logger.info("QuickSmsServlet!");
-		String tel=request.getParameter("tel");
-		//å‘é€éªŒè¯ç 
+		String smstel=request.getParameter("tel");
+		String tel="jg"+smstel;
+		String type=request.getParameter("type");
+
+		//·¢ËÍÑéÖ¤Âë
 		try {
+			//ÅĞ¶Ï¸ÃÇëÇóÊÇ·ñÊÇÍü¼ÇÃÜÂë£¬ÈôÊÇ£¬²éÑ¯ÊÖ»úºÅÊÇ·ñ´æÔÚ£¬´æÔÚ²ÅÄÜ·¢ËÍ
+			if (null!=type&&!type.equals("")){
+
+				if (!LoginSql.checkRegister(tel)) {
+					if(type.equals("1")){//Íü¼ÇÃÜÂë£¬±ØĞë´æÔÚ¸ÃÊÖ»úºÅ£¬²»´æÔÚÌáÊ¾ÓÃ»§
+						HttpClientUtil.pushResponse(response,"402","ÊÖ»úÕËºÅ²»´æÔÚ");
+						return;
+					}
+				}else {//²»´æÔÚÊÖ»úºÅ
+					if(type.equals("0")){//×¢²á£¬ÊÖ»úºÅ²»ÄÜ´æÔÚ£¬´æÔÚÌáÊ¾ÓÃ»§
+						HttpClientUtil.pushResponse(response,"403","ÊÖ»úÕËºÅÒÑ´æÔÚ");
+						return;
+					}
+
+				}
+			}
+
+
+
 			long random =(long)((Math.random()*9+1)*100000);
 			String code = random+"";
-					//æ£€æŸ¥æ‰‹æœºå·ç æ˜¯å¦å­˜åœ¨
+					//¼ì²éÊÖ»úºÅÂëÊÇ·ñ´æÔÚ
 					if (TelCodeSql.checkTel(tel)) {
-						//æ£€æŸ¥ä¸Šæ¬¡å‘é€éªŒè¯ç å’Œè¿™æ¬¡ä¹‹é—´çš„æ—¶é—´é—´éš”å°äº30sï¼Œç¦æ­¢å‘é€å¹¶æç¤º
+						//¼ì²éÉÏ´Î·¢ËÍÑéÖ¤ÂëºÍÕâ´ÎÖ®¼äµÄÊ±¼ä¼ä¸ôĞ¡ÓÚ30s£¬½ûÖ¹·¢ËÍ²¢ÌáÊ¾
 						if (TelCodeSql.checkTime(tel,System.currentTimeMillis())){
 							TelCodeSql.updateTel(code, tel);
 						}else {
-							HttpClientUtil.pushResponse(response,"401","æ‚¨çš„éªŒè¯ç è¯·æ±‚è¿‡äºé¢‘ç¹ï¼Œè¯·ç¨åå†è¯•ï¼");
+							HttpClientUtil.pushResponse(response,"401","ÄúµÄÑéÖ¤ÂëÇëÇó¹ıÓÚÆµ·±£¬ÇëÉÔºóÔÙÊÔ£¡");
 							return;
 						}
 					} else {
-						//ä¸å­˜åœ¨ç›´æ¥æ’å…¥æ•°æ®åº“
+						//²»´æÔÚÖ±½Ó²åÈëÊı¾İ¿â
 						TelCodeSql.insert(tel, code);
 					}
-					//æ›´æ–°æ•°æ®åº“codeæ²¡æœ‰é—®é¢˜åå‘é€éªŒè¯ç 
-			Sms.sendSmsQuickLogin(tel,code);
+					//¸üĞÂÊı¾İ¿âcodeÃ»ÓĞÎÊÌâºó·¢ËÍÑéÖ¤Âë
+			Sms.sendSmsQuickLogin(smstel,code);
 		} catch (Exception e) {
 			logger.error("QuickLoginSMS:"+e.getMessage());
-			HttpClientUtil.pushResponse(response,"400","æœåŠ¡å™¨å¿™ï¼Œè¯·ç¨åé‡è¯•ï¼ï¼");
+			HttpClientUtil.pushResponse(response,"400","·şÎñÆ÷Ã¦£¬ÇëÉÔºóÖØÊÔ£¡£¡");
 			return;
 		}
-		HttpClientUtil.pushResponse(response,"200","éªŒè¯ç å·²ç»å‘é€ï¼Œè¯·æ³¨æ„æŸ¥æ”¶ï¼");
+		HttpClientUtil.pushResponse(response,"200","ÑéÖ¤ÂëÒÑ¾­·¢ËÍ£¬Çë×¢Òâ²éÊÕ£¡");
 	}
 
 }

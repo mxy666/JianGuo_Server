@@ -133,37 +133,32 @@ public class T_job_info_Sql {
 		return list;
 	}
 	
-	public static int update_all(String job_id,String tel,String address,String lon,String lat,String start_date,String stop_date,
+	public static int update_all(String tel,String address,String lon,String lat,String start_date,String stop_date,
 			String start_time,String stop_time,String set_place,String set_time,String limit_sex,String term,String other,String work_content,
-			String work_require,String id){
+			String work_require,String id) throws SQLException {
 		int num=0;
-		try {
 			Connection conn=DButil.getCon();
-			String sql = "update t_job_info set job_id=?,tel=?,address=?,lon=?,lat=?,start_date=?,stop_date=?,start_time=?,stop_time=?,set_place=?,set_time=?,limit_sex=?,term=?,other=?,work_content=?,work_require=? where job_id=?";
+			String sql = "update t_job_info set tel=?,address=?,lon=?,lat=?,start_date=?,stop_date=?,start_time=?,stop_time=?,set_place=?,set_time=?,limit_sex=?,term=?,other=?,work_content=?,work_require=? where job_id=?";
 			PreparedStatement pst = DButil.getPstm(conn, sql);
-			pst.setString(1, job_id);
-	    	pst.setString(2, tel);
-	    	pst.setString(3, address);
-	    	pst.setString(4, lon);
-	    	pst.setString(5, lat);
-	    	pst.setString(6, start_date);
-	    	pst.setString(7, stop_date);
-	    	pst.setString(8, start_time);
-	    	pst.setString(9, stop_time);
-	    	pst.setString(10, set_place);
-	    	pst.setString(11, set_time);
-	    	pst.setString(12, limit_sex);
-	    	pst.setString(13, term);
-	    	pst.setString(14, other);
-	    	pst.setString(15, work_content);
-	    	pst.setString(16, work_require);
-	    	pst.setString(17, id);
+	    	pst.setString(1, tel);
+	    	pst.setString(2, address);
+	    	pst.setString(3, lon);
+	    	pst.setString(4, lat);
+	    	pst.setString(5, start_date);
+	    	pst.setString(6, stop_date);
+	    	pst.setString(7, start_time);
+	    	pst.setString(8, stop_time);
+	    	pst.setString(9, set_place);
+	    	pst.setString(10, set_time);
+	    	pst.setString(11, limit_sex);
+	    	pst.setString(12, term);
+	    	pst.setString(13, other);
+	    	pst.setString(14, work_content);
+	    	pst.setString(15, work_require);
+	    	pst.setString(16, id);
 			num=pst.executeUpdate();
 			pst.close();
 			conn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		return num;
 	}
 	

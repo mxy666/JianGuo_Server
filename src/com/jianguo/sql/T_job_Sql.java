@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 
 public class T_job_Sql {
 
-	//兼职信息录入
+	//?????????
 	public static int insert(String city_id,String area_id,String type_id,String merchant_id,String name,String name_image,String start_date,String stop_date,
 			String address,String mode,String money,String term,String limit_sex,String count,String sum,String regedit_time,
 			String status,String hot,String alike,String reg_date,String look,String is_model,String user_count,String start_time,
@@ -34,7 +34,7 @@ public class T_job_Sql {
 			   
 		   }
 		Logger logger = Logger.getLogger("log");
-		logger.info("日志信息开始!");
+		logger.info("?????????!");
 		   Connection conn=DButil.getCon();
 		   String sql="insert into t_job(city_id,area_id,type_id,merchant_id,name,name_image,start_date," +
 		   "stop_date,address,mode,money,term,limit_sex,count,sum,regedit_time,status,hot," +
@@ -75,7 +75,7 @@ public class T_job_Sql {
 		    	
 				num=pst.executeUpdate();
 			} catch (SQLException e) {
-				logger.error("发布兼职job_异常"+e.getMessage()==null?"空":e.getMessage());
+				logger.error("???????job_??"+e.getMessage()==null?"??":e.getMessage());
 				e.printStackTrace();
 			}	
 			finally{
@@ -85,7 +85,7 @@ public class T_job_Sql {
 			return num;
 	}
 	
-	//根据时间戳查出兼职信息
+	//?????????????????
 	public static T_job_Bean select_regedit_time(String regedit_time){
 		ResultSet rs=null;
 		T_job_Bean t_job = new T_job_Bean();
@@ -113,8 +113,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -127,13 +127,13 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 			
 			}
 			psmt.close();
 			conn.close();
 		} catch (SQLException e) {
-			//logger.error("发布兼职job_info异常"+e.getMessage()==null?"空":e.getMessage());
+			//logger.error("???????job_info??"+e.getMessage()==null?"??":e.getMessage());
 			e.printStackTrace();
 		}finally{
 			DButil.close(conn);
@@ -167,8 +167,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -181,7 +181,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 			}
 			psmt.close();
 			conn.close();
@@ -220,8 +220,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
@@ -235,7 +235,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 			}
 			psmt.close();
 			conn.close();
@@ -274,8 +274,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -288,7 +288,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 			}
 			psmt.close();
 			conn.close();
@@ -305,7 +305,7 @@ public class T_job_Sql {
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where (city_id=? or city_id=?) and (status=? or status=? or status=? or status=?) and is_model=0 and limit_sex!=30 order by id desc limit "+count+",80";
+		String sql = "select * from t_job where (city_id=? or city_id=?) and (status=? or status=? or status=? or status=?) and is_model=0 and limit_sex!=30 order by id desc limit "+count+",400";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,city_id);
@@ -333,8 +333,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -347,7 +347,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -390,8 +390,8 @@ public class T_job_Sql {
 				/*t_job.setLimit_sex(rs.getInt("limit_sex"));
 				t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -404,7 +404,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -450,8 +450,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 			/*	t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -464,7 +464,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -507,8 +507,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -521,7 +521,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -564,8 +564,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 			/*	t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -578,7 +578,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -624,8 +624,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -638,7 +638,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -684,8 +684,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -698,7 +698,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -742,8 +742,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -756,7 +756,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -802,8 +802,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -816,7 +816,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -862,8 +862,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 			/*	t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -876,7 +876,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -920,8 +920,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -934,7 +934,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -980,8 +980,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -994,7 +994,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -1040,8 +1040,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -1054,7 +1054,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -1098,8 +1098,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -1112,7 +1112,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -1156,8 +1156,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -1170,7 +1170,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -1211,8 +1211,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -1225,7 +1225,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -1243,7 +1243,7 @@ public class T_job_Sql {
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where merchant_id=? and status =0 and limit_sex!=30 and is_model=0 order by id desc limit "+count+",10";
+		String sql = "select * from t_job where merchant_id=? and (status =0 or status=2)  and is_model=0 order by id desc limit "+count+",10";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,merchant_id);
@@ -1266,8 +1266,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -1280,7 +1280,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -1298,7 +1298,7 @@ public class T_job_Sql {
 		List<T_job_Bean> list=new ArrayList<T_job_Bean>();
 		ResultSet rs=null;
 		Connection conn=DButil.getCon();
-		String sql = "select * from t_job where merchant_id=? and status !=0 and limit_sex!=30 and is_model=0 order by id desc limit "+count+",10";
+		String sql = "select * from t_job where merchant_id=? and status !=0 and status !=2 and limit_sex!=30 and is_model=0 order by id desc limit "+count+",10";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setString(1,merchant_id);
@@ -1321,8 +1321,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -1335,7 +1335,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -1375,8 +1375,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -1389,7 +1389,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -1429,8 +1429,8 @@ public class T_job_Sql {
 				t_job.setLimit_sex(rs.getInt("limit_sex"));
 				/*t_job.setCount(rs.getInt("count"));
 				t_job.setSum(rs.getInt("sum"));*/
-				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//录取了多少人
-				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//总共要多少人
+				t_job.setCount(rs.getInt("count")+rs.getInt("girl_count"));//?????????
+				t_job.setSum(rs.getInt("girl_sum")+rs.getInt("sum"));//??????????
 				t_job.setRegedit_time(rs.getString("regedit_time")+"");
 				t_job.setStatus(rs.getInt("status"));
 				t_job.setHot(rs.getInt("hot"));
@@ -1443,7 +1443,7 @@ public class T_job_Sql {
 				t_job.setGirl_count(rs.getInt("girl_count"));
 				t_job.setGirl_sum(rs.getInt("girl_sum"));
 				t_job.setGirl_user(rs.getInt("girl_user"));
-				t_job.setBoySum(rs.getInt("sum"));//男的录取总数
+				t_job.setBoySum(rs.getInt("sum"));//?械???????
 				list.add(t_job);
 			}
 			psmt.close();
@@ -1488,7 +1488,7 @@ public class T_job_Sql {
 		}
 		return num;
 	}
-	//商家录取后，更新count(男女各限，女的)
+	//??????????count(???????????)
 	public static int update_GirlCountss( String id){
 		int num=0;
 		try {
@@ -1505,7 +1505,7 @@ public class T_job_Sql {
 		return num;
 	}
 	
-	//商家录取后，更新count(不限，单限男女)
+	//??????????count(????????????)
 	public static int update_countss( String id){
 		int num=0;
 		try {
@@ -1523,7 +1523,7 @@ public class T_job_Sql {
 		return num;
 	}
 	
-	//录取后用户取消更新
+	//??????????????
 	public static int update_Girlcount_jian(String id){
 		int num=0;
 		try {

@@ -3,7 +3,6 @@ package com.jianguo.merchant.login;
 import com.google.gson.Gson;
 import com.jianguo.bean.MerchantInfo;
 import com.jianguo.merchant.mersql.LoginSql;
-import com.jianguo.merchant.mersql.TelCodeSql;
 import com.jianguo.merchant.utils.CommonUtils;
 import com.jianguo.merchant.utils.HttpClientUtil;
 import com.qiniu.util.Auth;
@@ -13,29 +12,27 @@ import org.apache.log4j.Logger;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by Administrator on 2016/9/9.
+ * Created by Administrator on 2016/10/21.
  */
-public class LoginServlet extends HttpServlet {
-
-    private MerchantInfo merchantInfo;
-
+@WebServlet(name = "PasswordLoginServlet",urlPatterns = "/PasswordLoginServlet")
+public class PasswordLoginServlet extends HttpServlet {
     /**
-     * @api {post} LoginServlet/ 快速登录
-     * @apiName LoginServlet
+     * @api {post} PasswordLoginServlet/ 密码登录
+     * @apiName PasswordLoginServlet
      * @apiGroup login
      *
      * @apiParam {String} tel User phone
-     * @apiParam {String} smsCode User smsCode
+     * @apiParam {String} password User password
      * @apiSuccess {String} code 200
      * @apiSuccess {String} message  登录成功！
      * @apiSuccess {String} tel  18101050625
@@ -54,9 +51,11 @@ public class LoginServlet extends HttpServlet {
      * @apiError (Error 401) {String} code 401
      * @apiError (Error 401) {String} message 参数错误请检查
      * @apiError (Error 402) {String} code 402
-     * @apiError (Error 402) {String} message 验证码错误
+     * @apiError (Error 402) {String} message 密码错误
      * @apiError (Error 403) {String} code 403
-     * @apiError (Error 403) {String} message 验证码已过期
+     * @apiError (Error 403) {String} message 手机号码不存在
+     * @apiError (Error 405) {String} code 405
+     * @apiError (Error 405) {String} message 尚未设置密码，短信登录用户
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
@@ -64,42 +63,40 @@ public class LoginServlet extends HttpServlet {
         Logger logger = Logger.getLogger("log");
         logger.info("商家端登录日志信息开始!");
         logger.info("LoginServlet!");
-        String smsCode =request.getParameter("smsCode");
-        String smstel =request.getParameter("tel");
-        String tel ="jg"+smstel;
+        String password =request.getParameter("password");
+        String tel ="jg"+request.getParameter("tel");
         Map map = new HashMap();
         Gson gson=new Gson();
         PrintWriter pw = response.getWriter();
+        MerchantInfo merchantInfo;
         try {
             //判断手机号和验证码是否为空
-            if (smsCode==null||smsCode.equals("")||tel==null||tel.equals("")) {
+            if (password==null||password.equals("")||tel==null||tel.equals("")) {
                 HttpClientUtil.pushResponse(response,"401","参数错误请检查！");
                 return;
             }
-            //判断验证码是否匹配
-            if (!LoginSql.checkVerificationCode(tel,smsCode)) {
-                HttpClientUtil.pushResponse(response,"402","验证码错误！");
+            if (!LoginSql.checkRegister(tel)) {
+                HttpClientUtil.pushResponse(response,"403","账号不存在，请注册！");
                 return;
             }
-            //判断验证码是否超过有效期
-            if (TelCodeSql.checkExpiryDate(tel,System.currentTimeMillis())) {
-                HttpClientUtil.pushResponse(response,"403","验证码已过期，请重新获取！");
+            //判断当前密码是否为空，如果账户存在并且密码为空，说明为短信快速登录，尚未设置密码
+            if (LoginSql.checkExistedPassword(tel,password).equals("")) {
+                HttpClientUtil.pushResponse(response,"405","密码尚未设置！");
                 return;
             }
-
-
-            String token = CommonUtils.makeToken(tel);
-                //不存在该用户，注册插入数据
-                if (!LoginSql.checkRegister(tel)) {
-                     LoginSql.insertMerchant(tel,token);
-                }else {
-                    //存在更新用户token
-                    LoginSql.updateToken(tel,token);
-                }
-            //获取用户信息
+            //判断密码是否匹配
+            if (!LoginSql.checkVerificationPassword(tel,password)) {
+                HttpClientUtil.pushResponse(response,"402","密码错误！");
+                return;
+            }
+            String newToken = CommonUtils.makeToken(tel);
+             //存在更新用户token
+             LoginSql.updateToken(tel, newToken);
+            //获取用户信息,更新登陆时间
             merchantInfo = LoginSql.getMerchantInfo(tel);
+            LoginSql.updateLoginTime(merchantInfo.getLoginId());
             Auth auth = Auth.create("l8JTtsVLzAV4yEvMvLd7Jno_4pDBwg180-_sGPbP","lkYt1WH8OPHoDkOHD_raJugSeJhaRzf7OJStBkNO");
-            //		String token=auth.uploadToken("iqiaqia",null,3600*24*365*10,null);//一年
+            //String token=auth.uploadToken("iqiaqia",null,3600*24*365*10,null);//一年
             String qiniu_token=auth.uploadToken("jianguo",null,3600*24*7,null);//7天
             merchantInfo.setQiniuToken(qiniu_token);
         } catch (SQLException e) {
@@ -116,5 +113,4 @@ public class LoginServlet extends HttpServlet {
         pw.flush();
         pw.close();
     }
-
 }

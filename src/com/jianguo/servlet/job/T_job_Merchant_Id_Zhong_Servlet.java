@@ -53,36 +53,21 @@ public class T_job_Merchant_Id_Zhong_Servlet extends HttpServlet {
 		String ss_only3 = Frequently.daycount3();
 		if(only.equals(ss_only) || only.equals(ss_only2) || only.equals(ss_only3)){
 			//------------------访问限制--------结束----------------------
-
-			
-			
 			if(status.equals("1")){
 				List<T_job_Bean> list_t_job2 = T_job_Sql.select_merchant_id_zhong(merchant_id,count);
-				
 				List<T_job_Bean> list_t_job = new ArrayList<T_job_Bean>();
 				for (int i = 0; i < list_t_job2.size(); i++) {
 					T_job_Bean t = list_t_job2.get(i);
 					T_job_Bean t_job = T_job_Sql.select_id(t.getId()+"");
 					t_job.setModel_name("0");
-					
-//					long ll = System.currentTimeMillis()/1000;
-//					int ii = Integer.parseInt(t_job.getStart_date());
-//					if(ll <= ii){
-//						T_job_Sql.update_status("2", t_job.getId()+"");
-//					}
-					
-//					List<T_enroll_Bean> list_t_enroll = T_enroll_Sql.select_job_id_status2_all(t.getId()+"", "3","5","8","9","10","11","12","13");
-//					t_job.setCount(list_t_enroll.size());
 					T_merchant_Bean t_merchant = T_merchant_Sql.select_id(t_job.getMerchant_id()+"");
 					t_job.setMerchant_id_name(t_merchant.getName());
-					
 					t_job.setRemarks("暂无备注");
 					list_t_job.add(t_job);
 				}
 			
 				Map map = new HashMap();
 				map.put("list_t_job", list_t_job);
-
 				params.put("data", map);
 				params.put("message", "兼职信息查询成功");
 				params.put("code", "200");

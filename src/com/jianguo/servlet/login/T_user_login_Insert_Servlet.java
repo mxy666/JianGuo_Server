@@ -64,7 +64,7 @@ public class T_user_login_Insert_Servlet extends HttpServlet {
 			
 			boolean b = T_user_login_Sql.check_tel(tel);
 			if(b == false){
-				
+
 				long random =(long)((Math.random()*9+1)*100000);
 				String codes = random+"";
 				String str_psd = MD5Util.MD5(codes);
@@ -123,10 +123,10 @@ public class T_user_login_Insert_Servlet extends HttpServlet {
 					Map map = new HashMap();
 					map.put("t_user_login", t_user_login);
 					map.put("t_user_info", t_user_info);
-					map.put("version", "22");
-					map.put("version_ios", "3.0.7");
+					map.put("version", "23");
+					map.put("version_ios", "3.0.8");
 					map.put("content", "修复了部分Bug，为方便使用，请更新！");
-					map.put("apk_url", "http://7xljc3.dl1.z0.glb.clouddn.com/app-release.apk");
+					map.put("apk_url", "http://7xljc3.dl1.z0.glb.clouddn.com/jg_v3.1.2.apk");
 					
 					params.put("data", map);			
 					params.put("message", "登录成功");			

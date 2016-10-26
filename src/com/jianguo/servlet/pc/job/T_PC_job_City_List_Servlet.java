@@ -47,7 +47,7 @@ public class T_PC_job_City_List_Servlet extends HttpServlet {
 
 		String city_id =request.getParameter("city_id");
 		 Logger logger = Logger.getLogger("log");
-		 logger.info("日志信息开始!");
+		 logger.info("锟斤拷志锟斤拷息锟斤拷始!");
 		 logger.info("T_PC_job_City_List_Servlet!");
 		String city_id1="";
 		if (city_id.equals("1")){
