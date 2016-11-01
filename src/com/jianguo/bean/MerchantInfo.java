@@ -31,6 +31,16 @@ public class MerchantInfo {
     private String bussinessImg;
     private String bussinessNum;
     private String about;
+    private String apkurl;
+
+    public String getApkurl() {
+        return apkurl;
+    }
+
+    public void setApkurl(String apkurl) {
+        this.apkurl = apkurl;
+    }
+
 
     public String getBussinessNum() {
         return bussinessNum;

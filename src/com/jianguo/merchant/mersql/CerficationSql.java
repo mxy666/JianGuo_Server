@@ -30,7 +30,25 @@ public class CerficationSql {
 			conn.close();
 		return b;
 	}
-/**
+	/**
+	 *更新商家头像
+	 *@param merId
+	 *@author invinjun
+	 *created at 2016/10/22 13:03
+	 */
+	public static int updateMerLogo(String merId,String url) throws SQLException {
+		Connection conn=DButil.getCon();
+		String sql="UPDATE t_merchant SET name_image=? WHERE id=?";
+		PreparedStatement pst=conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		pst.setString(1,url);
+		pst.setString(2,merId);
+		int num = pst.executeUpdate();
+		pst.close();
+		conn.close();
+		return num;
+	}
+
+	/**
 *更新商家信息
 *@param merchantInfo
 *@author invinjun

@@ -48,7 +48,7 @@ public class T_opinion_Sql {
 			rs=psmt.executeQuery();
 			while(rs.next()){
 				t_enroll_limit.setId(rs.getInt("id"));
-				t_enroll_limit.setTel(rs.getString("tel")+"");
+				t_enroll_limit.setTel(rs.getString("tel_no")+"");
 				t_enroll_limit.setText(rs.getString("text")+"");
 				t_enroll_limit.setTime(rs.getString("time")+"");
 			}
@@ -72,7 +72,7 @@ public class T_opinion_Sql {
 		
 		String sql = " select o.*,l.`tel` as tel_no  from t_opinion o "
 		+ " LEFT JOIN `t_user_login` l on o.`tel` = l.`id` "
-		+ " where 1=1 ORDER BY id DESC ";
+		+ "ORDER BY id DESC ";
 		// sql=sql+str.toString();
 		 PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
@@ -105,7 +105,7 @@ public class T_opinion_Sql {
 
 		String sql = " select o.*,l.`tel` as tel_no  from t_opinion o "
 				+ " LEFT JOIN `t_user_login` l on o.`tel` = l.`id` "
-				+ " where 1=1 ORDER BY id DESC "
+				+ "  ORDER BY id DESC "
 				+ "limit "+page.getFirstResult()+","+page.getPageSize();
 		
 //		String sql = "select * from t_opinion where 1=1 ORDER BY id DESC limit "+page.getFirstResult()+","+page.getPageSize();
@@ -118,7 +118,7 @@ public class T_opinion_Sql {
 			while(rs.next()){
 				T_opinion_Bean opinion = new T_opinion_Bean();
 				opinion.setId(rs.getInt("id"));
-				opinion.setTel(rs.getString("tel"));
+				opinion.setTel(rs.getString("tel_no"));
 				opinion.setText(rs.getString("text"));
 				opinion.setTime(rs.getString("time"));
 			

@@ -30,7 +30,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "CerficationServlet/",
-    "title": "个人商家信息审核",
+    "title": "�����̼���Ϣ����",
     "name": "CerficationServlet",
     "group": "certification",
     "parameter": {
@@ -62,7 +62,146 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "merchantInfo",
-            "description": "<p>商家审核信息json对象</p>"
+            "description": "<p>�̼�������Ϣjson����</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "code",
+            "description": "<p>200</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>�����ύ�ɹ���</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 400": [
+          {
+            "group": "Error 400",
+            "type": "String",
+            "optional": false,
+            "field": "code",
+            "description": "<p>400</p>"
+          },
+          {
+            "group": "Error 400",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>������æ�����Ժ�����</p>"
+          },
+          {
+            "group": "Error 400",
+            "type": "String",
+            "optional": false,
+            "field": "codeError",
+            "description": "<p>�����������飨���ڲ����ԣ���������ʹ�ã�</p>"
+          }
+        ],
+        "Error 401": [
+          {
+            "group": "Error 401",
+            "type": "String",
+            "optional": false,
+            "field": "code",
+            "description": "<p>401</p>"
+          },
+          {
+            "group": "Error 401",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>��������������</p>"
+          }
+        ],
+        "Error 402": [
+          {
+            "group": "Error 402",
+            "type": "String",
+            "optional": false,
+            "field": "code",
+            "description": "<p>402</p>"
+          },
+          {
+            "group": "Error 402",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>ǩ��У������</p>"
+          }
+        ],
+        "Error 403": [
+          {
+            "group": "Error 403",
+            "type": "String",
+            "optional": false,
+            "field": "code",
+            "description": "<p>403</p>"
+          },
+          {
+            "group": "Error 403",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>ȱ��������Ϣ</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "./src/com/jianguo/merchant/certification/CerficationServlet.java",
+    "groupTitle": "certification"
+  },
+  {
+    "type": "post",
+    "url": "UpLogoServlet/",
+    "title": "上传头像",
+    "name": "UpLogoServlet",
+    "group": "certification",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "loginId",
+            "description": "<p>User loginId</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>User token</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "merchantId",
+            "description": "<p>User merchantId</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "logoUrl",
+            "description": "<p>User 用户头像</p>"
           }
         ]
       }
@@ -143,33 +282,17 @@ define({ "api": [
             "field": "message",
             "description": "<p>签名校验错误</p>"
           }
-        ],
-        "Error 403": [
-          {
-            "group": "Error 403",
-            "type": "String",
-            "optional": false,
-            "field": "code",
-            "description": "<p>403</p>"
-          },
-          {
-            "group": "Error 403",
-            "type": "String",
-            "optional": false,
-            "field": "message",
-            "description": "<p>缺少审核信息</p>"
-          }
         ]
       }
     },
     "version": "0.0.0",
-    "filename": "./src/com/jianguo/merchant/certification/CerficationServlet.java",
+    "filename": "./src/com/jianguo/merchant/certification/UpLogoServlet.java",
     "groupTitle": "certification"
   },
   {
     "type": "post",
     "url": "AutoLoginServlet/",
-    "title": "自动登录",
+    "title": "�Զ���¼",
     "name": "AutoLoginServlet",
     "group": "login",
     "parameter": {
@@ -207,7 +330,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>登录成功！</p>"
+            "description": "<p>��¼�ɹ���</p>"
           },
           {
             "group": "Success 200",
@@ -242,21 +365,21 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "permissions",
-            "description": "<p>0 (商家权限（1是外部商家，2是个人商户，0是内部）)</p>"
+            "description": "<p>0 (�̼�Ȩ�ޣ�1���ⲿ�̼ң�2�Ǹ����̻���0���ڲ���)</p>"
           },
           {
             "group": "Success 200",
             "type": "int",
             "optional": false,
             "field": "payStatus",
-            "description": "<p>0  (支付密码是否设置 0未设置1已设置)</p>"
+            "description": "<p>0  (֧�������Ƿ����� 0δ����1������)</p>"
           },
           {
             "group": "Success 200",
             "type": "int",
             "optional": false,
             "field": "resumeStatus",
-            "description": "<p>0 (商家信息是否填写 0未填写 1已填写审核中 2审核通过)</p>"
+            "description": "<p>0 (�̼���Ϣ�Ƿ���д 0δ��д 1����д������ 2����ͨ��)</p>"
           }
         ]
       }
@@ -276,14 +399,14 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>服务器忙，请稍后重试</p>"
+            "description": "<p>������æ�����Ժ�����</p>"
           },
           {
             "group": "Error 400",
             "type": "String",
             "optional": false,
             "field": "codeError",
-            "description": "<p>代码错误详情（供内部测试，查找问题使用）</p>"
+            "description": "<p>�����������飨���ڲ����ԣ���������ʹ�ã�</p>"
           }
         ],
         "Error 401": [
@@ -299,7 +422,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>参数错误请检查</p>"
+            "description": "<p>��������������</p>"
           }
         ],
         "Error 402": [
@@ -315,7 +438,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>签名校验错误</p>"
+            "description": "<p>ǩ��У������</p>"
           }
         ],
         "Error 403": [
@@ -331,7 +454,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>手机号码不存在</p>"
+            "description": "<p>�ֻ����벻����</p>"
           }
         ]
       }
@@ -343,7 +466,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "LoginServlet/",
-    "title": "快速登录",
+    "title": "���ٵ�¼",
     "name": "LoginServlet",
     "group": "login",
     "parameter": {
@@ -381,7 +504,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>登录成功！</p>"
+            "description": "<p>��¼�ɹ���</p>"
           },
           {
             "group": "Success 200",
@@ -416,21 +539,21 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "permissions",
-            "description": "<p>0 (商家权限（1是外部商家，2是个人商户，0是内部）)</p>"
+            "description": "<p>0 (�̼�Ȩ�ޣ�1���ⲿ�̼ң�2�Ǹ����̻���0���ڲ���)</p>"
           },
           {
             "group": "Success 200",
             "type": "int",
             "optional": false,
             "field": "payStatus",
-            "description": "<p>0  (支付密码是否设置 0未设置1已设置)</p>"
+            "description": "<p>0  (֧�������Ƿ����� 0δ����1������)</p>"
           },
           {
             "group": "Success 200",
             "type": "int",
             "optional": false,
             "field": "resumeStatus",
-            "description": "<p>0 (商家信息是否填写 0未填写 1已填写审核中 2审核通过)</p>"
+            "description": "<p>0 (�̼���Ϣ�Ƿ���д 0δ��д 1����д������ 2����ͨ��)</p>"
           }
         ]
       }
@@ -450,14 +573,14 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>服务器忙，请稍后重试</p>"
+            "description": "<p>������æ�����Ժ�����</p>"
           },
           {
             "group": "Error 400",
             "type": "String",
             "optional": false,
             "field": "codeError",
-            "description": "<p>代码错误详情（供内部测试，查找问题使用）</p>"
+            "description": "<p>�����������飨���ڲ����ԣ���������ʹ�ã�</p>"
           }
         ],
         "Error 401": [
@@ -473,7 +596,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>参数错误请检查</p>"
+            "description": "<p>��������������</p>"
           }
         ],
         "Error 402": [
@@ -489,7 +612,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>验证码错误</p>"
+            "description": "<p>��֤������</p>"
           }
         ],
         "Error 403": [
@@ -505,7 +628,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>验证码已过期</p>"
+            "description": "<p>��֤���ѹ���</p>"
           }
         ]
       }
@@ -517,7 +640,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "PasswordLoginServlet/",
-    "title": "密码登录",
+    "title": "������¼",
     "name": "PasswordLoginServlet",
     "group": "login",
     "parameter": {
@@ -555,7 +678,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>登录成功！</p>"
+            "description": "<p>��¼�ɹ���</p>"
           },
           {
             "group": "Success 200",
@@ -590,21 +713,21 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "permissions",
-            "description": "<p>0 (商家权限（1是外部商家，2是个人商户，0是内部）)</p>"
+            "description": "<p>0 (�̼�Ȩ�ޣ�1���ⲿ�̼ң�2�Ǹ����̻���0���ڲ���)</p>"
           },
           {
             "group": "Success 200",
             "type": "int",
             "optional": false,
             "field": "payStatus",
-            "description": "<p>0  (支付密码是否设置 0未设置1已设置)</p>"
+            "description": "<p>0  (֧�������Ƿ����� 0δ����1������)</p>"
           },
           {
             "group": "Success 200",
             "type": "int",
             "optional": false,
             "field": "resumeStatus",
-            "description": "<p>0 (商家信息是否填写 0未填写 1已填写审核中 2审核通过)</p>"
+            "description": "<p>0 (�̼���Ϣ�Ƿ���д 0δ��д 1����д������ 2����ͨ��)</p>"
           }
         ]
       }
@@ -624,14 +747,14 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>服务器忙，请稍后重试</p>"
+            "description": "<p>������æ�����Ժ�����</p>"
           },
           {
             "group": "Error 400",
             "type": "String",
             "optional": false,
             "field": "codeError",
-            "description": "<p>代码错误详情（供内部测试，查找问题使用）</p>"
+            "description": "<p>�����������飨���ڲ����ԣ���������ʹ�ã�</p>"
           }
         ],
         "Error 401": [
@@ -647,7 +770,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>参数错误请检查</p>"
+            "description": "<p>��������������</p>"
           }
         ],
         "Error 402": [
@@ -663,7 +786,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>密码错误</p>"
+            "description": "<p>��������</p>"
           }
         ],
         "Error 403": [
@@ -679,7 +802,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>手机号码不存在</p>"
+            "description": "<p>�ֻ����벻����</p>"
           }
         ],
         "Error 405": [
@@ -695,7 +818,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>尚未设置密码，短信登录用户</p>"
+            "description": "<p>��δ�������룬���ŵ�¼�û�</p>"
           }
         ]
       }
@@ -707,7 +830,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "QuickSmsServlet/",
-    "title": "快速登录验证码",
+    "title": "���ٵ�¼��֤��",
     "name": "QuickSmsServlet",
     "group": "login",
     "parameter": {
@@ -725,7 +848,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "type",
-            "description": "<p>请求类型，可选字段（忘记密码中的验证码请求，注册传0，忘记密码传1，其余不传该字段）</p>"
+            "description": "<p>�������ͣ���ѡ�ֶΣ����������е���֤��������ע�ᴫ0���������봫1�����಻�����ֶΣ�</p>"
           }
         ]
       }
@@ -745,7 +868,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>验证码已经发送，请注意查收！</p>"
+            "description": "<p>��֤���Ѿ����ͣ���ע�����գ�</p>"
           }
         ]
       }
@@ -765,7 +888,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>服务器忙，请稍后重试！（sql或者IO错误,给用户提示服务器忙）</p>"
+            "description": "<p>������æ�����Ժ����ԣ���sql����IO����,���û���ʾ������æ��</p>"
           }
         ],
         "Error 401": [
@@ -781,7 +904,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>您的验证码请求过于频繁，请稍后再试！</p>"
+            "description": "<p>������֤����������Ƶ�������Ժ����ԣ�</p>"
           }
         ],
         "Error 402": [
@@ -797,7 +920,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>忘记密码情况下，手机账号不存在！</p>"
+            "description": "<p>�������������£��ֻ��˺Ų����ڣ�</p>"
           }
         ],
         "Error 403": [
@@ -813,7 +936,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>注册情况下，手机账号已经存在！</p>"
+            "description": "<p>ע�������£��ֻ��˺��Ѿ����ڣ�</p>"
           }
         ]
       }
@@ -825,7 +948,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "RegisterServlet/",
-    "title": "商家注册",
+    "title": "�̼�ע��",
     "name": "RegisterServlet",
     "group": "login",
     "parameter": {
@@ -870,7 +993,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>登录成功！</p>"
+            "description": "<p>��¼�ɹ���</p>"
           }
         ]
       }
@@ -890,14 +1013,14 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>服务器忙，请稍后重试</p>"
+            "description": "<p>������æ�����Ժ�����</p>"
           },
           {
             "group": "Error 400",
             "type": "String",
             "optional": false,
             "field": "codeError",
-            "description": "<p>代码错误详情（供内部测试，查找问题使用）</p>"
+            "description": "<p>�����������飨���ڲ����ԣ���������ʹ�ã�</p>"
           }
         ],
         "Error 401": [
@@ -913,7 +1036,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>参数错误请检查</p>"
+            "description": "<p>��������������</p>"
           }
         ],
         "Error 402": [
@@ -929,7 +1052,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>验证码错误</p>"
+            "description": "<p>��֤������</p>"
           }
         ],
         "Error 403": [
@@ -945,7 +1068,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>验证码已过期</p>"
+            "description": "<p>��֤���ѹ���</p>"
           }
         ],
         "Error 405": [
@@ -961,7 +1084,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>手机号码已经存在</p>"
+            "description": "<p>�ֻ������Ѿ�����</p>"
           }
         ]
       }
@@ -973,7 +1096,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "ResetPasswordServlet/",
-    "title": "重置密码",
+    "title": "��������",
     "name": "ResetPasswordServlet",
     "group": "login",
     "parameter": {
@@ -1018,7 +1141,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>修改成功</p>"
+            "description": "<p>�޸ĳɹ�</p>"
           }
         ]
       }
@@ -1038,14 +1161,14 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>服务器忙，请稍后重试</p>"
+            "description": "<p>������æ�����Ժ�����</p>"
           },
           {
             "group": "Error 400",
             "type": "String",
             "optional": false,
             "field": "codeError",
-            "description": "<p>代码错误详情（供内部测试，查找问题使用）</p>"
+            "description": "<p>�����������飨���ڲ����ԣ���������ʹ�ã�</p>"
           }
         ],
         "Error 401": [
@@ -1061,7 +1184,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>参数错误请检查</p>"
+            "description": "<p>��������������</p>"
           }
         ],
         "Error 402": [
@@ -1077,7 +1200,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>验证码错误</p>"
+            "description": "<p>��֤������</p>"
           }
         ],
         "Error 403": [
@@ -1093,7 +1216,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>验证码已过期</p>"
+            "description": "<p>��֤���ѹ���</p>"
           }
         ],
         "Error 405": [
@@ -1109,7 +1232,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "message",
-            "description": "<p>手机号码已经存在</p>"
+            "description": "<p>�ֻ������Ѿ�����</p>"
           }
         ]
       }

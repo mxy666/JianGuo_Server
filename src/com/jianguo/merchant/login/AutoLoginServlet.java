@@ -95,6 +95,7 @@ public class AutoLoginServlet extends HttpServlet {
             //		String token=auth.uploadToken("iqiaqia",null,3600*24*365*10,null);//一年
             String qiniu_token=auth.uploadToken("jianguo",null,3600*24*7,null);//7天
             merchantInfo.setQiniuToken(qiniu_token);
+            merchantInfo.setApkurl("");
         } catch (SQLException e) {
             HttpClientUtil.pushResponse(response,logger,"400","服务器忙，请稍后再试！",e.getMessage());
             return;
