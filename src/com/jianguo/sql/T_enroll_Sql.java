@@ -865,9 +865,9 @@ public class T_enroll_Sql {
 		return num;
 	}
 	
-	public static int update_status2(String status,String login_id,String job_id){
+	public static int update_status2(String status,String login_id,String job_id) throws SQLException {
 		int num=0;
-		try {
+
 			Connection conn=DButil.getCon();
 			String sql = "update t_enroll set status=? where login_id=? and job_id=?";
 			PreparedStatement psmt = DButil.getPstm(conn, sql);
@@ -877,9 +877,7 @@ public class T_enroll_Sql {
 			num=psmt.executeUpdate();
 			psmt.close();
 			conn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
 		return num;
 	}
 	
@@ -901,9 +899,9 @@ public class T_enroll_Sql {
 		return num;
 	}
 	
-	public static int update_state(String state,String login_id,String job_id){
+	public static int update_state(String state,String login_id,String job_id) throws SQLException {
 		int num=0;
-		try {
+
 			Connection conn=DButil.getCon();
 			String sql = "update t_enroll set state=? where login_id=? and job_id=?";
 			PreparedStatement psmt = DButil.getPstm(conn, sql);
@@ -913,9 +911,7 @@ public class T_enroll_Sql {
 			num=psmt.executeUpdate();
 			psmt.close();
 			conn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
 		return num;
 	}
 	

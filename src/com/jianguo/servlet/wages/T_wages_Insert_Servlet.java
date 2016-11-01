@@ -75,43 +75,52 @@ public class T_wages_Insert_Servlet extends HttpServlet {
 			
 			Gson g2 = new Gson();
 			user_ss list2 = g2.fromJson(json, user_ss.class);
-			for (int i = 0; i < list2.getList_t_wages_Bean().size(); i++) {
-				T_wages_Bean t = list2.getList_t_wages_Bean().get(i);
 
-				T_user_money_Bean t_user_money = T_user_money_Sql.select_login_id(t.getLogin_id()+"");
-				double ddd = t_user_money.getMoney()+ t.getReal_money();
-				System.out.println(t_user_money.getMoney());
-				System.out.println(t.getReal_money());
-				System.out.println(ddd);
-				float scale = (float) ddd; 
-				DecimalFormat fnum = new DecimalFormat("##0.00"); 
-				String dd=fnum.format(scale); 
-				
-				float scale2 = (float) t.getReal_money(); 
-				DecimalFormat fnum2 = new DecimalFormat("##0.00"); 
-				String dd2=fnum2.format(scale2); 
-				
-				if(!T_wages_Sql.check(t.getLogin_id()+"", t.getJob_id()+"")){
-				
-				T_wages_Sql.insert(t.getLogin_id()+"", t.getJob_id()+"", t.getHould_money()+"", dd2+"", t.getRemarks(), ly_time);
-				T_enroll_Sql.update_state("1",t.getLogin_id()+"", t.getJob_id()+"");
-			
-				T_user_money_Sql.update_moneyss(dd, t.getLogin_id()+"");
-				T_enroll_Sql.update_status2("12", t.getLogin_id()+"",t.getJob_id()+"");
+			try {
 
-				T_job_record_Sql.update_complete(t.getLogin_id()+"");
-				
-				T_job_Bean t_job = T_job_Sql.select_id(t.getJob_id()+"");
-				T_user_login_Bean t_user_login = T_user_login_Sql.select_id(t.getLogin_id()+"");
+				for (int i = 0; i < list2.getList_t_wages_Bean().size(); i++) {
+					T_wages_Bean t = list2.getList_t_wages_Bean().get(i);
 
-				
-				Jdpush.sendPush("工资到账，账户已收到"+dd2+"元,【"+t_job.getName()+"】兼职的工资","jianguo"+t.getLogin_id()+"");
-				Jdpusher.sendPush("工资到账，账户已收到"+dd2+"元,【"+t_job.getName()+"】兼职的工资","jianguo"+t.getLogin_id()+"");
-				Jdpushcc.sendPush("工资到账，账户已收到"+dd2+"元,【"+t_job.getName()+"】兼职的工资","jianguo"+t.getLogin_id()+"");
+					T_user_money_Bean t_user_money = T_user_money_Sql.select_login_id(t.getLogin_id()+"");
+					double ddd = t_user_money.getMoney()+ t.getReal_money();
+					System.out.println(t_user_money.getMoney());
+					System.out.println(t.getReal_money());
+					System.out.println(ddd);
+					float scale = (float) ddd;
+					DecimalFormat fnum = new DecimalFormat("##0.00");
+					String dd=fnum.format(scale);
 
-				T_push_Sql.insert(t.getLogin_id()+"", t_job.getName(), "工资到账", "工资到账，账户已收到"+dd2+"元,【"+t_job.getName()+"】兼职的工资", "1","0","0","0", ly_time);
+					float scale2 = (float) t.getReal_money();
+					DecimalFormat fnum2 = new DecimalFormat("##0.00");
+					String dd2=fnum2.format(scale2);
+
+					if(!T_wages_Sql.check(t.getLogin_id()+"", t.getJob_id()+"")){
+
+						T_wages_Sql.insert(t.getLogin_id()+"", t.getJob_id()+"", t.getHould_money()+"", dd2+"", t.getRemarks(), ly_time);
+						T_enroll_Sql.update_state("1",t.getLogin_id()+"", t.getJob_id()+"");
+
+						T_user_money_Sql.update_moneyss(dd, t.getLogin_id()+"");
+						T_enroll_Sql.update_status2("12", t.getLogin_id()+"",t.getJob_id()+"");
+
+						T_job_record_Sql.update_complete(t.getLogin_id()+"");
+
+						T_job_Bean t_job = T_job_Sql.select_id(t.getJob_id()+"");
+						T_user_login_Bean t_user_login = T_user_login_Sql.select_id(t.getLogin_id()+"");
+
+
+						Jdpush.sendPush("工资到账，账户已收到"+dd2+"元,【"+t_job.getName()+"】兼职的工资","jianguo"+t.getLogin_id()+"");
+						Jdpusher.sendPush("工资到账，账户已收到"+dd2+"元,【"+t_job.getName()+"】兼职的工资","jianguo"+t.getLogin_id()+"");
+						Jdpushcc.sendPush("工资到账，账户已收到"+dd2+"元,【"+t_job.getName()+"】兼职的工资","jianguo"+t.getLogin_id()+"");
+
+						T_push_Sql.insert(t.getLogin_id()+"", t_job.getName(), "工资到账", "工资到账，账户已收到"+dd2+"元,【"+t_job.getName()+"】兼职的工资", "1","0","0","0", ly_time);
+					}
 				}
+
+			}catch (Exception e){
+				e.printStackTrace();
 			}
+
+
 			List<T_enroll_Bean> list_t_enroll2 = T_enroll_Sql.select_job_id_status_countnew(job_id, "9");
 			
 			if(list_t_enroll2.size() == 0){

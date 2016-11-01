@@ -32,9 +32,13 @@ public class T_user_money_Sql {
 	public static int insert(String login_id,String name,String money,String zhifubao,String yinhang,String kahao,String pay_password,String weixin){
 		int num=0;
 		Connection conn=DButil.getCon();
+
 		String sql="insert into t_user_money(login_id,name,money,zhifubao,yinhang,kahao,pay_password,weixin) values(?,?,?,?,?,?,?,?)";
 		PreparedStatement pst=DButil.getPstm(conn, sql);
 		try {
+
+			conn.setAutoCommit(false);
+			conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
 			pst.setString(1, login_id);
 			pst.setString(2, name);
 			pst.setString(3, money);
@@ -44,8 +48,14 @@ public class T_user_money_Sql {
 			pst.setString(7, pay_password);
 			pst.setString(8, weixin);
 			num=pst.executeUpdate();
-		} catch (SQLException e) {
+			conn.commit();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		}	
 		finally{

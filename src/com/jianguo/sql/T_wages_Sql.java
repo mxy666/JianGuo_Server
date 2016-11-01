@@ -75,12 +75,12 @@ public class T_wages_Sql {
 		return b;
 	}
 	
-	public static int insert(String login_id,String job_id,String hould_money,String real_money,String remarks,String reg_time){
+	public static int insert(String login_id,String job_id,String hould_money,String real_money,String remarks,String reg_time) throws SQLException {
 		int num=0;
 		Connection conn=DButil.getCon();
 		String sql="insert into t_wages(login_id,job_id,hould_money,real_money,remarks,reg_time) values(?,?,?,?,?,?)";
 		PreparedStatement pst=DButil.getPstm(conn, sql);
-		try {
+
 			pst.setString(1, login_id);
 			pst.setString(2, job_id);
 			pst.setString(3, hould_money);
@@ -88,14 +88,10 @@ public class T_wages_Sql {
 			pst.setString(5, remarks);
 			pst.setString(6, reg_time);
 			num=pst.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-		finally{
+
 			DButil.close(conn);
 			DButil.psClose(pst);
-		}
+
 		return num;
 	}
 	
