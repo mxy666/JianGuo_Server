@@ -1576,6 +1576,17 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>update</servlet-name>
+        <servlet-class>com.jianguo.servlet.update.UpdateServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>update</servlet-name>
+        <url-pattern>/v_update</url-pattern>
+    </servlet-mapping>
+
+
     <welcome-file-list>
     <welcome-file>login.html</welcome-file>
   </welcome-file-list>
