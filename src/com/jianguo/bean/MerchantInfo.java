@@ -22,13 +22,33 @@ public class MerchantInfo {
     private String province;
     private String city;
     private String companyAddress;
+    private String companyName;
     private String qiniuToken;
     private String cardNum;
     private String cardImg;
     private String realName;
     private String handImg;
     private String bussinessImg;
+    private String bussinessNum;
     private String about;
+
+    public String getBussinessNum() {
+        return bussinessNum;
+    }
+
+    public void setBussinessNum(String bussinessNum) {
+        this.bussinessNum = bussinessNum;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+
 
     public String getHandImg() {
         return handImg;

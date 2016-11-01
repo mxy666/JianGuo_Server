@@ -4,11 +4,99 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.jianguo.bean.T_merchant_Bean;
 import com.jianguo.util.DButil;
 
 public class T_merchant_Sql {
-	
+	//根据ID查出商家信息 new
+	public static T_merchant_Bean select_id_ad(String id){
+		ResultSet rs=null;
+		T_merchant_Bean t_merchant = new T_merchant_Bean();
+		Connection conn=DButil.getCon();
+		String sql = "select u.id,m.realName,m.cardNum,u.tel,m.companyName,m.handImage,m.cardImage,m.bussinessImage from t_merchant m inner join t_user_login u on u.id = m.login_id where m.id=?";
+		PreparedStatement psmt = DButil.getPstm(conn, sql);
+		try {
+			psmt.setString(1,id);
+			rs=psmt.executeQuery();
+			while(rs.next()){
+				t_merchant.setId(Integer.parseInt(id));
+				t_merchant.setLogin_id(rs.getInt("id"));
+				t_merchant.setReal_name(rs.getString("realName"));
+				t_merchant.setCard_num(rs.getString("cardNum")+"");
+				t_merchant.setTel(rs.getString("tel")+"");
+				t_merchant.setCompanyName(rs.getString("companyName")+"");
+				t_merchant.setHandImage(rs.getString("handImage"));
+				t_merchant.setCardImage(rs.getString("cardImage"));
+				t_merchant.setBussinessImage(rs.getString("bussinessImage"));
+
+//				t_merchant.setJob_count(rs.getInt("job_count"));
+//				t_merchant.setUser_count(rs.getInt("user_count"));
+//				t_merchant.setFans_count(rs.getInt("fans_count"));
+//				t_merchant.setPost(rs.getInt("post"));
+//				t_merchant.setRegedit_time(rs.getString("regedit_time")+"");
+//				t_merchant.setLogin_time(rs.getString("login_time")+"");
+//				t_merchant.setPay_password(rs.getString("pay_password")+"");
+			}
+			psmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			DButil.close(conn);
+		}
+		return t_merchant;
+	}
+	public static List<T_merchant_Bean> selectAuthInfo(){
+
+
+		List<T_merchant_Bean> list=new ArrayList<T_merchant_Bean>();
+
+		try {
+			Connection conn=DButil.getCon();
+			String sql = "select m.id,u.tel,m.realName,u.power,m.companyName from t_merchant m  inner join t_user_login u on m.login_id = u.id where 1=1 and m.reviewMerStatus = 1 ";
+			PreparedStatement psmt = DButil.getPstm(conn, sql);
+
+			ResultSet rs =psmt.executeQuery();
+
+			while(rs.next()){
+				T_merchant_Bean merchant = new T_merchant_Bean();
+				merchant.setTel(rs.getString("tel"));
+				merchant.setReal_name(rs.getString("realName"));
+				merchant.setCompanyName(rs.getString("companyName"));
+				merchant.setAbout(rs.getString("power"));
+				merchant.setLogin_id(Integer.parseInt(rs.getString("id")));
+				list.add(merchant);
+			}
+
+
+			psmt.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	public static int update_status(int status,String id){
+		int num=0;
+		try {
+			Connection conn=DButil.getCon();
+			String sql = "update t_merchant set reviewMerStatus=? where id=?";
+			PreparedStatement psmt = DButil.getPstm(conn, sql);
+			psmt.setInt(1, status);
+			psmt.setString(2, id);
+			num=psmt.executeUpdate();
+			psmt.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return num;
+	}
+
 	//判断该商家有没有
 	public static boolean check_login_id(String login_id){
 		Connection conn=DButil.getCon();

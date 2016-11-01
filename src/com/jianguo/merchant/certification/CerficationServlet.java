@@ -33,20 +33,13 @@ public class CerficationServlet extends HttpServlet {
      * @apiName CerficationServlet
      * @apiGroup certification
      *
-     * @apiParam {String} tel User phone
+     * @apiParam {String} loginId User loginId
      * @apiParam {String} token User token
+     *  @apiParam {String} merchantId User merchantId
+     *   @apiParam {String} merchantInfo 商家审核信息json对象
      * @apiSuccess {String} code 200
-     * @apiSuccess {String} message  登录成功！
-     * @apiSuccess {String} tel  18101050625
-     * @apiSuccess {int} loginId  10
-     * @apiSuccess {String} password  ""
-     * @apiSuccess {String} token  0a4148a32160ebfa78eff622357bda4e
-     * @apiSuccess {String} permissions  0 (商家权限（1是外部商家，2是个人商户，0是内部）)
-     * @apiSuccess {int} payStatus  0  (支付密码是否设置 0未设置1已设置)
-     * @apiSuccess {int} resumeStatus  0 (商家信息是否填写 0未填写 1已填写审核中 2审核通过)
-     * @apiSuccess {String} tel  18101050625
-     * @apiSuccess {String} tel  18101050625
-     *
+     * @apiSuccess {String} message  审核提交成功！
+
      * @apiError (Error 400) {String} code 400
      * @apiError (Error 400) {String} message 服务器忙，请稍后重试
      * @apiError (Error 400) {String} codeError 代码错误详情（供内部测试，查找问题使用）
@@ -55,7 +48,7 @@ public class CerficationServlet extends HttpServlet {
      * @apiError (Error 402) {String} code 402
      * @apiError (Error 402) {String} message 签名校验错误
      * @apiError (Error 403) {String} code 403
-     * @apiError (Error 403) {String} message 手机号码不存在
+     * @apiError (Error 403) {String} message 缺少审核信息
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
@@ -82,26 +75,27 @@ public class CerficationServlet extends HttpServlet {
             Gson gson=new Gson();
             MerchantInfo merchantInfo = gson.fromJson(merStr, MerchantInfo.class);
             if (null==merchantInfo.getCity()||merchantInfo.getCity().equals("")) {
-                HttpClientUtil.pushResponse(response,"400","没有选择城市");
-            }else  if (null==merchantInfo.getNickName()||merchantInfo.getNickName().equals("")) {
-                HttpClientUtil.pushResponse(response,"400","没有填写昵称");
+                HttpClientUtil.pushResponse(response,"403","没有选择城市");
             }else  if (null==merchantInfo.getCompanyAddress()||merchantInfo.getCompanyAddress().equals("")) {
-                HttpClientUtil.pushResponse(response,"400","没有填写公司详细地址");
+                HttpClientUtil.pushResponse(response,"403","没有填写公司详细地址");
             }else  if (null==merchantInfo.getUserImage()||merchantInfo.getUserImage().equals("")) {
-                HttpClientUtil.pushResponse(response,"400","没有上传用户头像");
+                HttpClientUtil.pushResponse(response,"403","没有上传用户头像");
             }else  if (null==merchantInfo.getContactName()||merchantInfo.getContactName().equals("")) {
-                HttpClientUtil.pushResponse(response,"400","没有填写联系人姓名");
+                HttpClientUtil.pushResponse(response,"403","没有填写联系人姓名");
             }else  if (null==merchantInfo.getContactPhone()||merchantInfo.getContactPhone().equals("")) {
-                HttpClientUtil.pushResponse(response,"400","没有填写联系人电话");
+                HttpClientUtil.pushResponse(response,"403","没有填写联系人电话");
             }else  if (null==merchantInfo.getEmail()||merchantInfo.getEmail().equals("")) {
-                HttpClientUtil.pushResponse(response,"400","没有填写联系人邮箱");
+                HttpClientUtil.pushResponse(response,"403","没有填写联系人邮箱");
             }
-            CerficationSql.updateMerStatus(merchantId,merchantInfo);
+            int status = CerficationSql.updateMerInfo(merchantId, merchantInfo);
+                CerficationSql.updateMerStatus(loginId, String.valueOf(merchantInfo.getPermissions()));
+             if (status==0){
+                 HttpClientUtil.pushResponse(response,"403","没有该账户");
+             }
             PrintWriter pw = response.getWriter();
-            map.put("data",merchantInfo);
             //生成token返回给客户端
             map.put("code", "200");
-            map.put("message", "登录成功！");
+            map.put("message", "提交审核成功！");
             String str = gson.toJson(map);
             pw.write(str);
             pw.flush();

@@ -36,15 +36,14 @@ public class CerficationSql {
 *@author invinjun
 *created at 2016/10/22 13:03
 */
-	public static int updateMerStatus(String loginId,MerchantInfo merchantInfo) throws SQLException {
+	public static int updateMerInfo(String loginId,MerchantInfo merchantInfo) throws SQLException {
 		Connection conn=DButil.getCon();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //		StringBuffer sql = "insert into t_user_login (tel,password,qqwx_token,power,payStatus,status,resume,city_id,hobby,pigeon_count) values" +
 //				"('"+tel+"','','"+token+"',0,0,1,0,'',0,0)";
-		String sql="UPDATE t_merchant SET `name`=?,name_image=?,contactName=?,contactPhone=?,email=?,province=?,city=?,companyAddress=?,cardNum=?,cardImage=?,realName=?,"+
-				"handImage=?,bussinessImage=?,reviewMerStatus=1,about=? WHERE login_id=?";
+		String sql="UPDATE t_merchant SET `name`=?,name_image=?,contactName=?,contactPhone=?,email=?,province=?,city=?,companyAddress=?,companyName=?,cardNum=?,cardImage=?,realName=?,"+
+				"handImage=?,bussinessImage=?,reviewMerStatus=1,reviewMerStatus=1,about=? WHERE id=?";
 		PreparedStatement pst=conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-		pst.setString(1,merchantInfo.getName());
+		pst.setString(1,merchantInfo.getName()==null?"":merchantInfo.getName());
 		pst.setString(2,merchantInfo.getUserImage());
 		pst.setString(3,merchantInfo.getContactName());
 		pst.setString(4,merchantInfo.getContactPhone());
@@ -52,13 +51,34 @@ public class CerficationSql {
 		pst.setString(6,merchantInfo.getProvince());
 		pst.setString(7,merchantInfo.getCity());
 		pst.setString(8,merchantInfo.getCompanyAddress());
-		pst.setString(9,merchantInfo.getCardNum());
-		pst.setString(10,merchantInfo.getCardImg());
-		pst.setString(11,merchantInfo.getRealName());
-		pst.setString(12,merchantInfo.getHandImg());
-		pst.setString(13,merchantInfo.getBussinessImg());
-		pst.setString(14,merchantInfo.getAbout());
-		pst.setString(15,loginId);
+		pst.setString(9,merchantInfo.getCompanyName());
+		pst.setString(10,merchantInfo.getCardNum());
+		pst.setString(11,merchantInfo.getCardImg()==null?"":merchantInfo.getCardImg());
+		pst.setString(12,merchantInfo.getRealName());
+		pst.setString(13,merchantInfo.getHandImg());
+		pst.setString(14,merchantInfo.getBussinessImg()==null?"":merchantInfo.getBussinessImg());
+		pst.setString(15,merchantInfo.getAbout()==null?"":merchantInfo.getAbout());
+		pst.setInt(16, Integer.parseInt(loginId));
+		int num = pst.executeUpdate();
+		pst.close();
+		conn.close();
+		return num;
+	}
+
+	/**
+	 *更新商家状态
+	 *@param loginId
+	 *@author invinjun
+	 *created at 2016/10/22 13:03
+	 */
+	public static int updateMerStatus(String loginId,String permission) throws SQLException {
+		Connection conn=DButil.getCon();
+//		StringBuffer sql = "insert into t_user_login (tel,password,qqwx_token,power,payStatus,status,resume,city_id,hobby,pigeon_count) values" +
+//				"('"+tel+"','','"+token+"',0,0,1,0,'',0,0)";
+		String sql="UPDATE t_user_login SET power=? WHERE id=?;";
+		PreparedStatement pst=conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		pst.setInt(1, Integer.parseInt(permission));
+		pst.setInt(2, Integer.parseInt(loginId));
 		int num = pst.executeUpdate();
 		pst.close();
 		conn.close();

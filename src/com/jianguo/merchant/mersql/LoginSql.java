@@ -279,7 +279,7 @@ public class LoginSql {
 		MerchantInfo merchantInfo = new MerchantInfo();
 		Connection conn=DButil.getCon();
 //		String sql = "select * from t_user_info where login_id=?";
-		String sql = "select mer.id,mer.login_id,mer.reviewMerStatus,mer.`name`,mer.name_image,mer.email,mer.contactName,mer.contactPhone,mer.province,mer.city,mer.companyAddress, login.`password`,login.power,login.qqwx_token,login.tel from t_user_login login LEFT JOIN t_merchant mer on login.id=mer.login_id where login.tel=?";
+		String sql = "select mer.id,mer.login_id,mer.companyName,mer.reviewMerStatus,mer.`name`,mer.name_image,mer.email,mer.contactName,mer.contactPhone,mer.province,mer.city,mer.companyAddress,login.power, login.`password`,login.power,login.qqwx_token,login.tel from t_user_login login LEFT JOIN t_merchant mer on login.id=mer.login_id where login.tel=?";
 //	"select * from t_user_login login LEFT JOIN t_merchant mer on login.id=mer.login_id where login.tel=?";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 			psmt.setString(1,login_id);
@@ -295,6 +295,8 @@ public class LoginSql {
 //				merchantInfo.setPayStatus(rs.getInt("payStatus"));
 
 				merchantInfo.setName(rs.getString("name"));
+				merchantInfo.setCompanyName(rs.getString("companyName"));
+				merchantInfo.setPermissions(rs.getInt("power"));
 				merchantInfo.setUserImage(rs.getString("name_image"));
 				merchantInfo.setContactName(rs.getString("contactName"));
 				merchantInfo.setContactPhone(rs.getString("contactPhone"));

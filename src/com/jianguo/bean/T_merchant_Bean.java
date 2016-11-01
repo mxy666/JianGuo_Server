@@ -19,8 +19,16 @@ public class T_merchant_Bean {
 	private String is_follow;//µÇÂ¼Ê±¼ä
 	private String qiniu;//ÆßÅ£
 	private String pay_password;//Ö§¸¶ÃÜÂë
-	private String tel;//Ö§¸¶ÃÜÂë
-	
+
+
+	private String real_name;
+	private String card_num;
+	private String tel;
+	private String companyName;
+	private String handImage;
+	private String cardImage;
+	private String bussinessImage;
+
 	public int getId() {
 		return id;
 	}
@@ -123,5 +131,54 @@ public class T_merchant_Bean {
 	public String getTel() {
 		return tel;
 	}
-	
+
+
+	public String getReal_name() {
+		return real_name;
+	}
+
+	public void setReal_name(String real_name) {
+		this.real_name = real_name;
+	}
+
+	public String getCard_num() {
+		return card_num;
+	}
+
+	public void setCard_num(String card_num) {
+		this.card_num = card_num;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getHandImage() {
+		return handImage;
+	}
+
+	public void setHandImage(String handImage) {
+		this.handImage = handImage;
+	}
+
+	public String getCardImage() {
+		return cardImage;
+	}
+
+	public void setCardImage(String cardImage) {
+		this.cardImage = cardImage;
+	}
+
+	public String getBussinessImage() {
+		return bussinessImage;
+	}
+
+	public void setBussinessImage(String bussinessImage) {
+		this.bussinessImage = bussinessImage;
+	}
+
 }

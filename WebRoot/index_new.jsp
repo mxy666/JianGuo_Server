@@ -130,6 +130,8 @@ $(function(){
 						<div class="accordionContent shiming" >
 							<ul class="tree treeFolder">
 								<li><a href="T_user_realname_List_Servlet" target="navTab" rel="externa1" external="true">实名审核</a></li>
+								<li><a href="T_business_realname_List_Servlet" target="navTab" rel="externa2" external="true">商家实名审核</a></li>
+
 							</ul>
 						</div>
 
