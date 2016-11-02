@@ -30,7 +30,7 @@ public class UpdateServlet extends HttpServlet {
     }
 
     //http://192.168.1.233/JianGuo_Server/T_Text_Sms_Servlet?only=D1F4C2041C993D383D2D0447FF15DB63&phone=13614093590
-    //http://192.168.1.117:9090/v_update?v=9
+//   http://192.168.1.118:8080/v_update?v=9
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -65,10 +65,6 @@ public class UpdateServlet extends HttpServlet {
                 }
                 String c = child.getName();
 
-//                System.out.println("name=="+c);
-//                System.out.println("value=="+child.getStringValue());
-
-
             }
 
 
@@ -78,10 +74,10 @@ public class UpdateServlet extends HttpServlet {
             final Map<String, String> params =  new HashMap<String, String>();
 
             if(curr_code>version){
-                params.put("code", "300");
+                params.put("url", "");
             }else{
 
-                params.put("code", "200");
+//                params.put("code", "200");
                 params.put("url", url);
             }
             System.out.println(url);

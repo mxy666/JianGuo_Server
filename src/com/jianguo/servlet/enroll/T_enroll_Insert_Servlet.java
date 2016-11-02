@@ -75,6 +75,8 @@ public class T_enroll_Insert_Servlet extends HttpServlet {
 			
 			final T_job_Bean t_job11 = T_job_Sql.select_id(job_id);
 			final T_job_info_Bean t_job_onfo11 = T_job_info_Sql.select_job_id(job_id);
+			final T_user_login_Bean t_user_login = T_user_login_Sql.select_id(login_id);
+			final T_user_resume_Bean t_user_resume = T_user_resume_Sql.select_login_id(login_id);
 		/*	*/
 			
 			if(T_enroll_Sql.check_login_id_job_id2(login_id, job_id, "12")){
@@ -101,8 +103,6 @@ public class T_enroll_Insert_Servlet extends HttpServlet {
 					}else{
 						if(t_job11.getMerchant_id()==28 || t_job11.getMerchant_id()==29 || t_job11.getMerchant_id()==30
 								|| t_job11.getMerchant_id()==31 || t_job11.getMerchant_id()==32||t_job11.getMerchant_id()==57){
-							final T_user_login_Bean t_user_login = T_user_login_Sql.select_id(login_id);
-							final T_user_resume_Bean t_user_resume = T_user_resume_Sql.select_login_id(login_id);
 							/*String ss_sex = "";
 							if(t_user_resume.getSex() == 1){
 								ss_sex = "男";
@@ -123,8 +123,7 @@ public class T_enroll_Insert_Servlet extends HttpServlet {
 								}}).start();
 						}else{
 							
-							final T_user_login_Bean t_user_login = T_user_login_Sql.select_id(login_id);
-							new Thread(new Runnable() {			
+							new Thread(new Runnable() {
 								public void run() {
 									Text_Sms.textdemos1(t_user_login.getTel());
 								}}).start();
@@ -159,7 +158,6 @@ public class T_enroll_Insert_Servlet extends HttpServlet {
 							Jdpush.sendPush("报名【"+t_job11.getName()+"】已提交，请等待商家确认","jianguo"+login_id);
 							Jdpusher.sendPush("报名【"+t_job11.getName()+"】已提交，请等待商家确认","jianguo"+login_id);
 							Jdpushcc.sendPush("报名【"+t_job11.getName()+"】已提交，请等待商家确认","jianguo"+login_id);
-								
 							T_push_Sql.insert(login_id, t_job11.getName(), "已报名", "报名【"+t_job11.getName()+"】已提交，请等待商家确认", "0","0","0","0", ly_time);
 								
 							T_job_Bean t_job = T_job_Sql.select_id(job_id);
@@ -167,7 +165,8 @@ public class T_enroll_Insert_Servlet extends HttpServlet {
 							Jdpush_shang.sendPush("您发布的【"+t_job.getName()+"】兼职有人报名","jianguo"+t_merchant.getLogin_id());
 							Jdpusher_shang.sendPush("您发布的【"+t_job.getName()+"】兼职有人报名","jianguo"+t_merchant.getLogin_id());
 							Jdpushcc_shang.sendPush("您发布的【"+t_job.getName()+"】兼职有人报名","jianguo"+t_merchant.getLogin_id());
-						
+							T_push_Sql.insert(String.valueOf(t_merchant.getLogin_id()), t_job11.getName(), "报名", "【"+t_user_resume.getName()+"】报名了"+t_job11.getName()+"，请及时处理", "5","0","0","0", ly_time);
+
 							}}).start();
 						params.put("message", "兼职报名成功");
 						params.put("code", "200");

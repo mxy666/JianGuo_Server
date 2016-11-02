@@ -32,6 +32,15 @@ public class MerchantInfo {
     private String bussinessNum;
     private String about;
     private String apkurl;
+    private String payPassword;
+
+    public String getPayPassword() {
+        return payPassword;
+    }
+
+    public void setPayPassword(String payPassword) {
+        this.payPassword = payPassword;
+    }
 
     public String getApkurl() {
         return apkurl;
