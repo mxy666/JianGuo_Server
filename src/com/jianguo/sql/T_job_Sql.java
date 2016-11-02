@@ -5,9 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import com.jianguo.bean.T_job_Bean;
 import com.jianguo.util.DButil;
@@ -1717,5 +1715,65 @@ public class T_job_Sql {
 		return list;
 	}
 
-	
+
+
+	public static List <Map<String,String>> searchXiaJia(String bus_name,String job_name){
+		Connection conn=DButil.getCon();
+		List <Map<String,String>> list=new ArrayList<Map<String,String>>();
+		ResultSet rs=null;
+		StringBuffer str = new StringBuffer();
+		String sql="SELECT t.`id`,t.`name` AS job_name,m.`name` AS bus_name,t.`regedit_time`,c.`city`,a.`area_name`,t.`address`\n" +
+				" FROM t_job t\n" +
+				" LEFT JOIN t_merchant m ON t.`merchant_id` = m.`id`\n" +
+				" LEFT JOIN t_city c ON t.`city_id` = c.`id`\n" +
+				" LEFT JOIN t_area a ON t.`area_id` = a.`id`\n" +
+				" WHERE 1=1  ";
+
+		if(job_name!=null&&!"".equals(job_name.trim())){
+			sql += " and t.`name` LIKE '%"+job_name+"%' ";
+		}
+		if(bus_name!=null&&!"".equals(bus_name.trim())){
+			sql += " and m.`name` LIKE '%"+bus_name+"%' ";
+		}
+
+
+		System.out.println(sql+"----------------------------------------");
+		PreparedStatement psmt = DButil.getPstm(conn, sql);
+
+		try {
+			rs=psmt.executeQuery();
+			Map<String,String> map = null;
+			while(rs.next()){
+				map = new HashMap<>();
+				map.put("id",rs.getString("id"));
+				map.put("job_name",rs.getString("job_name"));
+				map.put("bus_name",rs.getString("bus_name"));
+				map.put("regedit_time",rs.getString("regedit_time"));
+				map.put("city",rs.getString("city"));
+				map.put("area_name",rs.getString("area_name"));
+				map.put("address",rs.getString("address"));
+
+//				T_job_Bean t_job = new T_job_Bean();
+//				t_job.setId(rs.getInt("id"));
+//				t_job.setName(rs.getString("name")+"");
+//				t_job.setStart_date(sdf.format(new Date(Long.parseLong(rs.getString("start_date")+""+"100"))));
+//				t_job.setStop_date(sdf.format(new Date(Long.parseLong(rs.getString("start_date")+""+"100"))));
+//				t_job.setAddress(rs.getString("address")+"");
+//				t_job.setMoney(rs.getDouble("money"));
+
+				list.add(map);
+			}
+			psmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			DButil.close(conn);
+		}
+		return list;
+	}
+
+
+
 }

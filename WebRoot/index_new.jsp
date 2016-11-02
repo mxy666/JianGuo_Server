@@ -135,6 +135,24 @@ $(function(){
 							</ul>
 						</div>
 
+
+					<div class="accordionHeader shiming">
+
+						<h2><span>Folder</span>兼职审核</h2>
+					</div>
+
+
+					<div class="accordionContent shiming" >
+						<ul class="tree treeFolder">
+							<li><a href="T_user_realname_List_Servlet" target="navTab" rel="externa1" external="true">兼职下架</a></li>
+						</ul>
+					</div>
+
+
+
+
+
+
                     <div class="accordionHeader jsjz">
                         <h2><span>Folder</span>结算兼职</h2>
                     </div>

@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<base href="<%=basePath%>">
+
+
+
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.min.js"></script>
+		<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+		<style type="text/css">
+body {
+	font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica,
+		sans-serif;
+	color: #4f6b72;
+	background: #E6EAE9;
+}
+
+a {
+	color: #c75f3e;
+}
+
+#mytable {
+	width: 1000px;
+	padding: 0;
+	margin: 0;
+}
+
+caption {
+	padding: 0 0 5px 0;
+	width: 700px;
+	font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	text-align: right;
+}
+
+th {
+	font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #4f6b72;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	border-top: 1px solid #C1DAD7;
+	letter-spacing: 2px;
+	text-align: centrt;
+	padding: 6px 6px 6px 12px;
+	background: #CAE8EA no-repeat;
+}
+
+th.nobg {
+	border-top: 0;
+	border-left: 0;
+	border-right: 1px solid #C1DAD7;
+	background: none;
+}
+
+td {
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	background: #fff;
+	font-size: 11px;
+	padding: 6px 6px 6px 12px;
+	color: #4f6b72;
+}
+
+td.alt {
+	background: #F5FAFA;
+	color: #797268;
+}
+
+th.spec {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #fff no-repeat;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+
+th.specalt {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #f5fafa no-repeat;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #797268;
+}
+
+html>body td {
+	font-size: 11px;
+}
+
+body,td,th {
+	font-family: 宋体, Arial;
+	font-size: 12px;
+}
+</style>
+		<script type="text/javascript">
+	function search() {
+		var bus_name = document.getElementById("bus_name").value;
+		var job_name = document.getElementById("job_name").value;
+
+		$.ajax({
+
+			url:"/T_user_xiajia_List_Servlet",
+			data:{"bus_name":bus_name,"job_name":job_name},
+			dataType:"json",
+			success:function (result) {
+
+				var html = "";
+				for(var i = 0;i<result.length;i++){
+					html +="<tr><td>"+result[i].bus_name +"</td>"
+						+ "<td>"+result[i].job_name+"</td>"
+						+ "<td>"+result[i].time+"</td>"
+						+ "<td>"+result[i].city+"</td>"
+						+ "<td>"+result[i].area+"</td>"
+						+ "<td>"+result[i].address+"</td>"
+						+ "<td>"+"<a onclick='xiajia("+result[i].id+")' href='#'>下架</a></td></tr>";
+
+				}
+
+				$("#show_body").html(html);
+
+			},error:function (result) {
+
+				alert("查询失败，请联系技术部门");
+				return;
+			}
+
+		});
+
+	}
+	function xiajia(id) {
+
+		$.ajax({
+
+			url:"/T_job_UpdateStatus_Servlet",
+			data:{"id":id},
+
+			success:function (result) {
+
+				console.info(result);
+
+				alert("下架成功");
+				search();
+
+			},error:function (result) {
+
+				alert("查询失败，请联系技术部门");
+				return;
+			}
+
+		});
+	}
+//	function demor() {
+//		var b = false;
+//		if (confirm('确定不通过吗')) {
+//			b = true;
+//		}
+//		return b;
+//	}
+</script>
+
+	</head>
+
+	<body>
+		<center>
+			<h2>
+				兼职信息
+			</h2>
+			<table>
+
+				<tr>
+					<td>商家名称</td>
+					<td><input type="text" id="bus_name"></td>
+				</tr>
+
+
+				<tr>
+					<td>兼职名称</td>
+					<td><input type="text" id="job_name"></td>
+				</tr>
+
+			</table>
+
+			<table id="mytable" cellspacing="0"
+				summary="The technical specifications of the Apple
+PowerMac G5 series">
+				<caption>
+				</caption>
+				<thead>
+
+				<tr>
+					<th bordercolor="#0099FF" bordercolor="#ffffff">
+						商家名称
+					</th>
+					<th bordercolor="#0099FF" bordercolor="#ffffff">
+						兼职名称
+					</th>
+					<th bordercolor="#0099FF" bordercolor="#ffffff">
+						注册时间
+					</th>
+					<th bordercolor="#0099FF" bordercolor="#ffffff">
+						城市
+					</th>
+					<th bordercolor="#0099FF" bordercolor="#ffffff">
+						区域
+					</th>
+					<th bordercolor="#0099FF" bordercolor="#ffffff">
+						地址
+					</th>
+					<th colspan="2">
+						操作
+					</th>
+				</tr>
+
+				</thead>
+
+				<tbody id="show_body">
+
+
+
+
+				</tbody>
+
+
+			</table>
+		</center>
+	</body>
+</html>
