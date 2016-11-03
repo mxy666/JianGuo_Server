@@ -86,7 +86,7 @@ public class T_JobDetailForUser_Servlet extends HttpServlet {
 			job_detail.setMerchant_image(merchantInfo.getName_image());
 			job_detail.setMerchant_about(merchantInfo.getAbout());
 			job_detail.setMerchant_LogId(merchantInfo.getLogin_id());
-			
+			job_detail.setPermission(merchantInfo.getPermission());
 			T_job_label_Bean jobLable=new T_job_label_Bean();
 			List<String> welfare=new ArrayList<String>();
 			List<String> limit=new ArrayList<String>();

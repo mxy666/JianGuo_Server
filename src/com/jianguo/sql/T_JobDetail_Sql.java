@@ -101,17 +101,21 @@ public class T_JobDetail_Sql {
 		return jobDetail;
 	}
 	//根据商家Id查询商家信息
-	public static T_merchant_Bean queryMerInfoByjobId(int merId){
+	public static T_merchant_Bean queryMerInfoByjobId(int merid){
 		ResultSet rs=null;
 		T_merchant_Bean merInfo = new T_merchant_Bean();
 		Connection conn=DButil.getCon();
-		String sql = "select name,name_image,about,login_id from t_merchant  where  id=?";
+//		String sql = "select name,name_image,about,login_id from t_merchant mer, where  login_id=?";
+//		String sq1l="select mer.name,mer.name_image,mer.about,mer.login_id ,lg.power from t_merchant mer,t_user_login lg  where mer.login_id = lg.id and login_id=?";
+
+		String sql="SELECT t.name,t.name_image,t.about,t.login_id,l.`power` FROM `t_merchant` t INNER JOIN `t_user_login` l ON t.`login_id` = l.`id` WHERE t.`id` = ?";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
-			psmt.setInt(1,merId);
+			psmt.setInt(1,merid);
 			rs=psmt.executeQuery();
 			while(rs.next()){
 				merInfo.setName(rs.getString("name"));
+				merInfo.setPermission(rs.getInt("power"));
 				merInfo.setName_image(rs.getString("name_image"));
 				merInfo.setAbout(rs.getString("about")+"");
 				if(rs.getInt("login_id")==8220){
