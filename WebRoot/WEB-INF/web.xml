@@ -1596,6 +1596,16 @@
         <url-pattern>/T_job_UpdateStatus_Servlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>T_user_xiajia_List_Servlet</servlet-name>
+        <servlet-class>com.jianguo.servlet.pc.T_user_xiajia_List_Servlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>T_user_xiajia_List_Servlet</servlet-name>
+        <url-pattern>/T_user_xiajia_List_Servlet</url-pattern>
+    </servlet-mapping>
+
 
     <welcome-file-list>
     <welcome-file>login.html</welcome-file>
