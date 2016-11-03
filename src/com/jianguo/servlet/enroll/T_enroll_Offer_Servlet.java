@@ -103,7 +103,9 @@ public class T_enroll_Offer_Servlet extends HttpServlet {
 							Jdpush_shang.sendPush(t_user_resume.getName()+"取消报名【"+t_job.getName()+"】请查看","jianguo"+t_merchant.getLogin_id());
 							Jdpusher_shang.sendPush(t_user_resume.getName()+"取消报名【"+t_job.getName()+"】请查看","jianguo"+t_merchant.getLogin_id());
 							Jdpushcc_shang.sendPush(t_user_resume.getName()+"取消报名【"+t_job.getName()+"】请查看","jianguo"+t_merchant.getLogin_id());
-						}}).start();
+							T_push_Sql.insert(String.valueOf(t_merchant.getLogin_id()), t_job11.getName(), "取消报名", "“"+t_user_resume.getName()+"”取消报名兼职【"+t_job11.getName()+"】请查看", "5","0","0","0", ly_time);
+
+							}}).start();
 						params.put("message", "用户取消成功");
 //					}else{
 //					params.put("message", "用户取消失败");
@@ -181,7 +183,9 @@ public class T_enroll_Offer_Servlet extends HttpServlet {
 							Jdpush_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
 							Jdpusher_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
 							Jdpushcc_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
-						}}).start();
+T_push_Sql.insert(String.valueOf(t_merchant.getLogin_id()), t_job.getName(), "报名", "用户取消参加【"+t_job.getName()+"】请及时处理", "5","0","0","0", ly_time);
+
+							}}).start();
 						
 						T_job_Bean t = T_job_Sql.select_id(job_id);
 						if(t.getCount() == 0){
@@ -243,7 +247,9 @@ public class T_enroll_Offer_Servlet extends HttpServlet {
 							Jdpush_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
 							Jdpusher_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
 							Jdpushcc_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
-						}}).start();
+T_push_Sql.insert(String.valueOf(t_merchant.getLogin_id()), t_job.getName(), "报名", "用户取消参加【"+t_job.getName()+"】请及时处理", "5","0","0","0", ly_time);
+
+							}}).start();
 						
 						params.put("message", "用户取消参加成功");
 					}else{
@@ -313,7 +319,8 @@ public class T_enroll_Offer_Servlet extends HttpServlet {
 							Jdpush_shang.sendPush("用户确认参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
 							Jdpusher_shang.sendPush("用户确认参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
 							Jdpushcc_shang.sendPush("用户确认参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
-						}}).start();
+
+							}}).start();
 						
 						params.put("message", "用户催工资成功");
 					}else{

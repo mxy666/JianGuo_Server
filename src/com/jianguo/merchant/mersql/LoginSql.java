@@ -64,6 +64,7 @@ public class LoginSql {
 	 */
 	public static int insertMerchant(String tel,String password,String token) throws SQLException {
 		Connection conn=DButil.getCon();
+
 		String sql = "insert into t_user_login (tel,password,qqwx_token,power,payStatus,status,resume,city_id,hobby,pigeon_count) values" +
 				"('"+tel+"','"+password+"','"+token+"',0,0,1,0,'',0,0)";
 		PreparedStatement pst=conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -77,20 +78,22 @@ public class LoginSql {
 	}
 	/**
 	 *插入merchant表
-	 *@param
-	 *@param
 	 *@author invinjun
 	 *created at 2016/10/22 13:03
+	 * @param
+	 * @param
+	 * @param tel
 	 */
-	public static int insertMerchantInfo(int loginId) throws SQLException {
+	public static int insertMerchantInfo(int loginId, String tel) throws SQLException {
 		Connection conn=DButil.getCon();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date now = new Date();
 		String registerTime = sdf.format(now);
+		String pay_pass=tel.substring(tel.length()-6);
 //		String sql = "insert into t_merchant (login_id,regedit_time) values" +
 //				"('"+loginId+"','"+registerTime+"')";
-		String sql="insert into t_merchant (login_id,regedit_time,province,city,reviewStatus,about,label) values" +
-				"('"+loginId+"','"+registerTime+"','','',0,'','')";
+		String sql="insert into t_merchant (login_id,regedit_time,province,city,reviewMerStatus,about,label,pay_password) values" +
+				"('"+loginId+"','"+registerTime+"','','',0,'','','"+pay_pass+"')";
 		PreparedStatement pst=conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		pst.executeUpdate();
 		ResultSet rs= pst.getGeneratedKeys();
@@ -279,7 +282,7 @@ public class LoginSql {
 		MerchantInfo merchantInfo = new MerchantInfo();
 		Connection conn=DButil.getCon();
 //		String sql = "select * from t_user_info where login_id=?";
-		String sql = "select mer.id,mer.login_id,mer.companyName,mer.reviewMerStatus,mer.`name`,mer.name_image,mer.email,mer.contactName,mer.contactPhone,mer.province,mer.city,mer.companyAddress,login.power, login.`password`,login.power,login.qqwx_token,login.tel from t_user_login login LEFT JOIN t_merchant mer on login.id=mer.login_id where login.tel=?";
+		String sql = "select mer.id,mer.pay_password,mer.login_id,mer.companyName,mer.reviewMerStatus,mer.`name`,mer.name_image,mer.email,mer.contactName,mer.contactPhone,mer.province,mer.city,mer.companyAddress,login.power, login.`password`,login.power,login.qqwx_token,login.tel from t_user_login login LEFT JOIN t_merchant mer on login.id=mer.login_id where login.tel=?";
 //	"select * from t_user_login login LEFT JOIN t_merchant mer on login.id=mer.login_id where login.tel=?";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 			psmt.setString(1,login_id);
@@ -304,6 +307,7 @@ public class LoginSql {
 				merchantInfo.setProvince(rs.getString("province"));
 				merchantInfo.setCity(rs.getString("city"));
 				merchantInfo.setCompanyAddress(rs.getString("companyAddress"));
+				merchantInfo.setPayPassword(rs.getString("pay_password"));
 			}
 			psmt.close();
 			conn.close();

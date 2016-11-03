@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.jianguo.bean.T_user_login_Bean;
 import com.jianguo.bean.T_user_money_Bean;
+import com.jianguo.sql.T_push_Sql;
 import com.jianguo.sql.T_user_login_Sql;
 import com.jianguo.sql.T_user_money_Sql;
 import com.jianguo.sql.T_user_moneyout_Sql;
@@ -115,7 +116,8 @@ public class T_user_money_Out_Servlet extends HttpServlet {
 					Jdpush_shang.sendPush("有用户提现，快去处理","jianguo11446");
 					Jdpusher_shang.sendPush("有用户提现，快去处理","jianguo11446");
 					Jdpushcc_shang.sendPush("有用户提现，快去处理","jianguo11446");
-					
+//					T_push_Sql.insert(String.valueOf(t_merchant.getLogin_id()), t_job.getName(), "报名", "用户取消参加【"+t_job.getName()+"】请及时处理", "5","0","0","0", ly_time);
+
 					params.put("message", "正在提现中");
 					params.put("code", "200");
 					PrintWriter pw = response.getWriter();

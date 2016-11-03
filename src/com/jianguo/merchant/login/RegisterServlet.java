@@ -85,7 +85,7 @@ public class RegisterServlet extends HttpServlet {
             //不存在该用户，注册插入数据
             if (!LoginSql.checkRegister(tel)) {
                 int loginId = LoginSql.insertMerchant(tel,password, token);
-                LoginSql.insertMerchantInfo(loginId);
+                LoginSql.insertMerchantInfo(loginId,tel);
                 //生成token返回给客户端
                 map.put("code", "200");
                 map.put("message", "注册成功！");

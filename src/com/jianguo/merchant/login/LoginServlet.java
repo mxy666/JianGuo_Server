@@ -91,7 +91,8 @@ public class LoginServlet extends HttpServlet {
             String token = CommonUtils.makeToken(tel);
                 //不存在该用户，注册插入数据
                 if (!LoginSql.checkRegister(tel)) {
-                     LoginSql.insertMerchant(tel,token);
+                    int loginId = LoginSql.insertMerchant(tel, token);
+                    LoginSql.insertMerchantInfo(loginId,tel);
                 }else {
                     //存在更新用户token
                     LoginSql.updateToken(tel,token);
