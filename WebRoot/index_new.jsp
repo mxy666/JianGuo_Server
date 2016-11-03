@@ -144,7 +144,7 @@ $(function(){
 
 					<div class="accordionContent shiming" >
 						<ul class="tree treeFolder">
-							<li><a href="T_user_realname_List_Servlet" target="navTab" rel="externa1" external="true">兼职下架</a></li>
+							<li><a href="job_xiajia.html" target="navTab" rel="externa1" external="true">兼职下架</a></li>
 						</ul>
 					</div>
 
