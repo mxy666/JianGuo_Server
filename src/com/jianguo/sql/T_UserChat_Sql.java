@@ -44,18 +44,14 @@ public class T_UserChat_Sql {
 		return user;
 	}
 	//loginID批量查询
-	 public static List<T_userChat_Bean> queryByGroup(String loginId){
+	 public static List<T_userChat_Bean> queryUserInfoByGroup(String loginId) throws SQLException {
 		 Connection conn=DButil.getCon();
-		// List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		 List <T_userChat_Bean>list=new ArrayList<T_userChat_Bean>();
 		 ResultSet rs=null;
-		 StringBuffer str = new StringBuffer(); 
-	     String sql="select * from t_user_info where login_id in ('"+loginId+")";		 		
+		 String	 sql="select * from t_user_info where login_id in ('"+loginId+")";
 		// sql=sql+str.toString();
-		 System.out.println(sql+"----------------------------------------");
 		 PreparedStatement psmt = DButil.getPstm(conn, sql);
-			try {
-				rs=psmt.executeQuery();
+		 rs=psmt.executeQuery(sql);
 				while(rs.next()){
 					T_userChat_Bean user = new T_userChat_Bean();
 					user.setUserId(rs.getInt("login_id")+"");
@@ -65,19 +61,53 @@ public class T_UserChat_Sql {
 						user.setName(rs.getString("name"));
 					}
 					user.setAvatarUrl(rs.getString("name_image"));
-
-				
 					list.add(user);
 				}
 				psmt.close();
 				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}finally{
 				DButil.close(conn);
-			}
 		return list;
 	}
-	
+	//loginID批量查询
+	public static List<T_userChat_Bean> queryMerInfoByGroup(String loginId) throws SQLException {
+		Connection conn=DButil.getCon();
+		List <T_userChat_Bean>list=new ArrayList<T_userChat_Bean>();
+		ResultSet rs=null;
+		ResultSet rs2=null;
+		String	 sql="select * from t_user_info where login_id in ('"+loginId+")";
+		String sql2="select * from t_merchant where login_id in ('"+loginId+")";
+		// sql=sql+str.toString();
+		System.out.println(sql2+"----------------------------------------");
+		PreparedStatement psmt = DButil.getPstm(conn, sql);
+		PreparedStatement psmt2 = DButil.getPstm(conn, sql2);
+		rs=psmt.executeQuery(sql);
+		rs2=psmt2.executeQuery(sql2);
+		while(rs.next()){
+			T_userChat_Bean user = new T_userChat_Bean();
+			user.setUserId(rs.getInt("login_id")+"");
+			if(rs.getString("name")==null||rs.getString("name").equals("")){
+				user.setName(rs.getString("nickname"));
+			}else{
+				user.setName(rs.getString("name"));
+			}
+			user.setAvatarUrl(rs.getString("name_image"));
+			list.add(user);
+		}
+		while (rs2.next()){
+			T_userChat_Bean user = new T_userChat_Bean();
+			user.setUserId(rs2.getInt("login_id")+"");
+			if(rs2.getString("name")==null||rs2.getString("name").equals("")){
+				user.setName(rs2.getString("contactName"));
+			}else{
+				user.setName(rs2.getString("name"));
+			}
+			user.setAvatarUrl(rs2.getString("name_image"));
+			list.add(user);
+		}
+		psmt.close();
+		psmt2.close();
+		conn.close();
+		DButil.close(conn);
+		return list;
+	}
 }

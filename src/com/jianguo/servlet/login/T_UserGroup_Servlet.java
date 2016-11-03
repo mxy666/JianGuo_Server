@@ -2,6 +2,7 @@ package com.jianguo.servlet.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,8 +69,13 @@ public class T_UserGroup_Servlet extends HttpServlet {
 				
 			}
 			String loginStr=T_push_new_Sql.buffer(loginId).toString();
-		
-			List<T_userChat_Bean>userGroup =T_UserChat_Sql.queryByGroup(loginStr);
+
+			List<T_userChat_Bean>userGroup = null;
+			try {
+				userGroup = T_UserChat_Sql.queryMerInfoByGroup(loginStr);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			if(userGroup.size()==0){				
 				params.put("message", "无此用户");
 				params.put("code", "400");

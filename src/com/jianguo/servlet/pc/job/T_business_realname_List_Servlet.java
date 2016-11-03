@@ -33,7 +33,7 @@ public class T_business_realname_List_Servlet extends HttpServlet {
 	//http://v3.jianguojob.com:8080/T_user_realname_List_Servlet
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException {
-//		System.out.println("---T_user_realname_List_Servlet---");
+		System.out.println("---T_business_realname_List_Servlet---");
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		Map params =  new HashMap();

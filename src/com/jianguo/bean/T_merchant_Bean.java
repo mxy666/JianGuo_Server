@@ -20,7 +20,7 @@ public class T_merchant_Bean {
 	private String qiniu;//七牛
 	private String pay_password;//支付密码
 
-
+	private int permission;////商家权限（0是内部,1是外部商家，2是个人商户）
 	private String real_name;
 	private String card_num;
 	private String tel;
@@ -28,7 +28,13 @@ public class T_merchant_Bean {
 	private String handImage;
 	private String cardImage;
 	private String bussinessImage;
+	public int getPermission() {
+		return permission;
+	}
 
+	public void setPermission(int permission) {
+		this.permission = permission;
+	}
 	public int getId() {
 		return id;
 	}

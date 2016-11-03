@@ -37,12 +37,21 @@ public class T_JobDetailBean {
 	private int  merchant_LogId;//商家login_Id
 	private String  merchant_about;//商家简介
 	private String merchantTel;
+	private int permission;//商家类型 0内部 1外部2个人商家
 	private String other;//其他
 	private int status;//是否过期除了0的都是过期的
 	private String mode;//结算方式
 	private String isEnroll;//是否报名
 	private String isFavorite;//是否报名
-	
+
+	public int getPermission() {
+		return permission;
+	}
+
+	public void setPermission(int permission) {
+		this.permission = permission;
+	}
+
 	private List<String> limit;
 	private List<String> welfare;
 
