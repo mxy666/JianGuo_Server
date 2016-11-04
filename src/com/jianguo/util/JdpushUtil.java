@@ -44,8 +44,10 @@ public class JdpushUtil {
 		// For push, all you need do is to build PushPayload object.
 		// PushPayload payload = buildPushObject_all_all_alert();
 		// 生成推送的内容，这里我们先测试全部推送
-		PushPayload payload = buildPushObject_all_alias_alert(bean);
-		
+		PushPayload payload = buildPushObject_ios_audienceMore_messageWithExtras(bean);
+
+        System.out.println(payload.toString());
+
 //		buildPushObject_ios_tagAnd_alertWithExtrasAndMessage();
 //		payload.addSound(sound);//铃音
 		
@@ -62,7 +64,8 @@ public class JdpushUtil {
 //			payLoad.addSound(sound);
 			PushResult result = jpushClient.sendPush(payload);
 			LOG.info("Got result - " + result);
-		} catch (Exception e) {
+            System.out.println("Got result - " + result);
+        } catch (Exception e) {
 		}
 	}
 
@@ -78,9 +81,10 @@ public class JdpushUtil {
 			return PushPayload.newBuilder().setPlatform(Platform.all())// 设置接受的平台
 //					.setAudience(Audience.all())// Audience设置为all，说明采用广播方式推送，所有用户都可以接收到
 					.setAudience(Audience.alias(bean.getUsername()))// Audience设置为all，说明采用广播方式推送，所有用户都可以接收到
-//					.setNotification(Notification.alert(title))
+//					.setNotification(Notification.alert(bean.getTitle()))
 //					.setAudience(Audience.tag("test"))
 					.setNotification(Notification.ios(bean.getTitle(), bean.getParam()))
+					.setNotification(Notification.android(bean.getTitle(),bean.getTitle(), bean.getParam()))
 //					.setNotification(Notification.ios(title, params))
 //					.setOptions(
 //						Options.newBuilder().setApnsProduction(true).build())
@@ -153,20 +157,22 @@ public class JdpushUtil {
 	}
 
 	public static PushPayload buildPushObject_ios_audienceMore_messageWithExtras(
-			String content) {
+			JpushBean bean) {
 		return PushPayload
 				.newBuilder()
 				.setPlatform(Platform.android_ios())
-				.setAudience(
-						Audience.newBuilder()
-								.addAudienceTarget(
-										AudienceTarget.tag("tag1", "tag2"))
-								.addAudienceTarget(
-										AudienceTarget
-												.alias("alias1", "alias2"))
-								.build())
+//				.setAudience(
+//						Audience.newBuilder()
+//								.addAudienceTarget(
+//										AudienceTarget.tag(bean.getUsername(), bean.getUsername()))
+//								.addAudienceTarget(
+//										AudienceTarget
+//												.alias(bean.getUsername(), bean.getUsername()))
+//								.build())
+                .setAudience(Audience.alias(bean.getUsername()))
+                .setNotification(Notification.newBuilder().setAlert(bean.getTitle()).build())
 				.setMessage(
-						Message.newBuilder().setMsgContent(content)
-								.addExtra("from", "JPush").build()).build();
+						Message.newBuilder().setMsgContent(bean.getTitle())
+								.addExtra("type", bean.getType()).build()).build();
 	}
 }

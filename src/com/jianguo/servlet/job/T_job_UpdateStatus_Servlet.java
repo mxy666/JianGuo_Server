@@ -42,7 +42,7 @@ public class T_job_UpdateStatus_Servlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 
 		String id = request.getParameter("id");
-		String name = request.getParameter("name");
+//		String name = request.getParameter("name");
 
 		//ÏÂ¼Ü´¦Àí
 		T_job_Sql.update_status("6",id);
@@ -50,8 +50,8 @@ public class T_job_UpdateStatus_Servlet extends HttpServlet {
 		JpushBean bean = new JpushBean();
 		Map<String,String> map = new HashMap<>();
 		bean.setType(String.valueOf(1));
-		bean.setUsername(name);
-		map.put("username",name);
+		bean.setUsername("jianguo"+id);
+		map.put("username","jianguo"+id);
 		map.put("type",bean.getType());
 
 		JdpushUtil.sendPush(bean);
@@ -90,4 +90,20 @@ public class T_job_UpdateStatus_Servlet extends HttpServlet {
 //
 //
 //	}
+
+
+	public static void main(String[] args) {
+
+		JpushBean bean = new JpushBean();
+		Map<String,String> map = new HashMap<>();
+		bean.setType(String.valueOf(1));
+		bean.setUsername("jianguo11499");
+//		bean.setUsername("jianguo11505");
+		bean.setTitle("hello world ");
+		map.put("username",bean.getUsername());
+		map.put("type",bean.getType());
+
+		JdpushUtil.sendPush(bean);
+
+	}
 	}
