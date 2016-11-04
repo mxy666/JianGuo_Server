@@ -13,7 +13,6 @@ import org.apache.log4j.Logger;
 
 public class T_job_Sql {
 
-    //?????????
     public static int insert(String city_id, String area_id, String type_id, String merchant_id, String name, String name_image, String start_date, String stop_date,
                              String address, String mode, String money, String term, String limit_sex, String count, String sum, String regedit_time,
                              String status, String hot, String alike, String reg_date, String look, String is_model, String user_count, String start_time,
@@ -32,7 +31,6 @@ public class T_job_Sql {
 
         }
         Logger logger = Logger.getLogger("log");
-        logger.info("?????????!");
         Connection conn = DButil.getCon();
         String sql = "insert into t_job(city_id,area_id,type_id,merchant_id,name,name_image,start_date," +
                 "stop_date,address,mode,money,term,limit_sex,count,sum,regedit_time,status,hot," +
