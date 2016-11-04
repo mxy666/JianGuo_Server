@@ -17,7 +17,7 @@ public class JpushBean {
 
     private String username;
 
-    private String type;
+    private String type = "1";
 
     private Map<String,String> param;
 

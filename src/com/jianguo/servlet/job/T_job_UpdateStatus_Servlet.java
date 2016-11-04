@@ -99,7 +99,7 @@ public class T_job_UpdateStatus_Servlet extends HttpServlet {
 		bean.setType(String.valueOf(1));
 		bean.setUsername("jianguo11499");
 //		bean.setUsername("jianguo11505");
-		bean.setTitle("hello world ");
+		bean.setTitle("hello world 11508 ");
 		map.put("username",bean.getUsername());
 		map.put("type",bean.getType());
 
