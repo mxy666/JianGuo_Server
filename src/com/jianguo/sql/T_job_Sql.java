@@ -1720,7 +1720,7 @@ public class T_job_Sql {
         ResultSet rs = null;
         StringBuffer str = new StringBuffer();
         String sql = "SELECT t.`id`,t.`name` AS job_name,m.`name` AS bus_name,t.`regedit_time`,c.`city`,a.`area_name`,t.`address`\n" +
-                " t.contactPhone,t.start_date,t.stop_date, " +
+                " t.contactPhone,t.start_date,t.stop_date,t.money,m.about " +
                 " FROM t_job t\n" +
                 " LEFT JOIN t_merchant m ON t.`merchant_id` = m.`id`\n" +
                 " LEFT JOIN t_city c ON t.`city_id` = c.`id`\n" +
@@ -1750,6 +1750,11 @@ public class T_job_Sql {
                 map.put("city", rs.getString("city"));
                 map.put("area_name", rs.getString("area_name"));
                 map.put("address", rs.getString("address"));
+                map.put("contactPhone", rs.getString("contactPhone"));
+                map.put("start_date", rs.getString("start_date"));
+                map.put("stop_date", rs.getString("stop_date"));
+                map.put("money", rs.getString("money"));
+                map.put("about", rs.getString("about"));
 
 //				T_job_Bean t_job = new T_job_Bean();
 //				t_job.setId(rs.getInt("id"));
