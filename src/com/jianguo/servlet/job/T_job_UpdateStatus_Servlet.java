@@ -1,11 +1,14 @@
 package com.jianguo.servlet.job;
 
 import com.google.gson.Gson;
+import com.jianguo.bean.JpushBean;
 import com.jianguo.bean.T_job_Bean;
 import com.jianguo.sql.T_job_Sql;
 import com.jianguo.sql.T_job_info_Sql;
 import com.jianguo.sql.T_job_label_Sql;
 import com.jianguo.util.Frequently;
+import com.jianguo.util.JdpushUtil;
+import com.jianguo.util.JpushUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,9 +42,19 @@ public class T_job_UpdateStatus_Servlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 
 		String id = request.getParameter("id");
+		String name = request.getParameter("name");
 
 		//下架处理
 		T_job_Sql.update_status("6",id);
+
+		JpushBean bean = new JpushBean();
+		Map<String,String> map = new HashMap<>();
+		bean.setType(String.valueOf(1));
+		bean.setUsername(name);
+		map.put("username",name);
+		map.put("type",bean.getType());
+
+		JdpushUtil.sendPush(bean);
 
 		//------------------访问限制--------结束----------------------
 	}
