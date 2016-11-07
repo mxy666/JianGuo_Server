@@ -1719,11 +1719,11 @@ public class T_job_Sql {
         List<Map<String, String>> list = new ArrayList<Map<String, String>>();
         ResultSet rs = null;
         StringBuffer str = new StringBuffer();
-        String sql = "SELECT t.`id`,m.login_id as user_id ,t.`name` AS job_name,m.`name` AS bus_name,t.`regedit_time`,c.`city`,a.`area_name`,t.`address`, \n" +
-                " m.contactPhone,from_unixtime(t.start_date,'%y-%m-%d %h:%i:%s') as start_date,from_unixtime(t.stop_date,'%y-%m-%d %h:%i:%s') as stop_date,t.money,m.about " +
+        String sql = "SELECT t.`id`,m.login_id as user_id ,t.`name` AS job_name,m.`name` AS bus_name, from_unixtime(t.`regedit_time`,'%y-%m-%d') as regedit_time ,c.`city`,a.`area_name`,t.`address`, \n" +
+                " m.contactPhone,from_unixtime(t.start_date,'%y-%m-%d') as start_date,from_unixtime(t.stop_date,'%y-%m-%d') as stop_date,t.money,m.about " +
                 " FROM t_job t\n" +
                 " LEFT JOIN t_merchant m ON t.`merchant_id` = m.`id`\n" +
-                " LEFT JOIN t_city c ON t.`city_id` = c.`id`\n" +
+                " LEFT JOIN t_city c ON t.`city_id` = c.`code`\n" +
                 " LEFT JOIN t_area a ON t.`area_id` = a.`id`\n" +
                 " WHERE 1=1 and t.status != 6 ";
 
