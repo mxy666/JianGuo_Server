@@ -56,6 +56,11 @@ public class T_job_UpdateStatus_Servlet extends HttpServlet {
 
 		JdpushUtil.sendPush(bean);
 
+		PrintWriter writer = response.getWriter();
+		Gson gson=new Gson();
+//		String json=gson.toJson(xiaJia);
+		writer.write("");
+
 		//------------------访问限制--------结束----------------------
 	}
 	

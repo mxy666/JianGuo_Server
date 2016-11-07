@@ -136,10 +136,11 @@
 
                 url: "/T_job_UpdateStatus_Servlet",
                 data: {"id": id},
+                type:"post",
 
                 success: function (result) {
 
-                    console.info(result);
+//                    console.info(result);
 
                     alert("下架成功");
                     search();
