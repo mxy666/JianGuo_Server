@@ -104,7 +104,7 @@
 
                     var html = "";
                     for (var i = 0; i < result.length; i++) {
-                        html += "<tr><td>" + "<a onclick='xiajia(" + result[i].id + ","+result[i].user_id+ ","+result[i].job_name+  ")' href='#'>下架</a></td>"
+                        html += "<tr><td>" + "<a onclick=xiajia(" + result[i].id + ","+result[i].user_id+ ",'"+result[i].job_name+  "') href='#'>下架</a></td>"
                                 + "<td>" + result[i].bus_name + "</td>"
                                 + "<td>" + result[i].job_name + "</td>"
                                 + "<td>" + result[i].time + "</td>"
