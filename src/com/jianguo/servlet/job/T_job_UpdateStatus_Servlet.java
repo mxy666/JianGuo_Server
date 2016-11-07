@@ -51,6 +51,7 @@ public class T_job_UpdateStatus_Servlet extends HttpServlet {
 		Map<String,String> map = new HashMap<>();
 		bean.setType(String.valueOf(1));
 		bean.setUsername("jianguo"+id);
+		bean.setTitle("您发布的兼职已下架");
 		map.put("username","jianguo"+id);
 		map.put("type",bean.getType());
 

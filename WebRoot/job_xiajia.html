@@ -136,6 +136,7 @@
 
                 url: "/T_job_UpdateStatus_Servlet",
                 data: {"id": id},
+                dataType:"json",
                 type:"post",
 
                 success: function (result) {
@@ -143,7 +144,8 @@
 //                    console.info(result);
 
                     alert("下架成功");
-                    search();
+
+                    $("#search").click();
 
                 }, error: function (result) {
 
@@ -183,7 +185,7 @@
         </tr>
         <tr>
             <td>
-                <button onclick="search()">查询</button>
+                <button id="search" onclick="search()">查询</button>
             </td>
         </tr>
 
