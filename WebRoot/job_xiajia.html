@@ -130,12 +130,20 @@
             });
 
         }
+<<<<<<<<< Temporary merge branch 1
+        function xiajia(id,user_id) {
+=========
         function xiajia(id,user_id,job_name) {
+>>>>>>>>> Temporary merge branch 2
 
             $.ajax({
 
                 url: "/T_job_UpdateStatus_Servlet",
+<<<<<<<<< Temporary merge branch 1
+                data: {"id": id,"user_id":user_id},
+=========
                 data: {"id": id,"user_id":user_id,"job_name":job_name},
+>>>>>>>>> Temporary merge branch 2
                 dataType:"json",
                 type:"post",
 
