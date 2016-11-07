@@ -130,11 +130,13 @@
             });
 
         }
+
         function xiajia(id,user_id,job_name) {
 
             $.ajax({
 
                 url: "/T_job_UpdateStatus_Servlet",
+
                 data: {"id": id,"user_id":user_id,"job_name":job_name},
                 dataType:"json",
                 type:"post",
