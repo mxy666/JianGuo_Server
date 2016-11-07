@@ -104,7 +104,7 @@
 
                     var html = "";
                     for (var i = 0; i < result.length; i++) {
-                        html += "<tr><td>" + "<a onclick='xiajia(" + result[i].id + ")' href='#'>下架</a></td>"
+                        html += "<tr><td>" + "<a onclick='xiajia(" + result[i].id + ","+result[i].user_id+  ")' href='#'>下架</a></td>"
                                 + "<td>" + result[i].bus_name + "</td>"
                                 + "<td>" + result[i].job_name + "</td>"
                                 + "<td>" + result[i].time + "</td>"
@@ -130,12 +130,12 @@
             });
 
         }
-        function xiajia(id) {
+        function xiajia(id,user_id) {
 
             $.ajax({
 
                 url: "/T_job_UpdateStatus_Servlet",
-                data: {"id": id},
+                data: {"id": id,"user_id":user_id},
                 dataType:"json",
                 type:"post",
 

@@ -42,6 +42,7 @@ public class T_job_UpdateStatus_Servlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 
 		String id = request.getParameter("id");
+		String user_id = request.getParameter("user_id");
 //		String name = request.getParameter("name");
 
 		//下架处理
@@ -50,9 +51,9 @@ public class T_job_UpdateStatus_Servlet extends HttpServlet {
 		JpushBean bean = new JpushBean();
 		Map<String,String> map = new HashMap<>();
 		bean.setType(String.valueOf(1));
-		bean.setUsername("jianguo"+id);
+		bean.setUsername("jianguo"+user_id);
 		bean.setTitle("您发布的兼职已下架");
-		map.put("username","jianguo"+id);
+		map.put("username","jianguo"+user_id);
 		map.put("type",bean.getType());
 
 		JdpushUtil.sendPush(bean);
