@@ -1719,7 +1719,7 @@ public class T_job_Sql {
         List<Map<String, String>> list = new ArrayList<Map<String, String>>();
         ResultSet rs = null;
         StringBuffer str = new StringBuffer();
-        String sql = "SELECT t.`id`,t.`name` AS job_name,m.`name` AS bus_name,t.`regedit_time`,c.`city`,a.`area_name`,t.`address`\n" +
+        String sql = "SELECT t.`id`,t.`name` AS job_name,m.`name` AS bus_name,t.`regedit_time`,c.`city`,a.`area_name`,t.`address`, \n" +
                 " t.contactPhone,t.start_date,t.stop_date,t.money,m.about " +
                 " FROM t_job t\n" +
                 " LEFT JOIN t_merchant m ON t.`merchant_id` = m.`id`\n" +
