@@ -19,6 +19,16 @@ public class JpushBean {
 
     private String type = "1";
 
+    public String getJobid() {
+        return jobid;
+    }
+
+    public void setJobid(String jobid) {
+        this.jobid = jobid;
+    }
+
+    private String jobid;
+
     private Map<String,String> param;
 
 

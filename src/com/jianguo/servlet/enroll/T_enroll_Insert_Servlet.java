@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.jianguo.bean.JpushBean;
 import com.jianguo.bean.T_enroll_limit_Bean;
 import com.jianguo.bean.T_job_Bean;
 import com.jianguo.bean.T_job_info_Bean;
@@ -30,6 +31,7 @@ import com.jianguo.sql.T_user_login_Sql;
 import com.jianguo.sql.T_user_resume_Sql;
 import com.jianguo.util.Frequently;
 import com.jianguo.util.Jdpush;
+import com.jianguo.util.JdpushUtil;
 import com.jianguo.util.Jdpush_shang;
 import com.jianguo.util.Jdpushcc;
 import com.jianguo.util.Jdpushcc_shang;
@@ -88,9 +90,15 @@ public class T_enroll_Insert_Servlet extends HttpServlet {
 				SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
 				String ly_time2 = sdf2.format(new java.util.Date());
 				int ii=Integer.parseInt(ly_time2);
-				
+				final JpushBean jpushBean=new JpushBean();
+				 final Map<String,String> param=new HashMap<>();
+				jpushBean.setAppKey("b7b12502ea5672f603fb80c1");
+				jpushBean.setMasterSecret("ac2905cd13f1872840f8c273");
+				jpushBean.setType("3");
+				jpushBean.setUsername("jianguo"+login_id);
+
 					T_enroll_limit_Bean t_enroll_limit = T_enroll_limit_Sql.select_login_id(login_id);
-					if(t_enroll_limit.getCount() >= 3 && t_enroll_limit.getDate() == ii){
+					if(t_enroll_limit.getCount() >= 5 && t_enroll_limit.getDate() == ii){
 						params.put("message", "今日报名已达上限");
 						params.put("code", "403");
 						PrintWriter pw = response.getWriter();
@@ -103,12 +111,6 @@ public class T_enroll_Insert_Servlet extends HttpServlet {
 					}else{
 						if(t_job11.getMerchant_id()==28 || t_job11.getMerchant_id()==29 || t_job11.getMerchant_id()==30
 								|| t_job11.getMerchant_id()==31 || t_job11.getMerchant_id()==32||t_job11.getMerchant_id()==57){
-							/*String ss_sex = "";
-							if(t_user_resume.getSex() == 1){
-								ss_sex = "男";
-							}else{
-								ss_sex = "女";
-							}*/
 							//外录商家发短信
 							new Thread(new Runnable() {			
 								public void run() {
@@ -128,8 +130,7 @@ public class T_enroll_Insert_Servlet extends HttpServlet {
 									Text_Sms.textdemos1(t_user_login.getTel());
 								}}).start();
 						}
-						
-						
+
 						T_enroll_limit_Bean t_enroll_limit2 = T_enroll_limit_Sql.select_login_id(login_id);
 						if(t_enroll_limit2.getDate() != ii){
 							T_enroll_limit_Sql.update_count0(ly_time2,login_id);
@@ -162,10 +163,14 @@ public class T_enroll_Insert_Servlet extends HttpServlet {
 								
 							T_job_Bean t_job = T_job_Sql.select_id(job_id);
 							T_merchant_Bean t_merchant = T_merchant_Sql.select_id(t_job.getMerchant_id()+"");
-							Jdpush_shang.sendPush("您发布的【"+t_job.getName()+"】兼职有人报名","jianguo"+t_merchant.getLogin_id());
-							Jdpusher_shang.sendPush("您发布的【"+t_job.getName()+"】兼职有人报名","jianguo"+t_merchant.getLogin_id());
-							Jdpushcc_shang.sendPush("您发布的【"+t_job.getName()+"】兼职有人报名","jianguo"+t_merchant.getLogin_id());
-							T_push_Sql.insert(String.valueOf(t_merchant.getLogin_id()), t_job11.getName(), "报名", "【"+t_user_resume.getName()+"】报名了"+t_job11.getName()+"，请及时处理", "5","0","0","0", ly_time);
+//							Jdpush_shang.sendPush("您发布的【"+t_job.getName()+"】兼职有人报名","jianguo"+t_merchant.getLogin_id());
+//							Jdpusher_shang.sendPush("您发布的【"+t_job.getName()+"】兼职有人报名","jianguo"+t_merchant.getLogin_id());
+//							Jdpushcc_shang.sendPush("您发布的【"+t_job.getName()+"】兼职有人报名","jianguo"+t_merchant.getLogin_id());
+								jpushBean.setTitle("您发布的【"+t_job.getName()+"】兼职有人报名");
+								jpushBean.setUsername("jianguo"+t_merchant.getLogin_id());
+								jpushBean.setJobid(job_id);
+								JdpushUtil.sendPush(jpushBean);
+								T_push_Sql.insert(String.valueOf(t_merchant.getLogin_id()), t_job11.getName(), "报名", "【"+t_user_resume.getName()+"】报名了"+t_job11.getName()+"，请及时处理", "3","0","0",job_id, ly_time);
 
 							}}).start();
 						params.put("message", "兼职报名成功");

@@ -149,6 +149,29 @@ public class CerficationSql {
 
 	}
 	/**
+	 *获取商家审核状态
+	 *@param merId
+	 *@author invinjun
+	 *created at 2016/9/12 9:31
+	 */
+	public static int checkStatusCode(String merId) throws SQLException {
+		int status = 0;
+		Connection conn=DButil.getCon();
+		boolean b = true;
+		PreparedStatement pstmt;
+		ResultSet rs ;
+		String sql = "SELECT reviewMerStatus FROM t_merchant WHERE id=?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, merId);
+		rs = pstmt.executeQuery();
+		while(rs.next()){
+			status = rs.getInt("reviewMerStatus");
+		}
+		pstmt.close();
+		conn.close();
+		return status;
+	}
+	/**
 	*检查手机号对应验证码是否正确
 	*@param tel
 	*@param code

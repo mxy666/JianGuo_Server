@@ -108,13 +108,13 @@ public class T_JobDetail_Sql {
 //		String sql = "select name,name_image,about,login_id from t_merchant mer, where  login_id=?";
 //		String sq1l="select mer.name,mer.name_image,mer.about,mer.login_id ,lg.power from t_merchant mer,t_user_login lg  where mer.login_id = lg.id and login_id=?";
 
-		String sql="SELECT t.name,t.name_image,t.about,t.login_id,l.`power` FROM `t_merchant` t INNER JOIN `t_user_login` l ON t.`login_id` = l.`id` WHERE t.`id` = ?";
+		String sql="SELECT t.companyName,t.name_image,t.about,t.login_id,l.`power` FROM `t_merchant` t INNER JOIN `t_user_login` l ON t.`login_id` = l.`id` WHERE t.`id` = ?";
 		PreparedStatement psmt = DButil.getPstm(conn, sql);
 		try {
 			psmt.setInt(1,merid);
 			rs=psmt.executeQuery();
 			while(rs.next()){
-				merInfo.setName(rs.getString("name"));
+				merInfo.setName(rs.getString("companyName"));
 				merInfo.setPermission(rs.getInt("power"));
 				merInfo.setName_image(rs.getString("name_image"));
 				merInfo.setAbout(rs.getString("about")+"");

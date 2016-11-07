@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
+import com.jianguo.bean.JpushBean;
 import com.jianguo.bean.T_user_login_Bean;
 import com.jianguo.bean.T_user_money_Bean;
 import com.jianguo.sql.T_push_Sql;
@@ -18,6 +19,7 @@ import com.jianguo.sql.T_user_login_Sql;
 import com.jianguo.sql.T_user_money_Sql;
 import com.jianguo.sql.T_user_moneyout_Sql;
 import com.jianguo.util.Frequently;
+import com.jianguo.util.JdpushUtil;
 import com.jianguo.util.Jdpush_shang;
 import com.jianguo.util.Jdpushcc_shang;
 import com.jianguo.util.Jdpusher_shang;
@@ -56,6 +58,11 @@ public class T_user_money_Out_Servlet extends HttpServlet {
 		String ss_only3 = Frequently.daycount3();
 		if(only.equals(ss_only) || only.equals(ss_only2) || only.equals(ss_only3)){
 			//------------------访问限制--------结束----------------------
+			final JpushBean jpushBean=new JpushBean();
+			jpushBean.setAppKey("b7b12502ea5672f603fb80c1");
+			jpushBean.setMasterSecret("ac2905cd13f1872840f8c273");
+			jpushBean.setType("4");
+			jpushBean.setUsername("jianguo11446");
 			double i_money = Double.valueOf(money); 
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String ly_time2 = sdf2.format(new java.util.Date());
@@ -113,9 +120,11 @@ public class T_user_money_Out_Servlet extends HttpServlet {
 						Jdpusher_shang.sendPush("有用户提现，快去处理","jianguo13");
 						Jdpushcc_shang.sendPush("有用户提现，快去处理","jianguo13");
 					}*/
-					Jdpush_shang.sendPush("有用户提现，快去处理","jianguo11446");
-					Jdpusher_shang.sendPush("有用户提现，快去处理","jianguo11446");
-					Jdpushcc_shang.sendPush("有用户提现，快去处理","jianguo11446");
+//					Jdpush_shang.sendPush("有用户提现，快去处理","jianguo11446");
+//					Jdpusher_shang.sendPush("有用户提现，快去处理","jianguo11446");
+//					Jdpushcc_shang.sendPush("有用户提现，快去处理","jianguo11446");
+					jpushBean.setTitle("有用户提现，需要您处理");
+					JdpushUtil.sendPush(jpushBean);
 //					T_push_Sql.insert(String.valueOf(t_merchant.getLogin_id()), t_job.getName(), "报名", "用户取消参加【"+t_job.getName()+"】请及时处理", "5","0","0","0", ly_time);
 
 					params.put("message", "正在提现中");

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.jianguo.bean.JpushBean;
 import com.jianguo.bean.T_job_Bean;
 import com.jianguo.bean.T_job_info_Bean;
 import com.jianguo.bean.T_merchant_Bean;
@@ -28,6 +29,7 @@ import com.jianguo.sql.T_user_login_Sql;
 import com.jianguo.sql.T_user_resume_Sql;
 import com.jianguo.util.Frequently;
 import com.jianguo.util.Jdpush;
+import com.jianguo.util.JdpushUtil;
 import com.jianguo.util.Jdpush_shang;
 import com.jianguo.util.Jdpushcc;
 import com.jianguo.util.Jdpushcc_shang;
@@ -70,7 +72,12 @@ public class T_enroll_Offer_Servlet extends HttpServlet {
 			//------------------访问限制--------结束----------------------
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			final String ly_time = sdf.format(new java.util.Date());
-			
+			final JpushBean jpushBean=new JpushBean();
+			final Map<String,String> param=new HashMap<>();
+			jpushBean.setAppKey("b7b12502ea5672f603fb80c1");
+			jpushBean.setMasterSecret("ac2905cd13f1872840f8c273");
+			jpushBean.setType("3");
+			jpushBean.setUsername("jianguo"+login_id);
 			if(T_enroll_Sql.check_login_id_job_id(login_id, job_id)){
 				if(Offer.equals("1")){//用户取消  报名， 商家端不显示               
 					int i = T_enroll_Sql.update_status("1",login_id, job_id);
@@ -93,17 +100,18 @@ public class T_enroll_Offer_Servlet extends HttpServlet {
 							Jdpush.sendPush("工作成功取消，多次取消会影响您的信用等级","jianguo"+login_id);
 							Jdpusher.sendPush("工作成功取消，多次取消会影响您的信用等级","jianguo"+login_id);
 							Jdpushcc.sendPush("工作成功取消，多次取消会影响您的信用等级","jianguo"+login_id);
-							
 							T_push_Sql.insert(login_id, t_job11.getName(), "取消报名", "工作成功取消，多次取消会影响您的信用等级", "0","0","0","0", ly_time);
-							
 							T_user_resume_Bean t_user_resume = T_user_resume_Sql.select_login_id(login_id);
-							
 							T_job_Bean t_job = T_job_Sql.select_id(job_id);
 							T_merchant_Bean t_merchant = T_merchant_Sql.select_id(t_job.getMerchant_id()+"");
-							Jdpush_shang.sendPush(t_user_resume.getName()+"取消报名【"+t_job.getName()+"】请查看","jianguo"+t_merchant.getLogin_id());
-							Jdpusher_shang.sendPush(t_user_resume.getName()+"取消报名【"+t_job.getName()+"】请查看","jianguo"+t_merchant.getLogin_id());
-							Jdpushcc_shang.sendPush(t_user_resume.getName()+"取消报名【"+t_job.getName()+"】请查看","jianguo"+t_merchant.getLogin_id());
-							T_push_Sql.insert(String.valueOf(t_merchant.getLogin_id()), t_job11.getName(), "取消报名", "“"+t_user_resume.getName()+"”取消报名兼职【"+t_job11.getName()+"】请查看", "5","0","0","0", ly_time);
+//							Jdpush_shang.sendPush(t_user_resume.getName()+"取消报名【"+t_job.getName()+"】请查看","jianguo"+t_merchant.getLogin_id());
+//							Jdpusher_shang.sendPush(t_user_resume.getName()+"取消报名【"+t_job.getName()+"】请查看","jianguo"+t_merchant.getLogin_id());
+//							Jdpushcc_shang.sendPush(t_user_resume.getName()+"取消报名【"+t_job.getName()+"】请查看","jianguo"+t_merchant.getLogin_id());
+
+							jpushBean.setTitle(t_user_resume.getName()+"取消报名【"+t_job.getName()+"】请查看");
+								jpushBean.setUsername("jianguo"+t_merchant.getLogin_id());
+								JdpushUtil.sendPush(jpushBean);
+							T_push_Sql.insert(String.valueOf(t_merchant.getLogin_id()), t_job11.getName(), "取消报名", "“"+t_user_resume.getName()+"”取消报名兼职【"+t_job11.getName()+"】请查看", "3","0","0",job_id, ly_time);
 
 							}}).start();
 						params.put("message", "用户取消成功");
@@ -180,10 +188,15 @@ public class T_enroll_Offer_Servlet extends HttpServlet {
 						new Thread(new Runnable() {			
 							public void run() {
 							T_merchant_Bean t_merchant = T_merchant_Sql.select_id(t_job.getMerchant_id()+"");
-							Jdpush_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
-							Jdpusher_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
-							Jdpushcc_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
-T_push_Sql.insert(String.valueOf(t_merchant.getLogin_id()), t_job.getName(), "报名", "用户取消参加【"+t_job.getName()+"】请及时处理", "5","0","0","0", ly_time);
+//							Jdpush_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
+//							Jdpusher_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
+//							Jdpushcc_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
+								jpushBean.setTitle("用户取消参加【"+t_job.getName()+"】");
+								jpushBean.setJobid(job_id);
+								jpushBean.setUsername("jianguo"+t_merchant.getLogin_id());
+								JdpushUtil.sendPush(jpushBean);
+
+								T_push_Sql.insert(String.valueOf(t_merchant.getLogin_id()), t_job.getName(), "报名", "用户取消参加【"+t_job.getName()+"】请及时处理", "3","0","0",job_id, ly_time);
 
 							}}).start();
 						
@@ -208,11 +221,12 @@ T_push_Sql.insert(String.valueOf(t_merchant.getLogin_id()), t_job.getName(), "报
 						new Thread(new Runnable() {			
 							public void run() {
 							T_merchant_Bean t_merchant = T_merchant_Sql.select_id(t_job.getMerchant_id()+"");
-							Jdpush_shang.sendPush("用户确认参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
-							Jdpusher_shang.sendPush("用户确认参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
-							Jdpushcc_shang.sendPush("用户确认参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
-							
-							T_push_Sql.insert(login_id, t_job.getName(), "确认参加", "用户确认参加【"+t_job.getName()+"】", "0","0","0","0", ly_time);
+//							Jdpush_shang.sendPush("用户确认参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
+//							Jdpusher_shang.sendPush("用户确认参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
+//							Jdpushcc_shang.sendPush("用户确认参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
+								jpushBean.setTitle("用户确认参加【"+t_job.getName()+"】");
+								JdpushUtil.sendPush(jpushBean);
+							T_push_Sql.insert(login_id, t_job.getName(), "确认参加", "用户确认参加【"+t_job.getName()+"】", "3","0","0",job_id, ly_time);
 							
 							T_user_login_Bean t_user_login = T_user_login_Sql.select_id(login_id);
 							Text_Sms.textdemos6(t_user_login.getTel(),t_job.getName(),t_job_info.getTel());
@@ -244,10 +258,13 @@ T_push_Sql.insert(String.valueOf(t_merchant.getLogin_id()), t_job.getName(), "报
 						new Thread(new Runnable() {			
 							public void run() {
 							T_merchant_Bean t_merchant = T_merchant_Sql.select_id(t_job.getMerchant_id()+"");
-							Jdpush_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
-							Jdpusher_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
-							Jdpushcc_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
-T_push_Sql.insert(String.valueOf(t_merchant.getLogin_id()), t_job.getName(), "报名", "用户取消参加【"+t_job.getName()+"】请及时处理", "5","0","0","0", ly_time);
+//							Jdpush_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
+//							Jdpusher_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
+//							Jdpushcc_shang.sendPush("用户取消参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
+								jpushBean.setTitle("用户取消参加【"+t_job.getName()+"】");
+								jpushBean.setUsername("jianguo"+t_merchant.getLogin_id());
+								JdpushUtil.sendPush(jpushBean);
+								T_push_Sql.insert(String.valueOf(t_merchant.getLogin_id()), t_job.getName(), "报名", "用户取消参加【"+t_job.getName()+"】请及时处理", "3","0","0",job_id, ly_time);
 
 							}}).start();
 						
@@ -316,9 +333,9 @@ T_push_Sql.insert(String.valueOf(t_merchant.getLogin_id()), t_job.getName(), "报
 							T_push_Sql.insert(login_id, t_job.getName(), "崔工资", "您已成功发送催工资请求，请您耐心等待！", "0","0","0","0", ly_time);
 							
 							T_merchant_Bean t_merchant = T_merchant_Sql.select_id(t_job.getMerchant_id()+"");
-							Jdpush_shang.sendPush("用户确认参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
-							Jdpusher_shang.sendPush("用户确认参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
-							Jdpushcc_shang.sendPush("用户确认参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
+//							Jdpush_shang.sendPush("用户确认参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
+//							Jdpusher_shang.sendPush("用户确认参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
+//							Jdpushcc_shang.sendPush("用户确认参加【"+t_job.getName()+"】","jianguo"+t_merchant.getLogin_id());
 
 							}}).start();
 						

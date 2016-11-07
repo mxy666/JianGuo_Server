@@ -59,32 +59,31 @@ public class T_bus_realname_Pass_Servlet extends HttpServlet {
 		JpushBean jpushBean=new JpushBean();
 		jpushBean.setAppKey("b7b12502ea5672f603fb80c1");
 		jpushBean.setMasterSecret("ac2905cd13f1872840f8c273");
-		jpushBean.setType("1");
+		jpushBean.setType("2");
 		jpushBean.setUsername("jianguo"+login_id);
 			if(pass.equals("0")){
 				if(qita.equals("无")){
 					jpushBean.setTitle("您的认证信息未通过，"+beizhu);
 					JdpushUtil.sendPush(jpushBean);
 		 			T_merchant_Sql.update_status(2, m_id);
-					T_push_Sql.insert(login_id, "认证", "认证信息", "您的认证信息未通过，"+beizhu,"1","0","0","0", ly_time);
+					T_push_Sql.insert(login_id, "认证", "认证信息", "您的认证信息未通过，"+beizhu,"2","0","0","0", ly_time);
 				}else{
 					jpushBean.setTitle("您的认证信息未通过，"+qita);
 					JdpushUtil.sendPush(jpushBean);
 					T_merchant_Sql.update_status(2, m_id);
-					T_push_Sql.insert(login_id, "认证", "认证信息", "您的认证信息未通过，"+qita,"1","0","0","0", ly_time);
+					T_push_Sql.insert(login_id, "认证", "认证信息", "您的认证信息未通过，"+qita,"2","0","0","0", ly_time);
 				}
 			}else if(pass.equals("1")){
 				jpushBean.setTitle("您的认证信息已经通过，请登录兼果商家端查看");
 				JdpushUtil.sendPush(jpushBean);
 				T_merchant_Sql.update_status(3, m_id);
-				T_push_Sql.insert(login_id, "认证", "认证信息", "您的认证信息已经通过，请登录兼果商家端查看", "1","0","0","0", ly_time);
+				T_push_Sql.insert(login_id, "认证", "认证信息", "您的认证信息已经通过，请登录兼果商家端查看", "2","0","0","0", ly_time);
 		}
 
 
 		List<T_merchant_Bean> list_business_login = T_merchant_Sql.selectAuthInfo();
 		request.setAttribute("list_business_login", list_business_login);
 		request.getRequestDispatcher("bus_realname_list.jsp").forward(request, response);
-
 
 	}
 }

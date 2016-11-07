@@ -11,7 +11,6 @@ import cn.jpush.api.push.model.audience.AudienceTarget;
 import cn.jpush.api.push.model.notification.AndroidNotification;
 import cn.jpush.api.push.model.notification.IosNotification;
 import cn.jpush.api.push.model.notification.Notification;
-import com.google.gson.Gson;
 import com.jianguo.bean.JpushBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +44,7 @@ public class JdpushUtil {
 		// For push, all you need do is to build PushPayload object.
 		// PushPayload payload = buildPushObject_all_all_alert();
 		// 生成推送的内容，这里我们先测试全部推送
-		PushPayload payload = buildPushObject_android_and_ios(bean);
+		PushPayload payload = buildPushObject_ios_audienceMore_messageWithExtras(bean);
 
         System.out.println(payload.toString());
 
@@ -113,28 +112,25 @@ public class JdpushUtil {
 				.build();
 	}
 
-	public static PushPayload buildPushObject_android_and_ios(JpushBean bean) {
-
-        Gson gson = new Gson();
-
+	public static PushPayload buildPushObject_android_and_ios() {
 		return PushPayload
 				.newBuilder()
 				.setPlatform(Platform.android_ios())
-				.setAudience(Audience.alias(bean.getUsername()))
+				.setAudience(Audience.tag("tag1"))
 				.setNotification(
 						Notification
 								.newBuilder()
-								.setAlert(bean.getTitle())
-                                .addPlatformNotification(
-                                        IosNotification
-                                                .newBuilder()
-                                                .incrBadge(1)
-                                                .addExtra("form",gson.toJson(bean.getParam())).build())
+								.setAlert("alert content")
 								.addPlatformNotification(
 										AndroidNotification.newBuilder()
-												.setTitle(bean.getTitle())
+												.setTitle("Android Title")
 												.build())
-
+								.addPlatformNotification(
+										IosNotification
+												.newBuilder()
+												.incrBadge(1)
+												.addExtra("extra_key",
+														"extra_value").build())
 								.build()).build();
 	}
 
@@ -174,11 +170,26 @@ public class JdpushUtil {
 //												.alias(bean.getUsername(), bean.getUsername()))
 //								.build())
                 .setAudience(Audience.alias(bean.getUsername()))
-                .setNotification(Notification.newBuilder().setAlert(bean.getTitle()).build())
-//                .setNotification(IosNotification.alert("123"))
+				.setNotification(
+						Notification
+								.newBuilder()
+								.setAlert(bean.getTitle())
+								.addPlatformNotification(
+										AndroidNotification.newBuilder()
+												.setTitle(bean.getTitle())
+												.addExtra("type", bean.getType())
+												.addExtra("jobid", bean.getJobid())
+												.build())
+								.addPlatformNotification(
+										IosNotification
+												.newBuilder()
+												.incrBadge(1)
+												.addExtra("type", bean.getType()).addExtra("jobid", bean.getJobid()).build())
+
+								.build())
+//                .setNotification(Notification.newBuilder().setAlert(bean.getTitle()).build())
 				.setMessage(
 						Message.newBuilder().setMsgContent(bean.getTitle())
-								.addExtra("type", bean.getType()).build())
-                .build();
+								.addExtra("type", bean.getType()).build()).build();
 	}
 }
