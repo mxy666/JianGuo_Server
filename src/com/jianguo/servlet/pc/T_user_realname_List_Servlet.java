@@ -34,9 +34,12 @@ public class T_user_realname_List_Servlet extends HttpServlet {
 		System.out.println("---T_user_realname_List_Servlet---");
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
+
+		String cityName = request.getParameter("city_id");
+
 		Map params =  new HashMap();
 
-		List<T_user_login_Bean> list_t_login = T_user_login_Sql.select_list("3");
+		List<T_user_login_Bean> list_t_login = T_user_login_Sql.select_list_area("3",cityName);
 		
 		List<T_user_realname_Bean> list_t_user_realname = new ArrayList<T_user_realname_Bean>();
 		for (int i = 0; i < list_t_login.size(); i++) {

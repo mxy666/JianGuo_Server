@@ -261,7 +261,55 @@ public class T_user_login_Sql {
 		}
 		return list;
 	}
-	
+
+	/**
+	 * 根据地区查询
+	 * @param status
+	 * @return
+	 */
+	public static List<T_user_login_Bean> select_list_area(String status,String cityName){
+		List<T_user_login_Bean> list=new ArrayList<T_user_login_Bean>();
+		ResultSet rs=null;
+
+		Connection conn=DButil.getCon();
+		String sql = "select * from t_user_login where status=? ";
+
+		if("武汉".equals(cityName)||"杭州".equals(cityName)){
+			sql +=" and city_id like '%"+cityName+"%'";
+		}
+
+
+		PreparedStatement psmt = DButil.getPstm(conn, sql);
+		try {
+			psmt.setString(1,status);
+			rs=psmt.executeQuery();
+			while(rs.next()){
+				T_user_login_Bean t_user_login = new T_user_login_Bean();
+				t_user_login.setId(rs.getInt("id"));
+				t_user_login.setTel(rs.getString("tel")+"");
+				t_user_login.setPassword(rs.getString("password")+"");
+				t_user_login.setQqwx_token(rs.getString("qqwx_token")+"");
+				t_user_login.setStatus(rs.getInt("status"));
+				t_user_login.setResume(rs.getInt("resume"));
+				t_user_login.setHobby(rs.getInt("hobby"));
+				t_user_login.setCity_id(rs.getString("city_id")+"");
+				list.add(t_user_login);
+			}
+			psmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			DButil.close(conn);
+		}
+		return list;
+	}
+
+
+
+
+
 	//根据tel查询数据
 	public static T_user_login_Bean select_id(String id){
 		ResultSet rs=null;

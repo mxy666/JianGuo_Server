@@ -129,20 +129,20 @@ $(function(){
 
 						<div class="accordionContent shiming" >
 							<ul class="tree treeFolder">
-								<li><a href="T_user_realname_List_Servlet" target="navTab" rel="externa1" external="true">实名审核</a></li>
-								<li><a href="T_business_realname_List_Servlet" target="navTab" rel="externa2" external="true">商家实名审核</a></li>
+								<li class="yhsm"><a href="T_user_realname_List_Servlet?city_id=${cityName}" target="navTab" rel="externa1" external="true">实名审核</a></li>
+								<li class="sjsm"><a href="T_business_realname_List_Servlet" target="navTab" rel="externa2" external="true">商家实名审核</a></li>
 
 							</ul>
 						</div>
 
 
-					<div class="accordionHeader shiming">
+					<div class="accordionHeader jianzhi">
 
 						<h2><span>Folder</span>兼职审核</h2>
 					</div>
 
 
-					<div class="accordionContent shiming" >
+					<div class="accordionContent jianzhi" >
 						<ul class="tree treeFolder">
 							<li><a href="job_xiajia.html" target="navTab" rel="externa1" external="true">兼职下架</a></li>
 						</ul>
@@ -248,9 +248,17 @@ $(function(){
     function show() {
         var a ='<%=city%>';
 
+		if(a != "boss" && a!="sanya"){
+			$(".jianzhi").remove();
+			$(".shiming").remove();
+			$(".jsjz").show();
+			$(".sjts").remove();
+		}
+
         if(a == "boss") {
 
             $(".shiming").show();
+            $(".jianzhi").show();
             $(".jsjz").remove();
             $(".sjts").show();
         }
@@ -259,17 +267,13 @@ $(function(){
             $(".jsjz").show();
             $(".sjts").remove();
         }
-        if(a == "wuhan"){
+        if(a == "wuhan"|| a =="hangzhou"){
         	//alert(1);
-            $(".shiming,.zy,.txwcjl,.tsjl").remove();
-
-
+            $(".zy,.txwcjl,.tsjl").remove();
+			$(".yhsm").show();
+			$(".sjsm").remove();
         }
-        if(a != "boss"&&a!='sanya'){
-           $(".shiming").remove();
-           $(".jsjz").show();
-            $(".sjts").remove();
-        }
+
         if(a != "boss"){
             $(".opinion").remove();
         }

@@ -63,12 +63,12 @@ public class T_admin_Check_Servlet extends HttpServlet {
 				}else if(city.equals("beijing")){
 					request.setAttribute("cityName", "北京");
                     request.setAttribute("city", "beijing");
-                    request.setAttribute("city_id", "3");
+                    request.setAttribute("city_id", "3	");
 
 				}else if(city.equals("hangzhou")){
-                    request.setAttribute("city", "杭州");
+                    request.setAttribute("city", "hangzhou");
                     request.setAttribute("city_id", "4");
-					request.setAttribute("cityName", "海口");
+					request.setAttribute("cityName", "杭州");
 
 				}else if(city.equals("xian")){
                     request.setAttribute("city", "xian");
