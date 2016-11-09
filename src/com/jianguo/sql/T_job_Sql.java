@@ -1724,8 +1724,9 @@ public class T_job_Sql {
                 " FROM t_job t\n" +
                 " LEFT JOIN t_merchant m ON t.`merchant_id` = m.`id`\n" +
                 " LEFT JOIN t_city c ON t.`city_id` = c.`code`\n" +
+                " LEFT JOIN t_user_login l ON m.`login_id` = l.`id`\n" +
                 " LEFT JOIN t_area a ON t.`area_id` = a.`id`\n" +
-                " WHERE 1=1 and t.status != 6 ";
+                " WHERE 1=1 and t.status != 6 and l.power != 0  ";
 
         if (job_name != null && !"".equals(job_name.trim())) {
             sql += " and t.`name` LIKE '%" + job_name + "%' ";
@@ -1734,6 +1735,7 @@ public class T_job_Sql {
             sql += " and m.`name` LIKE '%" + bus_name + "%' ";
         }
 
+        sql += " order by regedit_time desc ";
 
         System.out.println(sql + "----------------------------------------");
         PreparedStatement psmt = DButil.getPstm(conn, sql);
