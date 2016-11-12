@@ -1,6 +1,8 @@
 package com.jianguo.servlet.update;
 
 import com.google.gson.Gson;
+
+import org.apache.log4j.Logger;
 import org.dom4j.*;
 import org.dom4j.io.SAXReader;
 
@@ -37,51 +39,38 @@ public class UpdateServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
 
-
+        Logger logger = Logger.getLogger("log");
+        logger.info("更新地址日志!");
         int curr_code =Integer.parseInt(request.getParameter("v"));
 
-
         SAXReader reader = new SAXReader();
+        logger.info("UpdateServlet1"+this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
         try {
-            Document document = reader.read(new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath()+"version.xml"));
-
+            Document document = reader.read(Thread.currentThread().getContextClassLoader().getResource("version.xml"));
+            Thread.currentThread().getContextClassLoader().getResource("version.xml");
             Element root = document.getRootElement();
 
-
-            int version = 0;
-
+            String version = "1.0";
+            int code = 0;
             String url = "";
-
             List<Element> childElements = root.elements();
-
             for (Element child : childElements) {
-
-                if("code".equals(child.getName())){
-                    version = Integer.parseInt(child.getStringValue());
-                }
-
-                if("url".equals(child.getName())){
+                if("version".equals(child.getName())){
+                    version = child.getStringValue();
+                }else if("url".equals(child.getName())){
                     url = child.getStringValue();
+                }else if("code".equals(child.getName())){
+                    code = Integer.parseInt(child.getStringValue());
                 }
-                String c = child.getName();
-
             }
-
-
-
-            System.out.println(url);
-            System.out.println(version);
             final Map<String, String> params =  new HashMap<String, String>();
-
-            if(curr_code>version){
+            if(curr_code>=code){
                 params.put("url", "");
             }else{
-
-//                params.put("code", "200");
                 params.put("url", url);
             }
+            params.put("version", version);
             System.out.println(url);
-
             PrintWriter pw = response.getWriter();
             Gson g = new Gson();
             String str = g.toJson(params);
@@ -90,6 +79,7 @@ public class UpdateServlet extends HttpServlet {
             pw.close();
 
         } catch (DocumentException e) {
+            logger.info("UpdateServlet!"+e.getMessage());
             e.printStackTrace();
         }
 

@@ -37,6 +37,8 @@ public class T_user_realname_List_Servlet extends HttpServlet {
 
 		String cityName = request.getParameter("city_id");
 
+		cityName = new String(cityName.getBytes("iso-8859-1"),"utf-8");
+
 		Map params =  new HashMap();
 
 		List<T_user_login_Bean> list_t_login = T_user_login_Sql.select_list_area("3",cityName);
@@ -47,6 +49,7 @@ public class T_user_realname_List_Servlet extends HttpServlet {
 			T_user_realname_Bean t_user_realname = T_user_realname_Sql.select_login_id(t_user_login.getId()+"");
 			
 			t_user_realname.setTel(t_user_login.getTel());
+			t_user_realname.setCity(t_user_login.getCity_id());
 			list_t_user_realname.add(t_user_realname);
 		}
 		

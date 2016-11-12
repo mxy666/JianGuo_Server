@@ -6,6 +6,8 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+
+	String cityName = request.getAttribute("cityName").toString();
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -157,7 +159,11 @@ PowerMac G5 series">
 					</th>
 					<th bordercolor="#0099FF" bordercolor="#ffffff">
 						真实姓名
-					</th><th bordercolor="#0099FF" bordercolor="#ffffff">
+					</th>
+                    <th bordercolor="#0099FF" bordercolor="#ffffff">
+						城市
+					</th>
+                    <th bordercolor="#0099FF" bordercolor="#ffffff">
 						商家名称
 					</th>
 					<th bordercolor="#0099FF" bordercolor="#ffffff">
@@ -179,6 +185,8 @@ PowerMac G5 series">
 						</th>
 						<th bordercolor="#0099FF" bordercolor="#ffffff">
 							${merchant.real_name}
+						</th>	<th bordercolor="#0099FF" bordercolor="#ffffff">
+							${merchant.city}
 						</th>
 						<th bordercolor="#0099FF" bordercolor="#ffffff">
 							${merchant.companyName}
@@ -199,7 +207,7 @@ PowerMac G5 series">
 
 						</th>
 						<th bordercolor="#0099FF" bordercolor="#ffffff">
-							<a href="T_business_realname_Pass_No_Servlet?login_id=${merchant.login_id}">查看详情</a>
+							<a href="T_business_realname_Pass_No_Servlet?login_id=${merchant.login_id}&city_id=${cityName}">查看详情</a>
 						</th>
 					</tr>
 				</c:forEach>

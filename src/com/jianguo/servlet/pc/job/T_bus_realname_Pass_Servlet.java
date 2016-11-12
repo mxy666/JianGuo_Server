@@ -48,6 +48,10 @@ public class T_bus_realname_Pass_Servlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		Map params =  new HashMap();
 
+		String cityName = request.getParameter("city_id");
+
+		cityName = new String(cityName.getBytes("iso-8859-1"),"utf-8");
+
 		String login_id =request.getParameter("login_id");
 		String m_id =request.getParameter("m_id");
 		String pass =request.getParameter("pass");
@@ -81,8 +85,9 @@ public class T_bus_realname_Pass_Servlet extends HttpServlet {
 		}
 
 
-		List<T_merchant_Bean> list_business_login = T_merchant_Sql.selectAuthInfo();
+		List<T_merchant_Bean> list_business_login = T_merchant_Sql.selectAuthInfo(cityName);
 		request.setAttribute("list_business_login", list_business_login);
+		request.setAttribute("cityName", cityName);
 		request.getRequestDispatcher("bus_realname_list.jsp").forward(request, response);
 
 	}

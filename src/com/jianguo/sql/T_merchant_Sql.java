@@ -50,15 +50,20 @@ public class T_merchant_Sql {
 		}
 		return t_merchant;
 	}
-	public static List<T_merchant_Bean> selectAuthInfo(){
+	public static List<T_merchant_Bean> selectAuthInfo(String city_id){
 
 
 		List<T_merchant_Bean> list=new ArrayList<T_merchant_Bean>();
 
 		try {
 			Connection conn=DButil.getCon();
-			String sql = "select m.id,u.tel,m.realName,u.power,m.companyName from t_merchant m  inner join t_user_login u on m.login_id = u.id where 1=1 and m.reviewMerStatus = 1 ";
-			PreparedStatement psmt = DButil.getPstm(conn, sql);
+			String sql = "select m.id,u.tel,m.realName,u.power,m.companyName,t.city from t_merchant m  inner join t_user_login u on m.login_id = u.id inner join t_city t on t.code = m.city where 1=1 and m.reviewMerStatus = 1 ";
+			if(!"boss".equals(city_id)){
+				sql += " and t.city like '%"+city_id+"%' ";
+			}
+
+            System.out.println(sql);
+            PreparedStatement psmt = DButil.getPstm(conn, sql);
 
 			ResultSet rs =psmt.executeQuery();
 
@@ -67,6 +72,7 @@ public class T_merchant_Sql {
 				merchant.setTel(rs.getString("tel"));
 				merchant.setReal_name(rs.getString("realName"));
 				merchant.setCompanyName(rs.getString("companyName"));
+				merchant.setCity(rs.getString("city"));
 				merchant.setAbout(rs.getString("power"));
 				merchant.setLogin_id(Integer.parseInt(rs.getString("id")));
 				list.add(merchant);

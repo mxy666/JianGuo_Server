@@ -62,7 +62,7 @@ public class PasswordLoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         Logger logger = Logger.getLogger("log");
         logger.info("商家端登录日志信息开始!");
-        logger.info("LoginServlet!");
+        logger.info("PasswordLoginServlet!");
         String password =request.getParameter("password");
         String tel ="jg"+request.getParameter("tel");
         Map map = new HashMap();
@@ -101,6 +101,7 @@ public class PasswordLoginServlet extends HttpServlet {
             merchantInfo.setQiniuToken(qiniu_token);
         } catch (SQLException e) {
             HttpClientUtil.pushResponse(response,logger,"400","服务器忙，请稍后再试！",e.getMessage());
+            logger.info("PasswordLoginServlet!error="+e.getMessage());
             return;
         }
 

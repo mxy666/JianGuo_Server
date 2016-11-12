@@ -66,10 +66,10 @@ public class CerficationServlet extends HttpServlet {
                 return;
             }
             //判断token是否匹配
-                if (!LoginSql.checkToken(loginId,token)) {
-                    HttpClientUtil.pushResponse(response,"402","签名校验错误！");
-                    return;
-                }
+//                if (!LoginSql.checkToken(loginId,token)) {
+//                    HttpClientUtil.pushResponse(response,"402","签名校验错误！");
+//                    return;
+//                }
 
             Map map = new HashMap();
             Gson gson=new Gson();
@@ -101,6 +101,7 @@ public class CerficationServlet extends HttpServlet {
             pw.flush();
             pw.close();
         } catch (SQLException e) {
+            logger.info("CerficationServlet! error="+e.getMessage());
             HttpClientUtil.pushResponse(response,logger,"400","服务器忙，请稍后再试！",e.getMessage());
             e.printStackTrace();
         }

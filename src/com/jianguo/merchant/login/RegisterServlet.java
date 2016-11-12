@@ -106,6 +106,7 @@ public class RegisterServlet extends HttpServlet {
             }
         } catch (SQLException e) {
             HttpClientUtil.pushResponse(response,logger,"400","服务器忙，请稍后再试！",e.getMessage());
+            logger.error("register:error="+e.getMessage());
             return;
         }
 

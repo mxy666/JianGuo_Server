@@ -73,9 +73,10 @@ public class T_user_realname_Insert_Servlet extends HttpServlet {
 				Jdpush_shang.sendPush("有用户提现，快去处理","jianguo8000");
 				Jdpusher_shang.sendPush("有用户提现，快去处理","jianguo8000");
 				Jdpushcc_shang.sendPush("有用户提现，快去处理","jianguo8000");
-				Jdpush_shang.sendPush("有用户提现，快去处理","jianguo13");
-				Jdpusher_shang.sendPush("有用户提现，快去处理","jianguo13");
-				Jdpushcc_shang.sendPush("有用户提现，快去处理","jianguo13");
+
+				Jdpush_shang.sendPush("有用户提现，快去处理","jianguo11446");
+				Jdpusher_shang.sendPush("有用户提现，快去处理","jianguo11446");
+				Jdpushcc_shang.sendPush("有用户提现，快去处理","jianguo11446");
 				
 				params.put("message", "实名成功");
 				params.put("code", "200");
@@ -92,9 +93,9 @@ public class T_user_realname_Insert_Servlet extends HttpServlet {
 					Jdpush_shang.sendPush("有用户提现，快去处理","jianguo8000");
 					Jdpusher_shang.sendPush("有用户提现，快去处理","jianguo8000");
 					Jdpushcc_shang.sendPush("有用户提现，快去处理","jianguo8000");
-					Jdpush_shang.sendPush("有用户提现，快去处理","jianguo13");
-					Jdpusher_shang.sendPush("有用户提现，快去处理","jianguo13");
-					Jdpushcc_shang.sendPush("有用户提现，快去处理","jianguo13");
+					Jdpush_shang.sendPush("有用户提现，快去处理","jianguo11446");
+					Jdpusher_shang.sendPush("有用户提现，快去处理","jianguo11446");
+					Jdpushcc_shang.sendPush("有用户提现，快去处理","jianguo11446");
 					
 					params.put("message", "实名修改成功");
 					params.put("code", "200");

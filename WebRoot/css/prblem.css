@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{padding:0;margin:0}
+ul li{list-style:none;}
+img{border:none;display: block}
+input{border:none}
+a{text-decoration:none}
+body{font-family:"微软雅黑";background-color: #f3f3f3;padding: 0 1.5rem}
+img{display: block;width: 100%}
+i,em,s,em{font-style:normal;}
+html{font-size: 62.5%}
+.clear:after{content:"200b";display:block;height:0;font-size:0;clear:both}
+.clear{*zoom:1}
+
+.banner{height:12.8rem;}
+.banner img{width: 13.5rem;height: 9.7rem;margin: 1.5rem auto;}
+.main .pro{width: 92%;margin: 0.5rem auto;padding-left: 0.8rem;background-color: #fff;}
+.main .pro h3{height: 4rem;line-height: 4rem;border-bottom:1px dashed #d2d2d2;color: #3b9bff; font-size: 1.3rem;margin-left: 0.8rem;}
+.main .pro p{;line-height: 2.3rem;font-size: 1.3rem;margin-left: 1rem;}

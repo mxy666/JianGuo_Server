@@ -3,6 +3,9 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String cityName = request.getAttribute("cityName").toString();
+
+
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -166,7 +169,7 @@ PowerMac G5 series">
         <%--<td><h1>女</h1></td></c:if>	--%>
         <tr>
             <td></td>
-            <td><h2><a href="T_bus_realname_Pass_Servlet?login_id=${t_bus_realname.login_id}&pass=1&m_id=${t_bus_realname.id}" onclick="return demo()"> 通过 </a>
+            <td><h2><a href="T_bus_realname_Pass_Servlet?login_id=${t_bus_realname.login_id}&pass=1&m_id=${t_bus_realname.id}&city_id=${cityName}" onclick="return demo()"> 通过 </a>
             </h2></td>
         </tr>
         </table>
@@ -186,6 +189,7 @@ PowerMac G5 series">
                             <input type="hidden" name="login_id" value="${t_bus_realname.login_id}"/>
                             <input type="hidden" name="pass" value="0"/>
                             <input type="hidden" name="m_id" value="${t_bus_realname.id}"/>
+                            <input type="hidden" name="city_id" value="${cityName}"/>
                 </tr>
                 <tr>
                     <td width="30%" align="right" bordercolor="#0099FF" bordercolor="#ffffff">其他:</td>

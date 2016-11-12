@@ -38,8 +38,14 @@ public class T_business_realname_List_Servlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		Map params =  new HashMap();
 
-		List<T_merchant_Bean> list_business_login = T_merchant_Sql.selectAuthInfo();
+		String cityName = request.getParameter("city_id");
+
+//		cityName = new String(cityName.getBytes("iso-8859-1"),"utf-8");
+//		System.out.println(cityName);
+
+		List<T_merchant_Bean> list_business_login = T_merchant_Sql.selectAuthInfo(cityName);
 		request.setAttribute("list_business_login", list_business_login);
+		request.setAttribute("cityName", cityName);
 		request.getRequestDispatcher("bus_realname_list.jsp").forward(request, response);
 	}
 }

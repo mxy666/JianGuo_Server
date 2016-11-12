@@ -91,8 +91,6 @@ public class CerficationSql {
 	 */
 	public static int updateMerStatus(String loginId,String permission) throws SQLException {
 		Connection conn=DButil.getCon();
-//		StringBuffer sql = "insert into t_user_login (tel,password,qqwx_token,power,payStatus,status,resume,city_id,hobby,pigeon_count) values" +
-//				"('"+tel+"','','"+token+"',0,0,1,0,'',0,0)";
 		String sql="UPDATE t_user_login SET power=? WHERE id=?;";
 		PreparedStatement pst=conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		pst.setInt(1, Integer.parseInt(permission));
@@ -111,8 +109,8 @@ public class CerficationSql {
 	 */
 	public static int insertMerchant(String tel,String password,String token) throws SQLException {
 		Connection conn=DButil.getCon();
-		String sql = "insert into t_user_login (tel,password,qqwx_token,power,payStatus,status,resume,city_id,hobby,pigeon_count) values" +
-				"('"+tel+"','"+password+"','"+token+"',0,0,1,0,'',0,0)";
+		String sql = "insert into t_user_login (tel,password,qqwx_token,power,status,resume,city_id,hobby,pigeon_count) values" +
+				"('"+tel+"','"+password+"','"+token+"',0,1,0,'',0,0)";
 		PreparedStatement pst=conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		 pst.executeUpdate();
 		ResultSet rs= pst.getGeneratedKeys();

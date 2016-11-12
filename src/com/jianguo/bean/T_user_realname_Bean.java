@@ -12,6 +12,8 @@ public class T_user_realname_Bean {
 	private int sex;//性别
 	private int status;//性别
 	private String school;//性别
+
+	private String city;
 	
 	private String tel;//身份证号
 	
@@ -74,6 +76,13 @@ public class T_user_realname_Bean {
 	}
 	public String getSchool() {
 		return school;
-	} 
-	
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
 }

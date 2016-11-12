@@ -44,8 +44,8 @@ public class LoginSql {
 	public static int insertMerchant(String tel,String token) throws SQLException {
 		Connection conn=DButil.getCon();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String sql = "insert into t_user_login (tel,password,qqwx_token,power,payStatus,status,resume,city_id,hobby,pigeon_count) values" +
-				"('"+tel+"','','"+token+"',0,0,1,0,'',0,0)";
+		String sql = "insert into t_user_login (tel,password,qqwx_token,power,status,resume,city_id,hobby,pigeon_count) values" +
+				"('"+tel+"','','"+token+"',0,1,0,'',0,0)";
 		PreparedStatement pst=conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		 pst.executeUpdate();
 		ResultSet rs= pst.getGeneratedKeys();
@@ -65,8 +65,8 @@ public class LoginSql {
 	public static int insertMerchant(String tel,String password,String token) throws SQLException {
 		Connection conn=DButil.getCon();
 
-		String sql = "insert into t_user_login (tel,password,qqwx_token,power,payStatus,status,resume,city_id,hobby,pigeon_count) values" +
-				"('"+tel+"','"+password+"','"+token+"',0,0,1,0,'',0,0)";
+		String sql = "insert into t_user_login (tel,password,qqwx_token,power,status,resume,city_id,hobby,pigeon_count) values" +
+				"('"+tel+"','"+password+"','"+token+"',0,1,0,'',0,0)";
 		PreparedStatement pst=conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		 pst.executeUpdate();
 		ResultSet rs= pst.getGeneratedKeys();

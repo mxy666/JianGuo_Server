@@ -39,10 +39,17 @@ public class T_business_realname_Pass_No_Servlet extends HttpServlet {
 		String login_id =request.getParameter("login_id");
 //		String remarks =request.getParameter("remarks");
 
+		String cityName = request.getParameter("city_id");
+
+//		cityName = new String(cityName.getBytes("iso-8859-1"),"utf-8");
+
+		System.out.println("11"+cityName);
+
 		T_merchant_Bean t_bus_realname = T_merchant_Sql.select_id_ad(login_id);
 //		T_user_login_Bean t_user_login = T_user_login_Sql.select_id(login_id);
 
 		request.setAttribute("t_bus_realname",t_bus_realname);
+		request.setAttribute("cityName",cityName);
 //		request.setAttribute("id_number", t_bus_realname.getId_number());
 //		request.setAttribute("front_image", t_bus_realname.getFront_image());
 //		request.setAttribute("behind_image", t_bus_realname.getBehind_image());

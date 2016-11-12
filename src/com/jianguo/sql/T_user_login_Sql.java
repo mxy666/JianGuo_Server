@@ -274,7 +274,7 @@ public class T_user_login_Sql {
 		Connection conn=DButil.getCon();
 		String sql = "select * from t_user_login where status=? ";
 
-		if("Œ‰∫∫".equals(cityName)||"∫º÷›".equals(cityName)){
+		if(!"boss".equals(cityName)){
 			sql +=" and city_id like '%"+cityName+"%'";
 		}
 

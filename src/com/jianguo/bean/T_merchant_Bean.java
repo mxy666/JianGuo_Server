@@ -20,6 +20,9 @@ public class T_merchant_Bean {
 	private String qiniu;//七牛
 	private String pay_password;//支付密码
 
+
+	private String city;
+
 	private int permission;////商家权限（0是内部,1是外部商家，2是个人商户）
 	private String real_name;
 	private String card_num;
@@ -187,4 +190,11 @@ public class T_merchant_Bean {
 		this.bussinessImage = bussinessImage;
 	}
 
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
 }

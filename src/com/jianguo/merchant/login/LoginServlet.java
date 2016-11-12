@@ -105,6 +105,7 @@ public class LoginServlet extends HttpServlet {
             merchantInfo.setQiniuToken(qiniu_token);
         } catch (SQLException e) {
             HttpClientUtil.pushResponse(response,logger,"400","服务器忙，请稍后再试！",e.getMessage());
+            logger.info("LoginServlet!error="+e.getMessage());
             return;
         }
 

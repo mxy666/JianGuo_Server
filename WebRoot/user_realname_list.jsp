@@ -156,6 +156,9 @@ PowerMac G5 series">
 						编号
 					</th>
 					<th bordercolor="#0099FF" bordercolor="#ffffff">
+						地区
+					</th>
+					<th bordercolor="#0099FF" bordercolor="#ffffff">
 						真实姓名
 					</th>
 					<th bordercolor="#0099FF" bordercolor="#ffffff">
@@ -174,6 +177,9 @@ PowerMac G5 series">
 					<tr>
 						<th bordercolor="#0099FF" bordercolor="#ffffff">
 							${aa.count}&emsp;
+						</th>
+						<th bordercolor="#0099FF" bordercolor="#ffffff">
+							${t_user_realname.city}
 						</th>
 						<th bordercolor="#0099FF" bordercolor="#ffffff">
 							${t_user_realname.realname}
