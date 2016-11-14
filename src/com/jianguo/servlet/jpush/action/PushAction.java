@@ -113,10 +113,10 @@ public class PushAction {
         {	      
         	String tel=phoneStr[i];
             System.out.println("-----"+tel+"------"+message); 
-        	String str_message = "【兼果兼职】欢迎选择兼果兼职,"+message;
+        	String str_message = "【兼果兼职】欢迎选择兼果兼职,"+message +",回复TD退订";
     		SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     		String ly_time = time.format(new java.util.Date());
-    		String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-24859&pwd=FF906E078CC0AFCBF3286AD39DDD98C9&mobile="+tel+"&content="+str_message+"&ext=&stime=&rrid=&msgfmt=";
+    		String url = "http://sdk.entinfo.cn:8061/webservice.asmx/mdsmssend?sn=SDK-BBX-010-25250&pwd=29388A6BA2A36103258E39440DEF1C2E&mobile="+tel+"&content="+str_message+"&ext=&stime=&rrid=&msgfmt=";
     		Server_Get.get(url);
     		T_push_new_Sql.add(tel,message,ly_time);
         }

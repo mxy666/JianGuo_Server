@@ -9,8 +9,14 @@ import java.util.List;
 
 import com.jianguo.bean.T_merchant_Bean;
 import com.jianguo.util.DButil;
+import org.apache.log4j.Logger;
 
 public class T_merchant_Sql {
+
+
+	 static Logger logger = Logger.getLogger("log");
+
+
 	//根据ID查出商家信息 new
 	public static T_merchant_Bean select_id_ad(String id){
 		ResultSet rs=null;
@@ -62,7 +68,9 @@ public class T_merchant_Sql {
 				sql += " and t.city like '%"+city_id+"%' ";
 			}
 
-            System.out.println(sql);
+			logger.info("sql=="+sql);
+			logger.info("city_id=="+city_id);
+//            System.out.println(sql);
             PreparedStatement psmt = DButil.getPstm(conn, sql);
 
 			ResultSet rs =psmt.executeQuery();
@@ -206,7 +214,7 @@ public class T_merchant_Sql {
 			while(rs.next()){
 				t_merchant.setId(rs.getInt("id"));
 				t_merchant.setLogin_id(rs.getInt("login_id"));
-				t_merchant.setName(rs.getString("name")+"");
+				t_merchant.setName(rs.getString("companyName")+"");
 				t_merchant.setName_image(rs.getString("name_image")+"");
 				t_merchant.setAbout(rs.getString("about")+"");
 				t_merchant.setLabel(rs.getString("label")+"");

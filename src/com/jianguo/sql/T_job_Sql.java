@@ -1637,9 +1637,8 @@ public class T_job_Sql {
 
     public static int update_all(String city_id, String area_id, String type_id, String merchant_id, String name, String name_image, String start_date, String stop_date,
                                  String address, String mode, String money, String term, String limit_sex, String sum, String regedit_time,
-                                 String status, String hot, String alike, String look, String is_model, String start_time, String girl_sum, String id) {
+                                 String status, String hot, String alike, String look, String is_model, String start_time, String girl_sum, String id) throws SQLException {
         int num = 0;
-        try {
             Connection conn = DButil.getCon();
             String sql = "update t_job set city_id=?,area_id=?,type_id=?,merchant_id=?,name=?,name_image=?,start_date=?,stop_date=?,address=?,mode=?,money=?,term=?,limit_sex=?,sum=?,regedit_time=?,status=?,hot=?,alike=?,look=?,is_model=?,start_time=?,girl_sum=? where id=?";
             PreparedStatement pst = DButil.getPstm(conn, sql);
@@ -1669,9 +1668,6 @@ public class T_job_Sql {
             num = pst.executeUpdate();
             pst.close();
             conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return num;
     }
 

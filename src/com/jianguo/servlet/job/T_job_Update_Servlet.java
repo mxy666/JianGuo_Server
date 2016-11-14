@@ -161,8 +161,14 @@ public class T_job_Update_Servlet extends HttpServlet {
 			}else{
 				str_girl_sum = girl_sum;
 			}
-			
-			int i = T_job_Sql.update_all(city_id,aera_id,type_id, merchant_id, name, name_image, ss, sss, address, mode,money, term, limit_sex, sum, ly_time, "0","1",alike,"1","0",ss2,str_girl_sum,job_id);
+
+			int i = 0;
+			try {
+				i = T_job_Sql.update_all(city_id,aera_id,type_id, merchant_id, name, name_image, ss, sss, address, mode,money, term, limit_sex, sum, ly_time, "0","1",alike,"1","0",ss2,str_girl_sum,job_id);
+			} catch (SQLException e) {
+				logger.error("ÐÞ¸Ä¼æÖ°error:"+e.getMessage());
+				e.printStackTrace();
+			}
 			if(i == 1){
 				T_job_Bean t_job = null;
 				try {
